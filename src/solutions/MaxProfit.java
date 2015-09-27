@@ -26,4 +26,28 @@ public class MaxProfit {
         return profit;
     }
 	
+	/**
+	 * Best Time to Buy and Sell Stock II
+	 * @param prices
+	 * @return
+	 */
+	public int maxProfit(int[] prices) {
+        
+        if( prices == null || prices.length == 0)
+        {
+            return 0;
+        }
+        
+        int profit = 0;
+        
+        int min = prices[0];
+        
+        for(int p : prices)
+        {
+            min = Math.min(min, p);
+            profit = Math.max(profit, p - min);
+        }
+        
+        return profit;
+    }
 }
