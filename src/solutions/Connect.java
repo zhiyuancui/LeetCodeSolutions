@@ -1,3 +1,6 @@
+/**
+ * Populating Next Right Pointer
+ */
 package solutions;
 
 import util.TreeLinkNode;
