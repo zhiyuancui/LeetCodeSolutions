@@ -42,5 +42,29 @@ public class ProductExceptSelf {
         }
         
         return result;
+             
+    }
+	
+	public int[] productExceptSelf2(int[] nums) {
+        if( nums == null || nums.length < 2 )
+        {
+            return nums;
+        }
+        
+        int[] result = new int[nums.length];
+        int l = 1;
+        int r = 1;
+        for(int j = 0;j<result.length;j++) {
+            result[j] = 1;
+        }
+        for(int i = 0;i<nums.length-1;i++) {
+            l *= nums[i];
+            int rIndex = nums.length - i - 1;
+            r *= nums[rIndex];
+            result[i+1] *= l;
+            result[rIndex -1] *= r;
+        }
+
+        return result;
     }
 }

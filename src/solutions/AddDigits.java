@@ -33,4 +33,8 @@ public class AddDigits {
 	        
 	        return next;
 	    }
+	
+	public int addDigits2(int num){
+		return num!=0?(num%9!=0?num%9:9):0;
+	}
 }
