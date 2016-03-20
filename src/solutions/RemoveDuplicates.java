@@ -33,7 +33,7 @@ public class RemoveDuplicates {
             
         }
         
-        return index;
+        return index+1;
     }
 	
 	/**
