@@ -87,6 +87,6 @@ public class RomanInteger {
 	{
 		RomanInteger r = new RomanInteger();
 		//r.romanToInt("MCMXCVI");
-		r.intToRoman(1);
+		System.out.println(  r.intToRoman(1) );
 	}
 }

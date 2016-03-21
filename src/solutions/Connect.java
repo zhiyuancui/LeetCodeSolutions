@@ -21,7 +21,7 @@ public void connect(TreeLinkNode root) {
             {
                 if( next == null )
                 {
-                    next = root.left == null ? root.right : root.left;
+                	next = root.left == null ? root.right : root.left;
                 }
                 
                 if( root.left != null )
