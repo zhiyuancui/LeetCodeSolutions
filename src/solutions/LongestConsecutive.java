@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class LongestConsecutive {
 
 	
-public int longestConsecutive(int[] nums) {
+	public int longestConsecutive(int[] nums) {
         
         if( nums == null || nums.length == 0 )
         {
@@ -47,4 +47,11 @@ public int longestConsecutive(int[] nums) {
         
         return len;
     }
+
+	public static void main(String[] args){
+		LongestConsecutive l = new LongestConsecutive();
+		int[] nums = {0,0};
+		System.out.println( l.longestConsecutive(nums) );
+	}
+
 }
