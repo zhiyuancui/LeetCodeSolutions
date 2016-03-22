@@ -13,13 +13,8 @@ public class FindKthLargest {
         
         for( int i : nums )
         {
-            if( q.size() < k )
-            {
-                q.offer(i);
-            }
-            else
-            {
-                q.offer(i);
+        	q.offer(i);
+            if( q.size() > k ){
                 q.poll();
             }
         }

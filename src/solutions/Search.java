@@ -73,7 +73,7 @@ public class Search {
 	 */
 	public int search2(int[] nums, int target) {
 	     
-	     if( nums == null && nums.length == 0 )
+	     if( nums == null || nums.length == 0 )
 	     {
 	         return -1;
 	     }  
