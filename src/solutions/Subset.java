@@ -18,7 +18,7 @@ public class Subset {
     }
     
     private void generate(List<List<Integer>> result, List<Integer> solution, int start, int[] nums ){
-        result.add( new ArrayList( solution ) );
+        result.add( new ArrayList<Integer>( solution ) );
         
         for(int i = start; i < nums.length; i++ ){
             solution.add(nums[i]);
