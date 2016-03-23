@@ -51,4 +51,49 @@ public class BuildTree {
         
         return -1;
     }
+    
+    
+    /**
+     *  Construct Binary Tree from Inorder and Postorder Traversal
+     * @param inorder
+     * @param postorder
+     * @return
+     */
+    public TreeNode buildTree2(int[] inorder, int[] postorder) {
+        if( inorder == null || postorder == null || inorder.length != postorder.length ){
+            return null;
+        }
+        
+        return myBuildTree2(inorder, 0, inorder.length - 1, postorder,0, postorder.length - 1);
+    }
+    
+    private TreeNode myBuildTree2(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd){
+        if( inStart > inEnd ){
+            return null;
+        }
+        TreeNode root = new TreeNode( postorder[postEnd] );
+        
+        int pos = getInorderIndex2(root.val, inorder, inStart, inEnd);
+     
+        root.left = myBuildTree2(inorder, inStart, pos - 1, postorder,postStart, postStart + (pos - inStart) - 1);
+        root.right = myBuildTree2(inorder, pos+1, inEnd, postorder,postStart + (pos - inStart), postEnd-1);
+        return root;
+    }
+    
+    private int getInorderIndex2(int val, int[] inorder,int start, int end){
+        for(int i = start; i <= end; i++){
+            if( inorder[i] == val ){
+                return i;
+            }
+        }
+        
+        return -1;
+    }
+    
+    public static void main(String[] args){
+    	BuildTree t = new BuildTree();
+    	int[] inorder = {1,3,2};
+    	int[] postorder = {3,2,1};
+    	t.buildTree2(inorder, postorder);
+    }
 }
