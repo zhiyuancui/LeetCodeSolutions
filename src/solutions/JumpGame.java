@@ -49,9 +49,11 @@ public class JumpGame {
         int furthest = nums[0];
         for(int i =1;i < nums.length; i++){
             
-            if( i <= furthest && nums[i] + i >= furthest ){
-                furthest = nums[i] + i;
+        	if(i > furthest ){
+                return false;
             }
+            
+            furthest = Math.max( furthest, i + nums[i]);
         }
         
         return furthest >= nums.length - 1;
