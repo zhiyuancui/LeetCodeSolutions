@@ -132,4 +132,14 @@ public class Permutation {
            end--;
        }
    }
+   
+   /**
+    * Permutation Sequence
+    * @param n
+    * @param k
+    * @return
+    */
+   public String getPermutation(int n, int k) {
+       return "";
+   }
 }

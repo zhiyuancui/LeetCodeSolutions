@@ -27,7 +27,7 @@ public class MaxProfit {
     }
 	
 	/**
-	 * Best Time to Buy and Sell Stock II
+	 * Best Time to Buy and Sell Stock I
 	 * @param prices
 	 * @return
 	 */
