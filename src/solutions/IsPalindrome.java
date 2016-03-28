@@ -87,4 +87,51 @@ public class IsPalindrome {
         }
         return true;
     }
+	
+	
+	/**
+	 * Valid Palindrome
+	 * @param s
+	 * @return
+	 */
+	public boolean isPalindrome(String s) {
+        if( s== null || s.length() == 0 ){
+            return true;
+        }
+        
+        s = s.toLowerCase();
+        
+        int len = s.length();
+        int front = 0;
+        int end = len - 1;
+        
+        while( front < end ){
+            while( front < s.length() && !isLetter( s.charAt(front) ) ){
+                front++;
+            }
+            
+            if( front == s.length() ){
+                return true;
+            }
+            
+            while( end >= 0 && !isLetter( s.charAt(end) ) ){
+                end--;
+            }
+            
+            if(  s.charAt( front) != s.charAt(end) ){
+               break;
+            }else {
+                front++;
+                end--;
+            }
+        }
+        
+        return end <= front;
+    }
+    
+    
+    private boolean isLetter(Character c){
+        return Character.isLetter(c) || Character.isDigit(c);
+    }
+	
 }
