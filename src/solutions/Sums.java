@@ -2,7 +2,9 @@ package solutions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Sums {
 
@@ -72,6 +74,22 @@ public class Sums {
 	        return result;
 	    }
 	 
+	 
+	 public int[] twoSum2(int[] nums, int target) {
+	        Map<Integer, Integer> map = new HashMap<Integer,Integer>();
+	        int[] res = new int[2];
+	        
+	        for(int i = 0; i < nums.length; i++){
+	            if( map.get( target-nums[i]) != null ){
+	                res[0] = i;
+	                res[1] = map.get( target - nums[i] );
+	                return res;
+	            }
+	            map.put( nums[i], i );
+	        }
+	        
+	        return res;
+	    }
 	 
 	 public List<List<Integer>> threeSum(int[] nums) {
 	        List<List<Integer>> rst = new ArrayList<List<Integer>>();
