@@ -52,6 +52,11 @@ public class MaxProfit {
     }
 	
 
+	/**
+	 * Best time to Buy and Sell Stock IV
+	 * @param prices
+	 * @return
+	 */
 	public int maxProfit3(int[] prices) {
         
         if( prices == null || prices.length == 0 )
@@ -83,5 +88,9 @@ public class MaxProfit {
         }
         
         return max;
+    }
+	
+	public int maxProfit4(int k, int[] prices) {
+        
     }
 }

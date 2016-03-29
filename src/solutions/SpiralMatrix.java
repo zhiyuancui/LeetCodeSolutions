@@ -1,5 +1,8 @@
 package solutions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SpiralMatrix {
 	public int[][] generateMatrix(int n) {
         int[][] result = new int[n][n];
@@ -54,4 +57,64 @@ public class SpiralMatrix {
         
         return result;
     }
+	
+	
+	public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<Integer>();
+        
+        if( matrix == null || matrix.length == 0 || matrix[0].length == 0 ){
+            return result;
+        }
+        
+        int row = matrix.length;
+        int col = matrix[0].length;
+        
+        int startX = 0;
+        int startY = 0;
+        int count = 0;
+        
+        while( count < row * col){
+            
+            //left
+            for(int i = startY; i < col - startY; i++){
+                result.add( matrix[ startX ][ i ]);
+                count++;
+            }
+            
+            
+            //down
+            for(int i = startX+1; i < row - startX; i++){
+                result.add( matrix[ i ][ col - startY - 1 ]);
+                count++;
+            }
+            
+            
+            //right
+            for(int i = col - startY - 2; i >= startY && count < row * col; i--){
+                result.add( matrix[ row - startX - 1][i] );
+                count++;
+            }
+            
+            
+            //up
+            for(int i = row - startX - 2; i > startX && count < row * col; i-- ){
+                result.add( matrix[i][ startY ] );
+                count++;
+            }
+            
+            startX++;
+            startY++;
+        }
+        
+        return result;
+    }
+	
+	public static void main(String[] args){
+		SpiralMatrix s = new SpiralMatrix();
+		int[][] matrix = new int[3][1];
+		matrix[0][0] = 7;
+		matrix[1][0] = 9;
+		matrix[2][0] = 6;
+		s.spiralOrder(matrix);
+	}
 }
