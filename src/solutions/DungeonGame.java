@@ -1,5 +1,7 @@
 package solutions;
 
+import java.util.Arrays;
+
 public class DungeonGame {
 	public int calculateMinimumHP(int[][] dungeon) {
         if( dungeon == null || dungeon.length == 0 || dungeon[0].length == 0 ){
@@ -31,5 +33,31 @@ public class DungeonGame {
         }
         
         return matrix[0][0];
+    }
+	
+	/**
+	 * Use Rolling arrays
+	 * @param dungeon
+	 * @return
+	 */
+	public int calculateMinimumHP2(int[][] dungeon) {
+        if( dungeon == null || dungeon.length == 0 || dungeon[0].length == 0 ){
+            return 0;
+        }
+        
+        int row = dungeon.length;
+        int col = dungeon[0].length;
+        
+        int[] dp = new int[ col + 1 ];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[ col - 1 ] = 1;
+        for(int i = row - 1; i >= 0; i--){
+            for(int j = col-1;j >= 0; j--){
+                int hp = Math.min(dp[j],dp[j+1]) - dungeon[i][j];
+                dp[j] = Math.max(1,hp);
+            }
+        }
+        
+        return dp[0];
     }
 }
