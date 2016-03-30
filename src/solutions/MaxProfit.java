@@ -91,6 +91,6 @@ public class MaxProfit {
     }
 	
 	public int maxProfit4(int k, int[] prices) {
-        
+        return 0;
     }
 }
