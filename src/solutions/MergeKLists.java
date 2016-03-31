@@ -12,36 +12,39 @@ public class MergeKLists {
             return null;
         }
         
-        Queue<ListNode> heap = new PriorityQueue<ListNode>( lists.length, ListNodeComparator);
-        
-        for(int i = 0; i < lists.length; i++){
-            if( lists[i] != null ){
-                heap.offer( lists[i] );
+        Queue<ListNode> heap = new PriorityQueue<ListNode>( lists.length, new ListNodeComparator() );
+    
+        for( ListNode list : lists ){
+            if( list != null ){
+                heap.offer( list );
             }
         }
         
         ListNode dummy = new ListNode(0);
-        ListNode tail = dummy;
+        ListNode prev = dummy;
+        
         while( !heap.isEmpty() ){
-            ListNode head = heap.poll();
-            tail.next = head;
-            tail = head;
-            if( head.next != null ){
-                heap.offer( head.next );
+            ListNode cur = heap.poll();
+            prev.next = cur;
+            prev = prev.next;
+            if( cur.next != null ){
+                heap.offer( cur.next );
             }
         }
         
         return dummy.next;
     }
-    
-    private Comparator<ListNode> ListNodeComparator = new Comparator<ListNode>(){
-        public int compare(ListNode left, ListNode right){
-            if( left == null ){
+
+    private class ListNodeComparator implements Comparator<ListNode>{
+        public int compare(ListNode l1, ListNode l2){
+            if( l1 == null ){
                 return 1;
-            }else if( right == null ){
-                return -1;
+            }else if( l2 == null ){
+                return 2;
+            }else{
+                return l1.val - l2.val;
             }
-            return left.val - right.val;
+            
         }
-    };
+    }
 }

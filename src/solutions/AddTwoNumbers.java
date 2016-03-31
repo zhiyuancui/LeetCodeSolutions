@@ -25,4 +25,11 @@ public class AddTwoNumbers {
         
         return dummy.next;
     }
+	
+	public static void main(String[] args){
+		AddTwoNumbers a = new AddTwoNumbers();
+		ListNode l1 = new ListNode(0);
+		ListNode l2 = new ListNode(0);
+		a.addTwoNumbers(l1, l2);
+	}
 }
