@@ -23,6 +23,11 @@ public class HouseRobber {
 	    return res;
 	}
 	
+	/**
+	 * House Robber
+	 * @param nums
+	 * @return
+	 */
 	public int rob(int[] nums) {
         if( nums == null || nums.length == 0 ){
             return 0;
