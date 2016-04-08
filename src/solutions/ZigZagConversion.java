@@ -2,24 +2,44 @@ package solutions;
 
 public class ZigZagConversion {
 	public String convert(String s, int numRows) {
-        if( numRows == 1 ){
+		if( s== null || s.length() == 0 ){
+            return "";
+        }
+        
+        if( s.length() < numRows ){
             return s;
         }
         
-        int x = 2 * ( numRows - 1 );
         int len = s.length();
         
-        char[] c = new char[len];
-        int k = 0;
+        char[] token = new char[len];
         
-        for(int i = 0; i < numRows; i++){
-            for(int j = i; j < len; j=j+x){
-                c[k++] = s.charAt(j);
-                if( i > 0 && i < numRows - 1 && j +x-2*i < len){
-                    c[k++] = s.charAt(j+x-2*i);
+        int index = 0;
+        for(int i = 0; i < numRows; i++ ){
+            if( i == 0 ){
+                for(int j = 0; i + j < len; j+=numRows+2 ){
+                    token[index] = s.charAt( i + j );
+                    index++;
+                }
+            }else if( i < numRows - 1 ){
+                for(int j = 0; i + j  < len; j+=numRows-1 ){
+                    token[index] = s.charAt( i + j );
+                    index++;
+                }
+            }else{
+                for(int j = 0; i + j  < len; j+=numRows+2 ){
+                    token[index] = s.charAt( i + j );
+                    index++;
                 }
             }
+            
         }
-        return new String(c);
+        
+        return new String( token );
     }
+	
+	public static void main(String[] args){
+		ZigZagConversion z = new ZigZagConversion();
+		System.out.println( z.convert("PAYPALISHIRING", 6) ) ;
+	}
 }
