@@ -53,8 +53,70 @@ public int calculate(String s) {
         return c >= '0' && c <= '9';
     }
     
+    /**
+     * Basic Calculator II
+     * @param s
+     * @return
+     */
+    public int calculate2(String s) {
+        
+        if( s == null )
+        {
+            return 0;
+        }
+        
+        s = s.trim().replaceAll(" +","");
+        
+        int length = s.length();
+        
+        int res = 0;
+        long preVal = 0;
+        char sign = '+';
+        int i = 0;
+        
+        while( i < length )
+        {
+            long curVal = 0;
+            while( i < length && s.charAt(i) >= '0' && s.charAt(i) <= '9')
+            {
+                curVal = curVal * 10 + ( s.charAt(i) - '0');
+                i++;
+            }
+            
+            if( sign == '+')
+            {
+                res += preVal;
+                preVal = curVal;
+            }
+            else if( sign == '-')
+            {
+                res += preVal;
+                preVal = - curVal;
+            }
+            else if( sign == '*')
+            {
+                preVal = preVal * curVal;
+            }
+            else if( sign == '/')
+            {
+                preVal = preVal / curVal;
+            }
+            if( i < length )
+            {
+                sign = s.charAt(i);
+                i++;
+            }
+            
+        }
+        
+        res += preVal;
+        return res;
+     }
+    
+    
+    
     public static void main(String[] args){
     	BasicCalculator b = new BasicCalculator();
-    	b.calculate("   30");
+    	b.calculate("   1+3-5");
     }
 }

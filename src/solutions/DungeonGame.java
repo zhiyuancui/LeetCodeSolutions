@@ -13,8 +13,6 @@ public class DungeonGame {
         
         int[][] matrix = new int[ row ][ col ];
         
-        matrix[ row - 1][ col - 1 ] = 1;
-        
         matrix[ row - 1 ][ col - 1 ] = Math.max(1, 1-dungeon[row - 1 ][ col - 1 ]);
         
         for(int i = row - 2; i >= 0; i--){
