@@ -14,8 +14,8 @@ public class FindPeakElement {
 	     
 	     for(int i = 0; i < nums.length; i++)
 	     {
-	         int left = i < nums.length-1 ? nums[i+1] : Integer.MIN_VALUE;
-	         if( left < nums[i] )
+	         int right = i < nums.length-1 ? nums[i+1] : Integer.MIN_VALUE;
+	         if( right < nums[i] )
 	         {
 	             if( prev < nums[i] )
 	             {
