@@ -28,6 +28,6 @@ public class Divide {
 	
 	public static void main(String[] args){
 		Divide d = new Divide();
-		d.divide(-2147483648 , -1);
+		d.divide(14, 3);
 	}
 }

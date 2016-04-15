@@ -89,10 +89,16 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
         wordList.add( endWord );
         
         LadderNode root = bfs(beginWord, endWord, wordList);
+        treeTrave( root );
         List<String> path = new ArrayList<String>();
         
         dfs(root, ladders, path, endWord );
         
+        //filter result find shortest;
+//        int min = Integer.MAX_VALUE;
+//        for(List<String> solution : ladders ){
+//        	min = Math.min(min, solution.size() );
+//        }
         return ladders;
     }
     
@@ -102,6 +108,8 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
             if( root.val.equals( end ) ){
                 path.add( root.val );
                 ladders.add(new ArrayList<String>( path ));
+            }else{
+            	path.add("fake");
             }
             return;
         }
@@ -120,27 +128,39 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
     {
         Queue<LadderNode> q = new LinkedList<LadderNode>();
         Set<String> set = new HashSet<String>();
-        set.add( start );
         
         LadderNode root = new LadderNode( start );
         q.offer( root );
-         
-        while( !q.isEmpty() ){
-            LadderNode cur = q.poll();
-            
-            List<String> nextList = expand( cur.val, dict );
-            for(String nextWord : nextList ){
-            	if( set.contains( nextWord ) && !nextWord.equals(end)){
-                    continue;
-                }
-                
-                if( cur.next == null ){
-                	cur.next = new HashMap<>();
-                }
-                cur.next.put(nextWord, new LadderNode( nextWord ) );
-                q.offer( cur.next.get( nextWord) );
-                set.add( nextWord );
-            }
+        
+        boolean touchEnd = false;
+  
+        while( !q.isEmpty() ){ 
+        	int size = q.size();
+        	for(int i = 0; i < size; i++ ){ 
+	        	LadderNode cur = q.poll();
+	        	set.add( cur.val );
+	        
+	            List<String> nextList = expand( cur.val, dict );
+	            for(String nextWord : nextList ){
+	            	if( set.contains( nextWord ) && !nextWord.equals(end)){
+	                    continue;
+	                }
+	                
+	            	if( nextWord.equals(end) ){
+	            		touchEnd = true;
+	            	}
+	            	
+	                if( cur.next == null ){
+	                	cur.next = new HashMap<>();
+	                }
+	                cur.next.put(nextWord, new LadderNode( nextWord ) );
+	                q.offer( cur.next.get( nextWord) );
+	            }
+        	}
+        	
+        	if( touchEnd ){
+        		break;
+        	}
         }
         
         return root;
@@ -174,15 +194,50 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
         }
     }
     
+    private void treeTrave(LadderNode root){
+    	List<List<String>> result = new ArrayList<List<String>>();
+    	
+    	Queue<LadderNode> q = new LinkedList<LadderNode>();
+    	q.offer( root );
+    	
+    	while( !q.isEmpty() ){
+    		int size = q.size();
+    		List<String> level = new ArrayList<String>();
+    		for( int i = 0; i < size; i++ ){
+    			LadderNode node = q.poll();
+    			level.add( node.val );
+    			if( node.next != null ){
+	    			for(Map.Entry<String, LadderNode> entry : node.next.entrySet() ){
+	    				q.offer( entry.getValue() );
+	    			}
+    			}
+    		}
+    		
+    		result.add( level );
+    	}
+    	
+    	for(List<String> level : result ){
+    		for(int i = 0; i < level.size(); i++){
+    			System.out.print( level.get(i) + " ");
+    		}
+    		System.out.println();
+    	}
+    	System.out.println("////////////////////////////////////");
+    }
+    
     public static void main(String[] args){
     	WordLadder w = new WordLadder();
     	Set<String> wordList = new HashSet<String>();
-    	wordList.add("hot");
-    	wordList.add("dot");
-    	wordList.add("dog");
-    	wordList.add("lot");
-    	wordList.add("log");
-    	List<List<String>> result = w.findLadders("hit", "cog", wordList);
+    	wordList.add("ted");
+    	wordList.add("tex");
+    	wordList.add("red");
+    	wordList.add("tax");
+    	wordList.add("tad");
+    	wordList.add("den");
+    	wordList.add("rex");
+    	wordList.add("pee");
+
+    	List<List<String>> result = w.findLadders("red", "tax", wordList);
     	
     	for(List<String> path : result){
     		for(String s : path){
