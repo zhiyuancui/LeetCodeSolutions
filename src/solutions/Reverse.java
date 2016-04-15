@@ -18,6 +18,10 @@ public int reverse(int x) {
             int digit = x % 10;
             x = x/10;
             int newX =  reverse * 10 + digit;
+            if( newX < 0 ){
+            	System.out.println(newX);
+            	System.out.println((newX - digit ) / 10);
+            }
             if( (newX - digit ) / 10 == reverse )
             {
                 reverse = newX;
@@ -30,4 +34,9 @@ public int reverse(int x) {
         
         return neg ? -reverse: reverse;
     }
+
+	public static void main(String[] args){
+		Reverse r = new Reverse();
+		r.reverse( 2147483647 );
+	}
 }

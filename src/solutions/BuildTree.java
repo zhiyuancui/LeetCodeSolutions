@@ -27,7 +27,7 @@ public class BuildTree {
                      return null;
                  }
                  
-                 TreeNode root = new TreeNode( preorder[ preStart] );
+                 TreeNode root = new TreeNode( preorder[ preStart ] );
                  
                  int pos = getinorderIndex(root.val, inorder, inStart, inEnd );
                  
