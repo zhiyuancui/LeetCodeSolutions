@@ -27,7 +27,7 @@ public class RepeatedDNA {
         return result;
     }
     
-    private int encode(String s){
+    public int encode(String s){
         int sum = 0;
         for(int i = 0; i < s.length(); i++){
             if( s.charAt(i) == 'A'){
@@ -40,7 +40,11 @@ public class RepeatedDNA {
                 sum = sum * 4 + 3;
             }
         }
-        
         return sum;
+    }
+    
+    public static void main(String[] args){
+    	RepeatedDNA r = new RepeatedDNA();
+    	r.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT");
     }
 }

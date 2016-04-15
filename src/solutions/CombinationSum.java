@@ -7,6 +7,7 @@ import java.util.List;
 public class CombinationSum {
 
 	/**
+	 * Combination Sum II
 	 * Have duplicates
 	 * @param candidates
 	 * @param target

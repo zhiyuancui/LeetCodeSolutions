@@ -1,6 +1,6 @@
 package solutions;
 
-public class IsUgly {
+public class UglyNumber {
 	
 	public boolean isUgly(int num) {
         

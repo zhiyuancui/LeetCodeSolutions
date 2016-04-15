@@ -1,6 +1,6 @@
 package solutions;
 
-public class CanCompleteCircuit {
+public class GasStation {
 
 	public int canCompleteCircuit(int[] gas, int[] cost) {
         

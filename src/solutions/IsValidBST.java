@@ -1,5 +1,7 @@
 package solutions;
 
+import util.TreeNode;
+
 public class IsValidBST {
 	private int lastVal = Integer.MIN_VALUE;
     private boolean firstNode = true;
