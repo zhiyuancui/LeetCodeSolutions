@@ -60,8 +60,6 @@ public class SurroundedRegions {
             return;
         }
         
-        printBoard( board );
-        
         Queue<Node> queue = new LinkedList<Node>();
         Node head = new Node(x,y);
         queue.offer(head);
@@ -96,8 +94,7 @@ public class SurroundedRegions {
             int y = head.y + dy[i];
             if( x >= 0 && x < board.length && y >= 0 && y < board[0].length && board[x][y] == 'O')
             {
-                //board[x][y] = 'T';
-                printBoard( board );
+                board[x][y] = 'T';
                 nextList.add(new Node(x, y));
             }
         }

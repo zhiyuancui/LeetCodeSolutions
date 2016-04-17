@@ -1,6 +1,8 @@
 package solutions;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class CourseSchedule {
@@ -57,6 +59,49 @@ public class CourseSchedule {
 	 * @return
 	 */
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
-        return new int[2];
+        List<List<Integer>> course = new ArrayList<List<Integer>>();
+        
+        int[] map = new int[ numCourses ];
+        
+        List<Integer> result = new ArrayList<Integer>();
+        
+        for( int i = 0; i < numCourses; i++ ){
+            course.add ( new ArrayList<Integer>() );
+        }
+        
+        for(int i = 0; i < prerequisites.length; i++){
+            course.get( prerequisites[i][0] ).add( prerequisites[i][1] );
+        }
+        
+        for( int i = 0; i < numCourses; i++ ){
+            if( !dfs( course,i,result,map) ){
+                return new int[0];
+            }
+        }
+        
+        int[] ans = new int[ result.size() ];
+        for(int i = 0; i < result.size(); i++ ){
+            ans[i] = result.get(i);
+        }
+        
+        return ans;
+    }
+    
+    public boolean dfs(List<List<Integer>> course, int req, List<Integer> result, int[] map ){
+        if( map[req] == 0 ){
+            map[ req ] = 1;
+            for(int i = 0 ; i < course.get(req).size(); i++ ){
+                if( !dfs( course, course.get(req).get(i), result, map) ){
+                    return false;
+                }
+            }
+            map[req] = 2;
+        }else if( map[req] == 1 ){
+            return false;
+        }else if( map[req] == 2 ){
+            return true;
+        }
+        result.add( req );
+        return true;
     }
 }

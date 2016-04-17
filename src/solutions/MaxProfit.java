@@ -1,5 +1,7 @@
 package solutions;
 
+import java.util.Arrays;
+
 public class MaxProfit {
 
 	/**
@@ -93,6 +95,43 @@ public class MaxProfit {
 	 * @return
 	 */
 	public int maxProfit4(int k, int[] prices) {
-        return 0;
+        if( k <= 0 || prices == null || prices.length <= 0 ){
+            return 0;
+        }
+        
+        if( k > prices.length / 2 ){
+            int max = 0;
+            for(int i = 0; i < prices.length - 1; i++){
+                int diff = prices[i+1] - prices[i];
+                max += diff > 0 ? diff : 0;
+            }
+            return max;
+        }else{
+            int[] buy = new int[k];
+            int[] sell = new int[k];
+            
+            Arrays.fill( buy, Integer.MIN_VALUE);
+            
+            for( int price : prices ){
+                int tmp = 0;
+                for( int i = 0; i < k; i++ ){
+                    int buffer = 0;
+                    buffer = tmp - price;
+                    if( buy[i] < buffer ){
+                        buy[i] = buffer;
+                    }
+                    
+                    buffer = buy[i] + price;
+                    
+                    if( sell[i] < buffer ){
+                        sell[i] = buffer;
+                    }
+                    
+                    tmp = sell[i];
+                }
+            }
+            
+            return sell[ k - 1 ];
+        }
     }
 }

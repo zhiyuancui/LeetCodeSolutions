@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 public class MedianFinder {
 	PriorityQueue<Integer> minHeap = new PriorityQueue<>();
     PriorityQueue<Integer> maxHeap = new PriorityQueue<>( Collections.reverseOrder() );
+    
     public void addNum(int num) {
         maxHeap.offer( num );
         minHeap.offer( maxHeap.poll() );
@@ -21,5 +22,13 @@ public class MedianFinder {
         }else{
             return maxHeap.peek();
         }
+    }
+    
+    public static void main(String[] args){
+    	 MedianFinder m = new MedianFinder();
+    	 m.addNum(1);
+    	 m.addNum(2);
+    	 m.addNum(3);
+    	 m.findMedian();
     }
 }
