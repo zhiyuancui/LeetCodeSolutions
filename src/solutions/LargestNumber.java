@@ -30,4 +30,10 @@ public class LargestNumber {
         }
         return res;
     }
+	
+	public static void main(String[] args){
+		LargestNumber l = new LargestNumber();
+		int[] nums = {1,2,11,21,20};
+		l.largestNumber(nums);
+	}
 }

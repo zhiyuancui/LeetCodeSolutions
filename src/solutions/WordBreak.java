@@ -61,15 +61,15 @@ public class WordBreak {
         }
         
         for(int len = 1; len <= n; len++ ){
-            String subfix = s.substring(0,len);
-            if( dict.contains(subfix) ){
+            String prefix = s.substring(0,len);
+            if( dict.contains(prefix) ){
                 if( len == n ){
-                    result.add( subfix );
+                    result.add( prefix );
                 }else{
-                    String prefix = s.substring(len);
-                    List<String> temp = wordBreakHelper(prefix, dict, memo);
+                    String suffix = s.substring(len);
+                    List<String> temp = wordBreakHelper(suffix, dict, memo);
                     for(String item: temp ){
-                        item = subfix +" "+ item;
+                        item = prefix +" "+ item;
                         result.add(item);
                     }
                 }
