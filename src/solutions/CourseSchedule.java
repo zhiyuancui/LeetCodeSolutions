@@ -18,14 +18,14 @@ public class CourseSchedule {
             return true;
         }
         
-        int[] degree = new int[ numCourses ];
+        int[] indegree = new int[ numCourses ];
         Queue<Integer> queue = new LinkedList<Integer>();
         for(int i = 0; i < prerequisites.length; i++){
-            degree[ prerequisites[i][1] ]++;
+            indegree[ prerequisites[i][1] ]++;
         }
         
-        for(int i = 0; i < degree.length; i++){
-            if( degree[i] == 0 ){
+        for(int i = 0; i < indegree.length; i++){
+            if( indegree[i] == 0 ){
                 queue.offer(i);
             }
         }
@@ -34,16 +34,16 @@ public class CourseSchedule {
             int x = queue.poll();
             for(int i = 0; i < prerequisites.length; i++){
                 if( x == prerequisites[i][0] ){
-                    degree[prerequisites[i][1]]--;
-                    if(degree[prerequisites[i][1]] == 0 ){
+                    indegree[prerequisites[i][1]]--;
+                    if(indegree[prerequisites[i][1]] == 0 ){
                         queue.offer(prerequisites[i][1]);
                     }
                 }
             }
         }
         
-        for(int i = 0; i < degree.length; i++){
-            if( degree[i] != 0 ){
+        for(int i = 0; i < indegree.length; i++){
+            if( indegree[i] != 0 ){
                 return false;
             }
         }
@@ -59,49 +59,51 @@ public class CourseSchedule {
 	 * @return
 	 */
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> course = new ArrayList<List<Integer>>();
-        
-        int[] map = new int[ numCourses ];
-        
+	    
         List<Integer> result = new ArrayList<Integer>();
         
-        for( int i = 0; i < numCourses; i++ ){
-            course.add ( new ArrayList<Integer>() );
+        List<List<Integer>> graph = new ArrayList<List<Integer>>();
+        
+        for(int i = 0; i < numCourses; i++){
+            List<Integer> l = new ArrayList<Integer>();
+            graph.add(l);
         }
         
-        for(int i = 0; i < prerequisites.length; i++){
-            course.get( prerequisites[i][0] ).add( prerequisites[i][1] );
+        int[] indegree = new int[ numCourses ];
+        
+        for( int[] edge : prerequisites ){
+            graph.get( edge[1] ).add( edge[0] );
+            indegree[ edge[0] ]++;
         }
         
-        for( int i = 0; i < numCourses; i++ ){
-            if( !dfs( course,i,result,map) ){
-                return new int[0];
+        Queue<Integer> q = new LinkedList<Integer>();
+        
+        for(int i = 0; i < numCourses; i++){
+            if( indegree[i] == 0 ){
+                q.offer(i);
             }
         }
         
-        int[] ans = new int[ result.size() ];
-        for(int i = 0; i < result.size(); i++ ){
-            ans[i] = result.get(i);
-        }
-        
-        return ans;
-    }
-    
-    public boolean dfs(List<List<Integer>> course, int req, List<Integer> result, int[] map ){
-        if( map[req] == 0 ){
-            map[ req ] = 1;
-            for(int i = 0 ; i < course.get(req).size(); i++ ){
-                if( !dfs( course, course.get(req).get(i), result, map) ){
-                    return false;
+        while( !q.isEmpty() ){
+            int cur = q.poll();
+            result.add( cur );
+            for(int i : graph.get( cur ) ){
+                indegree[i]--;
+                if( indegree[i] == 0 ){
+                    q.offer(i);
                 }
             }
-            map[req] = 2;
-        }else if( map[req] == 1 ){
-            return false;
-        }else if( map[req] == 2 ){
-            return true;
         }
-        result.add( req );
-        return true;
+        
+        if( result.size() != numCourses ){
+            return new int[0];
+        }
+        
+        int[] res = new int[ numCourses ];
+        for(int i = 0 ; i < result.size(); i++){
+            res[i] = result.get(i);
+        }
+        
+        return res;
     }
 }

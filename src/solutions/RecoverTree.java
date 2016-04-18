@@ -31,11 +31,11 @@ public class RecoverTree {
         }
         
         travel( root.left );
-        if( first == null && root.val < last.val )
+        if( first == null && root.val <= last.val )
         {
             first = last;
         }
-        if( first != null && root.val < last.val )
+        if( first != null && root.val <= last.val )
         {
             second = root;
         }
