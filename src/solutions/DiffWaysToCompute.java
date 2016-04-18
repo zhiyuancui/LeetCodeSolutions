@@ -16,7 +16,7 @@ public class DiffWaysToCompute {
             if( input.charAt(i) < '0' || input.charAt(i)>'9'){
                 pureNum = false;
                 List<Integer> left = diffWaysToCompute(input.substring(0,i));
-                List<Integer> right=diffWaysToCompute(input.substring(i+1, input.length()));
+                List<Integer> right=diffWaysToCompute(input.substring(i+1));
                 for(int m : left){
                     for(int n : right){
                         if( input.charAt(i) == '+' ){

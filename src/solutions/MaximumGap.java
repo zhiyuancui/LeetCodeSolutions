@@ -41,16 +41,16 @@ public class MaximumGap {
         	}
         }
         
-        int myMax = 0;
+        int maxGap = 0;
         for(int i = 0; i < len; i++ ){
-        	if( myMax < tmin[i] - min ){
-        		myMax = tmin[i] - min;
+        	if( maxGap < tmin[i] - min ){
+        		maxGap = tmin[i] - min;
         	}
         	if(tmax[i] != 0 ){
         		min = tmax[i];
         	}
         }
         
-        return myMax;
+        return maxGap;
     }
 }
