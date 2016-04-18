@@ -3,6 +3,12 @@ package solutions;
 import java.util.Arrays;
 
 public class Hindex {
+	
+	/**
+	 * H-index II sorted
+	 * @param citations
+	 * @return
+	 */
 	public int hIndex(int[] citations) {
         if( citations == null || citations.length == 0 ){
             return 0;
@@ -27,50 +33,49 @@ public class Hindex {
         return hIndex;
     }
 	
+	public int hIndex3(int[] citations) {
+        int len = citations.length;
+        for(int i = 0; i < len; i++){
+            if( citations[i] >= len - i ){
+                return len - i;
+            }
+        }
+        
+        return 0;
+    }
+	
 	/**
-	 * H-Index not sorted
+	 * H-Index not sorted.
+	 * Method 1: sort the array first then the problem becomes H-index II
+	 * Method 2: 
 	 * @param citations
 	 * @return
 	 */
 	public int hIndex2(int[] citations) {
-        if(citations==null || citations.length==0 )
+        if(citations==null || citations.length==0 ){
+        	return 0;
+        }
+        
+        int len = citations.length;
+        
+        int[] count = new int[ len + 1 ];
+        
+        for(int val : citations){
+        	if( val >= len ){
+        		count[len]++;
+        	}else{
+        		count[ val ]++;
+        	}
+        }
+   
+        int hindex = 0;
+        for(int i = len; i > 0; i--){
+        	hindex += count[i];
+        	if( hindex >= i ){
+        		return i;
+        	}
+        }
+        
         return 0;
-
-    //if array has 1 element greater than 0, return 1    
-    if(citations.length==1 && citations[0]>=1)
-        return 1;
-
-    //sort the array
-    Arrays.sort(citations);
-
-    //variable to keep track of length of array, hIndex
-    int length=citations.length;
-    int hIndex=0;
-
-    //for loop to traverse the array
-    for(int i=length-1;i>=0;i--)
-    {
-        //if value is present in array
-        if(length-i==citations[i])
-        {
-            hIndex=citations[i];
-        }
-        else
-        {
-            //if value is not present in array
-            if(i>0 &&citations[i-1]<=length-i && citations[i]>=length-i)
-                hIndex=length-i;
-        }
-
-
-    }
-
-    //first element is greater than 0, and hash index is 0, return the length of the array as answer
-    if(citations.length>1 && citations[0]>citations.length && hIndex==0)
-        hIndex=citations.length;
-
-
-    //return the answer
-    return hIndex;
     }
 }
