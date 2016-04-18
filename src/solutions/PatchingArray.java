@@ -1,22 +1,23 @@
 package solutions;
 
+
+/**
+ * According the discussion: https://leetcode.com/discuss/82822/solution-explanation
+ * @author Zhiyuan
+ *
+ */
 public class PatchingArray {
 	public int minPatches(int[] nums, int n) {
-        if (n <= 0) return 0;
-        nums = nums == null ? new int[0] : nums;
-        int cur = 0, result = 0;
-        long boundary_val = 1, sum = 0;
-        while (boundary_val <= n) {
-            if (cur < nums.length && nums[cur] <= boundary_val) {
-                sum += nums[cur++];
-                boundary_val = sum + 1;
-            } else {
-                result++;
-                sum += boundary_val;
-                boundary_val = sum + 1;
+		int cnt = 0,i=0;
+        for(long known_sum = 1;known_sum <= n;){
+            if(i < nums.length && known_sum >= nums[i]){
+                known_sum += nums[i++];
+            }else{
+                known_sum <<= 1;
+                cnt++;
             }
         }
-        return result;
+        return cnt;
     }
 	
 	public static void main(String[] args){
