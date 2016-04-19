@@ -1,5 +1,8 @@
 package solutions;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 import util.TreeNode;
@@ -17,7 +20,7 @@ public class Codec {
        if( data == null || data.length() == 0 ){
            return null;
        }
-       StringTokenizer st = new StringTokenizer(data," ");
+       TokenContainer st = new TokenContainer(data," ");
        return deserialize(st);
    }
    
@@ -31,7 +34,7 @@ public class Codec {
        }
    }
    
-   private TreeNode deserialize(StringTokenizer st) {
+   private TreeNode deserialize(TokenContainer st) {
        if (!st.hasMoreTokens())
            return null;
        String s = st.nextToken();
@@ -44,5 +47,28 @@ public class Codec {
        return root;
    }
    
-   
+   class TokenContainer{
+	   
+	   private String target;
+	   private String splitToken;
+	   private List<String> tokens;
+	   
+	   public TokenContainer(String target, String splitToken){
+		   this.target = target;
+		   this.splitToken = splitToken;
+		   String[] parts =  this.target.split( this.splitToken );
+		   if( parts.length > 0 ){
+			   tokens = new LinkedList<String>();
+			   tokens.addAll( Arrays.asList(parts) );
+		   }
+	   }
+	   
+	   public boolean hasMoreTokens(){
+		   return tokens == null ? false : tokens.size() > 0;
+	   }
+		   
+	   public String nextToken(){
+		   return tokens.remove(0);
+	   }
+   }
 }
