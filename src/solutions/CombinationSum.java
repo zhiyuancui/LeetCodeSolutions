@@ -51,6 +51,34 @@ public class CombinationSum {
     }
     
     /**
+     * Second Method
+     * @param result
+     * @param solution
+     * @param nums
+     * @param start
+     * @param target
+     */
+    private void generate(List<List<Integer>> result, List<Integer> solution, int[] nums, int start, int target ){
+        if( target == 0 ){
+            result.add(new ArrayList<Integer>( solution ));
+        }
+        
+        if( target < 0 ){
+            return;
+        }
+        
+        for(int i = start; i < nums.length; i++){
+            if( i != start && nums[i] == nums[i-1] ){
+                continue;
+            }
+            
+            solution.add( nums[i] );
+            generate(result, solution, nums, i+1, target - nums[i]);
+            solution.remove( solution.size() - 1 );
+        }
+    }
+    
+    /**
      * Combination Sum
      * No duplicates. but number could repeat
      * @param candidates

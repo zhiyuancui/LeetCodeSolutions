@@ -15,6 +15,7 @@ public class CountSmaller {
         for (int i = len - 1; i >= 0; i--) {
             tmp[i] = bst.insert(nums[i]);
         }
+        
         for(int i = 0; i < tmp.length; i++){
             res.add( tmp[i] );
         }
@@ -27,28 +28,28 @@ public class CountSmaller {
         private Node root;
 
         private int insert(int val) {
-            int sCnt = 0;
+            int smallCount = 0;
             if (root == null) {
                 root = new Node(val);
-                return sCnt;
+                return smallCount;
             }
             Node cur = root;
             while (true) {
                 if (cur.val < val) {
-                    sCnt += cur.lCnt + cur.selfCnt;
+                    smallCount += cur.leftCount + cur.selfCount;
                     if (cur.right == null) {
                         cur.right = new Node(val);
-                        return sCnt;
+                        return smallCount;
                     }
                     else {
                         cur = cur.right;
                     }
                 }
                 else if (cur.val > val) {
-                    cur.lCnt++;
+                    cur.leftCount++;
                     if (cur.left == null) {
                         cur.left = new Node(val);
-                        return sCnt;
+                        return smallCount;
                     }
                     else {
                         cur = cur.left;
@@ -56,9 +57,9 @@ public class CountSmaller {
                 }
                 // equal
                 else {
-                    sCnt += cur.lCnt;
-                    cur.selfCnt++;
-                    return sCnt;
+                    smallCount += cur.leftCount;
+                    cur.selfCount++;
+                    return smallCount;
                 }
             }
         }
@@ -68,14 +69,15 @@ public class CountSmaller {
         private int val;
         private Node left;
         private Node right;
+        
         // size for left sub-tree
-        private int lCnt;
+        private int leftCount;
         // cnt for self occurances
-        private int selfCnt;
+        private int selfCount;
 
         private Node(int val) {
             this.val = val;
-            selfCnt = 1;
+            selfCount = 1;
         }
     }
 }
