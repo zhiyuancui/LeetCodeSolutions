@@ -15,6 +15,7 @@ public class IsValidBST {
             return false;
         }
         
+        //skip if the root val is min value of integer.
         if( !firstNode && lastVal >= root.val ){
             return false;
         }
