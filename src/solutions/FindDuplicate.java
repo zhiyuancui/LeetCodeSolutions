@@ -1,6 +1,10 @@
 package solutions;
 
-
+/**
+ * Find Duplicate Number
+ * @author Zhiyuan
+ *
+ */
 public class FindDuplicate {
 	public int findDuplicate(int[] nums) {
 		if( nums == null || nums.length == 0 )

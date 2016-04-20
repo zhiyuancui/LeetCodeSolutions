@@ -49,6 +49,11 @@ public class HouseRobber {
         return money[ nums.length - 1 ];
     }
 	
+	/**
+	 * House Robber II
+	 * @param nums
+	 * @return
+	 */
 	public int rob2(int[] nums) {
         if (nums == null || nums.length == 0)
             return 0;
