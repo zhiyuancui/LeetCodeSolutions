@@ -17,9 +17,10 @@ public class CloneGraph {
         nodes.add( node );
         map.put( node, new UndirectedGraphNode( node.label) );
         
-        int start = 0;
-        while( start < nodes.size() ){
-            UndirectedGraphNode head = nodes.get(start++);
+        int index = 0;
+        while( index < nodes.size() ){
+            UndirectedGraphNode head = nodes.get(index);
+            index++;
             for(int i = 0; i < head.neighbors.size(); i++){
                 UndirectedGraphNode neighbor = head.neighbors.get(i);
                 if(!map.containsKey(neighbor)){

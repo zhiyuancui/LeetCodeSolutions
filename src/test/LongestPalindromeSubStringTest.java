@@ -1,8 +1,9 @@
-package solutions;
+package test;
 
 import org.junit.Test;
 
-import junit.framework.Assert;
+
+import solutions.LongestPalindromeSubString;
 
 public class LongestPalindromeSubStringTest {
 
