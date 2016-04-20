@@ -101,7 +101,7 @@ public class UglyNumber {
 	    }
 	 
 	    public int compareTo(Node x) {
-	        return this.val - x.val ;
+	        return this.val - x.val;
 	    }
 	}
 }

@@ -31,10 +31,7 @@ public class ValidNumber {
 
                 // reset for the exponential number
                 hasFirst = hasDigit = false;
-                hasDot = true; // the exponent must be an integer, hence
-                                // regard as if a dot exists already. Set
-                                // hasDot = false extending to accept any
-                                // (decimal) number as an exponent.
+                hasDot = true; 
                 continue;
             case '+':
             case '-':
@@ -54,4 +51,6 @@ public class ValidNumber {
 
         return hasDigit;
     }
+	
+	
 }
