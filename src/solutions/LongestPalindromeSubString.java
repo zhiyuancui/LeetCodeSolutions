@@ -56,21 +56,4 @@ public class LongestPalindromeSubString {
 	private String longestPalindrome2(String s){
 		return "";
 	}
-	
-	public static void main(String[] args){
-		LongestPalindromeSubString l = new LongestPalindromeSubString();
-		String result = l.longestPalindrome("civilwartesting"
-				+ "whetherthatnaptionoranynarti"
-				+ "onsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecome"
-				+ "todedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnat"
-				+ "ionmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicate"
-				+ "wecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehavecon"
-				+ "secrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwh"
-				+ "atwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretoth"
-				+ "eulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobehereded"
-				+ "icatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontoth"
-				+ "atcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadsh"
-				+ "allnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofth"
-				+ "epeoplebythepeopleforthepeopleshallnotperishfromtheearth");
-	}
 }
