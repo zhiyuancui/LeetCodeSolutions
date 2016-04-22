@@ -2,6 +2,8 @@ package solutions;
 
 /**
  * http://www.hawstein.com/posts/binary-indexed-trees.html
+ * Reference to : http://bookshadow.com/weblog/2015/11/18/leetcode-range-sum-query-mutable/
+ * http://blog.csdn.net/int64ago/article/details/7429868
  * @author Zhiyuan
  *
  */
@@ -45,5 +47,11 @@ public class NumArray2 {
 
     public int sumRange(int i, int j) {
         return getSum(j) - getSum(i - 1);
+    }
+    
+    public static void main(String[] args){
+    	int[] nums = {1,3,5};
+    	NumArray2 n = new NumArray2( nums );
+    	n.sumRange(0, 2);
     }
 }

@@ -49,11 +49,63 @@ public class LongestPalindromeSubString {
 	
 	
 	/**
-	 * Manacher
+	 * Manacher Algorithms
+	 * Referece to http://www.cnblogs.com/TenosDoIt/p/3675788.html
 	 * @param s
 	 * @return
 	 */
-	private String longestPalindrome2(String s){
-		return "";
+	public String longestPalindrome2(String s){
+		int len = s.length();
+		
+		if( len <= 1 ){
+			return s;
+		}
+		
+		String str = preProcess(s);
+		len = str.length();
+		int center = 0;
+		int max = 0;
+		
+		int[] p = new int[len];
+		
+		for(int i = 1; i < len - 1; i++){
+			p[i] = max > i ? Math.min(p[2*center - i], max - i) : 1;
+			
+			while( str.charAt( i + p[i]) == str.charAt(i-p[i]) ){
+				p[i]++;
+			}
+			
+			if( i + p[i] > max ){
+				max = i + p[i];
+				center = i;
+			}
+		}
+		
+		int maxLen = 0;
+		int index = 0;
+		for(int i = 1; i < len - 1; i++){
+			if( p[i] > maxLen ){
+				maxLen = p[i];
+				index = i;
+			}
+		}
+		
+		return s.substring((index-maxLen)/2, (index-maxLen)/2 +maxLen - 1);
+	}
+	
+	private String preProcess(String s){
+		StringBuilder sb = new StringBuilder();
+		sb.append('$');
+		sb.append('#');
+		
+		int len = s.length();
+		
+		for(int i = 0; i < len; i++){
+			sb.append(s.charAt(i) );
+			sb.append('#');
+		}
+		sb.append('^');
+		
+		return sb.toString();
 	}
 }
