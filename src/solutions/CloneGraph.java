@@ -26,8 +26,7 @@ public class CloneGraph {
                 if(!map.containsKey(neighbor)){
                     map.put(neighbor, new UndirectedGraphNode(neighbor.label));
                     nodes.add(neighbor);
-                }
-                
+                }   
             }
         }
         

@@ -3,8 +3,6 @@ package solutions;
 public class Divide {
 	
 	public int divide(int dividend, int divisor) {
-        boolean neg = (dividend > 0 && divisor < 0) ||
-            (dividend < 0 && divisor > 0);
 
         long a = Math.abs((long)dividend);
         long b = Math.abs((long)divisor);
@@ -22,12 +20,12 @@ public class Divide {
 
         if( (dividend>0) ^ (divisor>0)){
            ans = -ans; 
-        }  
-        return ans>Integer.MAX_VALUE ? Integer.MAX_VALUE:(int)ans;
+        }
+       return ans>Integer.MAX_VALUE ? Integer.MAX_VALUE:(int)ans;
     }
 	
 	public static void main(String[] args){
 		Divide d = new Divide();
-		d.divide(14, 3);
+		d.divide(-2147483648, -1);
 	}
 }

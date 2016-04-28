@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -225,19 +226,132 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
     	System.out.println("////////////////////////////////////");
     }
     
+    
+    /**
+     * Two-end BFS
+     * Reference to https://leetcode.com/discuss/44110/super-fast-java-solution-two-end-bfs
+     * @param args
+     */
+    public List<List<String>> findLadders3(String start, String end, Set<String> dict) {
+        // hash set for both ends
+        Set<String> set1 = new HashSet<String>();
+        Set<String> set2 = new HashSet<String>();
+
+        // initial words in both ends
+        set1.add(start);
+        set2.add(end);
+
+        // we use a map to help construct the final result
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+
+        // build the map
+        helper(dict, set1, set2, map, false);
+
+        List<List<String>> res = new ArrayList<List<String>>();
+        List<String> sol = new ArrayList<String>(Arrays.asList(start));
+
+        // recursively build the final result
+        generateList(start, end, map, sol, res);
+
+        return res;
+      }
+
+      private boolean helper(Set<String> dict, Set<String> set1, Set<String> set2, Map<String, List<String>> map, boolean BottomToTop) {
+        if (set1.isEmpty()) {
+          return false;
+        }
+
+        if (set1.size() > set2.size()) {
+          return helper(dict, set2, set1, map, !BottomToTop);
+        }
+
+        // remove words on current both ends from the dict
+        dict.removeAll(set1);
+        dict.removeAll(set2);
+
+        // as we only need the shortest paths
+        // we use a boolean value help early termination
+        boolean done = false;
+
+        // set for the next level
+        Set<String> set = new HashSet<String>();
+
+        // for each string in end 1
+        for (String str : set1) {
+        	  List<String> nextWord = getNextWord(dict, str);
+
+        	  for( String word : nextWord){
+
+              // make sure we construct the tree in the correct direction
+              String key = BottomToTop ? word : str;
+              String val = BottomToTop ? str : word;
+
+              List<String> list = map.containsKey(key) ? map.get(key) : new ArrayList<String>();
+
+              if (set2.contains(word)) {
+                done = true;
+
+                list.add(val);
+                map.put(key, list);
+              } 
+
+              if (!done && dict.contains(word)) {
+                set.add(word);
+
+                list.add(val);
+                map.put(key, list);
+              }
+            }
+        }
+
+        // early terminate if done is true
+        return done || helper(dict, set2, set, map, !BottomToTop);
+      }
+
+      private void generateList(String start, String end, Map<String, List<String>> map, List<String> sol, List<List<String>> res) {
+        if (start.equals(end)) {
+          res.add(new ArrayList<String>(sol));
+          return;
+        }
+
+        // need this check in case the diff between start and end happens to be one
+        // e.g "a", "c", {"a", "b", "c"}
+        if (!map.containsKey(start)) {
+          return;
+        }
+
+        for (String word : map.get(start)) {
+          sol.add(word);
+          generateList(word, end, map, sol, res);
+          sol.remove(sol.size() - 1);
+        }
+      }
+      
+      private List<String> getNextWord(Set<String> dict, String str){
+    	  ArrayList<String> result = new ArrayList<String>();
+    	  
+    	  for(int i = 0; i < str.length(); i++){
+    		  for( char ch = 'a'; ch <= 'z'; ch++){
+	    		  if( str.charAt(i) == ch ){
+	    			  continue;
+	    		  }
+	    		  String next = replace(str, i, ch);	    
+	    		  result.add(next);
+    		  }
+    	  }
+    	  return result;
+      }
+      
     public static void main(String[] args){
     	WordLadder w = new WordLadder();
     	Set<String> wordList = new HashSet<String>();
-    	wordList.add("ted");
-    	wordList.add("tex");
-    	wordList.add("red");
-    	wordList.add("tax");
-    	wordList.add("tad");
-    	wordList.add("den");
-    	wordList.add("rex");
-    	wordList.add("pee");
+    	wordList.add("hot");
+    	wordList.add("dot");
+    	wordList.add("dog");
+    	wordList.add("lot");
+    	wordList.add("log");
 
-    	List<List<String>> result = w.findLadders("red", "tax", wordList);
+    	List<List<String>> result = w.findLadders3("hit", "cog", wordList);
     	
     	for(List<String> path : result){
     		for(String s : path){
