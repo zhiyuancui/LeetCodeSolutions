@@ -22,6 +22,12 @@ public class ShortestPalindrome {
         return p[p.length - 1];
     }
     
+    
+    /**
+     * O(n^2) method
+     * @param s
+     * @return
+     */
     public String shortestPalindrome2(String s) {
         if (s == null || s.length() == 0 || s.length() == 1) return s;
         int len = s.length(), tail = len;

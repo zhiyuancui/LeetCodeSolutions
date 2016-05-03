@@ -14,10 +14,18 @@ public class FindSubstring {
 
 	public List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> res = new LinkedList<>();
-        if (words.length == 0 || s.length() < words.length * words[0].length())   return res;
-        int strLen = s.length(), wordNum = words.length, wordLen = words[0].length();
+		
+        if (words.length == 0 || s.length() < words.length * words[0].length()){
+        	return res;
+        }
+        
+        
+        int strLen = s.length();
+        int wordNum = words.length;
+        int wordLen = words[0].length();
         Map<String, Integer> map = new HashMap<>();
         Map<String, Integer>curMap = new HashMap<>();
+        
         for (String word : words) {
             if (map.containsKey(word)){
             	map.put(word, map.get(word) + 1);
