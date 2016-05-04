@@ -43,4 +43,9 @@ public class ExpressionAddOperators {
             bfs( s.substring(i), trace+"*"+number, target,pre, current * number, sign);
         }
     }
+    
+    public static void main(String[] args){
+    	ExpressionAddOperators e = new ExpressionAddOperators();
+    	e.addOperators("105", 5);
+    }
 }

@@ -8,11 +8,11 @@ public class NumMatrix {
             sumRegion = new int[matrix.length+1][matrix[0].length + 1];
         }
         
-        for(int i = 0; i < matrix.length; i++){
+        for(int row = 0; row < matrix.length; row++){
             int sum = 0;
-            for(int j = 0; j < matrix[0].length; j++){
-                sum += matrix[i][j];
-                sumRegion[i+1][j+1] = sum + sumRegion[i][j+1];
+            for(int col = 0; col < matrix[0].length; col++){
+                sum += matrix[row][col];
+                sumRegion[row+1][col+1] = sum + sumRegion[row][col+1];
             }
         }
     }

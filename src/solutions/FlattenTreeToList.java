@@ -2,7 +2,7 @@ package solutions;
 
 import util.TreeNode;
 
-public class Flatten {
+public class FlattenTreeToList {
 	public void flatten(TreeNode root) {
         if( root == null )
         {
