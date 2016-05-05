@@ -29,7 +29,9 @@ public class ShortestPalindrome {
      * @return
      */
     public String shortestPalindrome2(String s) {
-        if (s == null || s.length() == 0 || s.length() == 1) return s;
+        if (s == null || s.length() == 0 || s.length() == 1){
+        	return s;
+        }
         int len = s.length(), tail = len;
         StringBuilder builder = new StringBuilder();
         while (1 < tail) {

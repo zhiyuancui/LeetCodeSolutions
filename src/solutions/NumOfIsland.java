@@ -1,5 +1,9 @@
 package solutions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class NumOfIsland {
 	private int[] dx = {0,0,1,-1};
     private int[] dy = {1,-1,0,0};
@@ -38,5 +42,63 @@ public class NumOfIsland {
                 }
             }
         }
+    }
+    
+    /**
+     * Number of Islands II
+     * 
+     * A 2d grid map of m rows and n columns is initially filled with water. 
+     * We may perform an addLand operation which turns the water at position (row, col) into a land. 
+     * Given a list of positions to operate, count the number of islands after each addLand operation. 
+     * An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
+     * You may assume all four edges of the grid are all surrounded by water.
+     * 
+     * Reference to https://leetcode.com/discuss/69572/easiest-java-solution-with-explanations
+     * 
+     */
+    public List<Integer> numIslands2(int row, int col, int[][] positions) {
+        List<Integer> result = new ArrayList<Integer>();
+        
+        if( row <= 0 || col <= 0 ){
+        	return result;
+        }
+        
+        int count = 0;
+        int[] roots = new int[ row * col ];
+        Arrays.fill(roots, -1);
+        
+        for(int[] p : positions ){
+        	int root = col * p[0] + p[1];
+        	roots[ root ] = root;
+        	count++;
+        	
+        	for(int i = 0; i < dx.length; i++ ){
+        		int x = p[0] + dx[i];
+        		int y = p[1] + dy[i];
+        		
+        		int neighbor = col * x + y;
+        		if( x < 0 || x >= row || y >= col || y < 0 || roots[neighbor] == -1 ){
+        			continue;
+        		}
+        		
+        		int rootNeighbor = findRoot( roots, neighbor );
+        		if( root != rootNeighbor ){
+        			roots[ root ] = rootNeighbor;
+        			root = rootNeighbor;
+        			count--;
+        		}
+        	}
+        	
+        	result.add( count );
+        }
+        
+        return result;
+    }
+    
+    private int findRoot(int[] roots, int id){
+    	while( id != roots[id] ){
+    		id = roots[id];
+    	}    	
+    	return id;
     }
 }
