@@ -60,29 +60,29 @@ public class WordPattern {
         return isMatch(str, 0, pattern, 0, map, set);
     }
 	
-	private boolean isMatch(String str, int i, String pattern, int j, Map<Character, String> map, Set<String> set){
+	private boolean isMatch(String str, int strIndex, String pattern, int patternIndex, Map<Character, String> map, Set<String> set){
 		
-		if( i == str.length() && j == pattern.length() ){
+		if( strIndex == str.length() && patternIndex == pattern.length() ){
 			return true;
 		}
 		
-		if( i == str.length() || j == pattern.length() ){
+		if( strIndex == str.length() || patternIndex == pattern.length() ){
 			return false;
 		}
 		
-		char c = pattern.charAt(j);
+		char c = pattern.charAt(patternIndex);
 		
 		if( map.containsKey( c) ){
 			String s = map.get(c);
-			if( !str.startsWith(s,i) ){
+			if( !str.startsWith(s,strIndex) ){
 				return false;
 			}
 			
-			return isMatch( str, i+s.length(), pattern, j +1, map, set);
+			return isMatch( str, strIndex+s.length(), pattern, patternIndex +1, map, set);
 		}
 		
-		for(int k = i; k < str.length(); k ++){
-			String p = str.substring(i,k+1);
+		for(int k = strIndex; k < str.length(); k ++){
+			String p = str.substring(strIndex,k+1);
 			
 			if( set.contains(p) ){
 				continue;
@@ -91,7 +91,7 @@ public class WordPattern {
 			map.put(c, p);
 			set.add(p);
 			
-			if( isMatch(str, k + 1, pattern, j + 1, map, set) ){
+			if( isMatch(str, k + 1, pattern, patternIndex + 1, map, set) ){
 				return true;
 			}
 			

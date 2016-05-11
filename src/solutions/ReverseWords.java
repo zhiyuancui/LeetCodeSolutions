@@ -72,8 +72,12 @@ public String reverseWords2(String s){
 		return new String( array );
 	}
 	
-	public static void main(String[] args){
-		ReverseWords r = new ReverseWords();
-		r.reverseWords2("   a   b   ");
-	}
+	/**
+	 * Reverse Words in a String II
+	 * 
+	 * @param s
+	 */
+	public void reverseWords(char[] s) {
+        
+    }
 }

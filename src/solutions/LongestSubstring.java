@@ -2,6 +2,11 @@ package solutions;
 
 import java.util.HashSet;
 
+/**
+ * Longest Substring Without Repeating Characters
+ * @author Zhiyuan
+ *
+ */
 public class LongestSubstring {
 	public int lengthOfLongestSubstring(String s) {
         if( s== null || s.length() == 0 ){
