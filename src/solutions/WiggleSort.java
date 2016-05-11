@@ -6,7 +6,7 @@ import java.util.List;
 public class WiggleSort {
 
 	//Reference to https://leetcode.com/discuss/88403/clear-java-o-n-avg-time-o-space-solution-using-3-way-partition
-	public void wiggleSort(int[] nums) {
+	public void wiggleSort2(int[] nums) {
         int median = selectKth(nums, 0, nums.length-1, nums.length%2==0 ? nums.length/2 : nums.length/2+1);
         List<Integer> leftArr = new ArrayList<Integer>();
         for(int i=0; i<=median; i++)
@@ -53,6 +53,31 @@ public class WiggleSort {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
+    }
+    
+    
+    /**
+     * Wiggle Sort
+     * 
+     * Given an unsorted array nums, 
+     * reorder it in-place such that nums[0] <= nums[1] >= nums[2] <= nums[3]....
+     * 
+     * For example, given nums = [3, 5, 2, 1, 6, 4], one possible answer is [1, 6, 2, 5, 3, 4].
+     * 
+     * Reference to : https://leetcode.com/discuss/57113/java-o-n-solution
+     * 
+     * @param nums
+     */
+    public void wiggleSort(int[] nums) {
+        for(int i=0;i<nums.length;i++)
+            if(i%2==1){
+               if(nums[i-1]>nums[i]) swap(nums, i);
+            }else if(i!=0 && nums[i-1]<nums[i]) swap(nums, i);
+    }
+    public void swap(int[] nums, int i){
+          int tmp=nums[i];
+          nums[i]=nums[i-1];
+          nums[i-1]=tmp;
     }
 	
 }
