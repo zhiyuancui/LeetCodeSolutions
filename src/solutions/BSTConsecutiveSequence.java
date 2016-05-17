@@ -35,18 +35,18 @@ public class BSTConsecutiveSequence {
         return max;
     }
 
-    public void helper(TreeNode root, int cur, int target){
+    public void helper(TreeNode root, int len, int target){
         if(root == null) {
         	return;
         }
         if(root.val == target) {
-        	cur++;
+        	len++;
         }
         else{
-        	cur = 1;
+        	len = 1;
         }
-        max = Math.max(cur, max);
-        helper(root.left, cur, root.val + 1);
-        helper(root.right, cur, root.val + 1);
+        max = Math.max(len, max);
+        helper(root.left, len, root.val + 1);
+        helper(root.right, len, root.val + 1);
     }
 }
