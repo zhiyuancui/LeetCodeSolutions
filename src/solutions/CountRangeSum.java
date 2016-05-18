@@ -25,9 +25,15 @@ public class CountRangeSum {
 	    int j = mid, k = mid, t = mid;
 	    long[] cache = new long[end - start];
 	    for (int i = start, r = 0; i < mid; ++i, ++r) {
-	        while (k < end && sums[k] - sums[i] < lower) k++;
-	        while (j < end && sums[j] - sums[i] <= upper) j++;
-	        while (t < end && sums[t] < sums[i]) cache[r++] = sums[t++];
+	        while (k < end && sums[k] - sums[i] < lower) {
+	        	k++;
+	        }
+	        while (j < end && sums[j] - sums[i] <= upper){
+	        	j++;
+	        }
+	        while (t < end && sums[t] < sums[i]) {
+	        	cache[r++] = sums[t++];
+	        }
 	        cache[r] = sums[i];
 	        count += j - k;
 	    }
@@ -53,5 +59,11 @@ public class CountRangeSum {
 	            if (sums[j] - sums[i] >= lower && sums[j] - sums[i] <= upper)
 	                ans++;
 	    return ans;
+	}
+	
+	public static void main(String[] args){
+		CountRangeSum c = new CountRangeSum();
+		int[] nums = {-2,5,-1};
+		c.countRangeSum(nums, -2, 3);
 	}
 }

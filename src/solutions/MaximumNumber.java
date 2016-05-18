@@ -12,7 +12,9 @@ public class MaximumNumber {
 	    int[] ans = new int[k];
 	    for (int i = Math.max(0, k - m); i <= k && i <= n; ++i) {
 	        int[] candidate = merge(maxArray(nums1, i), maxArray(nums2, k - i), k);
-	        if (greater(candidate, 0, ans, 0)) ans = candidate;
+	        if (greater(candidate, 0, ans, 0)) {
+	        	ans = candidate;
+	        }
 	    }
 	    return ans;
 	}
@@ -33,9 +35,20 @@ public class MaximumNumber {
 	    int n = nums.length;
 	    int[] ans = new int[k];
 	    for (int i = 0, j = 0; i < n; ++i) {
-	        while (n - i + j > k && j > 0 && ans[j - 1] < nums[i]) j--;
-	        if (j < k) ans[j++] = nums[i];
+	        while (n - i + j > k && j > 0 && ans[j - 1] < nums[i]) {
+	        	j--;
+	        }
+	        if (j < k) {
+	        	ans[j++] = nums[i];
+	        }
 	    }
 	    return ans;
+	}
+	
+	public static void main(String[] args){
+		MaximumNumber m = new MaximumNumber();
+		int[] nums1 = {3,4,6,5};
+		int[] nums2 = {9,1,2,5,8,3};
+		m.maxNumber(nums1, nums2, 5);
 	}
 }

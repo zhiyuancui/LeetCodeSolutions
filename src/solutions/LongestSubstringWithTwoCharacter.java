@@ -51,4 +51,9 @@ public class LongestSubstringWithTwoCharacter {
         
         return max;
     }
+	
+	public static void main(String[] args){
+		LongestSubstringWithTwoCharacter l = new LongestSubstringWithTwoCharacter();
+		l.lengthOfLongestSubstringTwoDistinct("eceba");
+	}
 }

@@ -50,7 +50,7 @@ public class StrobogrammaticNumber {
 				continue;
 			}
 			
-			if( left < right || left == right && p[0] == p[1] ){
+			if( left < right || ( left == right && p[0] == p[1] ) ){
 				dfs( low, high, c, left + 1, right - 1);
 			}
 		}
