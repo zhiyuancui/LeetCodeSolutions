@@ -95,48 +95,36 @@ public class MaxProfit {
 	
 	/**
 	 * Best time to Buy and Sell Stock IV
+	 * 
+	 * Reference to https://leetcode.com/discuss/62026/clean-java-dp-solution-with-comment
+	 * 
 	 * @param prices
 	 * @return
 	 */
 	public int maxProfit4(int k, int[] prices) {
-        if( k <= 0 || prices == null || prices.length <= 0 ){
-            return 0;
-        }
-        
-        if( k > prices.length / 2 ){
-            int max = 0;
-            for(int i = 0; i < prices.length - 1; i++){
-                int diff = prices[i+1] - prices[i];
-                max += diff > 0 ? diff : 0;
-            }
-            return max;
-        }else{
-            int[] buy = new int[k];
-            int[] sell = new int[k];
-            
-            Arrays.fill( buy, Integer.MIN_VALUE);
-            
-            for( int price : prices ){
-                int tmp = 0;
-                for( int i = 0; i < k; i++ ){
-                    int buffer = 0;
-                    buffer = tmp - price;
-                    if( buy[i] < buffer ){
-                        buy[i] = buffer;
-                    }
-                    
-                    buffer = buy[i] + price;
-                    
-                    if( sell[i] < buffer ){
-                        sell[i] = buffer;
-                    }
-                    
-                    tmp = sell[i];
-                }
-            }
-            
-            return sell[ k - 1 ];
-        }
+		int n = prices.length;
+	    if (n <= 1)
+	        return 0;
+
+	    //if k >= n/2, then you can make maximum number of transactions.
+	    if (k >=  n/2) {
+	        int maxPro = 0;
+	        for (int i = 1; i < n; i++) {
+	            if (prices[i] > prices[i-1])
+	                maxPro += prices[i] - prices[i-1];
+	        }
+	        return maxPro;
+	    }
+
+	    int[][] dp = new int[k+1][n];
+	    for (int i = 1; i <= k; i++) {
+	        int localMax = dp[i-1][0] - prices[0];
+	        for (int j = 1; j < n; j++) {
+	            dp[i][j] = Math.max(dp[i][j-1],  prices[j] + localMax);
+	            localMax = Math.max(localMax, dp[i-1][j] - prices[j]);
+	        }
+	    }
+	    return dp[k][n-1];
     }
 	
 	/**
