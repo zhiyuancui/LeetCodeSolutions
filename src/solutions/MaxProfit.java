@@ -146,7 +146,7 @@ public class MaxProfit {
 	
 	public static void main(String[] args){
 		MaxProfit m = new MaxProfit();
-		int[] prices = {3,2,1,4,5,6};
-		m.maxProfit4(2, prices);
+		int[] prices = {4,5,6,1,2,7};
+		m.maxProfit3(prices);
 	}
 }

@@ -18,7 +18,7 @@ public class BurstBalloons {
         
         int[][] matrix = new int[n][n];
         
-        for(int i = 2; i <n; i++){
+        for(int i = 2; i <n; i++){//the distance of left between right is i.
             for( int left = 0; i+left<n;left++ ){
                 int right = i+left;
                 for(int m = left+1; m<right;m++){
