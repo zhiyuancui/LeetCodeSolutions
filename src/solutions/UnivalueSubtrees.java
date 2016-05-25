@@ -23,22 +23,23 @@ import util.TreeNode;
  *
  */
 public class UnivalueSubtrees {
-public int countUnivalSubtrees(TreeNode root) {
+
+	private int count = 0;
+	public int countUnivalSubtrees(TreeNode root) {
         
-        int[] count = new int[1];
+        //int[] count = new int[1];
+        helper(root);
         
-        helper(root, count);
-        
-        return count[0];
+        return count;
     }
 	
-	private boolean helper(TreeNode node, int[] count){
+	private boolean helper(TreeNode node){
 		if( node == null ){
 			return true;
 		}
 		
-		boolean left = helper( node.left, count);
-		boolean right = helper( node.right, count);
+		boolean left = helper( node.left);
+		boolean right = helper( node.right);
 		
 		if( left && right ){
 			if( node.left != null && node.val != node.left.val ){
@@ -47,7 +48,7 @@ public int countUnivalSubtrees(TreeNode root) {
 			if (node.right != null && node.val != node.right.val) {
                 return false;
             }
-            count[0]++;
+            count++;
             return true;
 		}
 		
