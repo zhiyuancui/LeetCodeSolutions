@@ -14,7 +14,7 @@ public class DungeonGame {
         int[][] matrix = new int[ row ][ col ];
         
         matrix[ row - 1 ][ col - 1 ] = Math.max(1, 1-dungeon[row - 1 ][ col - 1 ]);
-        printMatrix(matrix);
+        
         for(int i = row - 2; i >= 0; i--){
             matrix[i][ col - 1 ] = Math.max(1, matrix[i+1][col-1] - dungeon[i][col - 1 ]);
             printMatrix(matrix);

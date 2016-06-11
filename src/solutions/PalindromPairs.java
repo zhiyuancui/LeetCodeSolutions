@@ -54,8 +54,4 @@ public class PalindromPairs {
 	    return true;
 	}
 	
-	public static void main(String[] args){
-		String s = "1234456";
-		System.out.println( s.substring(0,0));
-	}
 }

@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
 import util.TreeNode;
 public class Codec {
 
+	private static final String spliter = ",";
+	
    // Encodes a tree to a single string.
    public String serialize(TreeNode root) {
        StringBuilder sb = new StringBuilder();
@@ -20,15 +22,15 @@ public class Codec {
        if( data == null || data.length() == 0 ){
            return null;
        }
-       TokenContainer st = new TokenContainer(data," ");
+       TokenContainer st = new TokenContainer(data,spliter);
        return deserialize(st);
    }
    
    private void serialize(TreeNode root, StringBuilder sb){
        if( root == null ){
-           sb.append("# ");
+           sb.append("#").append(spliter);
        }else{
-           sb.append( root.val +" ");
+           sb.append( root.val +spliter);
            serialize( root.left, sb);
            serialize( root.right, sb);
        }

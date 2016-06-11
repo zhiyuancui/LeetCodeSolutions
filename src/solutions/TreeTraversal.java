@@ -78,11 +78,11 @@ public class TreeTraversal {
             result.add( temp.val );
             if( temp.right != null )
             {
-                stack.add( temp.right );
+                stack.push( temp.right );
             }
             if( temp.left != null )
             {
-                stack.add( temp.left );
+                stack.push( temp.left );
             }
         }
         

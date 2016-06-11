@@ -5,6 +5,12 @@ import java.util.List;
 
 public class PalindromePartition {
 	
+	
+	/**
+	 * Palindrome Partition II
+	 * @param s
+	 * @return
+	 */
 	public int minCut(String s) {
         char[] array = s.toCharArray();
         

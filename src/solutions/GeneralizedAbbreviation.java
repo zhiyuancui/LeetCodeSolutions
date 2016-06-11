@@ -35,4 +35,9 @@ public class GeneralizedAbbreviation {
             backtrack(ret, word, pos+1, cur + (count>0 ? count : "") + word.charAt(pos), 0);
         }
     }
+    
+    public static void main(String[] args){
+    	GeneralizedAbbreviation g = new GeneralizedAbbreviation();
+    	g.generateAbbreviations("word");
+    }
 }
