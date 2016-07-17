@@ -222,4 +222,79 @@ return its vertical order traversal as:
     }
 	
 	
+	/***
+	 * 
+	 * Binary Tree Level Order Travesal II
+	 */
+	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        
+        if( root == null ){
+            return result;
+        }
+        
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        
+        q.offer( root );
+        int curLevelNumber = 1;
+        
+        while( !q.isEmpty() ){
+            
+            int nextLevel = 0;
+            List<Integer> value = new ArrayList<Integer>();
+            for(int i = 0; i < curLevelNumber; i++){
+                TreeNode node = q.poll();
+                value.add( node.val );
+                if( node.left != null ){
+                    q.offer( node.left );
+                    nextLevel++;
+                }
+                if( node.right != null ){
+                    q.offer( node.right );
+                    nextLevel++;
+                }
+            }
+            result.add(0,value);
+            curLevelNumber = nextLevel;
+        }
+        
+        return result;
+    }
+	
+	
+	
+	
+	public List<List<Integer>> levelOrderBottom2(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        
+        if( root == null ){
+            return result;
+        }
+        
+        List<TreeNode> curLevel = new ArrayList<TreeNode>();
+        
+        curLevel.add( root );
+        
+        while( !curLevel.isEmpty() ){
+            
+            List<TreeNode> next = new ArrayList<TreeNode>();
+            List<Integer> value = new ArrayList<Integer>();
+            for(TreeNode node: curLevel){
+                value.add( node.val );
+                if( node.left != null ){
+                    next.add( node.left );
+                }
+                if( node.right != null ){
+                    next.add( node.right );
+                }
+            }
+            result.add(0,value);
+            curLevel = next;
+        }
+        
+        return result;
+    }
+	
+	
+	
 }
