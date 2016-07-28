@@ -45,6 +45,41 @@ public class IsPalindrome {
         return true;
     }
 	
+	public boolean isPalindrome2(int x) {
+        if( x < 0 ){
+            return false;
+        }
+        
+        if( x < 10  )
+        {
+            return true;
+        }
+        
+        
+        int num = x;
+        int time = 1;
+        while( x >= 10 ){
+            x = x/ 10;
+            time *= 10;
+        }
+        
+        x = num;
+        
+        while( x > 0 ){
+            int right = x % 10;
+            x = x/ 10;
+            
+            int left = num / time;
+            num = num % time;
+            time = time / 10;
+            
+            if( left != right ){
+                return false;
+            }
+        }
+        
+        return true;
+    }
 	
 	/**
 	 * Palindrome Linked List

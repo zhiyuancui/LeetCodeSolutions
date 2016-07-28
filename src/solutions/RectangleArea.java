@@ -1,6 +1,6 @@
 package solutions;
 
-public class ComputeArea {
+public class RectangleArea {
 
 	public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
 	     
@@ -27,7 +27,7 @@ public class ComputeArea {
 	
 	public static void main(String[] args)
 	{
-		ComputeArea c = new ComputeArea();
+		RectangleArea c = new RectangleArea();
 		c.computeArea(-2, -2, 2, 2, 3, 3, 4, 4);
 	}
 }

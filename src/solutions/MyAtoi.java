@@ -1,7 +1,7 @@
 package solutions;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Queue;
 
 public class MyAtoi {
 	public int myAtoi(String str) {
