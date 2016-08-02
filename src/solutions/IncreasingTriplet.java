@@ -7,15 +7,15 @@ public class IncreasingTriplet {
             return false;
         }
         
-        Integer upper = null, lower = nums[0];
+        Integer middle = null, lower = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            if (upper != null && nums[i] > upper) {
+            if (middle != null && nums[i] > middle) {
                 return true;
             }
             if (nums[i] <= lower)
                 lower = nums[i];
             else
-                upper = (upper == null || nums[i] < upper) ? nums[i] : upper;
+                middle = (middle == null || nums[i] < middle) ? nums[i] : middle;
         }
 
         return false;
