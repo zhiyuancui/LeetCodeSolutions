@@ -1,7 +1,8 @@
 package solutions;
 
 public class MyPow {
-public double myPow(double x, int n) {
+
+	public double myPow(double x, int n) {
         
         if( n == 0 )
         {
@@ -25,6 +26,34 @@ public double myPow(double x, int n) {
         
         return neg ? 1/(t1*t1*t2): t1*t1*t2;
         
+    }
+	
+	/**
+	 * With n == Integer.MIN_VALUE
+	 * @param x
+	 * @param n
+	 * @return
+	 */
+	public double myPow2(double x, int n) {
+        return pow(x, n);
+    }
+    
+    private double pow(double x, long n) {
+        if (n == 0){
+        	return 1;
+        }
+        if (n == 1){
+        	return x;
+        }
+        if (n < 0){
+        	return 1 / pow(x, 0 - n);
+        }
+        if (n % 2 == 0){
+        	return pow(x * x, n / 2);
+        }
+        else{
+        	return pow(x * x, n / 2) * x;
+        }
     }
 
 	public static void main(String[] args)

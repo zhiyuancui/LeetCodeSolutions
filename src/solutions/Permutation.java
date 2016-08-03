@@ -51,7 +51,7 @@ public class Permutation {
         
         int[] used = new int[nums.length];
    
-       Arrays.sort( nums );
+        Arrays.sort( nums );
 
         ArrayList<Integer> list = new ArrayList<Integer>();
         helper(used, rst, list, nums);
