@@ -29,8 +29,8 @@ public class RestoreIP {
             return;
         }
         
-        for(int i = start + 1; i < s.length() && i <= start + 3 ; i++){
-            String part = s.substring(start, i);
+        for(int i = start; i < s.length() && i <= start + 3 ; i++){
+            String part = s.substring(start, i + 1);
             if( validIP( part ) ){
                 IP.add( part );
                 generate(result, IP, i + 1, s );

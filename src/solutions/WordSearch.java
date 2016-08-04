@@ -43,10 +43,10 @@ public class WordSearch {
         }
         
         board[x][y] = '#';
-        boolean result = false;
-        for(int i = 0; i < dx.length; i++){
-            result |= search(board,row, col, x + dx[i], y +dy[i], len + 1, word); 
-        }
+        boolean result = search(board,row, col, x + dx[0], y +dy[0], len + 1, word) ||
+                search(board,row, col, x + dx[1], y +dy[1], len + 1, word) || 
+                search(board,row, col, x + dx[2], y +dy[2], len + 1, word) ||
+                search(board,row, col, x + dx[3], y +dy[3], len + 1, word); 
         board[x][y] = word.charAt(len);
         return result;
     }

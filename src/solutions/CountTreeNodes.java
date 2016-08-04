@@ -10,23 +10,33 @@ public class CountTreeNodes {
             return 0;
         }
         
-        int left = getHeight( root.left );
-        int right = getHeight( root.right );
+        int left = getLeftHeight( root );
+        int right = getRightHeight( root );
         
         if( left == right ){
-            return ( 1 << left ) + countNodes( root.right );
+            return ( 1 << left ) - 1;
         }
         else{
-            return ( 1 << right ) + countNodes( root.left );
+            return 1 + countNodes( root.left ) + countNodes( root.right );
         }
     }
     
-    private int getHeight(TreeNode root){
-        if( root == null ){
-            return 0;
+    private int getLeftHeight(TreeNode root){
+        int height = 0;
+        while( root != null ){
+        	root = root.left;
+        	height++;
         }
-        
-        return 1 + getHeight( root.left );
+        return height;
+    }
+    
+    private int getRightHeight(TreeNode root){
+        int height = 0;
+        while( root != null ){
+        	root = root.right;
+        	height++;
+        }
+        return height;
     }
     
     public static void main(String[] args){
