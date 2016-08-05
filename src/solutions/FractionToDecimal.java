@@ -26,7 +26,7 @@ public class FractionToDecimal {
 	    }   
 
 	    StringBuilder sb=new StringBuilder();
-	    if( !sign ) {
+	    if( sign ) {
 	    	sb.append("-");
 	    }
 	    sb.append(n/d);
@@ -41,7 +41,8 @@ public class FractionToDecimal {
 	    
 	    int index=0;
 	    while( n != 0 && !map.containsKey(n)){
-	        map.put(n,index++);
+	        map.put(n,index);
+	        index++;
 	        n *= 10;
 	        list.add(n/d);
 	        n %= d;
