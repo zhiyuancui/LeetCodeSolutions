@@ -21,4 +21,20 @@ public class CountBits {
         
         return result;
     }
+	
+	/**
+	 * Reference to https://discuss.leetcode.com/topic/40162/three-line-java-solution/2
+	 * f[i] = f[i/2] + i % 2;
+	 * @param num
+	 * @return
+	 */
+	public int[] countBits2(int num){
+		int[] res = new int[num+1];
+		
+		for(int i = 1; i <= num; i++){
+			res[i] = res[ i >> 1 ] + (i&1);
+		}
+		
+		return res;
+	}
 }

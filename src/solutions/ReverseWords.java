@@ -35,6 +35,7 @@ public String reverseWords2(String s){
 		s = reverseChar(s,0,len-1);
 		
 		StringBuilder sb = new StringBuilder();
+		
 		for(int i = 0; i < len; i++){
 			if( s.charAt(i) == ' ' ){
 			    continue;
@@ -98,4 +99,31 @@ public String reverseWords2(String s){
 			end--;
 		}
 	}
+	
+	/**
+	 * Reverse Words in a String III
+	 * @param s
+	 * @return
+	 */
+	public String reverseWords3(String s) {
+        if( s == null || s.length() == 0 ){
+            return "";
+        }
+        
+        String[] words = s.split("\\s+");
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(String word : words){
+            String reversed = reverseFor3( word );
+            sb.append( reversed + " ");
+        }
+        
+        return sb.toString().trim();
+    }
+    
+    private String reverseFor3(String str){
+        StringBuilder sb = new StringBuilder(str);
+        return sb.reverse().toString();
+    }
 }
