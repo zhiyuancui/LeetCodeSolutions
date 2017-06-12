@@ -1,5 +1,10 @@
 package solutions;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Find Duplicate Number
  * @author Zhiyuan
@@ -59,10 +64,40 @@ public class FindDuplicate {
         return slow;
     }
 	
-	public static void main(String[] args)
-	{
-		FindDuplicate f = new FindDuplicate();
-		int[] nums = {1,2,2};
-		f.findDuplicate(nums);
+	
+	/**
+	 * Find All Duplicates in an Array
+	 * @param nums
+	 * @return
+	 */
+	public List<Integer> findDuplicates4(int[] nums) {
+	     
+		
+	     Set<Integer> set = new HashSet<Integer>();
+	     List<Integer> result = new ArrayList<Integer>();
+	     
+	     /*
+	     for(int num: nums){
+	         if( set.contains(num) ){
+	             result.add(num);
+	         } else {
+	             set.add(num);
+	         }
+	     }
+	     */
+	     
+	     for(int i = 0; i < nums.length; i++) {
+	    	 int index = Math.abs(nums[i]) - 1;
+	    	 if( nums[index] < 0 ){
+	    		 result.add(Math.abs(index+1));
+	    	 }
+	    	 nums[index] = -nums[index];
+	     }
+	     
+	     return result;
+		
+		
 	}
+	    
+	
 }
