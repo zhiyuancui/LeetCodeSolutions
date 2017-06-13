@@ -45,6 +45,11 @@ public class ProductExceptSelf {
              
     }
 	
+	/**
+	 * Concise Solution
+	 * @param nums
+	 * @return
+	 */
 	public int[] productExceptSelf2(int[] nums) {
         if( nums == null || nums.length < 2 )
         {
