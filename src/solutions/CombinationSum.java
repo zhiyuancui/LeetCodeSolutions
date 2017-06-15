@@ -180,4 +180,37 @@ public class CombinationSum {
         }
         return res[target];
     }
+    
+    /**
+     * Combination3
+     * @param k
+     * @param n
+     * @return
+     */
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        
+        if( k < 1 || n < 1 ) {
+            return result;
+        }
+        
+        List<Integer> solution = new ArrayList<Integer>();
+        generate3(result, solution, k, n,1);
+        return result;
+    }
+    
+    private void generate3(List<List<Integer>> result, List<Integer> solution, int size, int sum, int start){
+        if( solution.size() == size ){
+            if( sum == 0 ){
+                result.add(new ArrayList(solution) );
+            }
+            return;
+        }
+        
+        for(int i = start; i <= 9; i++) {
+            solution.add(i);
+            generate3( result, solution, size, sum - i, i+1);
+            solution.remove( solution.size() - 1 );
+        }
+    }
 }
