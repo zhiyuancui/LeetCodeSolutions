@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class IsomorphicString {
 	public boolean isIsomorphic(String s, String t) {
@@ -28,4 +29,25 @@ public class IsomorphicString {
         
         return true;
     }
+	
+	public boolean isIsomorphic2(String s, String t) {
+        Map<Character, Integer> m1 = new HashMap<>();
+        Map<Character, Integer> m2 = new HashMap<>();
+    
+        for(Integer i = 0; i < s.length(); i++) {
+        	Integer r1 = m1.put(s.charAt(i), i);
+            Integer r2 = m2.put(t.charAt(i), i);
+            System.out.println( r1 );
+             System.out.println( r2 );
+            if( r1 != r2 ) {
+                return false;
+            }
+        }
+        return true;
+    }
+	
+	public static void main(String[] args){
+		IsomorphicString i = new IsomorphicString();
+		System.out.println( i.isIsomorphic2("foo", "bar") );
+	}
 }

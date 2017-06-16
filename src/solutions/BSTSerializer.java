@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import util.TreeNode;
-public class Codec {
+public class BSTSerializer {
 
 	private static final String spliter = ",";
 	

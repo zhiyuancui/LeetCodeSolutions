@@ -23,7 +23,6 @@ public class TreeTraversal {
         Stack<TreeNode> s = new Stack<TreeNode>();
         
         cur = root;
-        
         do
         {
             while( cur != null )

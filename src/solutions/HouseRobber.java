@@ -3,6 +3,11 @@ package solutions;
 import util.TreeNode;
 
 public class HouseRobber {
+	/**
+	 * House Robber III
+	 * @param root
+	 * @return
+	 */
 	public int rob3(TreeNode root) {
 		int[] res = robSub3(root);
 	    return Math.max(res[0], res[1]);
