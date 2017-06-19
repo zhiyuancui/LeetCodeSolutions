@@ -26,17 +26,7 @@ public class IsSymmetric {
             return false;
         }
         
-        return check( left.left, right.left) && check( left.right, right.right);
+        return check( left.left, right.right) && check( left.left, right.right);
         
-    }
-    
-    public static void main(String[] args)
-    {
-    	
-    	IsSymmetric s = new IsSymmetric();
-    	TreeNode root = new TreeNode(0);
-    	root.left = new TreeNode(1);
-    	root.left.left = new TreeNode(2);
-    	s.isSymmetric(root);
     }
 }
