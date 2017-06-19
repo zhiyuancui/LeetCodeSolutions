@@ -1,6 +1,7 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import util.TreeNode;
@@ -44,5 +45,31 @@ public class PathSum {
         findSum(result, solution, root.left, sum);
         findSum(result, solution, root.right, sum);
         solution.remove( solution.size() - 1 );
+    }
+    
+    /**
+     * Path Sum III
+     * @param root
+     * @param sum
+     * @return
+     */
+    public int pathSum3(TreeNode root, int sum) {
+        HashMap<Integer, Integer> preSum = new HashMap();
+        preSum.put(0,1);
+        return helper(root, 0, sum, preSum);
+    }
+    
+    private int helper(TreeNode root, int currSum, int target, HashMap<Integer,Integer> preSum) {
+        if( root == null ) {
+            return 0;
+        }
+        
+        currSum += root.val;
+        int res = preSum.getOrDefault(currSum - target, 0);
+        preSum.put(currSum, preSum.getOrDefault(currSum,0) + 1 );
+        
+        res += helper(root.left, currSum, target, preSum) +  helper(root.right, currSum, target, preSum);
+        preSum.put( currSum, preSum.get(currSum) - 1 );
+        return res;
     }
 }

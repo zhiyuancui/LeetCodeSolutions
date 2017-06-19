@@ -108,13 +108,4 @@ public class SpiralMatrix {
         
         return result;
     }
-	
-	public static void main(String[] args){
-		SpiralMatrix s = new SpiralMatrix();
-		int[][] matrix = new int[3][1];
-		matrix[0][0] = 7;
-		matrix[1][0] = 9;
-		matrix[2][0] = 6;
-		s.spiralOrder(matrix);
-	}
 }
