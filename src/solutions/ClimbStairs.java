@@ -21,11 +21,4 @@ public class ClimbStairs {
         
         return count[n];
     }
-	
-	
-	public static void main(String[] args)
-	{
-		ClimbStairs c = new ClimbStairs();
-		System.out.println(c.climbStairs(3));
-	}
 }
