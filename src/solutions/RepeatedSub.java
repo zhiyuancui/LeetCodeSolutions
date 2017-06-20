@@ -1,6 +1,6 @@
 package solutions;
 
-public class RepeattedSub {
+public class RepeatedSub {
 	public boolean repeatedSubstringPattern(String str) {
         int l = str.length();
 	    for(int i=l/2;i>=1;i--) {
