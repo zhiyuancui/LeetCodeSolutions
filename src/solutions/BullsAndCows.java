@@ -28,6 +28,6 @@ public class BullsAndCows {
             cow += Math.min(secretarr[i], guessarr[i]);
         }
         
-        return "" + bull +"A" + cow + "B";
+        return bull +"A" + cow + "B";
     }
 }

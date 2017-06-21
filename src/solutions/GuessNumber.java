@@ -21,4 +21,32 @@ public class GuessNumber {
         }
         return matrix[1][n];
     }
+	
+	public int guessNumber(int n) {
+        if( n < 1 ){
+            return n;
+        }
+        
+        int start = 1;
+        int end = n;
+        
+        while( start < end ) {
+            int mid = start + ( end - start ) / 2;
+            int response = guess( mid );
+            if( response == 0 ){
+                return mid;
+            } else if( response == 1 ){
+                
+                start = mid + 1;
+            } else{
+                end = mid;
+            }
+        }
+        
+        return start;
+    }
+	
+	private int guess(int num) {
+		return 1;
+	}
 }
