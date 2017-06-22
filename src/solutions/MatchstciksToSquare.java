@@ -1,5 +1,7 @@
 package solutions;
 
+import java.util.Arrays;
+
 public class MatchstciksToSquare {
 
 	public boolean makesquare(int[] nums) {

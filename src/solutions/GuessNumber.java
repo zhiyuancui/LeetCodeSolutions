@@ -39,7 +39,7 @@ public class GuessNumber {
                 
                 start = mid + 1;
             } else{
-                end = mid;
+                end = mid - 1;// ed = mid will also work
             }
         }
         
