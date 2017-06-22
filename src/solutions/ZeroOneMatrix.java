@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class ZeroOneMatrix {
+	
 	public int[][] updateMatrix(int[][] matrix) {
         int m = matrix.length;
         int n = matrix[0].length;
@@ -35,5 +36,49 @@ public class ZeroOneMatrix {
         }
         
         return matrix;
+    }
+    
+    
+	
+	int[] dx = {0,0,1,-1};
+	int[] dy = {1,-1,0,0,};
+	/**
+	 * Alternate approach but cause TLE
+	 * @param matrix
+	 * @return
+	 */
+	public int[][] updateMatrix2(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+        
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] != 0) {
+                    matrix[i][j] = Integer.MAX_VALUE;
+                }
+            }
+        }
+        
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (matrix[i][j] == 0) {
+                    update(matrix,i,j,row, col, 0);
+                }
+            }
+        }
+        
+        return matrix;
+    }
+    
+    private void update(int[][] matrix, int x, int y, int row, int col, int distance) {
+        matrix[x][y] = distance;
+        
+        for(int i = 0; i < dx.length; i++) {
+            int newX = x + dx[i];
+            int newY = y + dy[i];
+            if( newX > 0 && newX < row && newY > 0 && newY < col && matrix[newX][newY] > distance + 1) {
+                update(matrix,x,y,row, col, distance+1);
+            }
+        }
     }
 }
