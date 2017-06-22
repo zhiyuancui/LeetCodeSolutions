@@ -2,7 +2,7 @@ package solutions;
 
 import java.util.Stack;
 
-public class IsValid {
+public class ValidParentheses {
 	public boolean isValid(String s) {
 	     
 	     if( s == null || s.length() == 0 )
