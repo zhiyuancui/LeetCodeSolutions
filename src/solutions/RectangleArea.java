@@ -25,9 +25,4 @@ public class RectangleArea {
         return area;
     }
 	
-	public static void main(String[] args)
-	{
-		RectangleArea c = new RectangleArea();
-		c.computeArea(-2, -2, 2, 2, 3, 3, 4, 4);
-	}
 }
