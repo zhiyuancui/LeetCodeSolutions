@@ -21,7 +21,9 @@ public class Intervals {
             return result;
         }
         
-        Collections.sort(intervals, new IntervalComparator() );
+        Collections.sort(intervals, (a,b) -> {
+        	return a.start - b.start;
+        } );
         Iterator<Interval> it = intervals.iterator();
         Interval last = it.next();
         while( it.hasNext() ){
@@ -36,12 +38,6 @@ public class Intervals {
         
         result.add( last );
         return result;
-    }
-    
-    private class IntervalComparator implements Comparator<Interval>{
-        public int compare(Interval a, Interval b){
-            return a.start - b.start;
-        }
     }
     
     

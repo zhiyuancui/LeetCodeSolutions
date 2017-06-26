@@ -58,12 +58,4 @@ public ListNode reverseKGroup(ListNode head, int k) {
         
         return prev;
     }
-    
-    public static void main(String[] args)
-    {
-    	ReverseKGroup r = new ReverseKGroup();
-    	ListNode head = new ListNode(1);
-    	head.next = new ListNode(2);
-    	r.reverseKGroup(head, 2);
-    }
 }

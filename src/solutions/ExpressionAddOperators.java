@@ -44,8 +44,4 @@ public class ExpressionAddOperators {
         }
     }
     
-    public static void main(String[] args){
-    	ExpressionAddOperators e = new ExpressionAddOperators();
-    	e.addOperators("105", 5);
-    }
 }

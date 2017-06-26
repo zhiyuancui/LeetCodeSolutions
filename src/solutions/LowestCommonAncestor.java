@@ -61,6 +61,7 @@ public class LowestCommonAncestor {
 	
 	/**
 	 * Iterative Method
+	 * Lowest Common Ancestor
 	 */
 	public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode p, TreeNode q) {
 		Map<TreeNode, TreeNode> parent = new HashMap<TreeNode, TreeNode>();

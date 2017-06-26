@@ -61,9 +61,4 @@ public class CountRangeSum {
 	    return ans;
 	}
 	
-	public static void main(String[] args){
-		CountRangeSum c = new CountRangeSum();
-		int[] nums = {-2,-5,-1};
-		c.countRangeSum(nums, -2, 2);
-	}
 }

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class WordBreak {
-	public boolean wordBreak(String s, Set<String> wordDict) {
+	public boolean wordBreak(String s, List<String> wordDict) {
         if( wordDict == null || wordDict.size() == 0 ){
             return false;
         }
@@ -33,7 +33,7 @@ public class WordBreak {
         return canseg[s.length()];
     }
     
-    private int getMaxLength(Set<String> dict ){
+    private int getMaxLength(List<String> dict ){
         int max = 0;
         for(String word : dict){
             max = Math.max(max, word.length() );
