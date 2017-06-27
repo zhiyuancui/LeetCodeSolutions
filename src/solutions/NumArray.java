@@ -1,5 +1,9 @@
 package solutions;
-
+/**
+ * Range Sum Query - Immutable
+ * @author zhiyuan.cui
+ *
+ */
 public class NumArray {
 
     int[] sum;
