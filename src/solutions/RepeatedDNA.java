@@ -43,8 +43,5 @@ public class RepeatedDNA {
         return sum;
     }
     
-    public static void main(String[] args){
-    	RepeatedDNA r = new RepeatedDNA();
-    	r.findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT");
-    }
+    
 }

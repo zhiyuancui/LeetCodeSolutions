@@ -39,18 +39,18 @@ public class BuildTree {
                  return root;
              }
     
-    private int getinorderIndex(int val, int[] inorder,int start, int end )
-    {
-        for( int i = start; i <= end; i++ )
-        {
-            if( inorder[i] == val )
-            {
-                return i;
-            }
-        }
-        
-        return -1;
-    }
+	    private int getinorderIndex(int val, int[] inorder,int start, int end )
+	    {
+	        for( int i = start; i <= end; i++ )
+	        {
+	            if( inorder[i] == val )
+	            {
+	                return i;
+	            }
+	        }
+	        
+	        return -1;
+	    }
     
     
     /**
@@ -88,12 +88,5 @@ public class BuildTree {
         }
         
         return -1;
-    }
-    
-    public static void main(String[] args){
-    	BuildTree t = new BuildTree();
-    	int[] inorder = {1,3,2};
-    	int[] postorder = {3,2,1};
-    	t.buildTree2(inorder, postorder);
     }
 }

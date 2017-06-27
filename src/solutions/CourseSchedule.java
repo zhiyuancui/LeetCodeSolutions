@@ -14,36 +14,37 @@ public class CourseSchedule {
 	 * @return
 	 */
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
-        if( numCourses <= 0 || prerequisites == null ){
+		if( numCourses <= 0 || prerequisites == null ){
             return true;
         }
         
         int[] indegree = new int[ numCourses ];
         Queue<Integer> queue = new LinkedList<Integer>();
+        
         for(int i = 0; i < prerequisites.length; i++){
-            indegree[ prerequisites[i][1] ]++;
+            indegree[ prerequisites[i][0] ]++;
         }
         
-        for(int i = 0; i < indegree.length; i++){
-            if( indegree[i] == 0 ){
+        for(int i = 0; i < indegree.length; i++) {
+            if( indegree[i] == 0 ) {
                 queue.offer(i);
             }
         }
         
-        while( !queue.isEmpty() ){
-            int x = queue.poll();
+        while( !queue.isEmpty() ) {
+            int course = queue.poll();
             for(int i = 0; i < prerequisites.length; i++){
-                if( x == prerequisites[i][0] ){
-                    indegree[prerequisites[i][1]]--;
-                    if(indegree[prerequisites[i][1]] == 0 ){
-                        queue.offer(prerequisites[i][1]);
-                    }
-                }
+                if( prerequisites[i][1] == course ){
+                   indegree[ prerequisites[i][0] ]--;
+                   if( indegree[prerequisites[i][0]] == 0 ) {
+                       queue.offer( prerequisites[i][0] );
+                   }
+                };
             }
         }
         
-        for(int i = 0; i < indegree.length; i++){
-            if( indegree[i] != 0 ){
+        for(int i = 0; i < indegree.length; i++) {
+            if( indegree[i] != 0 ) {
                 return false;
             }
         }

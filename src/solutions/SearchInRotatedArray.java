@@ -1,6 +1,6 @@
 package solutions;
 
-public class Search {
+public class SearchInRotatedArray {
 	
 	/**
 	 * With Duplicates
@@ -121,10 +121,4 @@ public class Search {
 	     return -1;
 	    }
 	
-	public static void main(String[] args)
-	{
-		Search s = new Search();
-		int[] nums = {3,1};
-		s.search2(nums, 1);
-	}
 }

@@ -2,7 +2,7 @@ package solutions;
 
 public class AddBinary {
 
-public String addBinary(String a, String b) {
+	public String addBinary(String a, String b) {
         
         
         int len1 = a.length() - 1;
@@ -31,9 +31,4 @@ public String addBinary(String a, String b) {
         return c - '0';
     }
     
-    public static void main(String[] args)
-    {
-    	AddBinary a = new AddBinary();
-    	a.addBinary("1", "111");
-    }
 }
