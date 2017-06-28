@@ -2,7 +2,7 @@ package solutions;
 
 import util.TreeNode;
 
-public class MaximumPathSum {
+public class BSTMaximumPathSum {
 	
 	int max = Integer.MIN_VALUE;
     

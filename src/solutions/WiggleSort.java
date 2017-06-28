@@ -5,6 +5,10 @@ import java.util.List;
 
 public class WiggleSort {
 
+	/**
+	 * Wiggle Sort II
+	 * @param nums
+	 */
 	//Reference to https://leetcode.com/discuss/88403/clear-java-o-n-avg-time-o-space-solution-using-3-way-partition
 	public void wiggleSort2(int[] nums) {
         int median = selectKth(nums, 0, nums.length-1, nums.length%2==0 ? nums.length/2 : nums.length/2+1);
