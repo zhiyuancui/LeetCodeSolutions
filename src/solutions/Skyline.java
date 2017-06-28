@@ -48,16 +48,4 @@ public class Skyline {
 	    }
 	    return result;
     }
-	
-	public static void main(String[] args){
-		Skyline s = new Skyline();
-		int[][] buildings = new int[2][3];
-		buildings[0][0] = 2;
-		buildings[0][1] = 10;
-		buildings[0][2] = 15;
-		buildings[1][0] = 3;
-		buildings[1][1] = 7;
-		buildings[1][2] = 5;
-		s.getSkyline(buildings);
-	}
 }

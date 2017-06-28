@@ -1,6 +1,6 @@
 package solutions;
 
-public class MyPow {
+public class Pow {
 
 	public double myPow(double x, int n) {
         
@@ -55,11 +55,4 @@ public class MyPow {
         	return pow(x * x, n / 2) * x;
         }
     }
-
-	public static void main(String[] args)
-	{
-		MyPow m = new MyPow();
-		
-		m.myPow(34.00515, -3);
-	}
 }

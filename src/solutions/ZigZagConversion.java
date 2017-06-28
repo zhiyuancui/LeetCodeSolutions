@@ -32,9 +32,4 @@ public class ZigZagConversion {
         
         return result;
     }
-	
-	public static void main(String[] args){
-		ZigZagConversion z = new ZigZagConversion();
-		System.out.println( z.convert("PAYPALISHIRING", 6) ) ;
-	}
 }

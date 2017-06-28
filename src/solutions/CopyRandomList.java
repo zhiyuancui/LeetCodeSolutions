@@ -52,10 +52,4 @@ public class CopyRandomList {
         return dummy.next;
     }
     
-    public static void main(String[] args )
-    {
-    	CopyRandomList c = new CopyRandomList();
-    	RandomListNode t = new RandomListNode(-1);
-    	c.copyRandomList(t);
-    }
 }

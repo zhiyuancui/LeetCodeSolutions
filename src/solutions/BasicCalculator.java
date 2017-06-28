@@ -151,9 +151,4 @@ public int calculate(String s) {
 	    }
 	    return result;
     }
-    
-    public static void main(String[] args){
-    	BasicCalculator b = new BasicCalculator();
-    	b.calculate("   1+3-5");
-    }
 }
