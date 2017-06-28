@@ -52,12 +52,4 @@ public class SortList {
         return dummy.next;
         
     }
-    
-    public static void main(String[] args){
-    	SortList s = new SortList();
-    	ListNode head = new ListNode(3);
-    	head.next = new ListNode(2);
-    	head.next.next = new ListNode(4);
-    	s.sortList(head);
-    }
 }

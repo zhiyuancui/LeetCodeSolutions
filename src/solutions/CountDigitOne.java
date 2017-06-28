@@ -26,8 +26,4 @@ public class CountDigitOne {
         return result;
     }
 	
-	public static void main(String[] args){
-		CountDigitOne c = new CountDigitOne();
-		c.countDigitOne(13);
-	}
 }
