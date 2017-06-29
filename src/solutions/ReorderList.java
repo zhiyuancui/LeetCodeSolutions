@@ -41,13 +41,4 @@ public class ReorderList {
             rightHead = rightNext;
         }
     }
-	
-	public static void main(String[] args){
-		ReorderList l = new ReorderList();
-		ListNode head = new ListNode(1);
-		head.next = new ListNode(2);
-		head.next.next = new ListNode(3);
-		
-		l.reorderList(head);
-	}
 }

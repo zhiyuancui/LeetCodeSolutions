@@ -42,9 +42,4 @@ public class SimplifyPath {
         return result.length() == 0 ? "/" : result;
         
     }
-	
-	public static void main(String[] args){
-		SimplifyPath p = new SimplifyPath();
-		p.simplifyPath("/");
-	}
 }

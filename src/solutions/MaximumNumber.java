@@ -52,13 +52,4 @@ public class MaximumNumber {
 	    }
 	    return ans;
 	}
-	
-	public static void main(String[] args){
-		MaximumNumber m = new MaximumNumber();
-		int[] nums1 = {3,4,6,5};
-		int[] nums2 = {9,1,2,5,8,3};
-		//m.maxNumber(nums1, nums2, 5);
-	
-		m.maxArray(nums2, 3);
-	}
 }
