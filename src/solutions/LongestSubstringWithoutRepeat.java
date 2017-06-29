@@ -7,7 +7,7 @@ import java.util.HashSet;
  * @author Zhiyuan
  *
  */
-public class LongestSubstring {
+public class LongestSubstringWithoutRepeat {
 	public int lengthOfLongestSubstring(String s) {
         if( s== null || s.length() == 0 ){
             return 0;

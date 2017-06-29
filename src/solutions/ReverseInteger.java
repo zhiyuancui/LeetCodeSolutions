@@ -1,6 +1,6 @@
 package solutions;
 
-public class Reverse {
+public class ReverseInteger {
 
 public int reverse(int x) {
         
@@ -30,9 +30,4 @@ public int reverse(int x) {
         
         return neg ? -reverse: reverse;
     }
-
-	public static void main(String[] args){
-		Reverse r = new Reverse();
-		r.reverse( 2147483647 );
-	}
 }

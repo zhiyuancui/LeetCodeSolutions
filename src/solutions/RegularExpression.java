@@ -75,9 +75,4 @@ public class RegularExpression {
 		
 		return dp[s.length()][p.length()];
 	}
-	
-	public static void main(String[] args){
-		RegularExpression r = new RegularExpression();
-		r.isMatch2("aab", "c*a*b");
-	}
 }

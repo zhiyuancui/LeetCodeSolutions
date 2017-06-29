@@ -23,10 +23,5 @@ public class RotateArray {
             left++;
         }
     }
-    
-    public static void main(String[] args){
-    	RotateArray r = new RotateArray();
-    	int[] nums = {1,2,3,4,5,6,7};
-    	r.rotate(nums, 3);
-    }
+   
 }
