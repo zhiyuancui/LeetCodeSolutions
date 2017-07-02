@@ -24,7 +24,7 @@ public class ReverseWords {
 	 * @param s
 	 * @return
 	 */
-public String reverseWords2(String s){
+	public String reverseWords2(String s){
         
         s = s.trim();
         if( s == null || s.length() == 0 ){

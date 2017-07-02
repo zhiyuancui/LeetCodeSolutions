@@ -42,8 +42,4 @@ public class CompareVersion {
         return 0;
     }
 	
-	public static void main(String[] args){
-		CompareVersion c = new CompareVersion();
-		c.compareVersion("1", "1.1");
-	}
 }

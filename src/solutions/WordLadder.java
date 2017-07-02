@@ -12,7 +12,7 @@ import java.util.Queue;
 import java.util.Set;
 
 public class WordLadder {
-public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
+public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         
         if( wordList == null || wordList.size() == 0 ){
             return 0;
@@ -21,10 +21,10 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
         wordList.add( beginWord );
         wordList.add( endWord );
         
-        HashSet<String> hash = new HashSet<String>();
+        HashSet<String> visited = new HashSet<String>();
         Queue<String> queue = new LinkedList<String>();
         queue.offer( beginWord );
-        hash.add( beginWord );
+        visited.add( beginWord );
         
         int len = 1;
         while( !queue.isEmpty() ){
@@ -33,14 +33,14 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
             for(int i = 0; i < size; i++){
                 String word = queue.poll();
                 for(String nextWord : getNextWords( word, wordList ) ){
-                    if( hash.contains( nextWord ) ){
+                    if( visited.contains( nextWord ) ){
                         continue;
                     }
                     if( nextWord.equals(endWord) ){
                         return len;
                     }
                     
-                    hash.add( nextWord );
+                    visited.add( nextWord );
                     queue.offer( nextWord );
                 }
             }
@@ -55,7 +55,7 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
         return new String( chars );
     }
     
-    private List<String> getNextWords(String word, Set<String> dict ){
+    private List<String> getNextWords(String word, List<String> dict ){
         List<String> nextWords = new ArrayList<String>();
         for( char c = 'a'; c <= 'z'; c++ ){
             for(int i = 0; i < word.length(); i++){
@@ -65,11 +65,12 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
                 
                 String nextWord = replace(word, i, c);
                 if( dict.contains( nextWord ) ){
+                	System.out.print( nextWord +"\t");
                     nextWords.add( nextWord );
                 }
             }
         }
-        
+        System.out.println("");
         return nextWords;
     }
     

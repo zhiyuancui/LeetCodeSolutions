@@ -34,7 +34,7 @@ public class LRUCache {
       cache.put(key,val);
     }
 
-    public void set(int key, int value) { 
+    public void put(int key, int value) { 
       cache.put(key, value);
       moveToFront(key);
     }

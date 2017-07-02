@@ -115,13 +115,4 @@ public class SurroundedRegions {
     	}
     	System.out.println("///////////////////////////////////////////");
     }
-    
-    public static void main(String[] args){
-    	SurroundedRegions s = new SurroundedRegions();
-    	char[][] board = new char[3][3];
-    	Arrays.fill(board[0], 'O');
-    	Arrays.fill(board[1], 'O');
-    	Arrays.fill(board[2], 'O');
-    	s.solve(board);
-    }
 }
