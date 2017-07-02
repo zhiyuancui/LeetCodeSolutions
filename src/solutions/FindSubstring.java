@@ -12,6 +12,12 @@ import java.util.Map;
  */
 public class FindSubstring {
 
+	/**
+	 * Substring With Concatenation of All Words
+	 * @param s
+	 * @param words
+	 * @return
+	 */
 	public List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> res = new LinkedList<>();
 		

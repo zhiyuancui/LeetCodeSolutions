@@ -48,10 +48,4 @@ public class NumArray2 {
     public int sumRange(int i, int j) {
         return getSum(j) - getSum(i - 1);
     }
-    
-    public static void main(String[] args){
-    	int[] nums = {1,3,5};
-    	NumArray2 n = new NumArray2( nums );
-    	n.sumRange(0, 2);
-    }
 }

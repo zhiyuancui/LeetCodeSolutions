@@ -55,9 +55,4 @@ public class ShortestPalindrome {
         }
         return true;
     }
-    
-    public static void main(String[] args){
-    	ShortestPalindrome s = new ShortestPalindrome();
-    	System.out.println(  s.shortestPalindrome( "abcd" ) );
-    }
 }

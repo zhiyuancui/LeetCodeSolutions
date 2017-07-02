@@ -8,6 +8,17 @@ package solutions;
  *
  */
 public class FindMedian {
+	/**
+	 * Median of Two Sorted Array
+	 * @param num1
+	 * @param len1
+	 * @param begin1
+	 * @param num2
+	 * @param len2
+	 * @param begin2
+	 * @param k
+	 * @return
+	 */
 	private int findKthSmallest(int[] num1, int len1, int begin1, int[] num2, int len2, int begin2, int k) {
 
 	    if (len1 > len2)
@@ -41,10 +52,4 @@ public class FindMedian {
 
 	}
 	
-	public static void main(String[] args){
-		FindMedian f = new FindMedian();
-		int[] nums1 = {1,3,5,7,9};
-		int[] nums2 = {2,4,6,8,10};
-		f.findMedianSortedArrays(nums1, nums2);
-	}
 }

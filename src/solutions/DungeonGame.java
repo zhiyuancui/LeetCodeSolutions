@@ -3,6 +3,11 @@ package solutions;
 import java.util.Arrays;
 
 public class DungeonGame {
+	/**
+	 * dp[i][j] 表示的是刚进入这个房间时的血量
+	 * @param dungeon
+	 * @return
+	 */
 	public int calculateMinimumHP(int[][] dungeon) {
         if( dungeon == null || dungeon.length == 0 || dungeon[0].length == 0 ){
             return 0;
