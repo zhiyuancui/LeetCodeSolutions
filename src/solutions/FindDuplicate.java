@@ -71,25 +71,12 @@ public class FindDuplicate {
 	 * @return
 	 */
 	public List<Integer> findDuplicates4(int[] nums) {
-	     
-		
-	     Set<Integer> set = new HashSet<Integer>();
 	     List<Integer> result = new ArrayList<Integer>();
-	     
-	     /*
-	     for(int num: nums){
-	         if( set.contains(num) ){
-	             result.add(num);
-	         } else {
-	             set.add(num);
-	         }
-	     }
-	     */
 	     
 	     for(int i = 0; i < nums.length; i++) {
 	    	 int index = Math.abs(nums[i]) - 1;
 	    	 if( nums[index] < 0 ){
-	    		 result.add(Math.abs(index+1));
+	    		 result.add(index+1);
 	    	 }
 	    	 nums[index] = -nums[index];
 	     }

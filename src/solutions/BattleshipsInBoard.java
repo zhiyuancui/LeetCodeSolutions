@@ -3,7 +3,7 @@ package solutions;
 public class BattleshipsInBoard {
 
 	/**
-	 * Referencec to: https://discuss.leetcode.com/topic/62970/simple-java-solution/2
+	 * Referencec to: https://discuss.leetcode.com/topic/62970/simple-java-solution/
 	 * @param board
 	 * @return
 	 */

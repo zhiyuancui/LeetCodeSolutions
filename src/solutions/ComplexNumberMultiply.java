@@ -53,4 +53,6 @@ public class ComplexNumberMultiply {
 	          coefs2 = Stream.of(b.split("\\+|i")).mapToInt(Integer::parseInt).toArray();
 	    return (coefs1[0]*coefs2[0] - coefs1[1]*coefs2[1]) + "+" + (coefs1[0]*coefs2[1] + coefs1[1]*coefs2[0]) + "i";
 	}
+	
+	
 }

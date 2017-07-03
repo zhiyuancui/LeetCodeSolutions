@@ -54,11 +54,7 @@ public class ReconstructQueue {
 			root =  candidate;
 			return;
 		}
-		//二叉树一个节点的左子树表示排在这个节点前面的人，右子数表示排在这个节点后面的人。
-		//因为数组以递减序列排序。所以我可以确定candidate一定比node矮或者和node一样高。
-		//所以如果candidate的tallercount如果大于当前节点的lesscount，即便当前节点所有的人都比candidate高，但candidate的位置实际还要更靠后。
-		//所以candidate要去当前节点的右子树。当candidate去到右子树时，我们也就可以确定所有当前节点的左子树都要比candidate要高，所以tallercount要减去lesscount
-		//
+		
 		if( candidate.tallerCount - node.lessCount >= 0 ){
 			candidate.tallerCount -= node.lessCount;
 			if( node.right == null ){
