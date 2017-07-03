@@ -6,6 +6,7 @@ import java.util.Stack;
 public class NextGreaterElement {
 
 	/**
+	 * Reference to:
 	 * Next Greater Element II
 	 * @param nums
 	 * @return
