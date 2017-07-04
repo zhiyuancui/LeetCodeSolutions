@@ -6,6 +6,11 @@ import java.util.TreeMap;
 import util.Interval;
 
 public class FindRightInterval {
+	/**
+	 * Reference to: http://www.cnblogs.com/grandyang/p/6810361.html
+	 * @param intervals
+	 * @return
+	 */
 	public int[] findRightInterval(Interval[] intervals) {
         int[] result = new int[intervals.length];
         java.util.NavigableMap<Integer, Integer> intervalMap = new TreeMap<>();

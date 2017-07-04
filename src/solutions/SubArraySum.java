@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SubArraySum {
+	/**
+	 * Subarray Sum Equals K
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
 	public int subarraySum(int[] nums, int k) {
         int sum = 0, result = 0;
         Map<Integer, Integer> preSum = new HashMap<>();

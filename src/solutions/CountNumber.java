@@ -13,7 +13,8 @@ public class CountNumber {
         	return 1;
         }
         //ans is from 0 to 9;
-        
+        //n == 3, c91 * c91 * c81
+        //n ==4, c91 * c91 * c81 * c71
         int ans = 10, base = 9;
         for (int i = 2; i <= n && i <= 10; i++) {
         	base = base * (9 - i + 2);

@@ -2,6 +2,12 @@ package solutions;
 
 public class LicenseFormatting {
 
+	/**
+	 * %(k+1) == k is to stop 0%k == k then add '-'
+	 * @param s
+	 * @param k
+	 * @return
+	 */
 	public String licenseKeyFormatting(String s, int k) {
         StringBuilder sb = new StringBuilder();
         for (int i = s.length() - 1; i >= 0; i--)

@@ -5,10 +5,10 @@ import java.util.List;
 
 public class LexicalOrder {
 	public List<Integer> lexicalOrder(int n) {
-        List<Integer> list = new ArrayList<>(n);
+        List<Integer> result = new ArrayList<>(n);
         int curr = 1;
         for (int i = 1; i <= n; i++) {
-            list.add(curr);
+            result.add(curr);
             if (curr * 10 <= n) {
                 curr *= 10;
             } else if (curr % 10 != 9 && curr + 1 <= n) {
@@ -20,6 +20,6 @@ public class LexicalOrder {
                 curr = curr / 10 + 1;
             }
         }
-        return list;
+        return result;
     }
 }
