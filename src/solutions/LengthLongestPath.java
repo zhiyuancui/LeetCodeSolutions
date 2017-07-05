@@ -3,7 +3,7 @@ package solutions;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class LenthLongestPath {
+public class LengthLongestPath {
 	public int lengthLongestPath(String input) {
         Deque<Integer> stack = new ArrayDeque<>();
         stack.push(0); // "dummy" length

@@ -2,7 +2,7 @@ package solutions;
 
 import util.TreeNode;
 
-public class SumNumbers {
+public class SumRootToLeaf {
 	public int sumNumbers(TreeNode root) {
         return travesal(root,0);
     }

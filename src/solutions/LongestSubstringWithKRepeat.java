@@ -1,6 +1,12 @@
 package solutions;
 
-public class LongestSubstringWithRepeat {
+public class LongestSubstringWithKRepeat {
+	/**
+	 * Reference to: https://discuss.leetcode.com/topic/57372/java-divide-and-conquer-recursion-solution
+	 * @param s
+	 * @param k
+	 * @return
+	 */
 	public int longestSubstring(String s, int k) {
         char[] str = s.toCharArray();
         return helper(str,0,s.length(),k);

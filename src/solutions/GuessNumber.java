@@ -7,6 +7,12 @@ package solutions;
  *
  */
 public class GuessNumber {
+	
+	/**
+	 * Guess Number Higher or Lower II
+	 * @param n
+	 * @return
+	 */
 	public int getMoneyAmount(int n) {
         int[][] matrix = new int[n+1][n+1];
         for(int j=2; j<=n; j++){
