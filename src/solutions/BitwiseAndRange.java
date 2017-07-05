@@ -5,7 +5,7 @@ package solutions;
  * @author Zhiyuan
  *
  */
-public class BitwiseANDRange {
+public class BitwiseAndRange {
 	public int rangeBitwiseAnd(int m, int n) {
         int i = 0;
         

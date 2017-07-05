@@ -23,7 +23,7 @@ public class CombinationSum {
         }
 
         List<Integer> path = new ArrayList<Integer>();
-        java.util.Arrays.sort(candidates);
+        Arrays.sort(candidates);
         combinationSumHelper(results, path, candidates, target, 0);
 
         return results;
