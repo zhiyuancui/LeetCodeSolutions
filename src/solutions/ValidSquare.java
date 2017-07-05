@@ -1,32 +1,47 @@
 package solutions;
 
-public class ValidSquare {
-	public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
-		long[] lengths = { length(p1,p2), length(p2,p3),length(p3,p4),length(p4,p1),length(p1,p3),length(p2,p4)};
-	    long max = 0, nonMax = 0;
-	    for(long len: lengths) {
-	        max = Math.max(max,len);
-	    }
-	    
-	    int count = 0;
-	    for(long len : lengths ){
-	        if( len == max ) {
-	            count++;
-	        } else {
-	            nonMax = len;
-	        }
-	    }
-	    
-	    if( count != 2 ) return false;
-	    
-	    for(long len: lengths) {
-	        if( len != max && len != nonMax) return false;
-	    }
-	    
-	    return true;
-	}
+import java.util.ArrayList;
+import java.util.List;
 
-	private long length(int[] p1, int[] p2){
-	    return (long)Math.pow(p1[0]-p2[0],2) + (long)Math.pow(p1[1] - p2[1],2);  
-	}
+public class ValidSquare {
+public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
+        
+        List<Integer> distances = new ArrayList<Integer>();
+        distances.add( getDistance(p1,p2) );
+        distances.add( getDistance(p1,p3) );
+        distances.add( getDistance(p1,p4) );
+        distances.add( getDistance(p2,p3) );
+        distances.add( getDistance(p4,p2) );
+        distances.add( getDistance(p3,p4) );
+        
+        int min = Integer.MAX_VALUE;
+        int max = 0;
+        
+        for(int d : distances) {
+            if( d == 0 ) {
+                return false;
+            }
+            min = Math.min(min,d);
+            max = Math.max(max,d);
+        }
+        
+        int minCount=0, maxCount = 0;
+        
+        for(int d : distances) {
+            if( d == min ) {
+                minCount++;
+            } else if( d == max ) {
+                maxCount++;
+            } else {
+                return false;
+            }
+        }
+        
+        return minCount == 4 && maxCount == 2;
+    }
+    
+    private int getDistance(int[] p1, int[] p2) {        
+        return (int)( Math.pow(p1[0] - p2[0], 2) + Math.pow(p1[1] - p2[1], 2 ) );
+
+    }
 }
