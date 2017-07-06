@@ -69,6 +69,7 @@ public class Hindex {
         }
    
         int hindex = 0;
+        //i is citation. hindex is the number of paper
         for(int i = len; i > 0; i--){
         	hindex += count[i];
         	if( hindex >= i ){

@@ -76,7 +76,7 @@ public class ZeroOneMatrix {
         for(int i = 0; i < dx.length; i++) {
             int newX = x + dx[i];
             int newY = y + dy[i];
-            if( newX > 0 && newX < row && newY > 0 && newY < col && matrix[newX][newY] > distance + 1) {
+            if( newX >= 0 && newX < row && newY >= 0 && newY < col && matrix[newX][newY] > distance + 1) {
                 update(matrix,x,y,row, col, distance+1);
             }
         }
