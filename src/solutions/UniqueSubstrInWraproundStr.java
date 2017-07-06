@@ -1,6 +1,11 @@
 package solutions;
 
 public class UniqueSubstrInWraproundStr {
+	/**
+	 * Reference to: https://discuss.leetcode.com/topic/70658/concise-java-solution-using-dp
+	 * @param p
+	 * @return
+	 */
 	public int findSubstringInWraproundString(String p) {
         int[] count = new int[26];
         

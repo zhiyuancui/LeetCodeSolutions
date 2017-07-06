@@ -12,6 +12,7 @@ public class LongestUncommonSequences {
     }
 	
 	/**
+	 * Reference to: https://discuss.leetcode.com/topic/85027/java-hashing-solution
 	 * Longest Uncommon Sequences II
 	 * @param strs
 	 * @return
@@ -27,7 +28,7 @@ public class LongestUncommonSequences {
         return longest;
     }
     
-    public static Set<String> getSubseqs(String s) {
+    public Set<String> getSubseqs(String s) {
         Set<String> res = new HashSet<>();
         if (s.length() == 0) {
              res.add("");

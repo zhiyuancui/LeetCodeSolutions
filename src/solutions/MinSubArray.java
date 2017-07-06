@@ -1,6 +1,12 @@
 package solutions;
 
 public class MinSubArray {
+	/**
+	 * Minimum Size Subarray Sum
+	 * @param s
+	 * @param nums
+	 * @return
+	 */
 	public int minSubArrayLen(int s, int[] nums) {
         if( nums == null || nums.length == 0 || s<= 0 ){
             return 0;
