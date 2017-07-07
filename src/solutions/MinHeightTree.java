@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Queue;
 
 public class MinHeightTree {
+	//Like topology sorting. from the outside to inner side.
+	// outside always has path to another end which of cause is the longest height
 	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         List<List<Integer>> graph = new ArrayList<List<Integer>>();
         List<Integer> result = new ArrayList<Integer>();
@@ -20,11 +22,11 @@ public class MinHeightTree {
             graph.add( new ArrayList<Integer>() );
         }
         
-        for(int i = 0; i < edges.length; i++){
-            graph.get( edges[i][0] ).add( edges[i][1]);
-            graph.get( edges[i][1] ).add( edges[i][0]);
-            degree[ edges[i][0] ]++;
-            degree[ edges[i][1] ]++;
+        for(int[] edge: edges){
+            graph.get( edge[0] ).add( edge[1]);
+            graph.get( edge[1] ).add( edge[0]);
+            degree[ edge[0] ]++;
+            degree[ edge[1] ]++;
         }
         
         Queue<Integer> q = new LinkedList<Integer>();
@@ -54,7 +56,7 @@ public class MinHeightTree {
                         q.offer( next );
                     }
                     
-                    degree[ next]--;
+                    degree[next]--;
                 }
             }
         }

@@ -42,7 +42,12 @@ public class WordBreak {
         return max;
     }
     
-    
+    /**
+     * Word Break II
+     * @param s
+     * @param wordDict
+     * @return
+     */
     public List<String> wordBreak2(String s, Set<String> wordDict) {
         Map<String, List<String>> map = new HashMap<String, List<String>>();
         
