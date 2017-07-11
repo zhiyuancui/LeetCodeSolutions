@@ -14,6 +14,15 @@ public class LargestNumber {
         for(int i = 0; i < nums.length; i++){
             strs[i] = nums[i]+"";
         }
+        
+        /*
+         *         
+        Arrays.stream(nums).
+        boxed().
+        sorted((a, b) -> b.compareTo(a)). // sort descending
+        mapToInt(i -> i).
+        toArray();
+         * */
         Arrays.sort(strs, new Comparator<String>() {
             @Override
             public int compare(String i, String j) {
