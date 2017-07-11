@@ -33,7 +33,7 @@ public class ReorderList {
         ListNode rightHead = prev;
         cur = head;
         while( cur != null && rightHead != null ){
-        	ListNode next = cur.next;
+        		ListNode next = cur.next;
             ListNode rightNext = rightHead.next;
             rightHead.next = cur.next;
             cur.next = rightHead;
