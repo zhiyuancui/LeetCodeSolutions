@@ -22,11 +22,11 @@ public class Skyline {
 	            return a[1] - b[1];
 	    });
 	
-	    // Use a maxHeap to store possible heights
-	    Queue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+	    // Use a maxHeap to track the heighest building
+	    Queue<Integer> maxHeap = new PriorityQueue<>((a, b) -> (b - a));
 	
 	    // Provide a initial value to make it more consistent
-	    pq.offer(0);
+	    maxHeap.offer(0);
 	
 	    // Before starting, the previous max height is 0;
 	    int prev = 0;
@@ -34,11 +34,11 @@ public class Skyline {
 	    // visit all points in order
 	    for(int[] h:height) {
 	        if(h[1] < 0) { // a start point, add height
-	            pq.offer(-h[1]);
+	            maxHeap.offer(-h[1]);
 	        } else {  // a end point, remove height
-	            pq.remove(h[1]);
+	            maxHeap.remove(h[1]);
 	        }
-	        int cur = pq.peek(); // current max height;
+	        int cur = maxHeap.peek(); // current max height;
 	
 	        // compare current max height with previous max height, update result and previous max height if necessary
 	        if(prev != cur) {
