@@ -32,4 +32,11 @@ public class MedianOfSortedArrays {
             return findKth(nums1, start1, nums2, start2 + k / 2, k - k / 2 );
         }
     }
+    
+    /**
+     * https://leetcode.com/discuss/67341/concise-java-solution-based-on-binary-search
+     */
+    public double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+        return 0.0;
+    }
 }
