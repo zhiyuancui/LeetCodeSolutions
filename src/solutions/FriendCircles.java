@@ -3,37 +3,37 @@ package solutions;
 public class FriendCircles {
 	 class UnionFind {
 	        private int count = 0;
-	        private int[] parent, rank;
+	        private int[] root, size;
 	        
 	        public UnionFind(int n) {
 	            count = n;
-	            parent = new int[n];
-	            rank = new int[n];
+	            root = new int[n];
+	            size = new int[n];
 	            for (int i = 0; i < n; i++) {
-	                parent[i] = i;
+	                root[i] = i;
+	                size[i] = 1;
 	            }
 	        }
 	        
 	        public int find(int p) {
-	        	while (p != parent[p]) {
-	                parent[p] = parent[parent[p]];    // path compression by halving
-	                p = parent[p];
-	            }
-	            return p;
+		        	while (p != root[p]) {
+		                root[p] = root[root[p]];    // path compression by halving
+		                p = root[p];//go to root
+		            }
+		        	return p;
 	        }
 	        
 	        public void union(int p, int q) {
 	            int rootP = find(p);
 	            int rootQ = find(q);
 	            if (rootP == rootQ) return;
-	            if (rank[rootQ] > rank[rootP]) {
-	                parent[rootP] = rootQ;
+	            if (size[rootQ] > size[rootP]) {
+	                root[rootP] = rootQ;
+	                size[rootQ] += size[rootP];
 	            }
 	            else {
-	                parent[rootQ] = rootP;
-	                if (rank[rootP] == rank[rootQ]) {
-	                    rank[rootP]++;
-	                }
+	                root[rootQ] = rootP;
+	                size[rootP] += size[rootQ];
 	            }
 	            count--;
 	        }
