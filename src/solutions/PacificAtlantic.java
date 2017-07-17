@@ -9,19 +9,20 @@ public class PacificAtlantic {
         if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
             return res;
         }
-        int n = matrix.length, m = matrix[0].length;
-        boolean[][]pacific = new boolean[n][m];
-        boolean[][]atlantic = new boolean[n][m];
-        for(int i=0; i<n; i++){
+        int row = matrix.length, col = matrix[0].length;
+        boolean[][]pacific = new boolean[row][col];
+        boolean[][]atlantic = new boolean[row][col];
+        for(int i=0; i<row; i++){
             dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, i, m-1);
+            dfs(matrix, atlantic, Integer.MIN_VALUE, i, col-1);
         }
-        for(int i=0; i<m; i++){
+        for(int i=0; i<col; i++){
             dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, n-1, i);
+            dfs(matrix, atlantic, Integer.MIN_VALUE, row-1, i);
         }
-        for (int i = 0; i < n; i++) 
-            for (int j = 0; j < m; j++) 
+        
+        for (int i = 0; i < row; i++) 
+            for (int j = 0; j < col; j++) 
                 if (pacific[i][j] && atlantic[i][j]) 
                     res.add(new int[] {i, j});
         return res;

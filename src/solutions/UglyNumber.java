@@ -65,7 +65,7 @@ public class UglyNumber {
 	
 	/**
 	 * Super Ugly Number
-	 * Reference to https://www.hrwhisper.me/leetcode-super-ugly-number/
+	 * https://discuss.leetcode.com/topic/34841/java-three-methods-23ms-36-ms-58ms-with-heap-performance-explained
 	 * @param n
 	 * @param primes
 	 * @return
