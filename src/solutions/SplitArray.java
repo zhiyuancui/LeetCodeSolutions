@@ -1,6 +1,13 @@
 package solutions;
 
 public class SplitArray {
+	/**
+	 * Split Array Largest Sum
+	 * Reference to: http://www.cnblogs.com/grandyang/p/5933787.html
+	 * @param nums
+	 * @param m
+	 * @return
+	 */
 	public int splitArray(int[] nums, int m) {
         int max = 0; long sum = 0;
         for (int num : nums) {
