@@ -1,8 +1,10 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class CourseSchedule {
@@ -104,5 +106,23 @@ public class CourseSchedule {
         }
         
         return res;
+    }
+	
+	/**
+	 * Course Schedule III
+	 * @param courses
+	 * @return
+	 */
+	public int scheduleCourse(int[][] courses) {
+        Arrays.sort(courses,(a,b)->a[1]-b[1]); 
+        PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)->b-a);
+        int time=0;
+        for (int[] c:courses) 
+        {
+            time+=c[0]; 
+            pq.add(c[0]);
+            if (time>c[1]) time-=pq.poll(); 
+        }        
+        return pq.size();
     }
 }
