@@ -2,10 +2,16 @@ package solutions;
 
 
 public class DeleteTwoString {
+	/**
+	 * Find Longest Common Sequence
+	 * @param word1
+	 * @param word2
+	 * @return
+	 */
 	public int minDistance(String word1, String word2) {
         int len1 = word1.length();
         int len2 = word2.length();
-        int dp[][] = new int[ len1 ][ len2 ];
+        int dp[][] = new int[ len1+1 ][ len2+1 ];
         for(int i = 0; i <= len1; i++){
             for(int j = 0; j <= len2; j++){
                 if( i == 0 || j == 0 ){

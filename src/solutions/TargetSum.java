@@ -21,4 +21,30 @@ public class TargetSum {
         generate(nums, target - nums[start], start+1);
         generate(nums, target + nums[start], start+1);
     }
+    
+   /** 
+    * DP solution 
+    * Reference to :https://discuss.leetcode.com/topic/76264/short-java-dp-solution-with-explanation
+    * @param nums
+    * @param s
+    * @return
+    */
+    public int findTargetSumWays2(int[] nums, int s) {
+        int sum = 0; 
+        for(int i: nums) sum+=i;
+        if(s>sum || s<-sum) return 0;
+        int[] dp = new int[2*sum+1];
+        dp[0+sum] = 1;// where sum value is 0
+        for(int i = 0; i<nums.length; i++){
+            int[] next = new int[2*sum+1];
+            for(int k = 0; k<2*sum+1; k++){
+                if(dp[k]!=0){
+                    next[k + nums[i]] += dp[k];
+                    next[k - nums[i]] += dp[k];
+                }
+            }
+            dp = next;
+        }
+        return dp[sum+s];
+    }
 }
