@@ -5,7 +5,7 @@ import java.util.List;
 
 import util.TreeNode;
 
-public class RightSideView {
+public class BSTRightSideView {
 
 	public List<Integer> rightSideView(TreeNode root) {
         List<Integer> res = new LinkedList<Integer>();
