@@ -7,12 +7,12 @@ public class SingleNonDuplicate {
 	 * @return
 	 */
 	public int singleNonDuplicate(int[] nums) {
-        int n=nums.length, lo=0, hi=n/2;
-        while (lo < hi) {
-            int m = (lo + hi) / 2;
-            if (nums[2*m]!=nums[2*m+1]) hi = m;
-            else lo = m+1;
+        int n=nums.length, low=0, high=n/2;
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (nums[2*mid]!=nums[2*mid+1]) high = mid;
+            else low = mid+1;
         }
-        return nums[2*lo];
+        return nums[2*low];
     }
 }
