@@ -36,6 +36,7 @@ public class UglyNumber {
 	
 	/**
 	 * Ugly Number II
+	 * Ugly number is the number which smaller than it, multiply primes
 	 * @param n
 	 * @return
 	 */
