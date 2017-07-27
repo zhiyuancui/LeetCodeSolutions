@@ -3,6 +3,7 @@ package solutions;
 public class UniqueSubstrInWraproundStr {
 	/**
 	 * Reference to: https://discuss.leetcode.com/topic/70658/concise-java-solution-using-dp
+	 * reference to： http://www.cnblogs.com/grandyang/p/6143071.html
 	 * @param p
 	 * @return
 	 */

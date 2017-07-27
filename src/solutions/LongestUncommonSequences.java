@@ -14,6 +14,7 @@ public class LongestUncommonSequences {
 	/**
 	 * Reference to: https://discuss.leetcode.com/topic/85027/java-hashing-solution
 	 * Longest Uncommon Sequences II
+	 * brute-force ?!!
 	 * @param strs
 	 * @return
 	 */

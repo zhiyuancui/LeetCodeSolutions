@@ -4,6 +4,8 @@ public class RotateFunction {
 
 	/**
 	 * Reference to: https://discuss.leetcode.com/topic/58459/java-o-n-solution-with-explanation
+	 * Reference to : http://www.cnblogs.com/grandyang/p/5869791.html
+	 * F(i) = F(i-1) + sum - n*A[n-i]
 	 * @param A
 	 * @return
 	 */
