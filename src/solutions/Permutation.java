@@ -11,14 +11,14 @@ public class Permutation {
 	 * @param num
 	 * @return
 	 */
-	public List<List<Integer>> permute(int[] num) {
+	public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> rst = new ArrayList<List<Integer>>();
-        if (num == null || num.length == 0) {
+        if (nums == null || nums.length == 0) {
             return rst; 
         }
 
         ArrayList<Integer> list = new ArrayList<Integer>();
-        helper(rst, list, num);
+        helper(rst, list, nums);
         return rst;
    }
    
