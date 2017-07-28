@@ -31,10 +31,10 @@ public class CloneGraph {
         }
         
         //clone neighbors
-        for(int i = 0; i< nodes.size(); i++){
-            UndirectedGraphNode newNode = map.get( nodes.get(i) );
-            for(int j =0; j < nodes.get(i).neighbors.size(); j++){
-                newNode.neighbors.add( map.get( nodes.get(i).neighbors.get(j)));
+        for(UndirectedGraphNode head: nodes) {
+            UndirectedGraphNode clone = map.get(head);
+            for(UndirectedGraphNode item : head.neighbors) {
+                clone.neighbors.add( map.get(item) );
             }
         }
         

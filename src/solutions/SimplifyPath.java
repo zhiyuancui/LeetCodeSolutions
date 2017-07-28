@@ -14,7 +14,7 @@ public class SimplifyPath {
         String[] parts = path.split("/");
         
         if( parts.length == 0 ){
-            return "";
+            return "/";
         }
         
         for(String token : parts){

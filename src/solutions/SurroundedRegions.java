@@ -8,112 +8,67 @@ import java.util.Queue;
 
 public class SurroundedRegions {
 	
-    public static int[] dx= {0,0,1,-1};
-    public static int[] dy= {1,-1,0,0};
+	private class Node{
+        int x;
+        int y;
+        public Node(int i , int j) {
+            x = i;
+            y = j;
+        }
+    }
+    
+    int[]dx = {0,0,-1,1};
+    int[]dy = {1,-1,0,0};
     
     public void solve(char[][] board) {
-        
-        if( board == null || board.length == 0 || board[0].length == 0 )
-        {
+        if( board == null || board.length == 0 ) {
             return;
         }
         
         int row = board.length;
-        int column = board[0].length;
+        int col = board[0].length;
         
-        //check first row and last row
-        for(int i = 0; i < column; i++)
-        {
-            searchRegion(0,i,board);
-            searchRegion(row - 1,i,board);
-
+        Queue<Node> q = new LinkedList<Node>();
+        
+        for(int i = 0; i < row; i++) {
+            if( board[i][0] == 'O' ) {
+                q.offer(new Node(i,0));
+            }
+            if( board[i][col-1] == 'O' ) {
+                q.offer(new Node(i,col-1));
+            }
         }
         
-        //check first column and last column
-        for(int i = 0; i < row; i++)
-        {
-            searchRegion(i,0,board);
-            searchRegion(i,column - 1 ,board);
+        for(int i = 0; i < col; i++) {
+            if( board[0][i] == 'O' ) {
+                q.offer(new Node(0,i));
+            }
+            if( board[row-1][i] == 'O' ) {
+                q.offer(new Node(row-1,i));
+            }
         }
         
-        
-        for(int i =0; i < row; i++ )
-        {
-            for(int j = 0; j < column; j++ )
-            {
-                switch(board[i][j])
-                {
-                    case 'O':
-                        board[i][j] = 'X';
-                        break;
-                    case 'F':
-                        board[i][j] = 'O';
+        while( !q.isEmpty() ) {
+            Node cur = q.poll();
+            board[cur.x][cur.y] = 'F';
+            for(int i = 0; i < dx.length; i++) {
+                int newX = cur.x + dx[i];
+                int newY = cur.y + dy[i];
+                if( newX >= 0 && newX < row && newY >= 0 &&  newY < col && board[newX][newY] == 'O') {
+                    q.offer(new Node(newX, newY));
                 }
             }
         }
-    }
-    
-    private void searchRegion(int x, int y, char[][] board)
-    {
-        if(board[x][y] != 'O')
-        {
-            return;
-        }
         
-        Queue<Node> queue = new LinkedList<Node>();
-        Node head = new Node(x,y);
-        queue.offer(head);
-        while( !queue.isEmpty() )
-        {
-            Node next = queue.poll();
-            board[next.x][next.y] = 'F';
-            ArrayList<Node> nextList = expand(next, board);
-            for(Node n : nextList)
-            {
-                queue.offer(n);
+        for(int i = 0; i < row; i ++) {
+            for(int j = 0; j < col; j++) {
+                if( board[i][j] == 'O' ) {
+                    board[i][j] = 'X';
+                } else if( board[i][j] == 'F' ) {
+                    board[i][j] = 'O';
+                }
             }
         }
-    }
-    
-    static class Node {
-        int x;
-        int y;
-        
-        Node(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-    
-    private ArrayList<Node> expand(Node head, char[][] board)
-    {
-        ArrayList<Node> nextList = new ArrayList<Node>();
-        for(int i =0;i < dx.length; i++ )
-        {
-            int x = head.x + dx[i];
-            int y = head.y + dy[i];
-            if( x >= 0 && x < board.length && y >= 0 && y < board[0].length && board[x][y] == 'O')
-            {
-                board[x][y] = 'T';
-                nextList.add(new Node(x, y));
-            }
-        }
-        
-        return nextList;
-        
-    }
-    
-    private void printBoard(char[][] board){
-    	int row = board.length;
-    	int col = board[0].length;
-    	
-    	for(int i = 0; i < row; i++){
-    		for(int j = 0; j < col; j++){
-    			System.out.print(board[i][j]);
-    		}
-    		System.out.println();
-    	}
-    	System.out.println("///////////////////////////////////////////");
     }
     
     /**

@@ -32,6 +32,7 @@ public class LargestNumber {
             }
         });
         
+        
         if( strs[strs.length - 1].charAt(0) == '0') return "0";
         String res = new String();
         for(int i = strs.length - 1; i >=0 ; i--){
