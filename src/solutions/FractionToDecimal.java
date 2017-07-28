@@ -3,6 +3,7 @@ package solutions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Reference to https://leetcode.com/discuss/67344/simple-java-solution-using-hashmap-and-stringbuilder
@@ -12,58 +13,65 @@ import java.util.List;
 public class FractionToDecimal {
 	
 	public String fractionToDecimal(int numerator, int denominator) {
-		long n=numerator;
-	    long d=denominator;
-	    if(n==0)return "0";
-	    boolean sign= false ;
-	    if(numerator<0){
-	    	sign=!sign;
-	    	n=-n;
-	    }
-	    if(denominator<0){
-	    	sign=!sign;
-	    	d=-d;
-	    }   
-
-	    StringBuilder sb=new StringBuilder();
-	    if( sign ) {
-	    	sb.append("-");
-	    }
-	    sb.append(n/d);
-	    n%=d;
-	    if( n == 0 ){
-	    	return sb.toString();
-	    }
-	    sb.append(".");
-
-	    HashMap<Long,Integer>map=new HashMap<Long,Integer>();
-	    List<Long>list=new ArrayList<Long>();
-	    
-	    int index=0;
-	    while( n != 0 && !map.containsKey(n)){
-	        map.put(n,index);
-	        index++;
-	        n *= 10;
-	        list.add(n/d);
-	        n %= d;
-	    }
-	    //Divide process finished
-	    if(n==0){ //No repeat
-	        for(int i=0;i<list.size();i++){
-	            sb.append(list.get(i));
-	        }
-	    }else{ //Has repeat
-	        int startIndex=map.get(n);    
-	        for(int i=0;i<startIndex;i++){
-	            sb.append(list.get(i));
-	        }
-	        sb.append("(");
-	        for(int i=startIndex;i<list.size();i++){
-	            sb.append(list.get(i));
-	        }
-	        sb.append(")");
-	    }
-	    
-	    return sb.toString();
+		long num = numerator;
+        long deno = denominator;
+        
+        if( numerator == 0 ) {
+            return "0";
+        }
+        boolean neg = false;
+        if( numerator < 0 ) {
+            num = -num;
+            neg = !neg;
+        }
+        if( denominator < 0 ) {
+            deno = -deno;
+            neg = !neg;
+        }
+             
+        StringBuilder sb = new StringBuilder();
+        if( neg ) {
+            sb.append("-");
+        }
+        sb.append( num / deno );
+        
+        long remainder = num % deno;
+        
+        if( remainder == 0 ) {
+            return sb.toString();
+        }
+        
+        sb.append(".");
+        
+        List<Long> nums = new ArrayList<Long>();
+        Map<Long, Integer> map = new HashMap<>();
+        int index = 0;
+        while( !map.containsKey(remainder) && remainder != 0 ) {
+            
+            map.put(remainder, index);
+            num = remainder * 10;
+            remainder = num % deno;
+            num = num / deno;            
+            nums.add(num);
+            index++;
+        }
+        
+        if( remainder == 0 ) {
+            for(long n : nums) {
+                sb.append(n);
+            }
+        } else {
+            int start = map.get(remainder);
+            for(int i = 0; i < start; i++) {
+                sb.append(nums.get(i));
+            }
+            sb.append("(");
+            for(int i = start; i < nums.size(); i++) {
+                sb.append(nums.get(i));
+            }
+            sb.append(")");
+        }
+        
+        return sb.toString();
     }
 }
