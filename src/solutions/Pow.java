@@ -24,7 +24,15 @@ public class Pow {
         double t1 = myPow(x, n/2 );
         double t2 = myPow(x, n- (n/2)*2);
         
-        return neg ? 1/(t1*t1*t2): t1*t1*t2;
+        if( neg ) {
+            if( t1*t2*t1 == 0 ) {
+                return 0;
+            } else {
+                return 1/(t1*t1*t2);
+            }   
+        } else {
+            return t1*t1*t2;
+        }
         
     }
 	

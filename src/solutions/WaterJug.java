@@ -7,7 +7,7 @@ public class WaterJug {
         //case x or y is zero
         if( x == z || y == z || x + y == z ) return true;
         
-        //get GCD, then we can use the property of Bézout's identity
+        //get GCD, then we can use the property of 
         return z%GCD(x, y) == 0;
     }
     

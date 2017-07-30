@@ -21,7 +21,7 @@ public class RussianDollEnvelopesTest {
 	@Test
 	public void test() {
 		RussianDollEnvelopes r = new RussianDollEnvelopes();
-		int[][] envelopes = {{2,3},{5,4},{6,7},{6,4}};
+		int[][] envelopes = {{5,3},{5,4}};
 		r.maxEnvelopes(envelopes);
 	}
 

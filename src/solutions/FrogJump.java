@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class FrogJump {
+	/**
+	 * cur jump k step, next time jump k-1, k, k+1
+	 * @param stones
+	 * @return
+	 */
 	public boolean canCross(int[] stones) {
         if (stones.length == 0) {
         	return true;
