@@ -1,6 +1,11 @@
 package solutions;
 
 public class FindIntegers {
+	/**
+	 * Reference to: http://www.geeksforgeeks.org/count-number-binary-strings-without-consecutive-1s/
+	 * @param num
+	 * @return
+	 */
 	public int findIntegers(int num) {
         StringBuilder sb = new StringBuilder(Integer.toBinaryString(num)).reverse();
         int n = sb.length();
