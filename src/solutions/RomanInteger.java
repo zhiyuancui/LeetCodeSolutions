@@ -81,12 +81,4 @@ public class RomanInteger {
         
         return result;
     }
-	
-	
-	public static void main(String[] args )
-	{
-		RomanInteger r = new RomanInteger();
-		//r.romanToInt("MCMXCVI");
-		System.out.println(  r.intToRoman(1) );
-	}
 }
