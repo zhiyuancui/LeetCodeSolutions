@@ -1,7 +1,10 @@
 package solutions;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import util.Interval;
 
@@ -13,15 +16,24 @@ public class FindRightInterval {
 	 */
 	public int[] findRightInterval(Interval[] intervals) {
         int[] result = new int[intervals.length];
-        java.util.NavigableMap<Integer, Integer> intervalMap = new TreeMap<>();
+        List<Integer> value = new ArrayList<>();
+        Map<Integer,Integer> map = new HashMap<Integer,Integer>();
         
-        for (int i = 0; i < intervals.length; ++i) {
-            intervalMap.put(intervals[i].start, i);    
+        for(int i = 0; i < intervals.length; i++) {
+            map.put(intervals[i].start, i);
+            value.add( intervals[i].start );
         }
         
-        for (int i = 0; i < intervals.length; ++i) {
-            Map.Entry<Integer, Integer> entry = intervalMap.ceilingEntry(intervals[i].end);
-            result[i] = (entry != null) ? entry.getValue() : -1;
+        Collections.sort(value, (a,b) -> b-a );
+        
+        for(int i = 0; i < intervals.length; i++) {
+            Interval cur = intervals[i];
+            int j = 0;
+            for(; j < value.size(); j++) {
+                if( value.get(j) < cur.end ) break;
+            }
+            
+            result[i] = j > 0 ? map.get( value.get(j-1)) : -1;
         }
         
         return result;

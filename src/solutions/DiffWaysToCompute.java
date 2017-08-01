@@ -44,9 +44,4 @@ public class DiffWaysToCompute {
         map.put(input, result);
         return result;
     }
-	
-	public static void main(String[] args){
-		DiffWaysToCompute d = new DiffWaysToCompute();
-		d.diffWaysToCompute("2-1-1");
-	}
 }

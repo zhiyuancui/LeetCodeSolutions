@@ -128,7 +128,11 @@ public class MaxProfit {
     }
 	
 	/**
+	 * Best Time to Buy and Sell Stock with cool down
 	 * Reference to: https://leetcode.com/discuss/71354/share-my-thinking-process
+	 * buy[i]  = max(rest[i-1]-price, buy[i-1]) 
+	 * sell[i] = max(buy[i-1]+price, sell[i-1])
+	 * rest[i] = max(sell[i-1], buy[i-1], rest[i-1])
 	 * Best Time to Buy and Sell Stock with Cooldown
 	 * @param prices
 	 * @return
