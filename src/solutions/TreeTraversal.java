@@ -238,23 +238,19 @@ return its vertical order traversal as:
         int curLevelNumber = 1;
         
         while( !q.isEmpty() ){
-            
-            int nextLevel = 0;
+            int size = q.size();
             List<Integer> value = new ArrayList<Integer>();
-            for(int i = 0; i < curLevelNumber; i++){
+            for(int i = 0; i < size; i++){
                 TreeNode node = q.poll();
                 value.add( node.val );
                 if( node.left != null ){
                     q.offer( node.left );
-                    nextLevel++;
                 }
                 if( node.right != null ){
                     q.offer( node.right );
-                    nextLevel++;
                 }
             }
-            result.add(0,value);
-            curLevelNumber = nextLevel;
+            result.add(value);
         }
         
         return result;
