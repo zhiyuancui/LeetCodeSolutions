@@ -21,6 +21,7 @@ public class LongestSubstringWithKRepeat {
         }
     
         for(int i = 0;i<26;i++){
+        	//find invalid character which count smaller than k
             if(count[i]<k&&count[i]>0){ //count[i]=0 => i+'a' does not exist in the string, skip it.
                 for(int j = start;j<end;j++){
                     if(str[j]==i+'a'){

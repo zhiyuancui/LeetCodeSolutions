@@ -15,7 +15,7 @@ public class ShoppingOffer {
             if(!invalidOffer && remain < 0) invalidOffer = true; // if offer has more items than needs
         }
         if(!invalidOffer) { //if valid offer, add offer price and recurse remaining needs
-            result = Math.min(result, shoppingOffers(price, special, needs) + offer.get(needs.size()));
+            result = Math.min(result, shoppingOffers(price, special, needs) + offer.get( offer.size() - 1));
         }
         for(int j = 0; j < needs.size(); j++) { // reset the needs
             int remain = needs.get(j) + offer.get(j);
