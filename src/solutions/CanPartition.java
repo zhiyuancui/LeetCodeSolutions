@@ -23,9 +23,9 @@ public class CanPartition {
         boolean[] dp = new boolean[volumn+1];
         dp[0] = true;
         
-        for(int i = 1; i <= nums.length; i++) {
-            for(int j = volumn; j >= nums[i-1]; j--){
-                dp[j] = dp[j] || dp[j-nums[i-1]];
+        for(int i = 0; i < nums.length; i++) {
+            for(int j = volumn; j >= nums[i]; j--){
+                dp[j] = dp[j] || dp[j-nums[i]];
             }
         }
         return dp[volumn];

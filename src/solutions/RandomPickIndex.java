@@ -19,10 +19,10 @@ public class RandomPickIndex {
             if (nums[i] != target){
                 continue;
             } else {
-            	count++;
-            	if (rnd.nextInt(++count) == 0){
-            		result = i;
-            	}
+            		count++;
+            		if (rnd.nextInt(++count) == 0){
+            			result = i;
+            		}
             }
         }
         
