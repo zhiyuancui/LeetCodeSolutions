@@ -29,8 +29,7 @@ public class MyAtoi {
         
         for( int i = 0; i < len; i++ )
         {
-            if( str.charAt(i) <'0' || str.charAt(i) > '9')
-            {
+            if( !Character.isDigit( str.charAt(i) )) {
                 break;
             }
             int digit = str.charAt( i ) - '0';
