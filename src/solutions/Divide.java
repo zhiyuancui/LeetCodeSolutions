@@ -25,12 +25,4 @@ public class Divide {
         }
        return ans>Integer.MAX_VALUE ? Integer.MAX_VALUE:(int)ans;
     }
-	
-	
-	
-	
-	public static void main(String[] args){
-		Divide d = new Divide();
-		d.divide(-2147483648, -1);
-	}
 }
