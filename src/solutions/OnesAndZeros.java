@@ -5,9 +5,11 @@ public class OnesAndZeros {
         int[][] dp = new int[m+1][n+1];
         for (String s : strs) {
             int[] count = count(s);
-            for (int i=m;i>=count[0];i--) 
-                for (int j=n;j>=count[1];j--) 
+            for (int i=m;i>=count[0];i--) {
+                for (int j=n;j>=count[1];j--) {
                     dp[i][j] = Math.max(1 + dp[i-count[0]][j-count[1]], dp[i][j]);
+                }
+            }
         }
         return dp[m][n];
 }
