@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class DungeonGame {
 	/**
-	 * dp[i][j] ±íÊ¾µÄÊÇ¸Õ½øÈëÕâ¸ö·¿¼äÊ±µÄÑªÁ¿
+	 * dp[i][j] ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ç¸Õ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ñªï¿½ï¿½
 	 * @param dungeon
 	 * @return
 	 */
@@ -34,7 +34,6 @@ public class DungeonGame {
             for(int j = col - 2; j >= 0 ; j-- ){
                 int hp = Math.min( matrix[i+1][j], matrix[i][j+1]) - dungeon[i][j];
                 matrix[i][j] = Math.max(hp, 1);
-                printMatrix(matrix);
             }
         }
         

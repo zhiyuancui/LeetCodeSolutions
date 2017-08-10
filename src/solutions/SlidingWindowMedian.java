@@ -20,11 +20,11 @@ public class SlidingWindowMedian {
 	        
 	        for (int i = 0; i <= nums.length; i++) {
 	            if (i >= k) {
-	        	    result[i - k] = getMedian();
-	        	    remove(nums[i - k]);
+	        	    		result[i - k] = getMedian();
+	        	    		remove(nums[i - k]);
 	            }
-	                if (i < nums.length) {
-	        	    add(nums[i]);
+	            if (i < nums.length) {
+	                	add(nums[i]);
 	            }
 	        }
 	        
