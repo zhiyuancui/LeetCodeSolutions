@@ -1,5 +1,8 @@
 package solutions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * During the NBA playoffs, we always arrange the rather strong team to play with the rather weak team, like make the rank 1 team play with the rank nth team, which is a good strategy to make the contest more interesting. Now, you're given n teams, you need to output their final contest matches in the form of a string.
 
@@ -15,5 +18,16 @@ Then we pair the team (1,2) together with '(', ')' and ',', which is the final a
  *
  */
 public class OutputContestMatches {
-
+	public String findContestMatch(int n) {
+        List<String> matches = new ArrayList<>();
+        for(int i = 1; i <= n; i++) matches.add(String.valueOf(i));
+        
+        while(matches.size() != 1){
+            List<String> newRound = new ArrayList<>();
+            for(int i = 0; i < matches.size()/2; i++)   
+                newRound.add("(" + matches.get(i) + "," + matches.get(matches.size() - i - 1) + ")");
+            matches = newRound;
+        }
+        return matches.get(0);
+    }
 }
