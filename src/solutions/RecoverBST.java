@@ -2,7 +2,7 @@ package solutions;
 
 import util.TreeNode;
 
-public class RecoverTree {
+public class RecoverBST {
 
 	private TreeNode first = null;
     private TreeNode second = null;

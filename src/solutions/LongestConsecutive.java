@@ -47,11 +47,4 @@ public class LongestConsecutive {
         
         return len;
     }
-
-	public static void main(String[] args){
-		LongestConsecutive l = new LongestConsecutive();
-		int[] nums = {0,0};
-		System.out.println( l.longestConsecutive(nums) );
-	}
-
 }

@@ -38,11 +38,4 @@ public class RotateList {
         
         return dummy.next;
     }
-	
-	public static void main(String[] args){
-		RotateList r = new RotateList();
-		ListNode head = new ListNode(1);
-		head.next = new ListNode(2);
-		r.rotateRight(head, 1);
-	}
 }
