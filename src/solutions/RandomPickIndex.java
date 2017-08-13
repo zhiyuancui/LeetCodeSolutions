@@ -20,7 +20,7 @@ public class RandomPickIndex {
                 continue;
             } else {
             		count++;
-            		if (rnd.nextInt(++count) == 0){
+            		if (rnd.nextInt(count) == 0){
             			result = i;
             		}
             }
