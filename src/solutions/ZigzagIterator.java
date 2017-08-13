@@ -20,7 +20,7 @@ public class ZigzagIterator {
     }
 
     public int next() {
-        Iterator poll = list.remove();
+        Iterator poll = list.remove(0);
         int result = (Integer)poll.next();
         if(poll.hasNext()) list.add(poll);
         return result;

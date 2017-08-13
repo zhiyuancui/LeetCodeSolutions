@@ -4,7 +4,7 @@ public class FlipGame {
 
 	/**
 	 * 
-	 * 
+	 * Flip Game II
 	 * Reference to : https://leetcode.com/discuss/64344/theory-matters-from-backtracking-128ms-to-dp-0ms
 	 * @param array
 	 * @return
