@@ -173,10 +173,6 @@ public class MaxProfit {
             cool[i] = Math.max(sell[i-1], Math.max(buy[i-1], cool[i-1]));
         }
         
-        System.out.println( sell[prices.length - 1 ] );
-        System.out.println( buy[prices.length - 1 ] );
-        System.out.println( cool[prices.length - 1 ] );
-        
         return Math.max( sell[prices.length - 1 ], Math.max(buy[prices.length - 1 ],cool[prices.length - 1 ]) );
     }
 }

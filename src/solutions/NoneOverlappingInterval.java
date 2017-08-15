@@ -19,7 +19,7 @@ public class NoneOverlappingInterval {
         int end = intervals[0].end;
         
         for(int i = 1; i < intervals.length; i++) {
-            if( intervals[i]. start < end ) {
+            if( intervals[i].start < end ) {
                 count++;
             } else {
                 end = intervals[i].end;
