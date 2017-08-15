@@ -37,7 +37,11 @@ public class GeneralizedAbbreviation {
         }
     }
     
-    
+    /**
+     * Second Solution
+     * @param word
+     * @return
+     */
     public List<String> generateAbbreviations2(String word) {
 		List<String> result = new ArrayList<String>();
 		for(int i = 0; i < Math.pow(2, word.length()); i++){

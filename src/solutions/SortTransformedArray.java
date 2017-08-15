@@ -5,13 +5,15 @@ public class SortTransformedArray {
 	public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
         int n = nums.length;
         int[] sorted = new int[n];
-        int i = 0, j = n - 1;
+        int left = 0, right = n - 1;
         int index = a >= 0 ? n - 1 : 0;
-        while (i <= j) {
+        while (left <= right) {
             if (a >= 0) {
-                sorted[index--] = quad(nums[i], a, b, c) >= quad(nums[j], a, b, c) ? quad(nums[i++], a, b, c) : quad(nums[j--], a, b, c);
+                sorted[index] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c) ? quad(nums[left++], a, b, c) : quad(nums[right--], a, b, c);
+                index--;
             } else {
-                sorted[index++] = quad(nums[i], a, b, c) >= quad(nums[j], a, b, c) ? quad(nums[j--], a, b, c) : quad(nums[i++], a, b, c);
+                sorted[index] = quad(nums[left], a, b, c) >= quad(nums[right], a, b, c) ? quad(nums[right--], a, b, c) : quad(nums[left++], a, b, c);
+                index++;
             }
         }
         return sorted;

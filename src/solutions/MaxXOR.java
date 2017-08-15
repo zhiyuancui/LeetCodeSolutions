@@ -65,7 +65,7 @@ public class MaxXOR {
             for(int i = 31; i >= 0; i--) {
                 int curBit = (num >>> i) & 1;
                 if(curNode.children[curBit ^ 1] != null) {
-                    curSum += (1 << i);
+                    curSum |= (1 << i);
                     curNode = curNode.children[curBit ^ 1];
                 }else {
                     curNode = curNode.children[curBit];
