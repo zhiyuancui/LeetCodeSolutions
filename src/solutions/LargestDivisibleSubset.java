@@ -6,6 +6,11 @@ import java.util.List;
 
 public class LargestDivisibleSubset {
 
+	/**
+	 * Reference to : http://blog.csdn.net/xindoo/article/details/53046600
+	 * @param nums
+	 * @return
+	 */
 	public List<Integer> largestDivisibleSubset(int[] nums) {
         
         int n = nums.length;
