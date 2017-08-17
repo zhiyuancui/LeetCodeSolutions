@@ -1,6 +1,6 @@
 package solutions;
 
-public class SetZeroes {
+public class SetMatrixZeroes {
 	public void setZeroes(int[][] matrix) {
 	    if(matrix == null)
 	    {
