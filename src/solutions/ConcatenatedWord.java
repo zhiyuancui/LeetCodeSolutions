@@ -1,7 +1,9 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ConcatenatedWord {
 	class TrieNode {
@@ -66,4 +68,50 @@ public class ConcatenatedWord {
             }
         }
     }
+    
+    /**
+     * Second Soluiton
+     * @param words
+     * @return
+     */
+    public List<String> findAllConcatenatedWordsInADict2(String[] words) {
+        if( words.length <= 2 ){            
+            return new ArrayList<String>();
+        }
+        
+        List<String> result = new ArrayList<String>();
+        
+        Set<String> dict = new HashSet<String>();
+        for(String word : words) {
+            dict.add(word);
+        }
+        
+        for(String word : words) {
+            dict.remove(word);
+            int len = word.length();
+            if( len == 0 ) continue;
+            boolean[] canseg = new boolean[len+1];
+            canseg[0] = true;
+            for(int i = 1; i <= len; i++) {
+                for(int j = 1; j <=i; j++) {
+                    if( !canseg[i-j] ){
+                        continue;
+                    }
+                    String seg = word.substring(i-j,i);
+                    if( dict.contains(seg) )  {
+                        canseg[i] = true;
+                        break;
+                    }
+                    
+                }
+            }
+            if( canseg[ canseg.length - 1 ] ) {
+                result.add( word );
+            }
+            dict.add(word);
+        }
+        
+        return result;
+    }
+    
 }
