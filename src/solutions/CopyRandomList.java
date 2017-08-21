@@ -39,14 +39,14 @@ public class CopyRandomList {
         dummy.next = head;
     
       //remove old nodes
+      //recover list
+        cur = head;
         copy = dummy;
-        cur = dummy.next;
-        while( copy != null && copy.next != null )
-        {
-            copy.next = copy.next.next;
+        while( cur != null && copy != null ) {
+            copy.next = cur.next;
             cur.next = copy.next.next;
-            copy = copy.next;
             cur = cur.next;
+            copy = copy.next;
         }
         
         return dummy.next;

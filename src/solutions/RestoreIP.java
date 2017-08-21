@@ -29,7 +29,7 @@ public class RestoreIP {
             return;
         }
         
-        for(int i = start; i < s.length() && i <= start + 3 ; i++){
+        for(int i = start; i < s.length() && i < start + 3 ; i++){
             String part = s.substring(start, i + 1);
             if( validIP( part ) ){
                 IP.add( part );

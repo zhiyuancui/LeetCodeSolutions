@@ -20,6 +20,7 @@ public class LongestUncommonSequences {
 	 */
 	public int findLUSlength2(String[] strs) {
         Map<String, Integer> subseqFreq = new HashMap<>();
+        
         for (String s : strs) 
             for (String subSeq : getSubseqs(s))
                 subseqFreq.put(subSeq, subseqFreq.getOrDefault(subSeq, 0) + 1);

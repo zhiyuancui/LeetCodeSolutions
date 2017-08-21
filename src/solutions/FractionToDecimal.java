@@ -25,7 +25,7 @@ public class FractionToDecimal {
             neg = !neg;
         }
         if( denominator < 0 ) {
-            deno = -deno;
+            deno = -deno;// if use -denominator is Integer.MIN_VALUE is not right
             neg = !neg;
         }
              

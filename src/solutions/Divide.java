@@ -6,23 +6,38 @@ public class Divide {
 	
 	public int divide(int dividend, int divisor) {
 
-        long a = Math.abs((long)dividend);
-        long b = Math.abs((long)divisor);
+		long a = dividend;
+        long b = divisor;
+        
         long ans = 0;
-
-        while (a >= b) {
+        
+        boolean isneg = false;
+        if( a < 0 ) {
+            a = -a;
+            isneg = !isneg;
+        }
+        
+        if( b < 0 ) {
+            b = -b;
+            isneg = !isneg;
+        }
+        
+        
+        while( b <= a ){
             long shift = b, power = 1;
-            while( (shift << 1 ) <= a ){
+            while( (shift<<1) <= a) {
                 shift <<= 1;
                 power <<= 1;
             }
-                ans += power;
-                a -= shift;
+            
+            a -= shift;
+            ans += power;
         }
-
-        if( (dividend>0) ^ (divisor>0)){
-           ans = -ans; 
+        
+        if( isneg ) {
+            ans = -ans;
         }
-       return ans>Integer.MAX_VALUE ? Integer.MAX_VALUE:(int)ans;
+        
+        return ans > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int)ans;
     }
 }
