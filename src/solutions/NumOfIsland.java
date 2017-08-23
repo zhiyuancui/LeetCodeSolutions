@@ -101,10 +101,4 @@ public class NumOfIsland {
     	}    	
     	return id;
     }
-    
-    public static void main(String[] args){
-    	NumOfIsland n = new NumOfIsland();
-    	int[][] positions = {{0,0},{0,1},{2,1},{1,1},{1,0}};
-    	n.numIslands2(3, 3, positions);
-    }
 }

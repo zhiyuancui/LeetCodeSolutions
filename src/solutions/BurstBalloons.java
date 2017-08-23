@@ -18,11 +18,12 @@ public class BurstBalloons {
         
         int[][] matrix = new int[n][n];
         
-        for(int i = 2; i <n; i++){//the distance of left between right is i.
-            for( int left = 0; i+left<n;left++ ){
-                int right = i+left;
+        for(int width = 2; width < n; width++) {
+            for(int left = 0; left + width< n; left++){
+                int right = left + width;
                 for(int m = left+1; m<right;m++){
-                    matrix[left][right] = Math.max(matrix[left][right], newNums[left]*newNums[m]*newNums[right] + matrix[left][m] + matrix[m][right]);
+                    matrix[left][right] = Math.max(matrix[left][right], 
+                    		newNums[left]*newNums[m]*newNums[right] + matrix[left][m] + matrix[m][right]);
                 }
             }
         }
