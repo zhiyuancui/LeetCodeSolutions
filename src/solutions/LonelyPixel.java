@@ -33,15 +33,15 @@ public class LonelyPixel {
 	 * @return
 	 */
 	public int findBlackPixel(char[][] picture, int N) {
-        int m = picture.length;
-        if (m == 0) return 0;
-        int n = picture[0].length;
-        if (n == 0) return 0;
+        int row = picture.length;
+        if (row == 0) return 0;
+        int col = picture[0].length;
+        if (col == 0) return 0;
         
         Map<String, Integer> map = new HashMap<>();
-        int[] colCount = new int[n];
+        int[] colCount = new int[col];
         
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < row; i++) {
             String key = scanRow(picture, i, N, colCount);
             if (key.length() != 0) {
                 map.put(key, map.getOrDefault(key, 0) + 1);
@@ -51,7 +51,7 @@ public class LonelyPixel {
         int result = 0;
         for (String key : map.keySet()) {
             if (map.get(key) == N) {
-                for (int j = 0; j < n; j++) {
+                for (int j = 0; j < col; j++) {
                     if (key.charAt(j) == 'B' && colCount[j] == N) {
                         result += N;
                     }

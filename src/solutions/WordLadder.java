@@ -65,7 +65,6 @@ public int ladderLength(String beginWord, String endWord, List<String> wordList)
                 
                 String nextWord = replace(word, i, c);
                 if( dict.contains( nextWord ) ){
-                	System.out.print( nextWord +"\t");
                     nextWords.add( nextWord );
                 }
             }
