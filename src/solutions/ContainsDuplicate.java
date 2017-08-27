@@ -92,10 +92,6 @@ public class ContainsDuplicate {
 	public boolean containsNearbyDuplicate(int[] nums, int k) {
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         
-        if( nums.length < k ) {
-            return false;
-        }
-        
         
         for(int i = 0; i < nums.length; i++){
             if( map.containsKey(nums[i]) ){

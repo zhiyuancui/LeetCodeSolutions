@@ -48,10 +48,4 @@ public String countAndSay(int n) {
         return result;
     }
 
-
-	public static void main(String[] args )
-	{
-		CountAndSay c = new CountAndSay();
-		c.countAndSay(3);
-	}
 }
