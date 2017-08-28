@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Longest Substring with At Most K Distinct Characters
  * 
  * Given a string, find the length of the longest substring T that contains at most 2 distinct characters.
- * For example, Given s = ¡°eceba¡±,
+ * For example, Given s = "eceba",
  * T is "ece" which its length is 3.
  * 
  * 
@@ -52,8 +52,5 @@ public class LongestSubstringWithTwoCharacter {
         return max;
     }
 	
-	public static void main(String[] args){
-		LongestSubstringWithTwoCharacter l = new LongestSubstringWithTwoCharacter();
-		l.lengthOfLongestSubstringTwoDistinct("eceba");
-	}
+	
 }
