@@ -18,13 +18,13 @@ public class VerifyPreorderBST {
 	 * @return
 	 */
 	public boolean verifyPreorder(int[] preorder) {
-		int low = Integer.MIN_VALUE;
+		int min = Integer.MIN_VALUE;
         Stack<Integer> path = new Stack();
         for (int p : preorder) {
-            if (p < low)
+            if (p < min)
                 return false;
             while (!path.empty() && p > path.peek())
-                low = path.pop();
+                min = path.pop();
             path.push(p);
         }
         return true;
