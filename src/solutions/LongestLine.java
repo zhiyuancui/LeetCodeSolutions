@@ -1,11 +1,13 @@
 package solutions;
 
-public class ConsecutiveOneInMatrix {
+public class LongestLine {
 	public int longestLine(int[][] matrix) {
         int row = matrix.length, max = 0;
         if (row == 0) return max;
         int col = matrix[0].length;
+        
         int[][][] dp = new int[row][col][4];
+        
         for (int i=0;i<row;i++) 
             for (int j=0;j<col;j++) {
                 if (matrix[i][j] == 0) continue;
