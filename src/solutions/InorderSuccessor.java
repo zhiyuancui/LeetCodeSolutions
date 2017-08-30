@@ -19,12 +19,12 @@ public class InorderSuccessor {
         TreeNode result = null;
         
         while( root != null ){
-        	if( root.val > p.val ){
-        		result = root;
-        		root = root.left;
-        	}else{
-        		root = root.right;
-        	}
+	        	if( root.val > p.val ){
+	        		result = root;
+	        		root = root.left;
+	        	}else{
+	        		root = root.right;
+	        	}
         }
         
         return result;
