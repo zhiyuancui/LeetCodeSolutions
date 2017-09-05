@@ -21,6 +21,7 @@ public class FractionAddition {
         int denom = f1[1] * f2[1];
         
         String sign = "";
+        
         if(numer < 0){
             sign = "-";
             numer *= -1;

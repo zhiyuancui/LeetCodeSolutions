@@ -25,6 +25,7 @@ public class ShuffleArray {
         if( copy == null ) return null;
         int[] res = copy.clone();
         for(int i=0; i < res.length; i++ ) {
+        	
             int index = random.nextInt(i+1);
             int t = res[ index ];
             res[ index ] = res[ i ];
