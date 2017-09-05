@@ -31,22 +31,22 @@ public class LongestSubstringWithTwoCharacter {
         int max = 0;
         
         while( right < s.length() ){
-        	if( index.size() <= 2 ){
-        		char c = s.charAt( right );
-        		index.put(c, right );
-        		right++;
-        	}
-        	if( index.size() > 2 ){
-        		int leftMost = s.length();
-        		for(int i : index.values() ){
-        			leftMost = Math.min(leftMost, i);
-        		}
-        		
-        		char c = s.charAt(leftMost);
-        		index.remove( c );
-        		left = leftMost + 1;
-        	}
-        	max = Math.max(max, right - left);
+	        	if( index.size() <= 2 ){
+	        		char c = s.charAt( right );
+	        		index.put(c, right );
+	        		right++;
+	        	}
+	        	if( index.size() > 2 ){
+	        		int leftMost = s.length();
+	        		for(int i : index.values() ){
+	        			leftMost = Math.min(leftMost, i);
+	        		}
+	        		
+	        		char c = s.charAt(leftMost);
+	        		index.remove( c );
+	        		left = leftMost + 1;
+	        	}
+	        	max = Math.max(max, right - left);
         }
         
         return max;

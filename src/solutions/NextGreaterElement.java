@@ -23,7 +23,7 @@ public class NextGreaterElement {
         
         for(int i = n - 1; i >= 0; i--){
             result[i] = -1;
-            while( !stack.isEmpty() && nums[ stack.peek()] <= nums[i] ){
+            while( !stack.isEmpty() && nums[ stack.peek() ] <= nums[i] ){
                 stack.pop();
             }
             
