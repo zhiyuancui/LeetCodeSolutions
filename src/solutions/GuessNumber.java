@@ -29,6 +29,11 @@ public class GuessNumber {
         return matrix[1][n];
     }
 	
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
 	public int guessNumber(int n) {
         if( n < 1 ){
             return n;

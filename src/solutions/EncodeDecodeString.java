@@ -18,7 +18,7 @@ public class EncodeDecodeString {
     public String encode(List<String> strs) {
         StringBuilder sb = new StringBuilder();
         for(String s: strs){
-        	sb.append(s.length()).append('/').append(s);
+        		sb.append(s.length()).append('/').append(s);
         }
         return sb.toString();
     }
@@ -28,10 +28,10 @@ public class EncodeDecodeString {
         List<String> result = new ArrayList<String>();
         int i = 0;
         while( i < s.length() ){
-        	int slash = s.indexOf('/',i);
-        	int size = Integer.valueOf(s.substring(i,slash));
-        	result.add( s.substring(slash+1, slash+size+1));
-        	i = slash + size + 1;
+	        	int slash = s.indexOf('/',i);
+	        	int size = Integer.valueOf(s.substring(i,slash));
+	        	result.add( s.substring(slash+1, slash+size+1));
+	        	i = slash + size + 1;
         }
         
         return result;
