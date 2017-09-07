@@ -3,6 +3,12 @@ package solutions;
 import java.util.List;
 
 public class ConvexPolygon {
+	/**
+	 * Reference to : http://www.cnblogs.com/grandyang/p/6146986.html
+	 * @param points
+	 * @return
+	 */
+	
 	public boolean isConvex(List<List<Integer>> points) {
         // For each set of three adjacent points A, B, C, find the cross product AB ¡¤ BC. If the sign of
        // all the cross products is the same, the angles are all positive or negative (depending on the
