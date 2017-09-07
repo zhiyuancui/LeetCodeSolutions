@@ -14,7 +14,6 @@ public class SentenceScreenFitting {
                 }
             }
         }
-        
         return start / s.length();
     }
 }
