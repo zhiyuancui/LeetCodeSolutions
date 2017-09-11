@@ -43,11 +43,4 @@ public class BST2Greater {
         }
     }
     
-    public static void main(String[] args) {
-    	BST2Greater b = new BST2Greater();
-    	TreeNode node = new TreeNode(5);
-    	node.left = new TreeNode(2);
-    	node.right = new TreeNode(13);
-    	b.reverseInorderIterative(node);
-    }
 }
