@@ -26,7 +26,7 @@ public class IsSymmetric {
             return false;
         }
         
-        return check( left.left, right.right) && check( left.left, right.right);
+        return check( left.right, right.left) && check( left.left, right.right);
         
     }
 }

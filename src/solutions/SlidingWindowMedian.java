@@ -1,17 +1,12 @@
 package solutions;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class SlidingWindowMedian {
 	 PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
-	    PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(
-	        new Comparator<Integer>() {
-	            public int compare(Integer i1, Integer i2) {
-	                return i2.compareTo(i1);
-	            }
-	        }
-	    );
+	    PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
 		
 	    public double[] medianSlidingWindow(int[] nums, int k) {
 	        int n = nums.length - k + 1;

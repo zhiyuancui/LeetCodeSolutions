@@ -36,10 +36,10 @@ public class UnlockPatterns {
 		for(int i = 0; i < 3; i++){
 			for(int j = 0; j <3; j++){
 				if( keyboard[i][j] ||
-						( x == i && Math.abs(y-j) > 1 && !keyboard[x][1]) || 
-						( y == j && Math.abs(x-i) > 1 && !keyboard[1][y]) ||
-						( (x + y == i + j) && Math.abs(x-i) > 1 && !keyboard[1][1]) ||
-						( (x - y == i - j) && Math.abs(x-i) > 1 && !keyboard[1][1]) ||
+						( x == i && Math.abs(y-j) > 1 && !keyboard[x][1]) || //heng xiang kua le yi ge dian
+						( y == j && Math.abs(x-i) > 1 && !keyboard[1][y]) || // cong xiang kua le yi ge dian
+						( (x + y == i + j) && Math.abs(x-i) > 1 && !keyboard[1][1]) || // dui jiao xian kua dian
+						( (x - y == i - j) && Math.abs(x-i) > 1 && !keyboard[1][1]) || // fan dui jiao xian kua dian
 						(( x ==i && y == j))
 						){
 					continue;

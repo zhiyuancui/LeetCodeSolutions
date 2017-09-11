@@ -10,7 +10,7 @@ public class ConvexPolygon {
 	 */
 	
 	public boolean isConvex(List<List<Integer>> points) {
-        // For each set of three adjacent points A, B, C, find the cross product AB ¡¤ BC. If the sign of
+        // For each set of three adjacent points A, B, C, find the cross product AB ï¿½ï¿½ BC. If the sign of
        // all the cross products is the same, the angles are all positive or negative (depending on the
        // order in which we visit them) so the polygon is convex.
        boolean gotNegative = false;
@@ -55,4 +55,33 @@ public class ConvexPolygon {
        // Calculate the Z coordinate of the cross product.
        return (BAx * BCy - BAy * BCx);
    }
+   
+   /**
+    * Reference to :http://www.cnblogs.com/grandyang/p/6146986.html
+    * @param points
+    * @return
+    */
+   public boolean isConvex2(List<List<Integer>> points) {
+       int n = points.size();
+       long pre = 0;
+       long cur = 0;
+       
+       for(int i = 0; i <n ; i++) {
+           long dx1 = points.get((i+1)%n).get(0) - points.get(i).get(0);
+           long dx2 = points.get((i+2)%n).get(0) - points.get(i).get(0);
+           long dy1 = points.get((i+1)%n).get(1) - points.get(i).get(1);
+           long dy2 = points.get((i+2)%n).get(1) - points.get(i).get(1);
+           
+           cur = dx1*dy2 - dx2*dy1;
+           if( cur != 0 ) {
+               if( cur * pre < 0 ) {
+                   return false;
+               } else {
+                   pre = cur;
+               }
+           }
+       }
+       
+       return true;
+  }
 }
