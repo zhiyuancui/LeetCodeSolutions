@@ -28,10 +28,4 @@ public class IsAnagram {
         
     }
 	
-	public static void main(String[] args)
-	{
-		
-		IsAnagram is = new IsAnagram();
-		is.isAnagram("anagram", "nagaram");
-	}
 }
