@@ -45,7 +45,7 @@ public class LRUCache {
     }
     
     class LRUCache2{
-	    	class DoubleLinkedNode {
+	    class DoubleLinkedNode {
 			int key;
 			int value;
 			DoubleLinkedNode pre;
