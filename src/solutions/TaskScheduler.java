@@ -16,4 +16,32 @@ public class TaskScheduler {
         
         return Math.max(tasks.length, (c[25] - 1) * (n + 1) + 25 - i);
     }
+	
+	/**
+	 * More easy understand way
+	 * @param tasks
+	 * @param n
+	 * @return
+	 */
+	public int leastInterval2(char[] tasks, int n) {
+        int max = 0;
+        int maxCount = 0;
+        int[] count = new int[26];
+        for(char task : tasks ) {
+        		count[ task -'A']++;
+        		if( max == count[task - 'A'] ) {
+        			max++;
+        		} else {
+        			max = count[ task - 'A'];
+        			maxCount = 1;
+        		}
+        }
+        
+        int partCount = max - 1;
+        int partLen = n - (maxCount - 1);
+        int emptySlots = partCount * partLen;
+        int taskLeft = tasks.length - max*maxCount;
+        int idles = Math.max(0, emptySlots - taskLeft);
+        return tasks.length + idles;
+    }
 }
