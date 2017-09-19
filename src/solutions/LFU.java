@@ -104,7 +104,7 @@ public class LFU {
     
     class Node {
         public int count = 0;
-        public LinkedHashSet<Integer> keys = null;
+        public LinkedHashSet<Integer> keys = null;//具有相同count的key
         public Node prev = null, next = null;
         
         public Node(int count) {
