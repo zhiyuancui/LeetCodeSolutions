@@ -1,25 +1,51 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import util.TreeNode;
 
 public class MaximumWidthOfBT {
 	public int widthOfBinaryTree(TreeNode root) {
-        return dfs(root, 0, 1, new ArrayList<Integer>(), new ArrayList<Integer>());
-    }
-    
-    public int dfs(TreeNode root, int level, int order, List<Integer> start, List<Integer> end){
-        if(root == null)return 0;
-        if(start.size() == level){
-            start.add(order); end.add(order);
-        }else {
-            end.set(level, order);
+		if( root == null ) {
+            return 0;
         }
-        int cur = end.get(level) - start.get(level) + 1;
-        int left = dfs(root.left, level + 1, 2*order, start, end);
-        int right = dfs(root.right, level + 1, 2*order + 1, start, end);
-        return Math.max(cur, Math.max(left, right));
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> queuePos = new LinkedList<>();
+        queue.add( root );
+        queuePos.add(1);
+        
+        int max = 1;
+        int start = 1;
+        int end = 1;
+        
+        
+        while( !queue.isEmpty() ) {
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode cur = queue.poll();
+                end = queuePos.poll();
+
+                if( cur.left != null ) {
+                    queue.add( cur.left );
+                    queuePos.add( 2*end );
+                }
+
+                if( cur.right != null ) {
+                    queue.add( cur.right );          
+                    queuePos.add( 2*end + 1);
+                }
+            }
+            
+            if( max < end - start + 1 ) {
+                max = end - start + 1;
+            }
+
+            start = queuePos.isEmpty() ? 1 : queuePos.peek();
+        }
+        
+        return max;
     }
+   
 }
