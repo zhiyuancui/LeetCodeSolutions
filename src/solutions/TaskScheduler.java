@@ -19,6 +19,7 @@ public class TaskScheduler {
 	
 	/**
 	 * More easy understand way
+	 * Reference to :
 	 * @param tasks
 	 * @param n
 	 * @return
@@ -30,8 +31,8 @@ public class TaskScheduler {
         for(char task : tasks ) {
         		count[ task -'A']++;
         		if( max == count[task - 'A'] ) {
-        			max++;
-        		} else {
+        			maxCount++;
+        		} else if(max < count[task-'A']){
         			max = count[ task - 'A'];
         			maxCount = 1;
         		}

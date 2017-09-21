@@ -21,19 +21,23 @@ public class BinaryTreePath {
             return;
         }
         
-        if( root.left == null && root.right == null ){
-            int prevlen = path.length();
+        if( root.left == null && root.right == null ){           
             path +=  root.val;
             result.add(path);
-            path = path.substring(0, prevlen);
             return;
         }
         
-        int prevlen = path.length();
         path +=  root.val + "->";
         generate(result, path, root.left);
         generate(result, path, root.right);
-        path = path.substring(0, prevlen);
         
     }
+    
+    private void searchBT(TreeNode root, String path, List<String> answer) {
+        if (root.left == null && root.right == null) answer.add(path + root.val);
+        if (root.left != null) searchBT(root.left, path + root.val + "->", answer);
+        if (root.right != null) searchBT(root.right, path + root.val + "->", answer);
+    }
+    
+    
 }
