@@ -2,7 +2,9 @@ package solutions;
 
 public class LongestSubstringWithKRepeat {
 	/**
+	 * Longest Substring With At Least K Repeating Characters
 	 * Reference to: https://discuss.leetcode.com/topic/57372/java-divide-and-conquer-recursion-solution
+	 * 
 	 * @param s
 	 * @param k
 	 * @return

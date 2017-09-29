@@ -1,6 +1,12 @@
 package solutions;
 
 public class CharacterReplacement {
+	/**
+	 * Longest Repeating Character Replacement
+	 * @param s
+	 * @param k
+	 * @return
+	 */
 	public int characterReplacement(String s, int k) {
         int len = s.length();
         int[] count = new int[26];
