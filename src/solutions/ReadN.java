@@ -42,7 +42,29 @@ public class ReadN {
         return ptr;
     }
     
+    /**
+     *  Read N Characters Given Read4 II - Call multiple times
+     * @param buf
+     * @param n
+     * @return
+     */
+    public int read2(char[] buf, int n) {
+        int i = 0;
+        while (i < n) {
+            if (i4 >= n4) {
+                i4 = 0;
+                n4 = read4(buf4);
+                if (n4 == 0) break;
+            }
+            /* 1) i4<n4. 2) i4=0, n4>0 */
+            buf[i++] = buf4[i4++];
+        }
+        return i;
+    }
+    
     private int read4(char[] buff){
     	return 1;
     }
+    char[] buf4 = new char[4];
+    int i4 = 0, n4 = 0;
 }

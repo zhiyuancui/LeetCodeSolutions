@@ -2,39 +2,39 @@ package solutions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import util.UndirectedGraphNode;
 
 public class CloneGraph {
 	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        if( node == null ){
+		if( node == null ) {
             return null;
         }
         
-        ArrayList<UndirectedGraphNode> nodes = new ArrayList<UndirectedGraphNode>();
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
+        Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
+        List<UndirectedGraphNode> nodes = new ArrayList<>();
         
         nodes.add( node );
-        map.put( node, new UndirectedGraphNode( node.label) );
-        
+        map.put(node, new UndirectedGraphNode(node.label) );
         int index = 0;
-        while( index < nodes.size() ){
-            UndirectedGraphNode head = nodes.get(index);
+        while( index < nodes.size() ) {
+            UndirectedGraphNode cur = nodes.get(index);
             index++;
-            for(int i = 0; i < head.neighbors.size(); i++){
-                UndirectedGraphNode neighbor = head.neighbors.get(i);
-                if(!map.containsKey(neighbor)){
-                    map.put(neighbor, new UndirectedGraphNode(neighbor.label));
-                    nodes.add(neighbor);
-                }   
+
+            for( UndirectedGraphNode next : cur.neighbors ) {
+                if( !map.containsKey(next) ) {
+                    UndirectedGraphNode clone = new UndirectedGraphNode( next.label );
+                    map.put( next, clone );
+                    nodes.add(next);
+                }
             }
         }
         
-        //clone neighbors
-        for(UndirectedGraphNode head: nodes) {
-            UndirectedGraphNode clone = map.get(head);
-            for(UndirectedGraphNode item : head.neighbors) {
-                clone.neighbors.add( map.get(item) );
+        for(UndirectedGraphNode cur : nodes) {
+            for(UndirectedGraphNode next : cur.neighbors ) {
+                map.get(cur).neighbors.add( map.get(next) );
             }
         }
         
