@@ -5,32 +5,37 @@ public class RegularExpression {
 	/**
 	 * Recursive 
 	 * Reference to https://leetcode.com/discuss/32424/clean-java-solution
+	 * http://blog.csdn.net/yusiguyuan/article/details/45014089
+	 * c* 可以为空
 	 * @param s
 	 * @param p
 	 * @return
 	 */
 	public boolean isMatch(String s, String p) {
-        if( p.length() == 0 ){
-        	return s.length() == 0;
+		if (p.isEmpty()) {
+            return s.isEmpty();
         }
-        
-        if( p.length() == 1 || p.charAt(1) != '*' ){
-        	if( s.isEmpty() || ( p.charAt(0) != '.' && p.charAt(0) != s.charAt(0) ) ){
-        		return false;
-        	}else{
-        		return isMatch(s.substring(1), p.substring(1));
-        	}
+
+		//正常情况
+        if (p.length() == 1 || p.charAt(1) != '*') {
+            if (s.isEmpty() || (p.charAt(0) != '.' && p.charAt(0) != s.charAt(0))) {
+                return false;
+            } else {
+                return isMatch(s.substring(1), p.substring(1));
+            }
         }
-        
-        while( !s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) =='.' )){
-        	if( isMatch(s, p.substring(2))){
-        		return true;
-        	}
-        	s = s.substring(1);
+
+        //P.length() >=2
+        //aa : a*
+        while (!s.isEmpty() && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.')) {  
+            if (isMatch(s, p.substring(2))) { 
+                return true;                     
+            }                                    
+            s = s.substring(1);
         }
-        
-        return isMatch( s, p.substring(2));
-    }
+        //a : c*
+        return isMatch(s, p.substring(2));
+	}
 	
 	
 	/**
