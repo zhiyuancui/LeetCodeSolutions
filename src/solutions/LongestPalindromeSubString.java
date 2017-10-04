@@ -4,6 +4,9 @@ public class LongestPalindromeSubString {
 	
 	/**
 	 * Center
+	 * Longest Palindromic Substring
+	 * Time Complexity: O(n^2)
+	 * Space Complexity: O(1)
 	 * @param s
 	 * @return
 	 */

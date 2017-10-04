@@ -4,6 +4,13 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class SlidingWindowMaximum {
+	/**
+	 * Time Complexity
+	 * Space Complexity: O(N)
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
 	public int[] maxSlidingWindow(int[] nums, int k) {
 		if( nums == null || nums.length < k || k == 0 ){
             return new int[0];
@@ -19,7 +26,7 @@ public class SlidingWindowMaximum {
             q.add(i);
             
             if( i - q.getFirst() + 1 > k ){
-                q.removeFirst();
+                q.remove();//remove first
             }
             
             if( i >= k - 1 ){

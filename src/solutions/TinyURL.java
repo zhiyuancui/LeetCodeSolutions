@@ -41,4 +41,28 @@ public class TinyURL {
 		
 		return res.toString();
 	}
+	
+	public String encode(int i ) {
+		StringBuilder sb = new StringBuilder();
+		
+		while( i > 0 ) {
+			sb.insert(0, tokens[i%62] );
+			i = i / 62;
+		}
+		return sb.toString();
+	}
+	
+	public int toInt(String s) {
+		int i = 0;
+		for(char c : s.toCharArray() ) {
+			int index = 0;
+			for(; index < tokens.length; index++ ) {
+				if( tokens[index] == c ) {
+					break;
+				}
+			}
+			i = i * 62 + (index);
+		}
+		return i;
+	}
 }
