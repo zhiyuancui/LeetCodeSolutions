@@ -3,6 +3,11 @@ package solutions;
 import java.util.Arrays;
 
 public class MaxChainPair {
+	/**
+	 * Maximum Length of Pair Chain
+	 * @param pairs
+	 * @return
+	 */
 	public int findLongestChain(int[][] pairs) {
 		 Arrays.sort(pairs, (p1,p2)->p1[1]-p2[1] );
 

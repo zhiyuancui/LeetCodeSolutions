@@ -6,6 +6,12 @@ import java.util.Queue;
 import util.TreeNode;
 
 public class MaximumWidthOfBT {
+	/**
+	 * Space Complexity: O(N)
+	 * Time Complexity: O(N)
+	 * @param root
+	 * @return
+	 */
 	public int widthOfBinaryTree(TreeNode root) {
 		if( root == null ) {
             return 0;

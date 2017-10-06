@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FindPairs {
+	/**
+	 * K-diff Pairs in an Array
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
 	public int findPairs(int[] nums, int k) {
         if (nums == null || nums.length == 0 || k < 0)   return 0;
         
