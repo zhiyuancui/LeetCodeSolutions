@@ -4,6 +4,13 @@ import util.TreeNode;
 
 public class IsSubtree {
 
+	/**
+	 * Time Complexity: O(N^2)
+	 * Space Complexity:
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public boolean isSubtree(TreeNode s, TreeNode t) {
         if (s == null) return false;
         if (isSame(s, t)) return true;
