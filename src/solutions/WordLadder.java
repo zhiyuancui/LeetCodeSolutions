@@ -12,7 +12,15 @@ import java.util.Queue;
 import java.util.Set;
 
 public class WordLadder {
-public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+	
+	/**
+	 * Word Ladder
+	 * @param beginWord
+	 * @param endWord
+	 * @param wordList
+	 * @return
+	 */
+	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         
         if( wordList == null || wordList.size() == 0 ){
             return 0;
@@ -191,23 +199,42 @@ public int ladderLength(String beginWord, String endWord, List<String> wordList)
     	  return result;
       }
       
-    public static void main(String[] args){
-    	WordLadder w = new WordLadder();
-    	Set<String> wordList = new HashSet<String>();
-    	wordList.add("hot");
-    	wordList.add("dot");
-    	wordList.add("dog");
-    	wordList.add("lot");
-    	wordList.add("log");
+      /**
+       * 2017 Version
+       * @param beginWord
+       * @param endWord
+       * @param wordList
+       * @return
+       */
+      public int ladderLength5(String beginWord, String endWord, List<String> wordList) {
+          Queue<String> queue = new LinkedList<String>();
+          queue.add(beginWord);
+          int len=1;
+          HashSet<String> set = new HashSet<String>(wordList);
 
-    	List<List<String>> result = w.findLadders3("hit", "cog", wordList);
-    	
-    	for(List<String> path : result){
-    		for(String s : path){
-    			System.out.print(s + " ");
-    		}
-    		System.out.println();
-    	}
-    	
-    }
+          while(!queue.isEmpty()){
+              int queueSize = queue.size();
+              for(int i=0; i<queueSize; i++){
+                  String word = queue.poll();
+                  if(word.equals(endWord)) return len;
+                  else addToQueue(set, queue, word);
+              }
+              len++;
+          }
+          return 0;
+      }
+      private void addToQueue(HashSet<String> wordList, Queue<String> queue, String word){
+          wordList.remove(word);
+      
+          for(int i = 0; i < word.length(); i++) {
+        	  for(char j ='a'; j <= 'z'; j++) {
+        		  if( j == word.charAt(i) )continue;
+        		  String next = replace(word, i, j);
+                  if(wordList.contains(next)){
+                      queue.offer(next);
+                      wordList.remove(next);
+                  }
+        	  }
+          }
+      }
 }
