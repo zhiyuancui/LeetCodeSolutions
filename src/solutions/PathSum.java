@@ -74,6 +74,25 @@ public class PathSum {
     }
     
     /**
+     * Path Sum III Recursive Method
+     * Space: O(n) recursion
+     * Time: O(n^2) in worst case; O(nlogn) is best case
+     * @param root
+     * @param sum
+     * @return
+     */
+    public int pathSum4(TreeNode root, int sum) {
+        if (root == null) return 0;
+        return pathSumFrom2(root, sum) + pathSum4(root.left, sum) + pathSum4(root.right, sum);
+    }
+    
+    private int pathSumFrom2(TreeNode node, int sum) {
+        if (node == null) return 0;
+        return (node.val == sum ? 1 : 0) 
+            + pathSumFrom2(node.left, sum - node.val) + pathSumFrom2(node.right, sum - node.val);
+    }
+    
+    /**
      * Path Sum
      * @param root
      * @param sum
