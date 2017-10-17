@@ -6,7 +6,7 @@ public class RegularExpression {
 	 * Recursive 
 	 * Reference to https://leetcode.com/discuss/32424/clean-java-solution
 	 * http://blog.csdn.net/yusiguyuan/article/details/45014089
-	 * c* 可以为空
+	 * c* 锟斤拷锟斤拷为锟斤拷
 	 * @param s
 	 * @param p
 	 * @return
@@ -16,7 +16,7 @@ public class RegularExpression {
             return s.isEmpty();
         }
 
-		//正常情况
+		//
         if (p.length() == 1 || p.charAt(1) != '*') {
             if (s.isEmpty() || (p.charAt(0) != '.' && p.charAt(0) != s.charAt(0))) {
                 return false;

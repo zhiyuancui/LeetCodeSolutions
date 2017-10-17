@@ -169,4 +169,31 @@ public class IsPalindrome {
         return Character.isLetter(c) || Character.isDigit(c);
     }
 	
+    /**
+     * Valid Palindrome II
+     * @param s
+     * @return
+     */
+    public boolean validPalindrome(String s) {
+        int left = 0, right = s.length()-1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)){
+                return isPalindromic(s, left, right-1) || isPalindromic(s, left+1, right);
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public boolean isPalindromic(String s, int left, int right) {
+        while (left < right) {
+            if ( s.charAt(left) != s.charAt(right) ){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
 }

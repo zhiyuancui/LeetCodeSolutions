@@ -21,6 +21,8 @@ public class MaxSubarraySum {
             if( preSum.containsKey(sum-k) ) {
                 max = Math.max(max, i - preSum.get(sum-k) );
             }
+          //because the duplicate will narrow the range and you are looking for maximum length.
+            //[1,-1,5,-2,3], 3
             if( !preSum.containsKey(sum) ) {
                 preSum.put(sum,i);
             }
