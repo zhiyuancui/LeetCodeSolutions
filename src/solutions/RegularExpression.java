@@ -16,7 +16,7 @@ public class RegularExpression {
             return s.isEmpty();
         }
 
-		//正常情况
+		//正常情况 check the first character and the second character is no *
         if (p.length() == 1 || p.charAt(1) != '*') {
             if (s.isEmpty() || (p.charAt(0) != '.' && p.charAt(0) != s.charAt(0))) {
                 return false;
@@ -35,6 +35,8 @@ public class RegularExpression {
         }
         //a : c*
         return isMatch(s, p.substring(2));
+        // the second character in P is *, 
+        //but the first character is not match. use * to remove the first two character.
 	}
 	
 	

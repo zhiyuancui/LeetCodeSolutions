@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class DungeonGame {
 	/**
-	 * dp[i][j] ��ʾ���Ǹս����������ʱ��Ѫ��
+	 * dp[i][j] 
 	 * @param dungeon
 	 * @return
 	 */
