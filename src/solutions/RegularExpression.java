@@ -6,7 +6,7 @@ public class RegularExpression {
 	 * Recursive 
 	 * Reference to https://leetcode.com/discuss/32424/clean-java-solution
 	 * http://blog.csdn.net/yusiguyuan/article/details/45014089
-	 * c* ©иртн╙©у
+	 * c* О©╫О©╫О©╫О©╫н╙О©╫О©╫
 	 * @param s
 	 * @param p
 	 * @return
