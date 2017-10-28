@@ -6,7 +6,7 @@ public class RegularExpression {
 	 * Recursive 
 	 * Reference to https://leetcode.com/discuss/32424/clean-java-solution
 	 * http://blog.csdn.net/yusiguyuan/article/details/45014089
-	 * c* ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½
+	 * c* could be empty
 	 * @param s
 	 * @param p
 	 * @return
@@ -16,7 +16,7 @@ public class RegularExpression {
             return s.isEmpty();
         }
 
-		//Õý³£Çé¿ö check the first character and the second character is no *
+		// check the first character and the second character is no *
         if (p.length() == 1 || p.charAt(1) != '*') {
             if (s.isEmpty() || (p.charAt(0) != '.' && p.charAt(0) != s.charAt(0))) {
                 return false;

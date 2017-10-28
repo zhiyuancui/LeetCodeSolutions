@@ -174,7 +174,7 @@ public class IsPalindrome {
      * @param s
      * @return
      */
-    public boolean validPalindrome(String s) {
+    public boolean validPalindrome2(String s) {
         if( s == null || s.length() == 0 ) {
             return false;
         }
