@@ -2,8 +2,11 @@ package solutions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+
+import util.TreeNode;
 
 public class TwoSum {
 	public int[] twoSum(int[] nums, int target) {
@@ -40,5 +43,26 @@ public class TwoSum {
 	    }
 	    return false;
 	}
+	
+	/**
+	 * Two Sum IV - BST
+	 * O(n)
+	 * @param root
+	 * @param k
+	 * @return
+	 */
+	public boolean findTarget(TreeNode root, int k) {
+        HashSet<Integer> set = new HashSet<>();
+        return dfs(root, set, k);
+    }
+    
+    public boolean dfs(TreeNode root, HashSet<Integer> set, int k){
+        if(root == null)return false;
+        if( set.contains(k - root.val) )return true;
+        set.add(root.val);
+        return dfs(root.left, set, k) || dfs(root.right, set, k);
+    }
+	
+	
 	
 }

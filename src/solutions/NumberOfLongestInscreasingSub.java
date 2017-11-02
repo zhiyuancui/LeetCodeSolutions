@@ -1,6 +1,12 @@
 package solutions;
 
 public class NumberOfLongestInscreasingSub {
+	/**
+	 * len[i] : the length of the Longest Increasing Subsequence which ends with nums[i]
+	 * count[i] : the number of the longest Increasing Subsequence which ends with nums[i]
+	 * @param nums
+	 * @return
+	 */
 	public int findNumberOfLIS(int[] nums) {
         int n = nums.length, res = 0, max_len = 0;
         int[] len =  new int[n], cnt = new int[n];

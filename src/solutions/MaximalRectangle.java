@@ -37,7 +37,9 @@ public class MaximalRectangle {
 	            s.push(i);
 	        }else{
 	            int tp = s.pop();
-	            maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));
+	            int he = height[tp];
+                int w = s.isEmpty() ? i : i - 1 - s.peek();
+	            maxArea = Math.max(maxArea, he * w );
 	            i--;
 	        }
 	    }

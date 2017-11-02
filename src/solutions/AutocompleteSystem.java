@@ -61,7 +61,7 @@ public class AutocompleteSystem {
         }
         
         prefix = prefix + c;
-        System.out.println("prefix: " + prefix);
+        
         TrieNode curr = root;
         for (char cc : prefix.toCharArray()) {
             TrieNode next = curr.children.get(cc);

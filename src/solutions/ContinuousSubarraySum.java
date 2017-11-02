@@ -5,17 +5,28 @@ import java.util.Map;
 
 public class ContinuousSubarraySum {
 	public boolean checkSubarraySum(int[] nums, int k) {
-        Map<Integer, Integer> map = new HashMap<Integer, Integer>(){{put(0,-1);}};;
-       int runningSum = 0;
-       for (int i=0;i<nums.length;i++) {
-           runningSum += nums[i];
-           if (k != 0) runningSum %= k; 
-           Integer prev = map.get(runningSum);
-           if (prev != null) {
-               if (i - prev > 1) return true;
-           }
-           else map.put(runningSum, i);
-       }
-       return false;
+		if( nums == null || nums.length == 0 ) {
+            return false;
+        }
+        
+        Map<Integer, Integer> presum = new HashMap<>();
+        presum.put(0,-1);
+        
+        int remain = 0;
+        for(int i = 0; i < nums.length; i++){
+            remain += nums[i];
+            if( k != 0 ) {
+                remain = remain % k;
+            }
+            if( presum.containsKey(remain) ) {
+                if( i - presum.get(remain) > 1 ) {
+                    return true;
+                }
+            } else {
+                presum.put( remain, i);
+            }
+        }
+        
+        return false;
    }
 }
