@@ -48,23 +48,36 @@ public class ReadN {
      * @param n
      * @return
      */
+    char[] cache = new char[4];
+    int cachePtr  = 0;
+    int cacheCount = 0;
+    int ptr = 0;
     public int read2(char[] buf, int n) {
-        int i = 0;
-        while (i < n) {
-            if (i4 >= n4) {
-                i4 = 0;
-                n4 = read4(buf4);
-                if (n4 == 0) break;
+        ptr=0;
+        while( ptr < n ) {
+            if( cachePtr == 0 ) {
+                cacheCount = read4( cache );
             }
-            /* 1) i4<n4. 2) i4=0, n4>0 */
-            buf[i++] = buf4[i4++];
+            
+            if( cacheCount == 0 ) {
+                break;
+            }
+            
+            while( ptr < n && cachePtr < cacheCount ) {
+                buf[ ptr ] = cache[ cachePtr ];
+                ptr++;
+                cachePtr++;
+            }
+            if( cachePtr >= cacheCount ) {
+                cachePtr = 0;
+            }
         }
-        return i;
+        
+        return ptr;
     }
     
     private int read4(char[] buff){
-    	return 1;
+    		return 1;
     }
-    char[] buf4 = new char[4];
-    int i4 = 0, n4 = 0;
+    
 }
