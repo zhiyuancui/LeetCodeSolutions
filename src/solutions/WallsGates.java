@@ -29,18 +29,35 @@ package solutions;
  *
  */
 public class WallsGates {
-	public void wallsAndGates(int[][] rooms) {
-	    for (int i = 0; i < rooms.length; i++)
-	        for (int j = 0; j < rooms[0].length; j++)
-	            if (rooms[i][j] == 0) helper(rooms, i, j, 0);
-	}
-
-	private void helper(int[][] rooms, int i, int j, int d) {
-	    if (i < 0 || i >= rooms.length || j < 0 || j >= rooms[0].length || rooms[i][j] < d) return;
-	    rooms[i][j] = d;
-	    helper(rooms, i - 1, j, d + 1);
-	    helper(rooms, i + 1, j, d + 1);
-	    helper(rooms, i, j - 1, d + 1);
-	    helper(rooms, i, j + 1, d + 1);
-	}
+	int[] dx = {0,0,1,-1};
+    int[] dy = {1,-1,0,0};
+    public void wallsAndGates(int[][] rooms) {
+        if( rooms == null || rooms.length == 0 ) {
+            return;
+        }
+        
+        int row = rooms.length;
+        int col = rooms[0].length;
+        
+        for(int i = 0; i < row; i++ ) {
+            for(int j = 0; j < col; j++ ) {
+                if( rooms[i][j] == 0 ) {
+                    update(rooms, i, j, row, col,0);
+                }
+            }
+        }
+        
+    }
+    
+    private void update(int[][] rooms, int x, int y, int row, int col, int dist ) {
+        rooms[x][y] = dist;
+        
+        for(int i = 0; i < dx.length; i++ ) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if( nx >= 0 && ny >= 0 && nx < row && ny < col && rooms[nx][ny] > 0 && rooms[nx][ny] > dist ) {
+                update( rooms, nx, ny, row, col, dist + 1 );
+            }
+        }
+    }
 }
