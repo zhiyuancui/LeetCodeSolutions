@@ -43,19 +43,17 @@ public ListNode reverseKGroup(ListNode head, int k) {
         return dummy.next;
     }
     
-    private ListNode reverse(ListNode begin, ListNode end)
-    {
-        ListNode tail = end.next;
-        ListNode cur = begin.next.next;
-        ListNode prev = begin.next;
-        while( cur != tail )
-        {
-            prev.next = cur.next;
-            cur.next = begin.next;
-            begin.next = cur;
-            cur = prev.next;
-        }
-        
-        return prev;
-    }
+	private ListNode reverse( ListNode prev, ListNode end ) {
+	    ListNode last = end.next;
+	    ListNode tail = prev.next;
+	    ListNode cur = tail.next;
+	    
+	    while( cur != last ) {
+	        tail.next = cur.next;
+	        cur.next = prev.next;
+	        prev.next = cur;
+	        cur = tail.next;
+	    }
+	    return tail;
+	}
 }
