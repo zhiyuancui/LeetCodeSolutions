@@ -22,23 +22,13 @@ public class LRUCache {
       }
     };
    }
-    
-    private void printMap() {
-    	for(int key : cache.keySet() ) {
-    		System.out.print(key+", ");
-    	}
-    	System.out.println();
-    }
 
     public int get(int key) {
       if(cache.containsKey(key)) {
         int value = cache.get(key);
         moveToFront(key);
-        printMap();
         return value;
       }
-      
-      printMap();
       return -1;
     }
 
@@ -52,7 +42,6 @@ public class LRUCache {
     public void put(int key, int value) { 
     	cache.put(key, value);
     	moveToFront(key);
-    	printMap();
     }
 
 }

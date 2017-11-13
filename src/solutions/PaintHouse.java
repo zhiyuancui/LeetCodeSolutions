@@ -88,12 +88,4 @@ public class PaintHouse {
 	    int n = costs.length-1;
 	    return Math.min(Math.min(costs[n][0], costs[n][1]), costs[n][2]);
     }
-	
-	
-	
-	public static void main(String[] args){
-		PaintHouse p = new PaintHouse();
-		int[][] costs = {{1,2,3},{4,5,6},{7,8,9}};
-		p.minCostII(costs);
-	}
 }
