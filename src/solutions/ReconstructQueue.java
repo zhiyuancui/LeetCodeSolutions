@@ -1,8 +1,7 @@
 package solutions;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -14,19 +13,31 @@ public class ReconstructQueue {
 	 * @return
 	 */
 	public int[][] reconstructQueue(int[][] people) {
-        Arrays.sort(people, new Comparator<int[]>(){
-           @Override
-           public int compare(int[] o1, int[] o2){
-               return o1[0] != o2[0] ? o2[0] - o1[0] : o1[1] - o2[1];
-           }
-        });
-        //After Sort[7,0],[7,1],[6,1],[5,0],[5,2],[4,4]
-        List<int[]> result = new LinkedList<>();
-        for(int[] cur : people){
-            result.add(cur[1],cur);
+		if( people == null || people.length == 0 ) {
+            return new int[0][0];
         }
         
-        return result.toArray(new int[people.length][]);
+        Arrays.sort( people, (a,b) -> {
+            if( a[0] != b[0] ) {
+                return b[0] - a[0];
+            } else {
+                return a[1] - b[1];
+            }
+        });
+        
+        List<int[]> result = new ArrayList<>();
+        for(int[] p : people ) {
+            result.add( p[1], p );
+        }
+        
+        int[][] res = new int[ result.size() ][2];
+        
+        for(int i = 0; i < result.size(); i++ ) {
+            res[i][0] = result.get(i)[0];
+            res[i][1] = result.get(i)[1];
+        }
+        
+        return res;
     }
 	
 	
