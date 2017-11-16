@@ -2,7 +2,7 @@ package solutions;
 
 import java.util.Arrays;
 
-public class MaxChainPair {
+public class FindLongestChain {
 	/**
 	 * Maximum Length of Pair Chain
 	 * @param pairs
