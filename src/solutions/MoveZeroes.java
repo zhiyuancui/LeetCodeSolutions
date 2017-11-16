@@ -18,6 +18,7 @@ public class MoveZeroes {
         }   
         
         int zero = 0;
+        int operation = 0;
         for(int i = 0; i < nums.length; i++ )
         {
            if( nums[i] != 0 )
@@ -26,9 +27,31 @@ public class MoveZeroes {
                {
                    nums[ zero ] = nums[i];
                    nums[i] = 0;
+                   operation+=2;
                }
                zero++;
            }
         }
+        System.out.println( operation );
     }
+	
+	public void moveZeroes2(int[] nums ) {
+		 int right = nums.length-1;
+         int operations=0;
+         for(int left = 0; left < nums.length; left++){
+	         if(left>right){
+	             nums[left]=0;
+	             operations++;
+	             continue;
+	         }                 
+	         if(nums[left] != 0){
+	                 continue;
+	         }
+	         while (nums[right] == 0) right--;
+	         nums[left]=nums[right];
+	         operations++;
+	         right--;
+		 }
+         System.out.println("Method 2 Operation Times: " + operations);
+	}
 }
