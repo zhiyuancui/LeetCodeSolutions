@@ -30,8 +30,8 @@ public class BTLongestConsecutive {
 	        return maxval;
 	    }
 	    public int[] longestPath(TreeNode root) {
-	    	//int[0] is inc,
-	    	//int[1] is dcr
+	    	//int[0] is inc, maens a path clockwise, increasing
+	    	//int[1] is dcr, means a path away from the root
 	        if (root == null)
 	            return new int[] {0,0};
 	        int inr = 1, dcr = 1;
