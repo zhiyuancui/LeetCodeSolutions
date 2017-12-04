@@ -65,7 +65,7 @@ public int calculate(String s) {
             return 0;
         }
         
-        s = s.trim().replaceAll(" +","");
+        
         
         int length = s.length();
         

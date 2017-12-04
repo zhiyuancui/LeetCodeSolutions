@@ -35,23 +35,38 @@ public class MoveZeroes {
         System.out.println( operation );
     }
 	
+	/**
+	 * less operation but don't care order
+	 * [0,1,0,3,12]
+	 * [12,1,3,0,0]
+	 * @param nums
+	 */
 	public void moveZeroes2(int[] nums ) {
-		 int right = nums.length-1;
-         int operations=0;
-         for(int left = 0; left < nums.length; left++){
-	         if(left>right){
-	             nums[left]=0;
-	             operations++;
-	             continue;
-	         }                 
-	         if(nums[left] != 0){
-	                 continue;
-	         }
-	         while (nums[right] == 0) right--;
-	         nums[left]=nums[right];
-	         operations++;
-	         right--;
-		 }
-         System.out.println("Method 2 Operation Times: " + operations);
+		 if( nums == null || nums.length == 0 ) {
+	            return;
+        }
+        
+        int left = 0;
+        int right = nums.length - 1;
+        for(; left < nums.length; left++ ) {
+            if( left > right ) {
+                nums[left] =0;
+                continue;
+            }
+            
+            if( nums[left] != 0 ) {
+                continue;
+            }
+            
+            while( right >= 0 && nums[right] == 0 ) {
+                right--;
+            }
+            
+            if( right >= 0 ) {
+                nums[ left ] = nums[ right ];
+                right--;
+                
+            }
+        }
 	}
 }

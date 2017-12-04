@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-public class AutocompleteSystem {
+public class AutoCompleteSystem {
 	class TrieNode {
         Map<Character, TrieNode> children;
         Map<String, Integer> counts;
@@ -30,7 +30,7 @@ public class AutocompleteSystem {
     String prefix;
     
     
-    public AutocompleteSystem(String[] sentences, int[] times) {
+    public AutoCompleteSystem(String[] sentences, int[] times) {
         root = new TrieNode();
         prefix = "";
         
