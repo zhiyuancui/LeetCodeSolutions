@@ -71,7 +71,13 @@ public class AutoCompleteSystem {
             curr = next;
         }
         
-        PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> (a.c == b.c ? a.s.compareTo(b.s) : b.c - a.c));
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a,b) ->{
+            if( a.c != b.c ) {
+                return b.c - a.c;
+            }  else {
+                return a.s.compareTo( b.s );
+            }
+         });
         for (String s : curr.counts.keySet()) {
             pq.add(new Pair(s, curr.counts.get(s)));
         }
