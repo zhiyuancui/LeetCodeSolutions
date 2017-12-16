@@ -47,10 +47,10 @@ public class LRUCache {
 }
 
 
-class LRUCache2{
+class LRUCache2 <K,V>{
     class DoubleLinkedNode {
-		int key;
-		int value;
+		K key;
+		V value;
 		DoubleLinkedNode pre;
 		DoubleLinkedNode post;
 	}
@@ -82,7 +82,7 @@ class LRUCache2{
         return res;
     }
         
-    private Map<Integer, DoubleLinkedNode> cache = new HashMap<>();
+    private Map<K, DoubleLinkedNode> cache = new HashMap<>();
     private int count;
     private int capacity;
     private DoubleLinkedNode head, tail;
@@ -101,17 +101,17 @@ class LRUCache2{
         tail.pre = head;
     }
         
-    public int get(int key) {
+    public V get(K key) {
         DoubleLinkedNode node = cache.get(key);
         if( node == null ) {
-            return -1;
+            return null;
         } else {
             this.moveToHead(node);
             return node.value;
         }
     }
         
-    public void set(int key, int value) {
+    public void set(K key, V value) {
         DoubleLinkedNode node = cache.get(key);
         if( node == null ) {
             DoubleLinkedNode newNode = new DoubleLinkedNode();
