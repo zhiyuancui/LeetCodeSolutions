@@ -50,7 +50,10 @@ public class RegularExpression {
 			return false;
 		}
 		
-		boolean[][] dp = new boolean[ s.length() + 1 ][ p.length() + 1 ];
+        int len1 = s.length();
+        int len2 = p.length();
+        
+		boolean[][] dp = new boolean[ len1 + 1 ][ len2 + 1 ];
 		
 		dp[0][0] = true;
 		
@@ -62,14 +65,12 @@ public class RegularExpression {
 			}
 		}
 		
-		for(int i = 0; i < s.length(); i++){
-			for(int j = 0; j < p.length(); j++){
-				if( p.charAt(j) == '.' ){
+		for(int i = 0; i < len1; i++){
+			for(int j = 0; j < len2; j++){
+				if( p.charAt(j) == '.' ||  p.charAt(j) == s.charAt(i)){
 					dp[ i + 1 ][ j + 1 ] = dp[i][j];
 				}
-				if (p.charAt(j) == s.charAt(i)) {
-	                dp[i+1][j+1] = dp[i][j];
-	            }
+				
 				if( p.charAt(j) == '*' ){
 					if( p.charAt(j-1) != s.charAt(i) && p.charAt(j-1) != '.'){
 						dp[i+1][j+1] = dp[i+1][j-1];
