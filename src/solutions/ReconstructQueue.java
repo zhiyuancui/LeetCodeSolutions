@@ -47,20 +47,20 @@ public class ReconstructQueue {
 	 * @author zhiyuan.cui
 	 *
 	 ******************************************************/
-	class TreeNode {
-		public TreeNode left, right;
+	class Node {
+		public Node left, right;
 		public int lessCount;
 		public int tallerCount;
 		public int[] person;
-		public TreeNode(int[] p, int t){
+		public Node(int[] p, int t){
 			person = p;
 			tallerCount = t;
 			lessCount = 1;
 		}
 	}
 	
-	private TreeNode root = null;
-	private void insert(TreeNode node, TreeNode candidate){
+	private Node root = null;
+	private void insert(Node node, Node candidate){
 		if( node == null ){
 			root =  candidate;
 			return;
@@ -84,14 +84,14 @@ public class ReconstructQueue {
 		}
 	}
 	
-	private int[][] inorder(TreeNode root, int size){
+	private int[][] inorder(Node root, int size){
 		if( root == null ){
 			return new int[0][0];
 		}
 		
 		int pos = 0;
 		int[][] res = new int[size][2];
-		Stack<TreeNode> stack = new Stack<TreeNode>();
+		Stack<Node> stack = new Stack<Node>();
 		
 		while( !stack.isEmpty() || root != null ){
 			while( root != null ){
@@ -123,7 +123,7 @@ public class ReconstructQueue {
 		});
 		
 		for(int[] person: people){
-			insert(root, new TreeNode(person, person[1]));
+			insert(root, new Node(person, person[1]));
 		}
 		
 		return inorder(root, people.length);
