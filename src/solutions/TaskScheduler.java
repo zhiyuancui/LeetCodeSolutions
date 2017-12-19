@@ -1,6 +1,10 @@
 package solutions;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.PriorityQueue;
 
 public class TaskScheduler {
 	public int leastInterval(char[] tasks, int n) {
@@ -45,4 +49,73 @@ public class TaskScheduler {
         int idles = Math.max(0, emptySlots - taskLeft);
         return tasks.length + idles;
     }
+	
+	private class Node{
+		int val;
+		int count;
+		public Node( int value ) {
+			val = value;
+			count = 1;
+		}
+	}
+	
+	public int schedule( int[] nums, int n ) {
+		Map<Integer,Integer> map = new HashMap<>();
+		PriorityQueue<Node> queue = new PriorityQueue<>((a,b)->b.val-a.val);
+		
+		Node[] summary = new Node[10];
+		for( int each : nums ){
+			if( summary[each] == null ) {
+				summary[each] = new Node( each );
+			} else {
+				summary[each].count++;
+			}
+		}
+		
+		for( Node node : summary ) {
+			if( node != null ) {
+				queue.add(node);
+			}
+		}
+		
+		int time = 0;
+		LinkedList<Node> temp = new LinkedList<Node>();
+		while( !queue.isEmpty() || !temp.isEmpty() ){
+			if( !queue.isEmpty() ){
+				Node cur = queue.poll();
+				if( !map.containsKey(cur.val) ) {
+					map.put( cur.val , time+n+1);
+					cur.count--;
+					if( cur.count > 0 ) {
+						temp.add(cur);
+					}
+					while(!temp.isEmpty()){
+						queue.add( temp.poll() );
+					}
+					time++;
+				} else {
+					if( time >= map.get( cur.val ) ){
+						map.put( cur.val, time+n+1);
+						cur.count--;
+						if( cur.count > 0 ) {
+							temp.add( cur );
+						}
+						while(!temp.isEmpty()){
+							queue.add( temp.poll() );
+						}
+						time++;
+					} else {
+						temp.add(cur);
+					}
+				}
+			} else {
+				while( !temp.isEmpty() ) {
+					queue.offer( temp.poll() );
+				}
+				time++;
+			}
+		}
+		
+		return time;
+	}
 }
