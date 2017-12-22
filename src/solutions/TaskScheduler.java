@@ -60,62 +60,24 @@ public class TaskScheduler {
 	}
 	
 	public int schedule( int[] nums, int n ) {
-		Map<Integer,Integer> map = new HashMap<>();
-		PriorityQueue<Node> queue = new PriorityQueue<>((a,b)->b.val-a.val);
-		
-		Node[] summary = new Node[10];
-		for( int each : nums ){
-			if( summary[each] == null ) {
-				summary[each] = new Node( each );
-			} else {
-				summary[each].count++;
-			}
-		}
-		
-		for( Node node : summary ) {
-			if( node != null ) {
-				queue.add(node);
-			}
-		}
-		
-		int time = 0;
-		LinkedList<Node> temp = new LinkedList<Node>();
-		while( !queue.isEmpty() || !temp.isEmpty() ){
-			if( !queue.isEmpty() ){
-				Node cur = queue.poll();
-				if( !map.containsKey(cur.val) ) {
-					map.put( cur.val , time+n+1);
-					cur.count--;
-					if( cur.count > 0 ) {
-						temp.add(cur);
-					}
-					while(!temp.isEmpty()){
-						queue.add( temp.poll() );
-					}
-					time++;
-				} else {
-					if( time >= map.get( cur.val ) ){
-						map.put( cur.val, time+n+1);
-						cur.count--;
-						if( cur.count > 0 ) {
-							temp.add( cur );
-						}
-						while(!temp.isEmpty()){
-							queue.add( temp.poll() );
-						}
-						time++;
-					} else {
-						temp.add(cur);
-					}
-				}
-			} else {
-				while( !temp.isEmpty() ) {
-					queue.offer( temp.poll() );
-				}
-				time++;
-			}
-		}
-		
-		return time;
+		if(nums == null || nums.length == 0 ) return 0;  
+        if( n == 0) return nums.length;  
+        HashMap<Integer, Integer> hashmap = new HashMap<Integer, Integer>();  
+        int time = 0;  
+        for(int i=0; i<nums.length; i++){  
+            int cur = nums[i];  
+            if(!hashmap.containsKey(cur)){  
+                hashmap.put(cur, time+n+1);  
+            } else { // contains;  
+                int latest = hashmap.get(cur);  
+                if(time >= latest) {  
+                    hashmap.put(cur,time+n+1);  
+                }else {  
+                    i--;  
+                }  
+            }  
+            time++;  
+        }  
+        return time;  
 	}
 }
