@@ -27,5 +27,11 @@ public class DecodeWaysTest {
 		DecodeWays d = new DecodeWays();
 		d.numDecodings("");
 	}
+	
+	@Test
+	public void test2() {
+		DecodeWays d = new DecodeWays();
+		d.numDecodings2("1*");
+	}
 
 }

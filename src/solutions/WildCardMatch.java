@@ -8,19 +8,22 @@ package solutions;
  */
 public class WildCardMatch {
 	public boolean isMatch(String s, String p) {
-        boolean[][] match = new boolean[ s.length() + 1 ][ p.length() + 1 ];
-        match[ s.length() ][ p.length() ] =true;
+		int lenS = s.length();
+		int lenP = p.length();
+		
+        boolean[][] match = new boolean[ lenS + 1 ][ lenP + 1 ];
+        match[ lenS ][ lenP ] =true;
         
-        for(int i = p.length() - 1; i >= 0; i--){
+        for(int i = lenP - 1; i >= 0; i--){
         	if( p.charAt(i) != '*' ){
         		break;
         	}else{
-        		match[ s.length() ][i] = true;
+        		match[ lenS ][i] = true;
         	}
         }
         
-        for(int i = s.length() - 1; i >= 0; i--){
-        	for(int j = p.length() - 1; j>=0;j--){
+        for(int i = lenS - 1; i >= 0; i--){
+        	for(int j = lenP - 1; j>=0;j--){
         		if( s.charAt(i) == p.charAt(j) || p.charAt(j) == '?' ){
         			match[i][j] = match[i+1][j+1];
         		}else if( p.charAt(j) == '*' ){

@@ -36,14 +36,14 @@ public class AccountsMerge {
 	        }
 	        
 	        Set<String> visited = new HashSet<String>();
-	        for(String s : emails)
-	            if( !visited.contains(s) ){
-	                visited.add(s);
+	        for(String email : emails)
+	            if( !visited.contains(email) ){
+	                visited.add(email);
 	                List<String> buffer = new ArrayList<String>();
-	                buffer.add(s);
-	                helper(s, map, visited, buffer);
+	                buffer.add(email);
+	                helper(email, map, visited, buffer);
 	                Collections.sort(buffer);
-	                buffer.add(0, names.get(s));
+	                buffer.add(0, names.get(email));
 	                result.add(buffer);
 	            }
 	        return result; 

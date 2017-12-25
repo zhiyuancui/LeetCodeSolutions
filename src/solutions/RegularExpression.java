@@ -75,6 +75,7 @@ public class RegularExpression {
 					if( p.charAt(j-1) != s.charAt(i) && p.charAt(j-1) != '.'){
 						dp[i+1][j+1] = dp[i+1][j-1];
 					}else{
+						//sequence, no start, no char
 						dp[i+1][j+1] = (dp[i+1][j] || dp[i][j+1] || dp[i+1][j-1]);
 					}
 				}
