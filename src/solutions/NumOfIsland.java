@@ -68,37 +68,37 @@ public class NumOfIsland {
         Arrays.fill(roots, -1);
         
         for(int[] p : positions ){
-        	int root = col * p[0] + p[1];
-        	roots[ root ] = root;
-        	count++;
-        	
-        	for(int i = 0; i < dx.length; i++ ){
-        		int x = p[0] + dx[i];
-        		int y = p[1] + dy[i];
-        		
-        		int neighbor = col * x + y;
-        		if( x < 0 || x >= row || y >= col || y < 0 || roots[neighbor] == -1 ){
-        			continue;
-        		}
-        		
-        		int rootNeighbor = findRoot( roots, neighbor );
-        		if( root != rootNeighbor ){
-        			roots[ root ] = rootNeighbor;
-        			root = rootNeighbor;
-        			count--;
-        		}
-        	}
-        	
-        	result.add( count );
+	        	int root = col * p[0] + p[1];
+	        	roots[ root ] = root;
+	        	count++;
+	        	
+	        	for(int i = 0; i < dx.length; i++ ){
+	        		int x = p[0] + dx[i];
+	        		int y = p[1] + dy[i];
+	        		
+	        		int neighbor = col * x + y;
+	        		if( x < 0 || x >= row || y >= col || y < 0 || roots[neighbor] == -1 ){
+	        			continue;
+	        		}
+	        		
+	        		int rootNeighbor = findRoot( roots, neighbor );
+	        		if( root != rootNeighbor ){
+	        			roots[ root ] = rootNeighbor;
+	        			root = rootNeighbor;
+	        			count--;
+	        		}
+	        	}
+	        	
+	        	result.add( count );
         }
         
         return result;
     }
     
     private int findRoot(int[] roots, int id){
-    	while( id != roots[id] ){
-    		id = roots[id];
-    	}    	
-    	return id;
+	    	while( id != roots[id] ){
+	    		id = roots[id];
+	    	}    	
+	    	return id;
     }
 }

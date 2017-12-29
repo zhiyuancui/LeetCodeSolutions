@@ -2,7 +2,7 @@ package solutions;
 
 public class ValidNumber {
 	public boolean isNumber(String s) {
-    	s = s.trim();
+		s = s.trim();
         int n = s.length();
         if (n == 0)
             return false;

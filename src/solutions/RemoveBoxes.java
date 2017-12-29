@@ -1,6 +1,11 @@
 package solutions;
 
 public class RemoveBoxes {
+	/**
+	 * Reference to : https://discuss.leetcode.com/topic/84687/java-top-down-and-bottom-up-dp-solutions
+	 * @param boxes
+	 * @return
+	 */
 	public int removeBoxes(int[] boxes) {
         int n = boxes.length;
         int[][][] dp = new int[n][n][n];
