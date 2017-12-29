@@ -60,46 +60,53 @@ public class FourSum {
 	 * @param target
 	 * @return
 	 */
-	public List<List<Integer>> fourSum2(int[] num, int target) {
-        Arrays.sort(num);
-    
-	    Map<Integer, List<int[]>> twoSumMap = new HashMap<>(); // for holding visited pair sums. All pairs with the same pair sum are grouped together
-	    Set<List<Integer>> res = new HashSet<>();  // for holding the results
-	    
-	    for (int i = 0; i < num.length; i++) {
-	    	// get rid of repeated pair sums
-	        if (i > 1 && num[i] == num[i - 2]) continue;
-	    	
-	        for (int j = i + 1; j < num.length; j++) {
-	            // get rid of repeated pair sums
-	            if (j > i + 2 && num[j] == num[j - 2]) continue;
-	
-	            // for each pair sum, check if the pair sum that is needed to get the target has been visited.            	
-	            if (twoSumMap.containsKey(target - (num[i] + num[j]))) {   
-	                // if so, get all the pairs that contribute to this visited pair sum.
-		        	List<int[]> ls = twoSumMap.get(target - (num[i] + num[j]));
-		        		
-		        	for (int[] pair : ls) {
-		        	    // we have two pairs: one is indicated as (pair[0], pair[1]), the other is (i, j).
-		        	    // we first need to check if they are overlapping with each other.
-		        	    int m1 = Math.min(pair[0], i);  // m1 will always be the smallest index
-	                    int m2 = Math.min(pair[1], j);  // m2 will be one of the middle two indices
-	                    int m3 = Math.max(pair[0], i);  // m3 will be one of the middle two indices
-	                    int m4 = Math.max(pair[1], j);  // m4 will always be the largest index
-	                    
-	                    if (m1 == m3 || m1 == m4 || m2 == m3 || m2 == m4) continue;  // two pairs are overlapping, so just ignore this case
-	 		    
-	                    res.add(Arrays.asList(num[m1], num[Math.min(m2, m3)], num[Math.max(m2, m3)], num[m4]));  // else record the result
-		        	}
-	            }
-	            
-	            // mark that we have visited current pair and add it to the corrsponding pair sum group.
-	            // here we've encoded the pair indices i and j into an integer array of length 2.
-	            twoSumMap.computeIfAbsent(num[i] + num[j], key -> new ArrayList<>()).add(new int[] {i, j});
-	        }
-	    }
-    
-	    return new ArrayList<List<Integer>>(res);
+	public List<List<Integer>> fourSum2(int[] nums, int target) {
+        if( nums == null || nums.length < 4 ) {
+            return new ArrayList<>();
+        }
+        
+        Arrays.sort(nums);
+        
+        Set<List<Integer>> result = new HashSet<>();
+        Map<Integer, List<int[]>> map = new HashMap<>();
+        
+        for( int i = 0; i < nums.length; i++ ) {
+            if( i > 1 && nums[i-2] == nums[i] ) {
+                continue;
+            }
+            for( int j = i+1; j < nums.length; j++ ) {
+                if( j > i + 2 && nums[j-2] == nums[j] ) {
+                    continue;
+                }
+                int sum = nums[i] + nums[j];
+                if( map.containsKey( target - sum ) ) {
+                    for( int[] pair : map.get(target-sum) ) {
+                        int m1 = Math.min( pair[0], i );
+                        int m2 = Math.min( pair[1], j);
+                        int m3 = Math.max( pair[0],i);
+                        int m4 = Math.max( pair[1],j);
+                        if( m1 == m3 || m1 == m4 || m2 == m3 || m2 == m4 ) {
+                            continue;
+                        }
+                        
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add( nums[m1] );
+                        temp.add( nums[Math.min(m2,m3)]);
+                        temp.add( nums[Math.max(m2,m3)]);
+                        temp.add( nums[m4] );
+                        result.add( temp );
+                    }
+                    
+                } 
+                if( !map.containsKey(sum) ) {
+                    map.put( sum, new ArrayList<>() );
+                }
+                List<int[]> list = map.get(sum);
+                list.add( new int[]{i,j});
+            }
+        }
+        
+        return new ArrayList<>( result );
     }
 	
 	 /**

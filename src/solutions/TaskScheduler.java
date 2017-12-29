@@ -50,14 +50,6 @@ public class TaskScheduler {
         return tasks.length + idles;
     }
 	
-	private class Node{
-		int val;
-		int count;
-		public Node( int value ) {
-			val = value;
-			count = 1;
-		}
-	}
 	
 	public int schedule( int[] nums, int n ) {
 		if(nums == null || nums.length == 0 ) return 0;  
