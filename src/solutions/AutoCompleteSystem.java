@@ -8,84 +8,74 @@ import java.util.PriorityQueue;
 
 public class AutoCompleteSystem {
 	class TrieNode {
-        Map<Character, TrieNode> children;
-        Map<String, Integer> counts;
-        boolean isWord;
+        Map<Character, TrieNode> next;
+        Map<String,Integer> count;
         public TrieNode() {
-            children = new HashMap<Character, TrieNode>();
-            counts = new HashMap<String, Integer>();
-            isWord = false;
+            next = new HashMap<>();
+            count = new HashMap<>();
         }
     }
     
-    class Pair {
+    class Pair{
+        int count;
         String s;
-        int c;
-        public Pair(String s, int c) {
-            this.s = s; this.c = c;
+        public Pair( String s, int c ) {
+            count = c;
+            this.s = s;
         }
     }
     
-    TrieNode root;
-    String prefix;
-    
-    
+    TrieNode root = new TrieNode();
+    String prefix = "";
     public AutoCompleteSystem(String[] sentences, int[] times) {
-        root = new TrieNode();
-        prefix = "";
-        
-        for (int i = 0; i < sentences.length; i++) {
-            add(sentences[i], times[i]);
+        for( int i = 0; i < sentences.length; i++ ) {
+            addWord(  sentences[i], times[i]);
         }
     }
     
-    private void add(String s, int count) {
-        TrieNode curr = root;
-        for (char c : s.toCharArray()) {
-            TrieNode next = curr.children.get(c);
-            if (next == null) {
-                next = new TrieNode();
-                curr.children.put(c, next);
+    private void addWord( String s, int time ) {
+        TrieNode cur = root;
+        for( char c : s.toCharArray() ) {
+            if( !cur.next.containsKey(c) ) {
+                cur.next.put(c , new TrieNode() );                              
             }
-            curr = next;
-            curr.counts.put(s, curr.counts.getOrDefault(s, 0) + count);
+            cur = cur.next.get(c);
+            cur.count.put( s, cur.count.getOrDefault(s,0) + time );
         }
-        curr.isWord = true;
     }
+   
     
     public List<String> input(char c) {
-        if (c == '#') {
-            add(prefix, 1);
+        if( c == '#' ) {
+            addWord(prefix, 1 );
             prefix = "";
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
-        
         prefix = prefix + c;
-        
-        TrieNode curr = root;
-        for (char cc : prefix.toCharArray()) {
-            TrieNode next = curr.children.get(cc);
-            if (next == null) {
-                return new ArrayList<String>();
+        TrieNode cur = root;
+        for( char cc : prefix.toCharArray() ) {
+            if( !cur.next.containsKey(cc) ) {
+                return new ArrayList<>();
             }
-            curr = next;
+            cur = cur.next.get(cc);
         }
         
-        PriorityQueue<Pair> pq = new PriorityQueue<>((a,b) ->{
-            if( a.c != b.c ) {
-                return b.c - a.c;
-            }  else {
-                return a.s.compareTo( b.s );
+        PriorityQueue<Pair> q = new PriorityQueue<>( (a,b) -> {
+            if( a.count != b.count ) {
+                return b.count - a.count;
+            } else {
+                return a.s.compareTo(b.s);
             }
-         });
-        for (String s : curr.counts.keySet()) {
-            pq.add(new Pair(s, curr.counts.get(s)));
+        });
+        
+        for( String key : cur.count.keySet() ) {
+            q.add( new Pair(key, cur.count.get(key) ) );
         }
-
-        List<String> res = new ArrayList<String>();
-        for (int i = 0; i < 3 && !pq.isEmpty(); i++) {
-            res.add(pq.poll().s);
+        
+        List<String> result = new ArrayList<>();
+        for(int i = 0; i < 3 && !q.isEmpty(); i++ ){
+            result.add( q.poll().s );
         }
-        return res;
+        return result;
     }
 }
