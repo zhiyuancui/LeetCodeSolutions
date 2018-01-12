@@ -1,5 +1,9 @@
 package solutions;
-
+/**
+ * 
+ * @author zhiyuan.cui
+ *
+ */
 public class MonotoneIncrease {
 	public int monotoneIncreasingDigits(int N) {
         if(N<=9)
