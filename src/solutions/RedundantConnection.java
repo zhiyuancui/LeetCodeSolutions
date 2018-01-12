@@ -1,5 +1,10 @@
 package solutions;
 
+/**
+ * Graph Valid Tree
+ * @author zhiyuan.cui
+ *
+ */
 public class RedundantConnection {
 	public int[] findRedundantConnection(int[][] edges) {
         int[] parent = new int[2001];
