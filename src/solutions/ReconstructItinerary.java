@@ -11,18 +11,16 @@ public List<String> findItinerary(String[][] tickets) {
         
         Map<String, List<String>> ticketMap = new HashMap<String, List<String>>();
         
-        for(String[] ticket: tickets ){
-            if( ticketMap.containsKey( ticket[0] ) ){
-                ticketMap.get(ticket[0]).add( ticket[1] );
-            }else{
-                List<String> l = new ArrayList<String>();
-                l.add( ticket[1] );
-                ticketMap.put( ticket[0], l);
+        for( String[] ticket : tickets ) {
+            if( !ticketMap.containsKey( ticket[0] ) ) {
+            	ticketMap.put( ticket[0], new ArrayList<>() );
             }
+            List<String> list = ticketMap.get( ticket[0] );
+            list.add( ticket[1] );
         }
         
-        for(Map.Entry<String, List<String>> entry : ticketMap.entrySet() ){
-            Collections.sort( entry.getValue() );
+        for( String key : ticketMap.keySet() ) {
+            Collections.sort( ticketMap.get(key) );
         }
         
         List<String> path = new ArrayList<String>();

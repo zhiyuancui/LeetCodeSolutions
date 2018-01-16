@@ -11,7 +11,7 @@ public class RemoveKDigitsTest {
 	@Test
 	public void test() {
 		RemoveKDigits r = new RemoveKDigits();
-		r.removeKdigits("100", 1);
+		r.removeKdigits("1432219", 3);
 	}
 
 }
