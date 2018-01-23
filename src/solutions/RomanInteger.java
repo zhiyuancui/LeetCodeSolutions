@@ -56,7 +56,7 @@ public class RomanInteger {
 	 * @return
 	 */
 	public String intToRoman(int num) {
-        if( num <= 0  )
+		if( num <= 0  )
         {
             return "";
         }
@@ -64,21 +64,17 @@ public class RomanInteger {
         String[] roman = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
         int[] number = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
         
-        String result = "";
+        StringBuilder result = new StringBuilder();
         
-        while( num > 0 )
-        {
-            for(int i = 0; i < roman.length; i++)
-            {
-                int times = num / number[i];
-                for(int j = 0; j < times; j++)
-                {
-                    result += roman[i];
+        while( num > 0 ) {
+            for( int i = 0; i < roman.length; i++ ) {
+                int times = num / ( number[i] );
+                for( int j = 0; j < times; j++ ) {
+                    result.append( roman[i] );
                     num -= number[i];
                 }
             }
         }
-        
-        return result;
+        return result.toString();
     }
 }
