@@ -1,7 +1,9 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WordSearch {
 	int[] dx = {0,0,1,-1};
@@ -59,66 +61,68 @@ public class WordSearch {
      * @param words
      * @return
      */
+    class TrieNode{
+        Map<Character, TrieNode> map;
+        String isWord;
+        public TrieNode() {
+            map = new HashMap<>();
+            isWord = null;
+        }
+    }
+    
+    TrieNode root;
     public List<String> findWords(char[][] board, String[] words) {
-        List<String> res = new ArrayList<String>();
-        TrieNode root = buildTrie( words );
-        for(int i = 0; i < board.length; i++){
-            for(int j = 0; j < board[0].length; j++){
-                dfs(board, i,j, root, res);
+        if( board == null || board.length == 0 ) {
+            return new ArrayList<>();
+        }
+        
+        root = new TrieNode();
+        
+        for( String word : words ) {
+            TrieNode cur = root;
+            for( char c : word.toCharArray() ) {
+                if( !cur.map.containsKey(c) ) {
+                    cur.map.put( c, new TrieNode() );
+                }
+                cur = cur.map.get(c);
+            }
+            cur.isWord = word;
+        }
+        
+        int row = board.length;
+        int col = board[0].length;
+        
+        List<String> result = new ArrayList<>();
+        for( int i = 0; i < row; i++ ) {
+            for( int j = 0; j < col; j++ ) {
+                dfs( result, root, board, i, j, row, col );
             }
         }
         
-        return res;
+        return result;
     }
     
-    public void dfs(char[][] board, int i, int j, TrieNode p, List<String> res){
-        char c = board[i][j];
-        if( c == '#' || p.next[c-'a'] ==  null ){
+    private void dfs( List<String> result, TrieNode cur, char[][] board, int x, int y, int row, int col ) {
+        char c = board[x][y];
+        if( c == '#' || !cur.map.containsKey(c) ) {
             return;
         }
         
-        p = p.next[c-'a'];
-        if( p.word != null ){
-            res.add( p.word );
-            p.word = null;
+        cur = cur.map.get(c);
+        if( cur.isWord != null ) {
+            result.add( cur.isWord );
+            cur.isWord = null;
         }
         
-        board[i][j] = '#';
-        if(i > 0){
-            dfs(board, i - 1, j ,p, res);     
-        }
-        if(j > 0){
-            dfs(board, i, j - 1, p, res);
-        } 
-        if(i < board.length - 1){ 
-            dfs(board, i + 1, j, p, res);
-            
-        } 
-        if(j < board[0].length - 1){ 
-            dfs(board, i, j + 1, p, res);
-            
-        } 
-        board[i][j] = c;
-    }
-    
-    private TrieNode buildTrie(String[] words){
-        TrieNode root = new TrieNode();
-        for(String w : words){
-            TrieNode cur = root;
-            for(char c : w.toCharArray() ){
-                int i = c - 'a';
-                if( cur.next[i] == null ){
-                    cur.next[i] = new TrieNode();
-                }
-                cur = cur.next[i];
+        board[x][y] = '#';
+        for( int i = 0; i < dx.length; i++ ) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if( nx >= 0 && nx < row && ny >= 0 && ny < col ){
+                dfs( result, cur, board, nx, ny, row, col );
             }
-            cur.word = w;
-        }
-        return root;
-    }
-    
-    class TrieNode{
-        TrieNode[] next = new TrieNode[26];
-        String word;
+        }    
+        
+        board[x][y] = c;
     }
 }
