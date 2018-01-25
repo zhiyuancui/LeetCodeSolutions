@@ -11,6 +11,7 @@ public class StrToTree {
         int first = s.indexOf("(");
         if( first == -1 ) {
             return new TreeNode( Integer.parseInt(s) );
+            
         }
         
         int cur = Integer.parseInt( s.substring(0,first) );
