@@ -81,10 +81,8 @@ public class WordSearch {
         for( String word : words ) {
             TrieNode cur = root;
             for( char c : word.toCharArray() ) {
-                if( !cur.map.containsKey(c) ) {
-                    cur.map.put( c, new TrieNode() );
-                }
-                cur = cur.map.get(c);
+            	cur.map.putIfAbsent( c, new TrieNode() );
+                cur = cur.map.get( c );
             }
             cur.isWord = word;
         }
