@@ -27,11 +27,11 @@ public class SortColor {
 	public void sortColors2(int[] nums) {
         int second = nums.length -1, zero = 0;
         for( int i = 0; i <= second; i++ ) {
-            while( nums[i] == 2 && i < second ) {
+            while( nums[i] == 2  && i < second ) {
                 swap( nums, i, second ) ;
                 second--;
             }
-            while( nums[i] == 0 && i > zero ) {
+            while( nums[i] == 0  && i > zero ) {
                 swap( nums, i, zero );
                 zero++;
             }
