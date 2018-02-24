@@ -8,10 +8,10 @@ public class PartitionLabels {
 	public List<Integer> partitionLabels(String S) {
         List<Integer> res = new ArrayList<>();
         
-        int[] table = new int[26];
+        int[] hash = new int[26];
         char[] stc = S.toCharArray();
         for(char c:stc)//count the occurence of each char in string
-            table[c-'a']++;
+            hash[c-'a']++;
         
         int left = 0, right = 0, len = S.length(), counter = 0;
         HashSet<Character> set = new HashSet<>();
@@ -21,9 +21,9 @@ public class PartitionLabels {
                 set.add(c);
                 counter++;
             }
-            table[c-'a']--;
+            hash[c-'a']--;
             right++;
-            if(table[c-'a'] == 0){ // decrease the counter as we have exhausted the c char and remove char c from set
+            if(hash[c-'a'] == 0){ // decrease the counter as we have exhausted the c char and remove char c from set
                 counter--;
                 set.remove(c);
             }

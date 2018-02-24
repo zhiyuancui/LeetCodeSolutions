@@ -30,17 +30,12 @@ public class LowestCommonAncestor {
             q = temp;
         }
         
-        if( p.val <= root.val && root.val <= q.val )
-        {
+        if( p.val <= root.val && root.val <= q.val ){
             return root;
         }
-        else if( p.val < root.val && q.val < root.val )
-        {
+        else if( p.val < root.val && q.val < root.val ) {
             return lowestCommonAncestor( root.left, p , q);
-        }
-        
-       else
-        {
+        } else {
             return lowestCommonAncestor( root.right, p , q);
         }
     }
