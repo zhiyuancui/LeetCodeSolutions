@@ -7,6 +7,7 @@ import java.util.Set;
 public class CountPrimeSetBits {
 
 	public int countPrimeSetBits(int l, int r) {
+		
         Set<Integer> primes = new HashSet<>(Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19 ) );
         int cnt = 0;
         for (int i = l; i <= r; i++) {
