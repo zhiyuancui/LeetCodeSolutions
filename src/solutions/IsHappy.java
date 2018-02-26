@@ -20,7 +20,6 @@ public class IsHappy {
         while( n > 0 )
         {
             int next = 0;
-            int old = n;
             while( n > 0 )
             {
                 int digit = n % 10;
