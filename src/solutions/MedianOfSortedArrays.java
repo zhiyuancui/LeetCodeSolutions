@@ -23,7 +23,7 @@ public class MedianOfSortedArrays {
             return Math.min(nums1[start1], nums2[start2]);
         }
         
-        int key1 = start1 + k / 2 - 1 < nums1.length ? nums1[ start1 + k / 2 - 1 ] :        Integer.MAX_VALUE;
+        int key1 = start1 + k / 2 - 1 < nums1.length ? nums1[ start1 + k / 2 - 1 ] :Integer.MAX_VALUE;
         int key2 = start2 + k / 2 - 1 < nums2.length ? nums2[ start2 + k / 2  - 1 ]:
                     Integer.MAX_VALUE;
         if( key1 < key2 ){
