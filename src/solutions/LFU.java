@@ -23,7 +23,7 @@ public class LFU {
         return -1;
     }
     
-    public void set(int key, int value) {
+    public void put(int key, int value) {
         if ( cap == 0 ) return;
         if (valueHash.containsKey(key)) {
             valueHash.put(key, value);
@@ -104,7 +104,7 @@ public class LFU {
     
     class Node {
         public int count = 0;
-        public LinkedHashSet<Integer> keys = null;//¾ßÓÐÏàÍ¬countµÄkey
+        public LinkedHashSet<Integer> keys = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬countï¿½ï¿½key
         public Node prev = null, next = null;
         
         public Node(int count) {
