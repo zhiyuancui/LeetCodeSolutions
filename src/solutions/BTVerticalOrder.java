@@ -73,43 +73,53 @@ return its vertical order traversal as:
 	 * 
 	 */
 	public List<List<Integer>> verticalOrder(TreeNode root) {
-		List<List<Integer>> res = new ArrayList<>();
-	    if(root == null){
-	    	return res;
-	    }
+		if(root == null) {
+			return new ArrayList<>();
+		}
 
-	    Map<Integer, ArrayList<Integer>> map = new HashMap<>();
-	    Queue<TreeNode> q = new LinkedList<>();
-	    Queue<Integer> cols = new LinkedList<>();
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(new Node(root, 0));
 
-	    q.add(root); 
-	    cols.add(0);
+		HashMap<Integer, List<Integer>> map = new HashMap<>();
+		int min = Integer.MAX_VALUE;
 
-	    int min = 0, max = 0;
-	    while(!q.isEmpty()) {
-	        TreeNode node = q.poll();
-	        int col = cols.poll();
-	        if(!map.containsKey(col)) {
-	        	map.put(col, new ArrayList<Integer>());
-	        }
-	        map.get(col).add(node.val);
+		while(!queue.isEmpty()){
+			int size = queue.size();
+			for(int i = 0; i <size; i++) {
+				Node cur = queue.poll();
+				int index = cur.pos;
+				min = Math.min(min, index);
+				if(!map.containsKey(index)) {
+					map.put(index, new ArrayList<>());
+				}
+				map.get(index).add(cur.node.val);
+				if(cur.node.left != null){
+					queue.add(new Node(cur.node.left, index-1));
+				}
+				if(cur.node.right != null){
+					queue.add(new Node(cur.node.right, index+1));
+				}
+			}
+		}
 
-	        if(node.left != null) {
-	            q.add(node.left); 
-	            cols.add(col - 1);
-	            if(col <= min) min = col - 1;
-	        }
-	        if(node.right != null) {
-	            q.add(node.right);
-	            cols.add(col + 1);
-	            if(col >= max) max = col + 1;
-	        }
-	    }
+		List<List<Integer>> result = new ArrayList<>();
+		while(!map.isEmpty()){
+			if(map.containsKey(min)) {
+				result.add(map.get(min)); // sort the order of map
+				map.remove(min);
+			}
+			min++;
+		}
 
-	    for(int i = min; i <= max; i++) {
-	        res.add(map.get(i));
-	    }
+		return result;
+	}
 
-	    return res;
-    }
+	class Node {
+		TreeNode node;
+		int pos;
+		public Node(TreeNode node, int pos) {
+			this.node = node;
+			this.pos = pos;
+		}
+	}
 }

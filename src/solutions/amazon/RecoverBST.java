@@ -1,4 +1,4 @@
-package solutions;
+package solutions.amazon;
 
 import util.TreeNode;
 
@@ -6,12 +6,11 @@ public class RecoverBST {
 
 	private TreeNode first = null;
     private TreeNode second = null;
-    private TreeNode last = new TreeNode( Integer.MIN_VALUE );
+    private TreeNode last = null;
     
     public void recoverTree(TreeNode root) {
         
-        if( root == null )
-        {
+        if( root == null ) {
             return;
         }
         
@@ -23,20 +22,16 @@ public class RecoverBST {
         second.val = temp;
     }
     
-    public void travel( TreeNode root )
-    {
-        if( root == null )
-        {
+    public void travel( TreeNode root ) {
+        if( root == null ) {
             return;
         }
         
         travel( root.left );
-        if( first == null && root.val <= last.val )
-        {
+        if( last != null && first == null && root.val <= last.val ) {
             first = last;
         }
-        if( first != null && root.val <= last.val )
-        {
+        if( first != null && root.val <= last.val ) {
             second = root;
         }
         

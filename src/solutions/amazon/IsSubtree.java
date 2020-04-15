@@ -1,4 +1,4 @@
-package solutions;
+package solutions.amazon;
 
 import util.TreeNode;
 

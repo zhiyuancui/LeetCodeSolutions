@@ -1,4 +1,4 @@
-package solutions;
+package solutions.amazon;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -104,7 +104,7 @@ public class LFU {
     
     class Node {
         public int count = 0;
-        public LinkedHashSet<Integer> keys = null;//������ͬcount��key
+        public LinkedHashSet<Integer> keys = null;
         public Node prev = null, next = null;
         
         public Node(int count) {

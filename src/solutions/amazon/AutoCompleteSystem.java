@@ -1,4 +1,4 @@
-package solutions;
+package solutions.amazon;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,22 +59,23 @@ public class AutoCompleteSystem {
             }
             cur = cur.next.get(cc);
         }
-        
-        PriorityQueue<Pair> q = new PriorityQueue<>( (a,b) -> {
-            if( a.count != b.count ) {
-                return b.count - a.count;
+
+        Map<String, Integer> copy = cur.count;
+        PriorityQueue<String> q = new PriorityQueue<>( (a,b) -> {
+            if( copy.get(a) != copy.get(b) ) {
+                return copy.get(b) - copy.get(a);
             } else {
-                return a.s.compareTo(b.s);
+                return a.compareTo(b);
             }
         });
         
-        for( String key : cur.count.keySet() ) {
-            q.add( new Pair(key, cur.count.get(key) ) );
+        for( String key : copy.keySet() ) {
+            q.add(key);
         }
         
         List<String> result = new ArrayList<>();
         for(int i = 0; i < 3 && !q.isEmpty(); i++ ){
-            result.add( q.poll().s );
+            result.add( q.poll() );
         }
         return result;
     }
