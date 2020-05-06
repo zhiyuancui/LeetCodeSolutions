@@ -45,9 +45,4 @@ public class IsomorphicString {
         }
         return true;
     }
-	
-	public static void main(String[] args){
-		IsomorphicString i = new IsomorphicString();
-		System.out.println( i.isIsomorphic2("foo", "bar") );
-	}
 }

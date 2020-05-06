@@ -12,82 +12,17 @@ import java.util.Queue;
 import java.util.Set;
 
 public class WordLadder {
-	
-	/**
-	 * Word Ladder
-	 * @param beginWord
-	 * @param endWord
-	 * @param wordList
-	 * @return
-	 */
-	public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        
-        if( wordList == null || wordList.size() == 0 ){
-            return 0;
-        }
-        
-        wordList.add( beginWord );
-        wordList.add( endWord );
-        
-        HashSet<String> visited = new HashSet<String>();
-        Queue<String> queue = new LinkedList<String>();
-        queue.offer( beginWord );
-        visited.add( beginWord );
-        
-        int len = 1;
-        while( !queue.isEmpty() ){
-            len++;
-            int size = queue.size();
-            for(int i = 0; i < size; i++){
-                String word = queue.poll();
-                for(String nextWord : getNextWords( word, wordList ) ){
-                    if( visited.contains( nextWord ) ){
-                        continue;
-                    }
-                    if( nextWord.equals(endWord) ){
-                        return len;
-                    }
-                    
-                    visited.add( nextWord );
-                    queue.offer( nextWord );
-                }
-            }
-        }
-        
-        return 0;
-    }
     
     private String replace(String s, int index, char c){
         char[] chars = s.toCharArray();
         chars[index] = c;
         return new String( chars );
     }
-    
-    private List<String> getNextWords(String word, List<String> dict ){
-        List<String> nextWords = new ArrayList<String>();
-        for( char c = 'a'; c <= 'z'; c++ ){
-            for(int i = 0; i < word.length(); i++){
-                if( c == word.charAt(i) ){
-                    continue;
-                }
-                
-                String nextWord = replace(word, i, c);
-                if( dict.contains( nextWord ) ){
-                    nextWords.add( nextWord );
-                }
-            }
-        }
-        System.out.println("");
-        return nextWords;
-    }
-    
 
-    
-    
     /**
      * Two-end BFS
      * Reference to https://leetcode.com/discuss/44110/super-fast-java-solution-two-end-bfs
-     * @param args
+     * @param
      */
     public List<List<String>> findLadders3(String start, String end, Set<String> dict) {
         // hash set for both ends
@@ -200,13 +135,12 @@ public class WordLadder {
       }
       
       /**
-       * 2017 Version
        * @param beginWord
        * @param endWord
        * @param wordList
        * @return
        */
-      public int ladderLength5(String beginWord, String endWord, List<String> wordList) {
+      public int ladderLength(String beginWord, String endWord, List<String> wordList) {
           Queue<String> queue = new LinkedList<String>();
           queue.add(beginWord);
           int len=1;
@@ -236,5 +170,74 @@ public class WordLadder {
                   }
         	  }
           }
+      }
+
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> result = new ArrayList<>();
+
+        Queue<String> queue = new LinkedList<String>();
+        queue.add(beginWord);
+        HashSet<String> set = new HashSet<String>(wordList);
+        Map<String, List<String>> parents = new HashMap<>();
+        parents.put(beginWord, null);
+        while(!queue.isEmpty()){
+            int queueSize = queue.size();
+            for(int i=0; i<queueSize; i++){
+                String word = queue.poll();
+                if(word.equals(endWord)){
+                    backtrack(result, new ArrayList<>(), parents, endWord);
+                    return result;
+                } else {
+                    addToQueue(set, queue, word, parents, endWord);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void addToQueue(HashSet<String> wordList, Queue<String> queue, String word, Map<String, List<String>> parents, String endWord){
+        wordList.remove(word);
+
+        for(int i = 0; i < word.length(); i++) {
+            for(char j ='a'; j <= 'z'; j++) {
+                if( j == word.charAt(i) )continue;
+                String next = replace(word, i, j);
+                if(wordList.contains(next) || next.equals(endWord)){
+                    if(!parents.containsKey(next)) {
+                        parents.put(next, new ArrayList<>());
+                    }
+                    parents.get(next).add(word);
+                    queue.offer(next);
+                    wordList.remove(next);
+                }
+            }
+        }
+    }
+
+    private void backtrack(List<List<String>> result, List<String> solution, Map<String, List<String>> parents, String word) {
+        if(parents.get(word) ==null ) {
+            solution.add(0, word);
+            result.add(new ArrayList<>(solution));
+            return;
+        }
+
+        solution.add(0, word);
+        for(String prev: parents.get(word)) {
+            backtrack(result, solution, parents, prev);
+            solution.remove(0 );
+        }
+    }
+
+      public static void main(String[] args) {
+            WordLadder wordLadder = new WordLadder();
+            List<String> wordList = Arrays.asList(new String[]{"hot","dot","dog","lot","log","cog"});
+            List<List<String>> result = wordLadder.findLadders("hit", "cog", wordList);
+            for(List<String> list : result) {
+                for(String str : list) {
+                    System.out.print(str+ " ");
+                }
+                System.out.println();
+            }
       }
 }

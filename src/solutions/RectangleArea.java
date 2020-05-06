@@ -24,5 +24,7 @@ public class RectangleArea {
         
         return area;
     }
+
+
 	
 }

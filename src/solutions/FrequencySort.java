@@ -39,7 +39,7 @@ public class FrequencySort {
 	    return array;
 	}
 	    
-	    private String buildString(List<Character>[] array) {
+	private String buildString(List<Character>[] array) {
 	    StringBuilder sb = new StringBuilder();
 	    for (int i = array.length - 1; i > 0; i--) {
 	        List<Character> list = array[i];

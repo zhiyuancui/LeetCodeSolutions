@@ -92,10 +92,4 @@ public class MajorityElement {
         
         return result;
     }
-	
-	public static void main(String[] args){
-		MajorityElement m = new MajorityElement();
-		int[] nums = {4,2,1,1};
-		m.majorityElement2(nums);
-	}
 }

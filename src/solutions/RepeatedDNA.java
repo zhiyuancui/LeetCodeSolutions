@@ -26,17 +26,17 @@ public class RepeatedDNA {
         
         return result;
     }
-    
-    public int encode(String s){
-        int sum = 0;
-        for(int i = 0; i < s.length(); i++){
-            if( s.charAt(i) == 'A'){
-                 sum = sum * 4;
-            }else if( s.charAt(i) == 'C' ){
+
+    private int encode(String s) {
+        int sum =0;
+        for(char c : s.toCharArray()) {
+            if(c=='A') {
+                sum = sum * 4;
+            } else if( c == 'C') {
                 sum = sum*4 + 1;
-            }else if( s.charAt(i) == 'G' ){
-                sum = sum * 4 + 2;
-            }else{
+            } else if( c == 'G') {
+                sum = sum *4 + 2;
+            } else {
                 sum = sum * 4 + 3;
             }
         }
