@@ -1,11 +1,6 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 import util.TreeNode;
 
@@ -72,54 +67,71 @@ return its vertical order traversal as:
 	 * Reference to : https://leetcode.com/discuss/75054/5ms-java-clean-solution
 	 * 
 	 */
-	public List<List<Integer>> verticalOrder(TreeNode root) {
+	class Node {
+		TreeNode node;
+		int x;
+		int y;
+		public Node(TreeNode node, int x, int y) {
+			this.node = node;
+			this.x = x;
+			this.y = y;
+		}
+
+	}
+	public List<List<Integer>> verticalTraversal(TreeNode root) {
 		if(root == null) {
 			return new ArrayList<>();
 		}
 
+		Map<Integer, List<Node>> map = new HashMap<>();
 		Queue<Node> queue = new LinkedList<>();
-		queue.add(new Node(root, 0));
 
-		HashMap<Integer, List<Integer>> map = new HashMap<>();
+		queue.offer(new Node(root,0,0));
+		int max = Integer.MIN_VALUE;
 		int min = Integer.MAX_VALUE;
+		int level = 0;
 
-		while(!queue.isEmpty()){
+		while(!queue.isEmpty()) {
 			int size = queue.size();
-			for(int i = 0; i <size; i++) {
+			level++;
+			for(int i = 0; i < size; i++) {
 				Node cur = queue.poll();
-				int index = cur.pos;
-				min = Math.min(min, index);
-				if(!map.containsKey(index)) {
-					map.put(index, new ArrayList<>());
+				if(!map.containsKey(cur.y)) {
+					map.put(cur.y, new ArrayList<>());
 				}
-				map.get(index).add(cur.node.val);
-				if(cur.node.left != null){
-					queue.add(new Node(cur.node.left, index-1));
+				List<Node> list = map.get(cur.y);
+				list.add(cur);
+				max = Math.max(max, cur.y);
+				min = Math.min(min, cur.y);
+
+				if(cur.node.left != null) {
+					queue.offer(new Node(cur.node.left,level,cur.y-1));
 				}
-				if(cur.node.right != null){
-					queue.add(new Node(cur.node.right, index+1));
+				if(cur.node.right != null) {
+					queue.offer(new Node(cur.node.right,level,cur.y+1));
 				}
 			}
 		}
 
-		List<List<Integer>> result = new ArrayList<>();
-		while(!map.isEmpty()){
-			if(map.containsKey(min)) {
-				result.add(map.get(min)); // sort the order of map
-				map.remove(min);
-			}
-			min++;
-		}
 
+		ArrayList<List<Integer>> result = new ArrayList<>();
+		for(int i = min; i<= max; i++) {
+			if(map.containsKey(i)) {
+				List<Node> list = map.get(i);
+				Collections.sort(list, (a, b)->{
+							if(a.x == b.x && a.y == b.y) {
+								return a.node.val - b.node.val;
+							}
+							return 0;
+						}
+				);
+				List<Integer> solution = new ArrayList<>();
+				for(Node n: list) {
+					solution.add(n.node.val);
+				}
+				result.add(solution);
+			}
+		}
 		return result;
-	}
-
-	class Node {
-		TreeNode node;
-		int pos;
-		public Node(TreeNode node, int pos) {
-			this.node = node;
-			this.pos = pos;
-		}
 	}
 }

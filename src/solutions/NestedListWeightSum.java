@@ -31,4 +31,32 @@ public class NestedListWeightSum {
         }
         return totalSum;
     }
+
+    public int depthSum(List<NestedInteger> nestedList) {
+        int totalSum = 0;
+        Deque<NestedInteger> queue = new ArrayDeque();
+
+        for(NestedInteger ni: nestedList) {
+            queue.offerLast(ni);
+        }
+
+        int level = 1;
+        while(!queue.isEmpty()) {
+            int size = queue.size(), levelSum = 0;
+            for(int i = 0; i < size; i++) {
+                NestedInteger current = queue.pollFirst();
+                if(current.isInteger()) {
+                    levelSum += current.getInteger() * level;
+                } else {
+                    for(NestedInteger n : current.getList()) {
+                        queue.offerLast(n);
+                    }
+                }
+            }
+            totalSum += levelSum;
+            level++;
+        }
+
+        return totalSum;
+    }
 }

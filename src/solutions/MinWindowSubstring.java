@@ -2,36 +2,46 @@ package solutions;
 
 public class MinWindowSubstring {
 	public String minWindow(String s, String t) {
-        int ans = Integer.MAX_VALUE;
-        String minStr = "";
+		if(s == null || t == null) {
+            return null;
+        }
         
-        int[] targethash = new int[256];
+        int[] hashMap = new int[256];
+        int len = t.length();
+        for(char c : t.toCharArray()) {
+            hashMap[c]++;
+        }
         
-        int targetnum = initTargetHash( targethash, t);
+        int right = 0;
+        int left = 0;
+        int min = Integer.MAX_VALUE;
+        String result = "";
+        int count = 0;
         
-        int sourcenum = 0;
-        int left = 0, right = 0;
-        
-        for( right = 0; right<s.length(); right++){
-            if( targethash[ s.charAt(right) ] > 0 ){
-                sourcenum++;
+        while(right < s.length()) {
+            if(hashMap[s.charAt(right)] > 0) {
+            	System.out.println(s.charAt(right)+":"+hashMap[s.charAt(right)]);
+                count++;
             }
-            
-            targethash[s.charAt(right)]--;
-            while( sourcenum >= targetnum ){
-                if( ans > right - left + 1 ){
-                    ans = Math.min(ans, right - left + 1);
-                    minStr = s.substring(left, right + 1 );
+            hashMap[s.charAt(right)]--;
+            System.out.println(s.charAt(right)+":"+hashMap[s.charAt(right)]);
+            while(count >= len) {
+                if(min > right - left +1) {
+                    min = right - left + 1;
+                    result = s.substring(left, right+1);
                 }
-                
-                targethash[ s.charAt(left) ]++;
-                if( targethash[ s.charAt( left) ] > 0 ){
-                    sourcenum--;
+                hashMap[s.charAt(left)]++;
+                System.out.println(s.charAt(left)+":"+hashMap[s.charAt(left)]);
+                if(hashMap[s.charAt(left)] > 0) {
+                    count--;
                 }
                 left++;
+                
             }
+            right++;
         }
-        return minStr;    
+        
+        return result;
     }
     
     private int initTargetHash(int[] targethash, String Target ){
@@ -85,7 +95,6 @@ public class MinWindowSubstring {
         }   
             return minLen == Integer.MAX_VALUE ? "" : s.substring(head, head+minLen); 
     }
-    
     
  
 }
