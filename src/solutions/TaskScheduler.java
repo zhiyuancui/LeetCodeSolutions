@@ -72,4 +72,25 @@ public class TaskScheduler {
         }  
         return time;  
 	}
+
+
+    public int leastInterval2(char[] tasks, int n) {
+        int[] frequencies = new int[26];
+        for(int t : tasks) {
+            frequencies[t-'A']++;
+        }
+
+        Arrays.sort(frequencies);
+
+        int max =  frequencies[25];
+        int idle = (max-1)*n;
+
+        for(int i = 24; i >= 0 && idle > 0; i--) {
+            idle -= Math.min(max - 1, frequencies[i]);
+        }
+
+        idle = Math.max(0, idle);
+
+        return idle + tasks.length;
+    }
 }

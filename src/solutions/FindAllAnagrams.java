@@ -14,39 +14,43 @@ public class FindAllAnagrams {
 	 * @return
 	 */
 	public List<Integer> findAnagrams(String s, String p) {
-		if( s == null || p == null || s.length() < p.length() ) {
+        if(s == null || p == null) {
             return new ArrayList<>();
         }
-        
-        int[] hash = new int[26];
-        for( char c : p.toCharArray() ) {
-            hash[ c - 'a' ]++;
+
+
+        int[] map = new int[256];
+
+        for(char c : p.toCharArray()) {
+            map[c]++;
         }
-        
-        int left =0;
-        int right = 0;
+
         int count = 0;
+
+        int left = 0;
         List<Integer> result = new ArrayList<>();
-        int len = p.length();
-        
-        while( right < s.length() ) {
-            if( hash[s.charAt(right) - 'a' ] > 0 ) {
+
+        for(int right=0; right<s.length(); right++) {
+            if(map[s.charAt(right)]>0) {
                 count++;
             }
-            hash[ s.charAt(right) - 'a' ]--;
-            right++;
-            if( count == len ) {
-                result.add(left);
-            }
-            if( right - left == len ) {
-                hash[ s.charAt(left) - 'a' ]++;
-                if( hash[ s.charAt(left) - 'a' ] > 0 ) {
+
+            map[s.charAt(right)]--;
+
+            while(right - left +1 == p.length()){
+                if(count == p.length()) {
+                    result.add(left);
+                }
+
+                map[s.charAt(left)]++;
+                if(map[s.charAt(left)] > 0) {
                     count--;
                 }
                 left++;
             }
         }
-        
+
+
         return result;
     }
 	

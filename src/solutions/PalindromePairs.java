@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PalindromPairs {
+public class PalindromePairs {
 	public List<List<Integer>> palindromePairs(String[] words) {
 	    List<List<Integer>> result = new ArrayList<>(); 
 	    if (words == null || words.length < 2){
