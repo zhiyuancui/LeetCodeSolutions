@@ -20,39 +20,34 @@ public class StrobogrammaticNumber {
 	 * @param high
 	 * @return
 	 */
-	private char[][] pairs = {{'0','0'},{'1','1'},{'6','9'},{'8','8'},{'9','6'}};
-	int count = 0;
-	
-	public int strobogrammaticInRange(String low, String high) {
-        for( int len = low.length(); len <= high.length(); len++ ){
-        	dfs( low, high, new char[len],0,len-1);
-        }
-        
-        return count;
-    }
-	
-	public void dfs(String low, String high, char[] c, int left, int right){
-		if( left > right ){
-			String s = new String(c);
-			if( s.length() == low.length() && s.compareTo( low ) < 0 ||
-				s.length() == high.length() && s.compareTo(high) > 0 ){
-				return;
-			}
-			count++;
-			return;
+	public boolean isStrobogrammatic(String num) {
+		if(num == null || num.length() == 0) {
+			return false;
 		}
-		
-		for(char[] p : pairs){
-			c[ left ] = p[0];
-			c[ right ] = p[1];
-			
-			if( c.length != 1 && c[0] == '0' ){
-				continue;
-			}
-			
-			if( left < right || ( left == right && p[0] == p[1] ) ){
-				dfs( low, high, c, left + 1, right - 1);
-			}
+
+		return isStrobogrammatic(num, 0, num.length() -1);
+	}
+
+
+	private boolean isStrobogrammatic(String num, int start, int end) {
+		if(start > end) {
+			return true;
+		}
+		if(start == end) {
+			String sub = num.substring(start, end+1);
+
+			return sub.equals("1") || sub.equals("0") || sub.equals("8");
+		}
+
+		if((num.charAt(start) == '8' && num.charAt(end) == '8') ||
+				(num.charAt(start) == '1' && num.charAt(end) == '1') ||
+				(num.charAt(start) == '9' && num.charAt(end) == '6') ||
+				(num.charAt(start) == '6' && num.charAt(end) == '9') ||
+				(num.charAt(start) == '0' && num.charAt(end) == '0')
+		) {
+			return isStrobogrammatic(num, start+1, end-1);
+		} else {
+			return false;
 		}
 	}
 	
