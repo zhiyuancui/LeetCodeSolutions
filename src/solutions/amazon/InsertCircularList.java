@@ -1,15 +1,17 @@
 package solutions.amazon;
 
+import util.ListNode;
+
 public class InsertCircularList {
-    public Node insert(Node head, int insertVal) {
+    public ListNode insert(ListNode head, int insertVal) {
         if(head == null) {
-            Node newNode = new Node(insertVal, null);
-            newNode.next = newNode;
-            return newNode;
+            ListNode newListNode = new ListNode(insertVal, null);
+            newListNode.next = newListNode;
+            return newListNode;
         }
 
-        Node prev = head;
-        Node cur = head.next;
+        ListNode prev = head;
+        ListNode cur = head.next;
 
         boolean toInsert = false;
 
@@ -23,7 +25,7 @@ public class InsertCircularList {
             }
 
             if(toInsert) {
-                prev.next = new Node(insertVal, cur);
+                prev.next = new ListNode(insertVal, cur);
                 return head;
             }
 
@@ -31,22 +33,7 @@ public class InsertCircularList {
             cur = cur.next;
         } while(prev!=head);
 
-        prev.next = new Node(insertVal, cur);
+        prev.next = new ListNode(insertVal, cur);
         return head;
-    }
-    class Node {
-        public int val;
-        public Node next;
-
-        public Node() {}
-
-        public Node(int _val) {
-            val = _val;
-        }
-
-        public Node(int _val, Node _next) {
-            val = _val;
-            next = _next;
-        }
     }
 }

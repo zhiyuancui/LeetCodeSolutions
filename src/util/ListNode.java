@@ -7,4 +7,9 @@ public class ListNode {
         val = x;
         next = null;
      }
+
+     public ListNode(int _x, ListNode _next) {
+         val = _x;
+         next = _next;
+     }
 }
