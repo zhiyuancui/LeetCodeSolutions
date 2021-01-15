@@ -58,24 +58,28 @@ public class NumOfIsland {
      */
     public List<Integer> numIslands2(int row, int col, int[][] positions) {
         List<Integer> result = new ArrayList<Integer>();
-        
+
         if( row <= 0 || col <= 0 ){
         	return result;
         }
-        
+
         int count = 0;
         int[] roots = new int[ row * col ];
         Arrays.fill(roots, -1);
-        
+
         for(int[] p : positions ){
 	        	int root = col * p[0] + p[1];
+                if(roots[root] != -1) {
+                    result.add(count);
+                    continue;
+                }
 	        	roots[ root ] = root;
 	        	count++;
-	        	
+
 	        	for(int i = 0; i < dx.length; i++ ){
 	        		int x = p[0] + dx[i];
 	        		int y = p[1] + dy[i];
-	        		
+
 	        		int neighbor = col * x + y;
 	        		if( x < 0 || x >= row || y >= col || y < 0 || roots[neighbor] == -1 ){
 	        			continue;
