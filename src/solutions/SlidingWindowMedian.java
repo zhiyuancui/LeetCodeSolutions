@@ -61,11 +61,4 @@ public class SlidingWindowMedian {
 			return (double)maxHeap.peek();
 		}
 	}
-
-	public static void main(String[] args) {
-		int[] nums = new int[]{-2147483648,-2147483648,2147483647,-2147483648,-2147483648,-2147483648,2147483647,2147483647,2147483647,2147483647,-2147483648,2147483647,-2147483648
-		};
-		SlidingWindowMedian solution =new SlidingWindowMedian();
-		solution.medianSlidingWindow(nums, 3);
-	}
 }
