@@ -9,31 +9,61 @@ public class LongestSubstringWithKRepeat {
 	 * @param k
 	 * @return
 	 */
-	public int longestSubstring(String s, int k) {
-        char[] str = s.toCharArray();
-        return helper(str,0,s.length(),k);
+	 if(s == null || s.length() == 0 ) {
+        return 0;
     }
-    
-    private int helper(char[] str, int start, int end,  int k){
-        if(end-start<k) return 0;//substring length shorter than k.
+
+    char[] str = s.toCharArray();
+
+    int maxUnique = getMaxUnique(s);
+
+    int max = 0;
+
+        for(int i = 1; i <= maxUnique; i++) {
         int[] count = new int[26];
-        for(int i = start;i<end;i++){
-            int idx = str[i]-'a';
-            count[idx]++;
-        }
-    
-        for(int i = 0;i<26;i++){
-        	//find invalid character which count smaller than k
-            if(count[i]<k&&count[i]>0){ //count[i]=0 => i+'a' does not exist in the string, skip it.
-                for(int j = start;j<end;j++){
-                    if(str[j]==i+'a'){
-                        int left = helper(str,start,j,k);
-                        int right = helper(str,j+1,end,k);
-                        return Math.max(left,right);
-                    }
+        int left = 0;
+        int right = 0;
+        int unique = 0;
+        int countAtLeastK = 0;
+
+        while(right < str.length) {
+            if(unique <= i) {
+                int idx = str[right] - 'a';
+                if(count[idx] == 0) {
+                    unique++;
                 }
+                count[idx]++;
+                if(count[idx] == k) {
+                    countAtLeastK++;
+                }
+                right++;
+            } else {
+                int idx = str[left] - 'a';
+                if(count[idx] == k) {
+                    countAtLeastK--;
+                }
+                count[idx]--;
+                if(count[idx] == 0) {
+                    unique--;
+                }
+                left++;
+            }
+            if(unique == i && unique == countAtLeastK) {
+                max = Math.max(right - left, max);
             }
         }
-        return end-start;
+    }
+
+        return max;
+}
+
+    private int getMaxUnique(String s) {
+        Set<Character> set = new HashSet<>();
+
+        for(char c : s.toCharArray()) {
+            set.add(c);
+        }
+
+        return set.size();
     }
 }

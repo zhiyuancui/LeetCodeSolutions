@@ -1,36 +1,35 @@
 package solutions;
 
+import java.util.Arrays;
+
 public class CoinChange {
 	public int coinChange(int[] coins, int amount) {
-        if( coins == null || coins.length == 0 || amount < 0 ){
-            return -1;
+        if(coins == null || coins.length == 0) {
+            return 0;
         }
-        
-        int[] solution = new int[amount + 1];
-        solution[0] = 0;
-        
-        for(int coin : coins ){
-            if( coin > amount ){
+
+        Arrays.sort(coins);
+
+        int[] dp = new int[amount+1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0]  = 0;
+        for(int coin : coins) {
+            if(coin > amount) {
                 break;
             }
-            solution[ coin ] = 1;
+            dp[coin] = 1;
         }
-        
+
         for(int i = 1; i <= amount; i++){
-            if( solution[i] == 0 ){
-                solution[i] = Integer.MAX_VALUE;
-            }
-        }
-        
-        for(int i = 1; i <= amount; i++){
-            for(int j = 0; j < coins.length; j++){
-                if( coins[j] <= i && solution[i-coins[j]] != Integer.MAX_VALUE ){
-                    solution[i] = Math.min( solution[i], solution[ i - coins[j]] + 1);
+            for(int j = 0; j < coins.length && coins[j] <= i; j++) {
+                if(dp[i-coins[j]] != Integer.MAX_VALUE){
+                    dp[i] = Math.min(dp[i], dp[i-coins[j]]+1);
                 }
             }
         }
-        
-        return solution[amount] == Integer.MAX_VALUE ? -1: solution[amount];
+
+
+        return dp[amount] == Integer.MAX_VALUE ? -1 : dp[amount];
     }
 	
 	/**
@@ -50,5 +49,34 @@ public class CoinChange {
             }
         }
         return dp[coins.length][amount];
+    }
+
+
+    int solution = 0;
+    public int change2(int amount, int[] coins) {
+        if(amount == 0) {
+            return 1;
+        }
+        if(coins == null || coins.length == 0) {
+            return 0;
+        }
+
+        backtrack(coins, amount,0);
+        return solution;
+    }
+
+    private void backtrack(int[] coins, int amount, int pos) {
+        if(amount <= 0) {
+            if(amount == 0) {
+                solution++;
+            }
+            return;
+        }
+
+        for(int i = pos; i < coins.length; i++) {
+            if(coins[i] <= amount) {
+                backtrack(coins, amount-coins[i], i);
+            }
+        }
     }
 }
