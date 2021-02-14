@@ -163,22 +163,24 @@ public class CombinationSum {
      * 
      */
     public int combinationSum4(int[] nums, int target) {
-        Arrays.sort( nums );
-        int[] res = new int[target + 1];
-        for (int i = 1; i < res.length; i++) {
-		    for (int num : nums) {
-		        if (num > i){
-		        	break;
-		        }
-		        else if (num == i){
-		        	res[i] += 1;
-		        }
-		        else{
-		        	res[i] += res[i-num];
-		        }
-		    }
+        if(nums == null || nums.length == 0) {
+            return 0;
         }
-        return res[target];
+
+        Arrays.sort(nums);
+
+        int[] dp = new int[target+1];
+        dp[0] = 1;
+
+        for(int i = 1; i <= target; i++) {
+            for(int j = 0; j < nums.length; j++) {
+                if(nums[j] <= i) {
+                    dp[i] += dp[i-nums[j]];
+                }
+            }
+        }
+
+        return dp[target];
     }
     
     /**

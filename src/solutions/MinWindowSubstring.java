@@ -20,11 +20,10 @@ public class MinWindowSubstring {
         
         while(right < s.length()) {
             if(hashMap[s.charAt(right)] > 0) {
-            	System.out.println(s.charAt(right)+":"+hashMap[s.charAt(right)]);
+
                 count++;
             }
             hashMap[s.charAt(right)]--;
-            System.out.println(s.charAt(right)+":"+hashMap[s.charAt(right)]);
             while(count >= len) {
                 if(min > right - left +1) {
                     min = right - left + 1;

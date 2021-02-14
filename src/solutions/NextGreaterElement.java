@@ -12,28 +12,32 @@ public class NextGreaterElement {
 	 * @return
 	 */
 	public int[] nextGreaterElements(int[] nums) {
-        
-        int n = nums.length;
-        int[] result = new int[n];
-        
-        Stack<Integer> stack = new Stack<>();
-        for(int i = n-1; i >= 0; i--){
-            stack.push(i);
+
+        if(nums == null || nums.length == 0) {
+            return new int[0];
         }
-        
-        for(int i = n - 1; i >= 0; i--){
-            result[i] = -1;
-            while( !stack.isEmpty() && nums[ stack.peek() ] <= nums[i] ){
+
+        Stack<Integer> stack = new Stack<>();
+        int[] res = new int[nums.length];
+
+        for(int i = nums.length-1; i >= 0; i--) {
+            stack.push(nums[i]);
+        }
+
+        for(int i = nums.length -1; i >= 0; i--) {
+            res[i] = -1;
+            while(!stack.isEmpty() && nums[i] >= stack.peek()) {
                 stack.pop();
             }
-            
-            if( !stack.isEmpty() ){
-                result[i] = nums[ stack.peek() ];
+
+            if(!stack.isEmpty()) {
+                res[i] = stack.peek();
             }
-            stack.add(i);
+
+            stack.add(nums[i]);
         }
-        
-        return result;
+
+        return res;
     }
 
 	/**

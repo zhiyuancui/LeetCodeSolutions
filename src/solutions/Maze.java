@@ -84,16 +84,11 @@ public class Maze {
         int row = maze.length;
         int col = maze[0].length;
         int[][] dp = new int[ row ][ col ];
-        for( int[] r : dp ){
-            for( int i : r ) {
+        for( int[] r : dp ) {
+            for (int i : r) {
                 i = 1;
             }
         }
-        /*(for( int i = 0; i < row; i++){
-            for( int j = 0; j < col; j++ ) {
-               dp[i][j] = Integer.MAX_VALUE;
-            }
-        }*/
         
         for( int[] r : dp ){
             for( int i : r ) {

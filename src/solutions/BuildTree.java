@@ -87,4 +87,43 @@ public class BuildTree {
         
         return -1;
     }
+
+    /**
+     * Construct Binary Tree from Preorder and Postorder Traversal
+     * @return
+     */
+    public TreeNode constructFromPrePost(int[] pre, int[] post) {
+        if( pre.length != post.length )
+        {
+            return null;
+        }
+
+        return buildTree(0,0, pre.length, pre, post);
+    }
+
+    private TreeNode buildTree(int start, int end, int size, int[] pre, int[] post) {
+        System.out.println("start: " + start+" end: " + end +" size:" + size);
+        if(size <= 0) {
+            return null;
+        }
+
+        TreeNode root = new TreeNode(pre[start]);
+
+        if(size == 1) {
+            return root;
+        }
+
+        int left = 1;
+        for(; left < size; left++) {
+            if(post[end+left-1] == pre[start+1]) {
+                break;
+            }
+        }
+
+        root.left = buildTree(start+1, end, left, pre, post);
+        root.right = buildTree(start+left+1, end+left, size-1-left, pre, post);
+        return root;
+    }
+    }
+
 }
