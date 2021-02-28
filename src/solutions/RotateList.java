@@ -21,6 +21,7 @@ public class RotateList {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode prev = dummy;
+
         while( shift > 0 ){
             prev = prev.next;
             shift--;

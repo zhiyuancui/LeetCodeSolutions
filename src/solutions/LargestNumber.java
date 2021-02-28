@@ -5,39 +5,27 @@ import java.util.Comparator;
 
 public class LargestNumber {
 	public String largestNumber(int[] nums) {
-        if( nums == null || nums.length == 0 ){
+        if(nums == null || nums.length == 0) {
             return "";
         }
-        
-        String[] strs = new String[nums.length];
-        
-        for(int i = 0; i < nums.length; i++){
-            strs[i] = nums[i]+"";
+
+        String[] copy = new String[nums.length];
+        for(int i = 0; i < nums.length; i++) {
+            copy[i] = nums[i] + "";
         }
-        
-        /*
-         *         
-        Arrays.stream(nums).
-        boxed().
-        sorted((a, b) -> b.compareTo(a)). // sort descending
-        mapToInt(i -> i).
-        toArray();
-         * */
-        Arrays.sort(strs, new Comparator<String>() {
-            @Override
-            public int compare(String i, String j) {
-                String s1 = i+j;
-                String s2 = j+i;
-                return s1.compareTo(s2);
-            }
-        });
-        
-        
-        if( strs[strs.length - 1].charAt(0) == '0') return "0";
-        String res = new String();
-        for(int i = strs.length - 1; i >=0 ; i--){
-            res += strs[i];
+
+        Arrays.sort(copy, (a,b) -> (b+a).compareTo(a+b));
+
+        StringBuilder sb = new StringBuilder();
+        for(String s: copy) {
+            sb.append(s);
         }
-        return res;
+
+        int index = 0;
+        while(index < sb.length() - 1 && sb.charAt(index) == '0') {
+            index++;
+        }
+
+        return sb.substring(index).toString();
     }
 }

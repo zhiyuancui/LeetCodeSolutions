@@ -1,6 +1,6 @@
 package solutions;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Given n nodes labeled from 0 to n - 1 and a list of undirected edges (each edge is a pair of nodes), 
@@ -46,6 +46,42 @@ public class GraphValidTree {
        
         return i;
     }
-    
+
+    public boolean validTree2(int n, int[][] edges) {
+        if (edges.length != n - 1) return false;
+
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+        for(int[] edge: edges) {
+            List<Integer> next = graph.getOrDefault(edge[0], new ArrayList<>());
+            next.add(edge[1]);
+            graph.put(edge[0], next);
+
+            next = graph.getOrDefault(edge[1], new ArrayList<>());
+            next.add(edge[0]);
+            graph.put(edge[1], next);
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+        Set<Integer> visited = new HashSet<>();
+
+        queue.add(0);
+        visited.add(0);
+
+        while(!queue.isEmpty()) {
+            int cur = queue.poll();
+            System.out.println("cur: " +cur);
+            visited.add(cur);
+            if(graph.containsKey(cur)){
+                for(int next: graph.get(cur)) {
+                    if(!visited.contains(next)) {
+                        visited.add(next);
+                        queue.add(next);
+                    }
+                }
+            }
+        }
+
+        return visited.size() == n;
+    }
     
 }
