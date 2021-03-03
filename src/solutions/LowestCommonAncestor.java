@@ -62,32 +62,32 @@ public class LowestCommonAncestor {
 		Map<TreeNode, TreeNode> parent = new HashMap<TreeNode, TreeNode>();
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		parent.put(root, null);
-		
+
 		stack.push(root);
-		
-		while( !parent.containsKey( p ) || !parent.containsKey(q) ){
+
+		while(!stack.isEmpty() ){
 			TreeNode cur = stack.pop();
 			if( cur.left != null ){
 				parent.put(cur.left, cur);
 				stack.push( cur.left );
 			}
-			
+
 			if( cur.right != null ){
 				parent.put(cur.right, cur);
 				stack.push( cur.right );
 			}
 		}
-		
+
 		Set<TreeNode> ancestors = new HashSet<TreeNode>();
 		while( p != null ){
 			ancestors.add(p);
 			p = parent.get(p);
 		}
-		
-		while( !ancestors.contains(q) ){
+
+		while( !ancestors.contains(q) && q != null){
 			q = parent.get(q);
 		}
-		
+
 		return q;
 	}
 }

@@ -1,50 +1,60 @@
 package solutions.amazon;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
+
 public class CampusBikes {
+    public int[] assignBikes(int[][] workers, int[][] bikes) {
+        if(workers == null || bikes == null) {
+            return new int[0];
+        }
 
-    int n = workers.length;
-
-    // order by Distance ASC, WorkerIndex ASC, BikeIndex ASC
-    PriorityQueue<int[]> q = new PriorityQueue<int[]>((a, b) -> {
-        int comp = Integer.compare(a[0], b[0]);
-        if (comp == 0) {
-            if (a[1] == b[1]) {
-                return Integer.compare(a[2], b[2]);
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> {
+            if(a[0] == b[0]) {
+                if(a[1] == b[1]) {
+                    return a[2] - b[2];
+                } else {
+                    return a[1] - b[1];
+                }
+            } else {
+                return a[0] - b[0];
             }
+        });
 
-            return Integer.compare(a[1], b[1]);
+        int[] result = new int[workers.length];
+
+        for(int i = 0; i < workers.length; i++) {
+            int[] worker = workers[i];
+            for(int j =0; j < bikes.length; j++) {
+                int dist = getDistance(worker[0], worker[1], bikes[j][0], bikes[j][1]);
+                queue.add(new int[]{dist, i, j});
+            }
         }
 
-        return comp;
-    });
-
-    // loop through every possible pairs of bikes and people,
-    // calculate their distance, and then throw it to the pq.
-        for (int i = 0; i < workers.length; i++) {
-
-        int[] worker = workers[i];
-        for (int j = 0; j < bikes.length; j++) {
-            int[] bike = bikes[j];
-            int dist = Math.abs(bike[0] - worker[0]) + Math.abs(bike[1] - worker[1]);
-            q.add(new int[]{dist, i, j});
-        }
-    }
-
-    // init the result array with state of 'unvisited'.
-    int[] res = new int[n];
+        int[] res = new int[workers.length];
         Arrays.fill(res, -1);
 
-    // assign the bikes.
-    Set<Integer> bikeAssigned = new HashSet<>();
-        while (bikeAssigned.size() < n) {
-        int[] workerAndBikePair = q.poll();
-        if (res[workerAndBikePair[1]] == -1
-                && !bikeAssigned.contains(workerAndBikePair[2])) {
+        // assign the bikes.
+        Set<Integer> bikeAssigned = new HashSet<>();
 
-            res[workerAndBikePair[1]] = workerAndBikePair[2];
-            bikeAssigned.add(workerAndBikePair[2]);
+        while (bikeAssigned.size() < workers.length) {
+            int[] pair = queue.poll();
+            if (res[pair[1]] == -1
+                    && !bikeAssigned.contains(pair[2])) {
+
+                res[pair[1]] = pair[2];
+                bikeAssigned.add(pair[2]);
+            }
         }
-    }
 
         return res;
+    }
+
+
+
+    private int getDistance(int x1, int y1, int x2, int y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
 }
