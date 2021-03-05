@@ -40,4 +40,33 @@ public class MaxConsecutive {
         }                                                               
         return max;        
     }
+
+    /**
+     * Max Consecutive Ones III
+     * @param A
+     * @param K
+     * @return
+     */
+    public int longestOnes(int[] A, int K) {
+        if(A == null || A.length == 0) {
+            return 0;
+        }
+
+        int left = 0, right;
+
+        for(right = 0; right < A.length; right++) {
+            if(A[right] == 0) {
+                K--;
+            }
+
+            if(K < 0) {
+                if(A[left] == 0) {
+                    K++;
+                }
+                left++;
+            }
+        }
+
+        return right - left;
+    }
 }
