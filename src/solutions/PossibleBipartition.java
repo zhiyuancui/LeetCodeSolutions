@@ -8,6 +8,9 @@ import java.util.Map;
 public class PossibleBipartition {
 
     public boolean possibleBipartition(int N, int[][] dislikes) {
+        if(N < 1 || dislikes == null || dislikes.length == 0) {
+            return true;
+        }
         Map<Integer, List<Integer>> graph = new HashMap<>();
         Map<Integer, Integer> color = new HashMap<>();
 
@@ -37,13 +40,13 @@ public class PossibleBipartition {
         }
 
         color.put(node, c);
-
-        for(int next: graph.get(node)) {
-            if(!dfs(next, c ^ 1, graph, color)) {
-                return false;
+        if(graph.containsKey(node)){
+            for(int next: graph.get(node)) {
+                if(!dfs(next, c ^ 1, graph, color)) {
+                    return false;
+                }
             }
         }
-
         return true;
     }
 }

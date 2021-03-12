@@ -42,4 +42,6 @@ public class WebCrawler {
         int index = url.indexOf("/",7);
         return index == -1 ? url : url.substring(0, index);
     }
+
+
 }
