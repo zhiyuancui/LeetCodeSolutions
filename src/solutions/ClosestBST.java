@@ -2,6 +2,7 @@ package solutions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Stack;
 
 import util.TreeNode;
@@ -27,7 +28,11 @@ public class ClosestBST {
 public List<Integer> closestKValues(TreeNode root, double target, int k) {
         
         List<Integer> result = new ArrayList<Integer>();
-        
+
+    PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> {
+        return (int)(Math.abs(b-target) - Math.abs(a-target));
+    });
+
         Stack<Integer> successors = new Stack<Integer>();
         Stack<Integer> predecessors = new Stack<Integer>();
         
