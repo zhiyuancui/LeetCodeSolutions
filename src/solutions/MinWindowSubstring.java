@@ -20,7 +20,6 @@ public class MinWindowSubstring {
         
         while(right < s.length()) {
             if(hashMap[s.charAt(right)] > 0) {
-
                 count++;
             }
             hashMap[s.charAt(right)]--;

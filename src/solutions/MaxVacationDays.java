@@ -24,4 +24,43 @@ public class MaxVacationDays {
             }
         }
     }
+
+    public int maxVacationDays2(int[][] flights, int[][] days) {
+        if(flights == null || days == null) {
+            return 0;
+        }
+
+        int n = flights.length;
+        int k = days[0].length;
+
+        int[] dp = new int[n];
+
+        boolean[] reached = new boolean[n];
+        reached[0] = true;
+
+        int week = 0;
+
+        while(week < k) {
+            int[] tmp = dp.clone();
+            for(int i = 0; i < n; i++) {
+                for(int j = 0; j < n; j++) {
+                    if(flights[i][j] == 1 || i == j) {
+                        if(!reached[i]) continue;
+                        reached[j] = true;
+                        tmp[j] = Math.max(tmp[j], dp[i] + days[j][week]);
+                    }
+                }
+            }
+            dp = tmp;
+            week++;
+        }
+
+        int max = 0;
+
+        for(int d : dp) {
+            max = Math.max(max, d);
+        }
+
+        return max;
+    }
 }
