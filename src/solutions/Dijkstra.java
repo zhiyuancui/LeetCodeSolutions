@@ -21,13 +21,15 @@ public class Dijkstra {
 
         while(!queue.isEmpty()) {
             int cur = queue.poll();
-            for(int next : graph.get(cur).keySet()) {
-                if(!visited.contains(next)) {
-                    int min = dist.getOrDefault(next, Integer.MAX_VALUE);
-                    min = Math.min(min, graph.get(cur).get(next));
-                    dist.put(next, min);
-                    visited.add(next);
-                    queue.add(next);
+            if(graph.containsKey(cur)) {
+                for (int next : graph.get(cur).keySet()) {
+                    if (!visited.contains(next)) {
+                        int min = dist.getOrDefault(next, Integer.MAX_VALUE);
+                        min = Math.min(min, graph.get(cur).get(next));
+                        dist.put(next, min);
+                        visited.add(next);
+                        queue.add(next);
+                    }
                 }
             }
         }
