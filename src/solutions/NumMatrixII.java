@@ -9,58 +9,65 @@ package solutions;
  */
 
 public class NumMatrixII {
-	
-	int[][] tree;
-	int[][] nums;
-	int rowNum;
-	int colNum;
-	
-	public NumMatrixII(int[][] matrix) {
-        if( matrix.length == 0 || matrix[0].length == 0 ){
-        	return;
+
+    int row = 0;
+    int col = 0;
+    int[][] copy;
+    int[][] BITree;
+
+    public NumMatrixII(int[][] matrix) {
+        if(matrix.length == 0 || matrix[0].length == 0) {
+            return;
         }
-        
-        rowNum = matrix.length;
-        colNum = matrix[0].length;
-        
-        tree = new int[rowNum+1][colNum+1];
-        nums = new int[rowNum][colNum];
-        
-        for(int i = 0; i < rowNum; i++ ){
-        	for(int j = 0; j < colNum; j++){
-        		update(i,j, matrix[i][j]);
-        	}
+
+        row = matrix.length;
+        col = matrix[0].length;
+
+        copy = new int[row][col];
+        BITree = new int[row+1][col+1];
+
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                update(i,j, matrix[i][j]);
+                copy[i][j] = matrix[i][j];
+            }
         }
     }
 
-    public void update(int row, int col, int val) {
-        if( rowNum == 0 || colNum == 0 ){
-        	return;
-        }
-        
-        int delta = val - nums[ row ][ col ];
-        for(int i = row + 1; i <= rowNum; i += i &(-i) ){
-        	for(int j = col + 1; j <= colNum; j += j & (-j) ){
-        		tree[i][j] += delta;
-        	}
+    public void update(int i, int j, int val) {
+        int diff = val - copy[i][j];
+
+        copy[i][j] = val;
+
+        i++;
+        j++;
+        while(i <= row) {
+            int k = j;
+            while(k <= col) {
+                BITree[i][k] += diff;
+                k += k & (-k);
+            }
+            i += i & (-i);
         }
     }
 
     public int sumRegion(int row1, int col1, int row2, int col2) {
-        if( rowNum == 0 || colNum == 0 ){
-        	return 0;
-        }
-        
-        return sum(row2+1, col2+1) + sum(row1, col1) - sum(row1, col2+1) - sum(row2+1, col1);
+        return sum(row2, col2) - sum(row1-1, col2) - sum(row2, col1-1) + sum(row1-1, col1-1);
     }
-    
-    private int sum(int row, int col){
-    	int sum = 0;
-    	for(int i = row; i > 0; i-=i&(-i)){
-    		for(int j = col; j > 0; j -= j &(-j) ){
-    			sum += tree[i][j];
-    		}
-    	}
-    	return sum;
+
+    private int sum(int i, int j){
+        int sum = 0;
+        i++;
+        j++;
+        while(i > 0) {
+            int k = j;
+            while(k > 0) {
+                sum += BITree[i][k];
+                k -= k & (-k);
+            }
+            i -= i & (-i);
+        }
+
+        return sum;
     }
 }

@@ -11,7 +11,7 @@ public class MaxWidthRamp {
             copy[i] = i;
         }
 
-        Arrays.sort(copy, Comparator.comparingInt(a -> nums[(int) a]));
+        //Arrays.sort(copy, Comparator.comparingInt(a -> nums[(int) a]));
 
 
         int max = 0;

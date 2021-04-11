@@ -1,40 +1,48 @@
 package solutions;
 
 import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class PerfectRectangle {
 	public boolean isRectangleCover(int[][] rectangles) {
-        if (rectangles.length == 0 || rectangles[0].length == 0) return false;
-
-        int x1 = Integer.MAX_VALUE;
-        int x2 = Integer.MIN_VALUE;
-        int y1 = Integer.MAX_VALUE;
-        int y2 = Integer.MIN_VALUE;
-        
-        HashSet<String> set = new HashSet<String>();
-        int area = 0;
-        
-        for (int[] rect : rectangles) {
-            x1 = Math.min(rect[0], x1);
-            y1 = Math.min(rect[1], y1);
-            x2 = Math.max(rect[2], x2);
-            y2 = Math.max(rect[3], y2);
-            
-            area += (rect[2] - rect[0]) * (rect[3] - rect[1]);
-            
-            String s1 = rect[0] + " " + rect[1];
-            String s2 = rect[0] + " " + rect[3];
-            String s3 = rect[2] + " " + rect[3];
-            String s4 = rect[2] + " " + rect[1];
-            
-            if (!set.add(s1)) set.remove(s1);
-            if (!set.add(s2)) set.remove(s2);
-            if (!set.add(s3)) set.remove(s3);
-            if (!set.add(s4)) set.remove(s4);
+        if(rectangles == null || rectangles.length == 0) {
+            return false;
         }
-        
-        if (!set.contains(x1 + " " + y1) || !set.contains(x1 + " " + y2) || !set.contains(x2 + " " + y1) || !set.contains(x2 + " " + y2) || set.size() != 4) return false;
-        
-        return area == (x2-x1) * (y2-y1);
+
+        Set<int[]> set = new TreeSet<>((int[] a, int[]b) -> {
+            if(a[3] <= b[1]) {
+                return -1;
+            } else if(a[1] >= b[3]) {
+                return 1;
+            } else if(a[2] <= b[0]) {
+                return -1;
+            } else if(a[0] >= b[2]) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        int area = 0;
+        int minX = Integer.MAX_VALUE;
+        int minY = Integer.MAX_VALUE;
+        int maxX = Integer.MIN_VALUE;
+        int maxY = Integer.MIN_VALUE;
+
+        for(int[] rect: rectangles) {
+            area += (rect[2] - rect[0]) * (rect[3] - rect[1]);
+
+            minX = Math.min(minX, rect[0]);
+            minY = Math.min(minY, rect[1]);
+            maxX = Math.max(maxX, rect[2]);
+            maxY = Math.max(maxY, rect[3]);
+
+            if(!set.add(rect)) {
+                return false;
+            }
+        }
+
+        return (maxY - minY) * (maxX - minX) == area;
     }
 }

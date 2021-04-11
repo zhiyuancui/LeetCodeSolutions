@@ -74,7 +74,7 @@ public class TaskScheduler {
 	}
 
 
-    public int leastInterval2(char[] tasks, int n) {
+    public int leastInterval3(char[] tasks, int n) {
         int[] frequencies = new int[26];
         for(int t : tasks) {
             frequencies[t-'A']++;

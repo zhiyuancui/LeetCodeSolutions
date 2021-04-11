@@ -9,7 +9,7 @@ import java.util.Stack;
 public class BSTIterator2 {
     int index = 0;
     List<Integer> list = new ArrayList<>();
-    public BSTIterator(TreeNode root) {
+    public BSTIterator2(TreeNode root) {
         Stack<TreeNode> stack = new Stack<>();
         while(!stack.isEmpty() || root != null) {
             while(root != null) {

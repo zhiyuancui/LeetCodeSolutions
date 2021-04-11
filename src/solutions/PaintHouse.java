@@ -19,7 +19,6 @@ public class PaintHouse {
 	 * @param costs
 	 * @return
 	 */
-	public int minCostII(int[][] costs) {
 		public int minCostII(int[][] costs) {
 			if(costs == null || costs.length == 0) {
 				return 0;
@@ -73,7 +72,7 @@ public class PaintHouse {
 			}
 			return dp[n-1][leastMin];
 		}
-	}
+
 	
 	
 	/**

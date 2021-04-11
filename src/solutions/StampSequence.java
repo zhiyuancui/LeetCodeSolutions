@@ -20,7 +20,7 @@ public class StampSequence {
         int[] pmt = buildPMT(stamp);
 
         boolean success = divideConquer(0, tlen, stamp, target, pmt);
-        if(!success) return new int[];
+        if(!success) return new int[0];
 
         int[] res = new int[result.size()];
 

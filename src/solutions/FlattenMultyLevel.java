@@ -1,6 +1,13 @@
 package solutions;
 
+import java.util.Stack;
+
 public class FlattenMultyLevel {
+    class Node {
+        Node next;
+        Node prev;
+        Node child;
+    }
     public Node flatten(Node head) {
         if(head == null) {
             return head;

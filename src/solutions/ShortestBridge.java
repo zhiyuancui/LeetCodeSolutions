@@ -1,5 +1,8 @@
 package solutions;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ShortestBridge {
     public void dfs(int a[][], int i, int j) {
         if (i < 0 || i >= a.length || j < 0 ||  j >= a[0].length || a[i][j] == 0 || a[i][j] == 2) return;

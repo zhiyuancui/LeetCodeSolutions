@@ -124,6 +124,4 @@ public class BuildTree {
         root.right = buildTree(start+left+1, end+left, size-1-left, pre, post);
         return root;
     }
-    }
-
 }
