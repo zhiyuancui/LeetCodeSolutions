@@ -23,6 +23,34 @@ public class RemoveAllAdjacentDuplicates {
         return sb.toString();
     }
 
+    /**
+     *
+     * @param S
+     * @return
+     */
+    public String removeDuplicates2(String S) {
+        if(S == null || S.length() == 0) {
+            return S;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
+        for(char c : S.toCharArray()) {
+            if(!stack.isEmpty() && stack.peek() == c) {
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+
+        while(!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+
+        return sb.reverse().toString();
+    }
+
+
     public String removeDuplicates(String s, int k) {
         StringBuilder sb = new StringBuilder(s);
 
