@@ -33,10 +33,6 @@ public class Dijkstra {
                 }
             }
         }
-
-        for(int node: dist.keySet()) {
-            System.out.println(node+ " : " + dist.get(node));
-        }
     }
 
     public static void main(String[] args) {

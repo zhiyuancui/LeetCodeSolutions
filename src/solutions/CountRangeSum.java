@@ -5,7 +5,7 @@ package solutions;
  * https://www.hrwhisper.me/binary-indexed-tree-fenwick-tree/
  * Reference to https://leetcode.com/discuss/79083/share-my-solution
  * @author Zhiyuan
- *
+ *https://leetcode-cn.com/problems/count-of-range-sum/solution/qu-jian-he-de-ge-shu-by-leetcode-solution/
  */
 public class CountRangeSum {
 	public int countRangeSum(int[] nums, int lower, int upper) {
@@ -58,7 +58,9 @@ public class CountRangeSum {
 	        for (int j = i + 1; j <= n; ++j)
 	            if (sums[j] - sums[i] >= lower && sums[j] - sums[i] <= upper)
 	                ans++;
-	    return ans;
+		Integer i = new Integer(123);
+		i.hashCode();
+
+	            return ans;
 	}
-	
 }

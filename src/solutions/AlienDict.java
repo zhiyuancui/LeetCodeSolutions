@@ -27,71 +27,70 @@ import java.util.Set;
 
 public class AlienDict {
 	public String alienOrder(String[] words) {
-        Map<Character, Set<Character>> map = new HashMap<Character, Set<Character>>();
-        Map<Character, Integer> degree = new HashMap<Character, Integer>();
-        
-        String result = "";
-        
-        if( words == null || words.length == 0 ){
-        	return result;
-        }
-        
-        for(String s : words ){
-        	for( char c : s.toCharArray() ){
-        		degree.put(c,0);
-        	}
-        }
-        
-        for(int i = 0; i < words.length - 1; i++){
-        	String cur = words[i];
-        	String next = words[i+1];
-        	
-        	int length = Math.min(cur.length(), next.length());
-        	
-        	for(int j = 0; j < length; j++){
-        		char c1 = cur.charAt(j);
-        		char c2 = next.charAt(j);
-        		if( c1 != c2 ){
-        			Set<Character> set = new HashSet<Character>();
-        			if( map.containsKey(c1) ){
-        				set = map.get(c1);
-        			}
-        			if( !set.contains(c2) ){
-        				set.add(c2);
-        				map.put(c1,set);
-        				degree.put( c2, degree.get(c2) + 1);
-        			}
-        			break;
-        		}
-        	}
-        }
-        
-        Queue<Character> q = new LinkedList<Character>();
-        
-        for( char c: degree.keySet() ){
-        	if( degree.get(c) == 0 ){
-        		q.offer(c);
-        	}
-        }
-        
-        while( !q.isEmpty() ){
-        	char cur = q.poll();
-        	
-        	result += cur;
-        	if( map.containsKey(cur) ){
-        		for( char c2 : map.get( cur ) ){
-        			degree.put(c2, degree.get(c2) - 1);
-        			if( degree.get(c2) == 0 ){
-        				q.offer( c2 );
-        			}
-        		}
-        	}
-        }
-        
-        if( result.length() != degree.size() ){
-        	return "";
-        }
-        
-        return result;
-    }
+		if(words == null || words.length == 0) {
+			return "";
+		}
+
+		Map<Character, Set<Character>> graph = new HashMap<>();
+		Map<Character, Integer> indegree = new HashMap<>();
+
+		for(String s : words ){
+			for( char c : s.toCharArray() ){
+				indegree.put(c,0);
+			}
+		}
+
+		for(int i = 0; i < words.length - 1; i++) {
+			String word1 = words[i];
+			String word2 = words[i+1];
+
+			if (word1.length() > word2.length() && word1.startsWith(word2)) {
+				return "";
+			}
+
+			int len = Math.min(word1.length(), word2.length());
+			for(int j = 0; j <len; j++) {
+				char c1 = word1.charAt(j);
+				char c2 = word2.charAt(j);
+
+				if(c1 != c2) {
+					Set<Character> next = graph.getOrDefault(c1, new HashSet<>());
+					graph.put(c1, next);
+					if(!next.contains(c2)) {
+						next.add(c2);
+						indegree.put(c2, indegree.get(c2)+1);
+					}
+					break;
+				}
+			}
+		}
+
+
+		Queue<Character> queue = new LinkedList<>();
+		for(char key : indegree.keySet()) {
+			if(indegree.get(key) == 0) {
+				queue.add(key);
+			}
+		}
+
+		StringBuilder sb = new StringBuilder();
+		while(!queue.isEmpty()) {
+			char cur = queue.poll();
+			sb.append(cur);
+			if(graph.containsKey(cur)) {
+				for(char next : graph.get(cur)) {
+					indegree.put(next, indegree.get(next)-1);
+					if(indegree.get(next) == 0) {
+						queue.add(next);
+					}
+				}
+			}
+		}
+
+		if(sb.length() != indegree.size()) {
+			return "";
+		}
+
+		return sb.toString();
+	}
 }

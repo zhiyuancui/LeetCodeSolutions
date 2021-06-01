@@ -2,6 +2,10 @@ package solutions.amazon;
 
 import util.TreeNode;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+
 public class RecoverBST {
 
 	private TreeNode first = null;
@@ -23,6 +27,11 @@ public class RecoverBST {
     }
     
     public void travel( TreeNode root ) {
+
+        int[] nums = new int[3];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        Arrays.sort(nums);
+
         if( root == null ) {
             return;
         }

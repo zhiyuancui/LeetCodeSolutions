@@ -11,8 +11,8 @@ public class MergeKLists {
         if( lists == null || lists.length == 0 ){
             return null;
         }
-        
-        Queue<ListNode> heap = new PriorityQueue<ListNode>( lists.length, new ListNodeComparator() );
+
+        Queue<ListNode> heap = new PriorityQueue<ListNode>( lists.length, (a,b) -> a.val - b.val);
     
         for( ListNode list : lists ){
             if( list != null ){
@@ -33,18 +33,5 @@ public class MergeKLists {
         }
         
         return dummy.next;
-    }
-
-    private class ListNodeComparator implements Comparator<ListNode>{
-        public int compare(ListNode l1, ListNode l2){
-            if( l1 == null ){
-                return 1;
-            }else if( l2 == null ){
-                return 2;
-            }else{
-                return l1.val - l2.val;
-            }
-            
-        }
     }
 }

@@ -10,18 +10,42 @@ public class ReversePairs {
 	 * @param nums
 	 * @return
 	 */
-	public int reversePairs(int[] nums) {
-	        return mergeSort(nums, 0, nums.length-1);
-	    }
-    private int mergeSort(int[] nums, int s, int e){
-        if(s>=e) return 0; 
-        int mid = s + (e-s)/2; 
-        int cnt = mergeSort(nums, s, mid) + mergeSort(nums, mid+1, e); 
-        for(int i = s, j = mid+1; i<=mid; i++){
-            while(j<=e && nums[i]/2.0 > nums[j]) j++; 
-            cnt += j-(mid+1); 
+    public int reversePairs(int[] nums) {
+        if(nums == null || nums.length < 2) {
+            return 0;
         }
-        Arrays.sort(nums, s, e+1); 
-        return cnt; 
+
+        return sort(nums, 0, nums.length - 1);
+    }
+
+    private int sort(int[] nums, int left, int right) {
+        if(left == right) {
+            return 0;
+        }
+
+        int mid = left + (right - left) / 2;
+
+        return sort(nums, left, mid) +
+                sort(nums, mid + 1, right) + merge(nums, left, mid, right);
+    }
+
+    private int merge(int[] nums, int left, int mid, int right) {
+        int p1 = left;
+        int p2 = mid + 1;
+        int res = 0;
+        int i = 0;
+
+        while(p1 <= mid && p2 <= right) {
+            if(nums[p1] > 2* (long)nums[p2]) {
+                res += mid - p1 + 1;
+                p2++;
+            } else {
+                p1++;
+            }
+        }
+
+        Arrays.sort(nums, left, right+1);
+
+        return res;
     }
 }

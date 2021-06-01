@@ -14,7 +14,7 @@ public class ExpressionAddOperators {
         
         for(int i = 1; i <= num.length(); i++){
             if( i >= 2 && num.charAt(0) == '0' ){
-                continue;
+                break;
             }
             bfs(num.substring(i),num.substring(0,i),target,0,Long.parseLong(num.substring(0,i)),true);
         }
@@ -35,7 +35,7 @@ public class ExpressionAddOperators {
         
         for(int i = 1; i <= s.length(); i++){
             if( i >= 2 && s.charAt(0) == '0' ){
-                continue;
+                break;
             }
             int number = Integer.parseInt( s.substring(0,i) );
             bfs( s.substring(i), trace+"+"+number, target,sum, number, true);
