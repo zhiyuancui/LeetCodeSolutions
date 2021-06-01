@@ -105,7 +105,7 @@ public class Formula {
                     cache.put(nextKey, value);
                 }
                 result += sign * value;
-                i++;
+                i += nextKey.length()-1;
             } else if(formula.charAt(i) == '+') {
                 sign = 1;
             } else if(formula.charAt(i) == '-') {
@@ -146,6 +146,7 @@ public class Formula {
             Assert.assertEquals(0, f.question2WithDFS("T2", new String[]{"T1 = 1", "T2 = 2 + T4", "T3 = T1 - 4", "T4 = T1 + T3"}));
             Assert.assertEquals(10, f.question2WithDFS("T3", new String[]{"T1 = 4", "T2 = 3", "T3 = T4 + T5", "T4=T1-T2+2", "T5 = T4 + T1"}));
             Assert.assertEquals(-25, f.question2WithDFS("T3", new String[]{"T1 =-3", "T2 = 8", "T3 = +T4 +T5", "T4 = T1- T2", "T5 = T4 + T1"}));
+            Assert.assertEquals(2, f.question2WithDFS("AA1", new String[]{"AA1 = AB1 + 1", "AB1=1"}));
             //加visited
             //f.question2WithDFS("T3", new String[]{"T1 = T2", "T2 = T3", "T3 = T1"});
             //f.question2WithDFS("T2", new String[]{"T1 = 1", "T1 = T2 + 2", "T2 = 4 - T1"});
