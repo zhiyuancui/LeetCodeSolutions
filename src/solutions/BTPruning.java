@@ -2,43 +2,40 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 814 Binary Tree Pruning
+ */
 public class BTPruning {
     public TreeNode pruneTree(TreeNode root) {
         if(root == null) {
             return root;
         }
 
-        boolean hasOne = hasOne(root);
+        int result = helper(root);
 
-        if(hasOne) {
-            return root;
-        } else {
-            return root.val == 1? root : null;
-        }
+        return result == 0 ? null : root;
     }
 
-    private boolean hasOne(TreeNode root) {
+    private int helper(TreeNode root) {
         if(root == null) {
-            return false;
+            return 0;
         }
 
-        boolean left = hasOne(root.left);
-        boolean right = hasOne(root.right);
+        int left = helper(root.left);
+        int right = helper(root.right);
 
-        //System.out.println("root " + root.val + left +" " + right);
-
-        if(!left) {
+        if(left == 0) {
             root.left = null;
         }
 
-        if(!right) {
+        if(right == 0) {
             root.right = null;
         }
 
-        if(left || right) {
-            return true;
+        if(root.val == 1 || left == 1 || right == 1) {
+            return 1;
         } else {
-            return root.val == 1;
+            return 0;
         }
     }
 }

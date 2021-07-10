@@ -1,49 +1,47 @@
 package solutions;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 764. Largest Plus Sign
+ */
 public class LargestPlusSign {
-    public int orderOfLargestPlusSign(int N, int[][] mines) {
-        Set<Integer> banned = new HashSet<>();
-        int[][] dp = new int[N][N];
-
-        for(int[] mine: mines) {
-            banned.add(mine[0]*N + mine[1]);
+    public int orderOfLargestPlusSign(int n, int[][] mines) {
+        if(n < 1 || mines == null) {
+            return 0;
         }
 
-        int ans = 0, count;
+        int[][] grid = new int[n][n];
 
-        for(int i = 0; i < N; i++) {
-            count = 0;
-            for(int j = 0; j < N; j++) {
-                count = banned.contains(i*N+ j) ? 0 : count + 1;
-                dp[i][j] = count;
-            }
-
-            count = 0;
-            for(int j = N -1; j >= 0; j--) {
-                count = banned.contains(i*N +j) ? 0 : count + 1;
-                dp[i][j] = Math.min(dp[i][j], count);
-            }
+        for(int i = 0; i < n; i++) {
+            Arrays.fill(grid[i], n);
         }
 
-        for(int j = 0; j < N; j++) {
-            count = 0;
-            for(int i = 0; i < N; i++) {
-                count = banned.contains(i*N+j) ? 0 : count + 1;
-                dp[i][j] = Math.min(dp[i][j], count);
-            }
+        for(int[] m : mines) {
+            grid[m[0]][m[1]] = 0;
+        }
 
-            count = 0;
-            for(int i =N-1; i >= 0; i--) {
-                count = banned.contains(i*N+j) ? 0 : count + 1;
-                dp[i][j] = Math.min(dp[i][j], count);
-                ans = Math.max(ans, dp[i][j]);
+        for(int i = 0; i < n; i++) {
+            for(int j = 0, k = n - 1, left = 0, right = 0, up = 0, down = 0; j < n; j++, k--) {
+                grid[i][j] = Math.min(grid[i][j], left = (grid[i][j] == 0 ? 0 : left + 1));
+
+                grid[i][k] = Math.min(grid[i][k], right = (grid[i][k] == 0 ? 0: right + 1));
+
+                grid[j][i] = Math.min(grid[j][i], up = (grid[j][i] == 0 ? 0 : up + 1));
+                grid[k][i] = Math.min(grid[k][i], down = (grid[k][i] == 0 ? 0 : down + 1));
             }
         }
 
+        int res = 0;
 
-        return ans;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                res = Math.max(res, grid[i][j]);
+            }
+        }
+
+        return res;
     }
 }

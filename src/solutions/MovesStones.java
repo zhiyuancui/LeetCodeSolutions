@@ -27,33 +27,24 @@ public class MovesStones {
     public int[] numMovesStonesII(int[] stones) {
         Arrays.sort(stones);
 
-        if(stones[stones.length - 1] - stones[0] + 1 == stones.length) {
-            return new int[]{0,0};
-        }
-
         int len = stones.length;
 
-        int max = 1 + Math.max(stones[len-1] - stones[1] + 1 -len, stones[len-2]-stones[0]+1-len);
-        int min = Integer.MAX_VALUE;
+        int max = stones[len - 1] - stones[0] + 1 - len;
+        max -= Math.min(stones[len-1] - stones[len-2] - 1, stones[1] - stones[0] - 1);
 
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(stones[0]);
+        int min = max;
+        int i = 0;
+        int j = 0;
 
-        for(int i = 1; i < stones.length; i++) {
-            if(stones[i] - queue.peek() + 1>= len) {
-                if(stones[i] - queue.peek() + 1 == len) {
-                    min = Math.min(min, len - queue.size() -1);
-                } else {
-                    if(stones[i] - queue.peek() == len) {
-                        min = 1;
-                    } else {
-                        int m = Math.max(2, len - queue.size());
-                        min = Math.min(min, m);
-                    }
-                }
-                queue.poll();
+        for(i = 0; i < len; i++) {
+            while(j+1 < len && stones[j+1] - stones[i] + 1 <= len) {
+                j++;
             }
-            queue.add(stones[i]);
+            int cost = len - (j - i + 1);
+            if(j - i + 1 == len - 1 && stones[j] - stones[i] + 1 == len - 1) {
+                cost = 2;
+            }
+            min = Math.min(min, cost);
         }
 
         return new int[]{min, max};

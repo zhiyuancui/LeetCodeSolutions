@@ -4,27 +4,51 @@ import java.util.Arrays;
 
 public class GetMaximumGold {
     public int getMaximumGold(int[][] grid) {
+        if(grid == null || grid.length == 0) {
+            return 0;
+        }
+
+        int row = grid.length;
+        int col = grid[0].length;
+
         int max = 0;
-        for (int i = 0; i<grid.length; i++)
-            for (int j = 0; j< grid[0].length; j++)
-                if (grid[i][j] != 0)
-                    max = Math.max(max, helper(grid, i, j));
+
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(grid[i][j] > 0) {
+                    max = Math.max(max, dfs(grid, i, j, 0));
+                }
+            }
+        }
 
         return max;
     }
 
-    private int helper(int[][] grid, int i, int j) {
-        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] <= 0)
-            return 0;
-        int k = grid[i][j];
-        grid[i][j] *= -1;
-        int[] t = new int[4];
-        t[0] = helper(grid, i - 1, j);
-        t[1] = helper(grid, i + 1, j);
-        t[2] = helper(grid, i, j - 1);
-        t[3] = helper(grid, i, j + 1);
-        grid[i][j] *= -1;
-        return k + Arrays.stream(t).max().getAsInt();
+    int[] dx = new int[]{0,0,1,-1};
+    int[] dy = new int[]{1,-1,0,0};
+
+    private int dfs(int[][] grid, int x, int y,  int prev) {
+
+        int row = grid.length;
+        int col = grid[0].length;
+
+        if( x < 0 || y < 0 || x >= row || y >= col || grid[x][y] == 0) {
+            return prev;
+        }
+
+        int cur = grid[x][y];
+        prev += grid[x][y];
+        grid[x][y] = 0;
+
+        int max = 0;
+        max = Math.max(max, dfs(grid, x+1, y, prev));
+        max = Math.max(max, dfs(grid, x-1, y, prev));
+        max = Math.max(max, dfs(grid, x, y+1, prev));
+        max = Math.max(max, dfs(grid, x, y-1, prev));
+
+        grid[x][y] = cur;
+
+        return max;
     }
 }
 

@@ -2,6 +2,11 @@ package solutions;
 
 public class MaxConsecutive {
 
+    /**
+     * 485. Max Consecutive Ones
+     * @param nums
+     * @return
+     */
 	public int findMaxConsecutiveOnes(int[] nums) {
         
         int max = 0;

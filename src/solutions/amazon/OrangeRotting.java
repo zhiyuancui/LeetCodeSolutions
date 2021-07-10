@@ -1,90 +1,58 @@
 package solutions.amazon;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * 994 Rotting Oranges
+ */
 class OrangeRotting {
-    public int orangesRotting(int[][] grid) {
-        if(grid == null || grid.length == 0) {
-            return 0;
-        }
-
-        int count = 0;
-        int total = 0;
-        int row = grid.length;
-        int col = grid[0].length;
-
-        for(int i =0; i < row; i++) {
-            for(int j = 0; j < col; j++) {
-                if(grid[i][j] == 2 || grid[i][j] == 1) {
-                    total++;
-                }
-            }
-        }
-
-        int rotten = -1;
-        while(true) {
-
-            int next = isRotten(grid);
-            if(next == total) {
-                break;
-            } else if(next == rotten) {
-                return -1;
-            }
-            grid = simulate(grid);
-            rotten = next;
-            count++;
-        }
-
-        return count;
-    }
-
-
-
-    private int isRotten(int[][] grid) {
-        int row = grid.length;
-        int col = grid[0].length;
-
-        int rotten = 0;
-
-        for(int i =0; i < row; i++) {
-            for(int j = 0; j < col; j++) {
-                if(grid[i][j] == 2) {
-                    rotten++;
-                }
-            }
-        }
-
-        return rotten;
-    }
-
-
     int[] dx = new int[]{0,0,-1,1};
     int[] dy = new int[]{1,-1,0,0};
 
-    private int[][] simulate(int[][] grid) {
+    public int orangesRotting(int[][] grid) {
         int row = grid.length;
         int col = grid[0].length;
 
-        int[][] newgrid = new int[row][col];
-        //copy
+        Queue<int[]> queue = new LinkedList<>();
+
+        int count = 0;
         for(int i = 0; i < row; i++) {
-            for(int j = 0; j < col; j++){
-                newgrid[i][j] = grid[i][j];
+            for(int j = 0; j < col; j++) {
+                if(grid[i][j] == 1) {
+                    count++;
+                } else if(grid[i][j] == 2) {
+                    queue.add(new int[]{i,j});
+                }
             }
         }
 
-        for(int i =0; i < row; i++) {
-            for(int j = 0; j < col; j++) {
-                if(grid[i][j] == 2) {
-                    for(int k = 0; k < dx.length; k++) {
-                        int nx = i + dx[k];
-                        int ny = j + dy[k];
-                        if(nx >= 0 && nx < row && ny >= 0 && ny < col && grid[nx][ny] == 1) {
-                            System.out.println("("+nx+","+ny+") : " + grid[nx][ny]);
-                            newgrid[nx][ny] = 2;
-                        }
+        int steps = 0;
+
+        while(count > 0 && !queue.isEmpty()) {
+            steps++;
+            int size = queue.size();
+
+            for(int i = 0; i < size; i++) {
+                int[] cur = queue.poll();
+
+                for(int j = 0; j < dx.length; j++) {
+                    int newX = cur[0] + dx[j];
+                    int newY = cur[1] + dy[j];
+
+                    if(newX >= 0 && newX < row && newY >= 0 && newY < col && grid[newX][newY] == 1) {
+                        grid[newX][newY] = 2;
+                        count--;
+                        queue.add(new int[]{newX, newY});
                     }
                 }
             }
         }
-        return newgrid;
+
+        if(count > 0) {
+            return -1;
+        } else {
+            return steps;
+        }
     }
 }
