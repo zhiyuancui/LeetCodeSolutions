@@ -5,62 +5,40 @@ import java.util.*;
 // https://leetcode.com/problems/minimum-area-rectangle/discuss/992992/JavaNaive-SolutionOn2-Easy-to-Understand
 public class MinimumAreaRectangle {
     public int minAreaRect(int[][] points) {
-        if(points == null || points.length == 0) {
-            return 0;
-        }
+        SortedMap<Integer, Set<Integer>> xToYPoints = calc(points);
+        int result = Integer.MAX_VALUE;
+        for (int x: xToYPoints.keySet()) {
+            Set<Integer> yPoints = xToYPoints.get(x);
+            if (yPoints.size() < 2) continue;
+            for (int nextX: xToYPoints.tailMap(x + 1).keySet()) {
+                Set<Integer> nextYPoints = xToYPoints.get(nextX);
+                if (nextYPoints.size() < 2) continue;
 
-        int min = Integer.MAX_VALUE;
-        Map<Integer, List<Integer>> sameX = new HashMap<>();
-        Map<Integer, List<Integer>> sameY = new HashMap<>();
+                SortedSet<Integer> candidates = new TreeSet<>(yPoints);
+                candidates.retainAll(nextYPoints);
 
-        for(int[] p : points) {
-            int x = p[0];
-            int y = p[1];
-
-            sameX.putIfAbsent(x, new ArrayList<>());
-            sameY.putIfAbsent(y, new ArrayList<>());
-
-            sameX.get(x).add(y);
-            sameY.get(y).add(x);
-        }
-
-
-        for(int x: sameX.keySet()) {
-            if(sameX.get(x).size() == 1) {
-                continue;
-            }
-
-            List<Integer> list = sameX.get(x);
-
-            for(int j = 0; j < list.size(); j++) {
-                for(int k = j +1; k < list.size(); k++) {
-                    int y1 = list.get(j);
-                    int y2 = list.get(k);
-                    if(y1 == y2 || !sameY.containsKey(y1) || !sameY.containsKey(y2) || sameY.get(y1).size() < 2 || sameY.get(y2).size() < 2) {
-                        continue;
+                int width = nextX - x;
+                int prevValue = -1;
+                for (int candidate: candidates) {
+                    if (prevValue != -1) {
+                        int height = candidate - prevValue;
+                        result = Math.min(result, height * width);
                     }
-
-                    Set<Integer> commonX = new HashSet<>();
-                    Set<Integer> set1 = new HashSet<>();
-                    for(int m : sameY.get(y1)) {
-                        set1.add(m);
-                    }
-                    for (int m : sameY.get(y2)) {
-                        if (set1.contains(m)) {
-                            commonX.add(m);
-                        }
-                    }
-
-                    for (int x1 : commonX) {
-                        if (x1 == x) {
-                            continue;
-                        }
-                        min = Math.min(min, Math.abs(x1 - x) * Math.abs(y1 - y2));
-                    }
+                    prevValue = candidate;
                 }
             }
         }
+        return (result == Integer.MAX_VALUE)? 0: result;
+    }
 
-        return min == Integer.MAX_VALUE ? 0 : min;
+    private SortedMap<Integer, Set<Integer>> calc(int[][] points) {
+        SortedMap<Integer, Set<Integer>> result = new TreeMap<>();
+        for (int[] point: points) {
+            int x = point[0];
+            int y = point[1];
+            Set<Integer> yPoints = result.computeIfAbsent(x, p -> new HashSet<>());
+            yPoints.add(y);
+        }
+        return result;
     }
 }

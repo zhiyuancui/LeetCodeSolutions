@@ -15,10 +15,10 @@ public class KnightDialer {
 
         for(int i = 0; i < n-1; i++) {
             long[] next = new long[4];
-            next[0] = states[1] + states[2];
-            next[1] = 2* states[0];
-            next[2] = 2*states[0] + states[3];
-            next[3] = 2 * states[2];
+            next[0] = states[1] + states[2]; // 1,3,7,9
+            next[1] = 2* states[0];// 2, 8
+            next[2] = 2*states[0] + states[3]; // 4, 6
+            next[3] = 2 * states[2];//0
             states = next;
         }
 

@@ -1,123 +1,71 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+/**
+ * 936 Stamping The Sequence
+ */
 public class StampSequence {
 
-    List<Integer> result = new ArrayList<>();
-    int slen = 0;
-    int tlen = 0;
-
     public int[] movesToStamp(String stamp, String target) {
-        if(stamp == null || target == null) {
-            return new int[]{};
+        char t[] = target.toCharArray();
+        char s[] = stamp.toCharArray();
+
+        int start = 0;
+
+        List<Integer> list = new ArrayList<>();
+
+        boolean[] visited = new boolean[target.length()];
+
+        while(start != target.length()) {
+            boolean doneReplace = false;
+
+            for(int i =0; i <= t.length - s.length; i++) {
+                if(!visited[i] && canReplace(t,i,s)) {
+                    start = doreplace(t, i, stamp.length(), start);
+                    list.add(i);
+                    visited[i] = true;
+                    doneReplace = true;
+                    if(start == t.length) {
+                        break;
+                    }
+                }
+            }
+
+            if(!doneReplace) {
+                return new int[0];
+            }
         }
 
-        slen = stamp.length();
-        tlen = target.length();
+        Collections.reverse(list);
+        int[] result = new int[list.size()];
 
-        int[] pmt = buildPMT(stamp);
-
-        boolean success = divideConquer(0, tlen, stamp, target, pmt);
-        if(!success) return new int[0];
-
-        int[] res = new int[result.size()];
-
-        for(int i =result.size()-1; i >= 0; i--) {
-            res[result.size()-1 - i] = result.get(i);
+        for(int i = 0; i < list.size(); i++) {
+            result[i] = list.get(i);
         }
 
-        return res;
+        return result;
     }
 
-    private boolean divideConquer(int start, int end, String stamp, String target, int[] pmt) {
-        if(start >= end) {
-            return true;
-        }
-
-        int idx = kmpFind(start, end, stamp, target, pmt);
-
-        if(idx >= 0) {
-            result.add(idx);
-            return divideConquer(start, idx, stamp, target, pmt) && divideConquer(idx+slen, end, stamp, target, pmt);
-        }
-
-        while(start < end) {
-            idx = bfFind(start, end, stamp, target);
-            if(idx < 0) {
+    private boolean canReplace(char[] t, int pos, char[] s) {
+        for(int j = 0; j < s.length; j++) {
+            if(t[j+pos] != '*' && s[j] != t[pos+j]) {
                 return false;
             }
-
-            result.add(idx);
-
-            if(idx < start) {
-                start = idx + slen;
-            } else {
-                end = idx;
-            }
         }
-
         return true;
     }
 
-    private int kmpFind(int start, int end, String stamp, String target, int[] pmt) {
-        for(int i = start, j = 0; i < end; i++) {
-            while(j > 0 && target.charAt(i) != stamp.charAt(j)) {
-                j = pmt[j-1];
-            }
-            if(target.charAt(i) == stamp.charAt(j) && ++j == slen) {
-                return i + 1 - slen;
+    private int doreplace(char t[], int pos, int len, int start) {
+        for(int i = 0; i < len; i++) {
+            if(t[i+pos] != '*') {
+                t[i+pos] = '*';
+                start++;
             }
         }
-        return -1;
-    }
-
-    private int bfFind(int start, int end, String stamp, String target) {
-        int firstwin, lastwin;
-        int i, j;
-
-        firstwin = Math.max(start+1-slen, 0);
-        lastwin = Math.min(start-1, tlen - slen);
-
-        for(int winstart = lastwin; winstart >= firstwin; winstart--) {
-            for(j=start-winstart, i=start; j < slen &&(i >= end||target.charAt(i) == stamp.charAt(j)); i++,j++) {
-                if(j == slen) {
-                    return winstart;
-                }
-            }
-        }
-
-        firstwin = Math.max(end-slen, 0);
-        lastwin = Math.min(end-1, tlen - slen);
-
-        for(int winstart = firstwin; winstart <= lastwin; winstart++) {
-            for(j=0,i=winstart; i<end && (i<start || target.charAt(i) == stamp.charAt(j)); i++,j++) {
-                if(i == end) {
-                    return winstart;
-                }
-            }
-        }
-
-        return -1;
-    }
-
-    private int[] buildPMT(String s) {
-        int n = s.length();
-        int j = 0;
-
-        int[] pmt = new int[n];
-        for(int i = 1; i < n; i++) {
-            while( j > 0 && s.charAt(i) != s.charAt(j) ) {
-                j = pmt[j-1];
-            }
-            if(s.charAt(i) == s.charAt(j)) {
-                j++;
-                pmt[i] = j;
-            }
-        }
-
-        return pmt;
+        return start;
     }
 
 }

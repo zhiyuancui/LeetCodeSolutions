@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1094 Car Pooling
+ */
 public class CarPooling {
     public boolean carPooling(int[][] trips, int capacity) {
         int[] timestamp = new int[1001];

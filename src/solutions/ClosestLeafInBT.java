@@ -1,57 +1,67 @@
 package solutions;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
 import util.TreeNode;
 
+/**
+ * 742 Closest Leaf in a Binary Tree
+ * https://leetcode.com/problems/closest-leaf-in-a-binary-tree/discuss/109960/Java-DFS-%2B-BFS-27ms
+ */
 public class ClosestLeafInBT {
-	public int findClosestLeaf(TreeNode root, int k) {
-        Map<TreeNode, TreeNode> backMap = new HashMap<>();   
-        Queue<TreeNode> queue = new LinkedList<>(); 
-        Set<TreeNode> visited = new HashSet<>();   
-    
-        TreeNode kNode = DFS(root, k, backMap);
-        queue.add(kNode);
-        visited.add(kNode);
-        
-    
-        while(!queue.isEmpty()) {
-            TreeNode curr = queue.poll();
-            if(curr.left == null && curr.right == null) {
-                return curr.val;
-            }
-            if(curr.left != null && visited.add(curr.left)) {
-                queue.add(curr.left);
-            }
-            if(curr.right != null && visited.add(curr.right)) {
-                queue.add(curr.right);
-            }
-            if(backMap.containsKey(curr) && visited.add(backMap.get(curr))) { 
-                queue.add(backMap.get(curr));
-            }
-        }
-        return -1; 
+    TreeNode ans;
+    int minDist = Integer.MAX_VALUE;
+
+    public int findClosestLeaf(TreeNode root, int k) {
+        helper(root, k);
+        return ans.val;
     }
-    
-    private TreeNode DFS(TreeNode root, int k, Map<TreeNode, TreeNode> backMap) {
+
+    private int helper(TreeNode root, int k) {
+        if(root == null) {
+            return -1;
+        }
+
         if(root.val == k) {
-            return root;
+            if(root.left == null && root.right == null) {
+                minDist = 0;
+                ans = root;
+            } else {
+                findMinDistLeaf(root.left, 1);
+                findMinDistLeaf(root.right, 1);
+            }
+
+            return 0;
         }
-        if(root.left != null) {
-            backMap.put(root.left, root);
-            TreeNode left = DFS(root.left, k, backMap);
-            if(left != null) return left;
+
+        int left = helper(root.left, k);
+
+        if(left >= 0) {
+            findMinDistLeaf(root.right, left + 1);
+            return left + 1;
         }
-        if(root.right != null) {
-            backMap.put(root.right, root);
-            TreeNode right = DFS(root.right, k, backMap);
-            if(right != null) return right;
+
+        int right = helper(root.right, k);
+        if(right >= 0) {
+            findMinDistLeaf(root.left, right + 1);
+            return right + 1;
         }
-        return null;
+
+        return -1;
+    }
+
+    private void findMinDistLeaf(TreeNode root, int dist) {
+        if(root == null || dist > minDist) {
+            return;
+        }
+
+        if(root.left == null && root.right == null) {
+            if(dist < minDist) {
+                minDist = dist;
+                ans = root;
+            }
+        } else {
+            findMinDistLeaf(root.left, dist + 1);
+            findMinDistLeaf(root.right, dist + 1);
+        }
     }
 }
