@@ -1,34 +1,52 @@
 package solutions;
 
-import java.util.PriorityQueue;
-
+/**
+ * 378 Kth Smallest Element in a Sorted Matrix
+ * https://leetcode-cn.com/problems/kth-smallest-element-in-a-sorted-matrix/solution/er-fen-chao-ji-jian-dan-by-jacksu1024/
+ */
 public class KthSmallestInMatrix {
-	public int kthSmallest(int[][] matrix, int k) { 
-        int n = matrix.length;
-        PriorityQueue<Tuple> q = new PriorityQueue<Tuple>();
-        for(int j = 0; j <= n-1; j++) q.offer(new Tuple(0,j,matrix[0][j]));
-        
-        for(int i = 0; i < k - 1; i++) {
-            Tuple t = q.poll();
-            if( t.x == n - 1 ) continue;
-            q.offer(new Tuple(t.x+1,t.y, matrix[t.x+1][t.y]));
+    public int kthSmallest(int[][] matrix, int k) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        int left = matrix[0][0];
+        int right = matrix[row-1][col-1];
+
+        while(left < right) {
+            int mid = left + (right - left) / 2;
+
+            int count = helper(matrix, mid);
+
+            if(count < k) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
         }
-        
-        return q.poll().val;
+
+        return right;
     }
-    
-    class Tuple implements Comparable<Tuple> {
-        int x,y,val;
-        
-        public Tuple(int x, int y, int val) {
-            this.x = x;
-            this.y = y;
-            this.val = val;
+
+    private int helper(int[][] matrix, int mid) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        int i = row - 1;
+        int j = 0;
+
+        int count = 0;
+
+        //按列查找
+        while(i >= 0 && j < col) {
+            if(matrix[i][j] > mid) {
+                i--;
+            } else {
+                //你现在只能确定这一列，前几个元素比mid小
+                count += i + 1;
+                j++;
+            }
         }
-        
-        @Override
-        public int compareTo(Tuple that) {
-            return this.val - that.val;
-        }
+
+        return count;
     }
 }

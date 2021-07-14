@@ -1,101 +1,58 @@
 package solutions.amazon;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
-
+/**
+ * 767 Reorganize String
+ */
 public class ReorganizeString {
-    public String reorganizeString(String S) {
-        if(S == null || S.length() == 0) {
+    public String reorganizeString(String s) {
+        if(s == null || s.length() == 0) {
             return "";
         }
 
-        int len = S.length();
+        char[] array = s.toCharArray();
 
-        int[] counts = new int[26];
+        int[] count = new int[26];
 
-        for(char c : S.toCharArray()) {
-            counts[c-'a'] += 100;
+        int len = s.length();
+
+        for(int i = 0; i < len; i++) {
+            count[array[i] - 'a']++;
         }
 
-        for(int i = 0; i < 26; i++) {
-            counts[i] += i;
-        }
+        int max = 0;
+        int maxChar = 0;
+        int threshold = (len+1) >> 1;
 
-        Arrays.sort(counts);
-
-        char[] ans = new char[len];
-
-        int t = 1;
-        for(int code: counts) {
-            int count = code / 100;
-            char ch = (char)('a' + (code%100));
-            if( count > (len+1)/2) return "";
-
-            for(int i = 0; i < count; i++) {
-                if( t >= len) {
-                    t = 0;
+        for(int i = 0; i < count.length; i++) {
+            if(count[i] > max) {
+                max = count[i];
+                maxChar = i;
+                if(max > threshold) {
+                    return "";
                 }
-                ans[t] = ch;
-                t += 2;
             }
         }
 
-        return String.valueOf(ans);
-    }
-
-    class Node {
-        int count;
-        char c;
-        public Node(int _count, char _c) {
-            count = _count;
-            c = _c;
-        }
-    }
-
-    /**
-     * Another solution
-     * @param S
-     * @return
-     */
-    public String reorganizeString2(String S) {
-        if(S == null || S.length() == 0 ) {
-            return "";
-        }
-
-        int len = S.length();
         char[] res = new char[len];
 
-        Map<Character, Integer> map = new HashMap<>();
-        for(char c : S.toCharArray()) {
-            int count = map.getOrDefault(c, 0)+1;
-            map.put(c, count);
+        int index = 0;
+        while(count[maxChar] > 0) {
+            res[index] = (char)(maxChar+'a');
+            index += 2;
+            count[maxChar]--;
         }
 
-        PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> b.count - a.count);
-
-        for(char key: map.keySet()) {
-            queue.add(new Node(map.get(key), key));
-        }
-
-        int idx = 0;
-        while(!queue.isEmpty()) {
-            Node cur = queue.poll();
-            System.out.println(cur.count+","+cur.c);
-            char c = cur.c;
-            int count = cur.count;
-            if(count > (len+1)/2) return "";
-            for(int i = 0; i < count; i++) {
-                if(idx >= len) {
-                    idx = 1;
+        for(int i = 0; i < count.length; i++) {
+            while(count[i] > 0) {
+                if(index >= res.length) {
+                    index = 1;
                 }
-                res[idx] = c;
-                idx += 2;
+                res[index] = (char)(i +'a');
+                index += 2;
+                count[i]--;
             }
-
         }
 
-        return String.valueOf(res);
+        return new String(res);
     }
 }

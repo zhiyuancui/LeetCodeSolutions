@@ -2,25 +2,39 @@ package solutions;
 
 public class LastStoneWeight {
 
+    /**
+     * https://leetcode-cn.com/problems/last-stone-weight-ii/solution/gong-shui-san-xie-xiang-jie-wei-he-neng-jgxik/
+     * 1049 Lst Stone Weight II
+     * @param stones
+     * @return
+     */
     public int lastStoneWeightII(int[] stones) {
-        int sum = 0;
-        for(int i =0;i<stones.length;i++){
-            sum+=stones[i];
+        if(stones == null || stones.length == 0) {
+            return 0;
         }
-        int sum1=0;
-        int sum2=0;
-        Integer [][] dp =  new Integer[stones.length][sum+1];
-        int result = aux(dp,0,0,0,stones);
-        return result;
-    }
 
-    public int aux(Integer [][] dp,int sum1, int sum2,int i,int [] stones){
-        if(i<stones.length){
-            if(dp[i][Math.abs(sum1-sum2)]==null){
-                dp[i][Math.abs(sum1-sum2)]= Math.min(aux(dp,sum1+stones[i],sum2,i+1,stones),aux(dp,sum1,sum2+stones[i],i+1,stones));
-            }return dp[i][Math.abs(sum1-sum2)];
+        int len = stones.length;
+
+        int sum = 0;
+        for(int i : stones) {
+            sum += i;
         }
-        return Math.abs(sum1-sum2);
+
+        int target = sum / 2;
+
+        int[][] dp = new int[len+1][target + 1];
+
+        for(int i = 1; i <= len; i++) {
+            int stone = stones[i-1];
+            for(int j = 0; j <= target; j++) {
+                dp[i][j] = dp[i-1][j];
+                if(j >= stone) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i-1][j-stone] + stone);
+                }
+            }
+        }
+
+        return Math.abs(sum - dp[len][target] - dp[len][target]);
     }
 }
 
