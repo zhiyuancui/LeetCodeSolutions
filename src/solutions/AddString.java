@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 415 Add Strings
+ */
 public class AddString {
 	 public String addStrings(String num1, String num2) {
 	        if( num1 == null || num2 == null ) {

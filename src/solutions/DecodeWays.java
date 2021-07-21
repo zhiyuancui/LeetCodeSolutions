@@ -1,6 +1,11 @@
 package solutions;
 
 public class DecodeWays {
+    /**
+     * 91 Decode Ways
+     * @param s
+     * @return
+     */
 	public int numDecodings(String s) {
         if( s == null || s.length() == 0 ){
             return 0;

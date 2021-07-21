@@ -5,27 +5,33 @@ import java.util.Map;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.MOD;
 
+/**
+ * 1155 Number of Dice Rolls With Target Sum
+ * https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/solution/zuo-ti-guo-cheng-ji-lu-dpjie-fa-by-maverickbytes/
+ */
 public class NumRollsToTarget {
-    Map<String,Integer> map = new HashMap<>();
-    int MOD = 1000000000 + 7;
-
     public int numRollsToTarget(int d, int f, int target) {
-        if(d ==0 || (d*f) < target || target <= 0)
-            return 0;
-        if(d == 1 && target <= f)
-            return 1;
-        String key=d+"-"+target;
-        if(map.containsKey(key))
-            return map.get(key);
-        else{
-            int count=0;
-            for(int i=f;i>=1;i--)
-            {
-                count+=numRollsToTarget(d-1,f,target-i);
-                count%=MOD;
-            }
-            map.put(key,count);
-            return count;
+        int MOD = 1000000000 + 7;
+
+        int[][] dp = new int[31][1001];
+
+        int min = Math.min(f, target);
+
+        for(int i = 1; i <= min; i++) {
+            dp[1][i] = 1;
         }
+
+        int max = d * f;
+
+        for(int i = 2; i <= d; i++) {//扔的次数
+            for(int j = i; j <= max; j++) { //扔i次的时候的和j
+                for(int k = 1; j -k >= 0 && k <= f; k++) {//扔的点数
+                    dp[i][j] = (dp[i][j] + dp[i-1][j-k]) % MOD;
+                }
+            }
+        }
+
+
+        return dp[d][target];
     }
 }

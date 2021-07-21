@@ -4,91 +4,51 @@ import java.util.*;
 
 public class OpenLock {
     public int openLock(String[] deadends, String target) {
-        if(deadends == null) {
+        if(target.equals("0000")) {
             return 0;
         }
 
-        Queue<String> queue = new LinkedList<>();
-        queue.add(new String("0000"));
-        Set<String> visited = new HashSet<>();
-        visited.add("0000");
+        Queue<Integer> queue = new LinkedList<>();
 
-        int level = 0;
+        queue.add(0);
+        Set<Integer> visited = new HashSet<>();
 
+        for(String deadend : deadends) {
+            visited.add(Integer.parseInt(deadend));
+        }
+
+        int t = Integer.parseInt(target);
+        if(visited.contains(0)) {
+            // 0000 is deadend
+            return -1;
+        }
+
+        int turns = 1;
         while(!queue.isEmpty()) {
             int size = queue.size();
             for(int i = 0; i < size; i++) {
-                String cur = queue.poll();
+                int curr = queue.poll();
 
-                if(cur.equals(target)) {
-                    return level;
-                }
+                for(int j = 1; j < 10000; j *=10) {
+                    int digit = curr % (j*10) /j, remain = curr - (digit*j);
 
-                for(String next: findNext(cur, deadends, visited)) {
-                    queue.add(next);
+                    for(int k = 1; k < 10; k+=8) {
+                        int next = remain + (digit + k) %10 * j;
+                        if(visited.contains(next)) {
+                            continue;
+                        }
+                        if(next == t) {
+                            return turns;
+                        }
+                        visited.add(next);
+                        queue.add(next);
+                    }
+
                 }
             }
-            level++;
+            turns++;
         }
 
         return -1;
-
-    }
-
-
-    private List<String> findNext(String str, String[] deadends, Set<String> visited) {
-        char[] array = str.toCharArray();
-        List<String> result = new ArrayList<>();
-
-        Set<String> deadend = new HashSet<>(Arrays.asList(deadends));
-        if(deadend.contains(str)) {
-            return new ArrayList<>();
-        }
-
-        for(int i = 0; i < array.length; i++) {
-            String next = turn(array, i, 1);
-            String prev = turn(array, i,-1);
-            if(!deadend.contains(next) && !visited.contains(next)) {
-                visited.add(next);
-                result.add(next);
-            }
-            if(!deadend.contains(prev) && !visited.contains(prev)) {
-                visited.add(prev);
-                result.add(prev);
-            }
-        }
-
-        return result;
-    }
-
-    private String turn(char[] array, int pos, int offset) {
-        char[] clone = clone(array);
-        if(clone[pos] > '0' && clone[pos] < '9') {
-            clone[pos] += offset;
-        } else if(clone[pos] == '0') {
-            if(offset > 0) {
-                clone[pos] = '1';
-            } else {
-                clone[pos] = '9';
-            }
-        } else {
-            if(offset > 0) {
-                clone[pos] = '0';
-            } else {
-                clone[pos] = '8';
-            }
-        }
-
-        return new String(clone);
-
-    }
-
-    private char[] clone(char[] array) {
-        char[] clone = new char[array.length];
-        for(int i = 0; i < array.length; i++) {
-            clone[i] = array[i];
-        }
-
-        return clone;
     }
 }

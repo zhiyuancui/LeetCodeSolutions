@@ -3,6 +3,9 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 282 Expression Add Operators
+ */
 public class ExpressionAddOperators {
 	List<String> result;
     public List<String> addOperators(String num, int target) {

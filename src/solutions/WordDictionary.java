@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 211 Design Add and Search Words Data Structure
+ */
 public class WordDictionary {
 
 	private class TrieNode{

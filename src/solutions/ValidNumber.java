@@ -1,56 +1,35 @@
 package solutions;
 
+/**
+ * 65 Valid Number
+ */
 public class ValidNumber {
-	public boolean isNumber(String s) {
-		s = s.trim();
-        int n = s.length();
-        if (n == 0)
-            return false;
+    public boolean isNumber(String s) {
+        boolean seenDigit = false;
+        boolean seenExponent = false;
+        boolean seenDot = false;
 
-        boolean hasE, hasFirst, hasDot, hasDigit;
-        hasE = hasFirst = hasDot = hasDigit = false;
+        for (int i = 0; i < s.length(); i ++) {
+            char cur = s.charAt(i);
 
-        char c;
-        for (int i = 0; i < n; i++) {
-            c = s.charAt(i);
-
-            if (c >= '0' && c <= '9') {
-                hasFirst = hasDigit = true;
-                continue;
-            }
-
-            switch (c) {
-            /*
-             * case ' ': continue;
-             */ // extend to accept any space everywhere
-            case 'e':
-                // already has 'e' or no digit before 'e'
-                if (hasE || !hasDigit)
+            if (Character.isDigit(cur)) {
+                seenDigit = true;
+            } else if (cur == '+' || cur == '-') {
+                if (i > 0 && s.charAt(i - 1) != 'e' && s.charAt(i - 1) != 'E') {
                     return false;
-                hasE = true;
-
-                // reset for the exponential number
-                hasFirst = hasDigit = false;
-                hasDot = true; 
-                continue;
-            case '+':
-            case '-':
-                if (hasFirst)
-                    return false;
-                hasFirst = true;
-                continue;
-            case '.':
-                if (hasDot)
-                    return false;
-                hasFirst = hasDot = true;
-                continue;
-            default:
+                }
+            } else if (cur == 'e' || cur == 'E') {
+                if (seenExponent || !seenDigit) return false;
+                seenExponent = true;
+                seenDigit = false; // See the second time.
+            } else if (cur == '.') {
+                if (seenDot || seenExponent) return false;
+                seenDot = true;
+            } else {
                 return false;
             }
         }
 
-        return hasDigit;
+        return seenDigit;
     }
-	
-	
 }

@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SubArraySum {
 	/**
-	 * Subarray Sum Equals K
+	 * 560 Subarray Sum Equals K
 	 * @param nums
 	 * @param k
 	 * @return

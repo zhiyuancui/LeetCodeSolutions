@@ -1,7 +1,8 @@
 package solutions;
 
-import java.util.Comparator;
-
+/**
+ * 29 Divide Two Integers
+ */
 public class Divide {
 	
 	public int divide(int dividend, int divisor) {

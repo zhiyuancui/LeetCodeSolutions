@@ -5,64 +5,53 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * 1361 Validate Binary Tree Nodes
+ */
 public class ValidateBTNodes {
     public boolean validateBinaryTreeNodes(int n, int[] leftChild, int[] rightChild) {
-        if( n <= 0 || leftChild.length == 0 || rightChild.length == 0) {
-            return false;
-        }
+        int[] indegree = new int[n];
 
-        int[] degree = new int[n];
-
-        for(int i=0; i < leftChild.length; i++) {
+        for(int i = 0; i < n; i++) {
             if(leftChild[i] != -1) {
-                degree[leftChild[i]]++;
+                indegree[leftChild[i]]++;
+                if(indegree[leftChild[i]] > 1) {
+                    return false;
+                }
             }
+        }
+
+        for(int i = 0; i < n; i++) {
             if(rightChild[i] != -1) {
-                degree[rightChild[i]]++;
+                indegree[rightChild[i]]++;
+                if(indegree[rightChild[i]] > 1) {
+                    return false;
+                }
             }
         }
 
-        Queue<Integer> queue = new LinkedList<>();
-
-        for(int i =0; i < degree.length; i++) {
-            System.out.println(degree[i]);
-            if(degree[i] == 0) {
-                queue.add(i);
+        int root = -1;
+        for(int i = 0; i < indegree.length; i++) {
+            if(indegree[i] == 0) {
+                if(root != -1) {
+                    return false;
+                }
+                root = i;
             }
         }
 
-        Set<Integer> visited = new HashSet<>();
-
-        if(queue.size() != 1) {
+        if(root == -1) {
             return false;
         }
 
-        while(!queue.isEmpty()) {
-            int cur = queue.poll();
-            System.out.println("cur: " +cur);
-            if(visited.contains(cur)) {
-                return false;
-            } else {
-                visited.add(cur);
-            }
-            if(leftChild[cur] != -1) {
-                degree[leftChild[cur]]--;
-                queue.add(leftChild[cur]);
-            }
-            if(rightChild[cur] != -1) {
-                degree[rightChild[cur]]--;
-                queue.add(rightChild[cur]);
-            }
+        return countNodes(leftChild, rightChild, root) == n;
+    }
+
+    private int countNodes(int[] leftChild, int[] rightChild, int root) {
+        if(root == -1) {
+            return 0;
         }
 
-        for(int i = 0; i < degree.length; i++) {
-            System.out.print(degree[i]+", ");
-            if(degree[i] != 0) {
-                return false;
-            }
-        }
-
-        return true;
-
+        return 1 + countNodes(leftChild, rightChild, leftChild[root]) + countNodes(leftChild, rightChild, rightChild[root]);
     }
 }
