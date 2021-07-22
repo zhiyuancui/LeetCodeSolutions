@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 721 Accounts Merge
+ */
 public class AccountsMerge {
 	public List<List<String>> accountsMerge(List<List<String>> accounts) {
 	      List<List<String>> result = new ArrayList<>();

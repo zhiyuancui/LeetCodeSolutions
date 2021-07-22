@@ -3,16 +3,11 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 438 Find All Anagrams in a String
+ */
 public class FindAllAnagrams {
 
-	/**
-	 * Reference to: https://discuss.leetcode.com/topic/64434/shortest-concise-java-o-n-sliding-window-solution
-	 * Time Complexity : O(N)
-	 * Space Complexity : O(256)
-	 * @param s
-	 * @param p
-	 * @return
-	 */
 	public List<Integer> findAnagrams(String s, String p) {
         if(s == null || p == null) {
             return new ArrayList<>();

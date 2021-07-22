@@ -5,14 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 17 Letter Conbinations of a Phone Number
+ */
 public class LetterCombinations {
 
-	/**
-	 * Time Complexity: T(N) = T(N-1) + T(N-2) + .... + T(0) = O(N^2)
-	 * Space Complexity: O(N*resultSet)
-	 * @param digits
-	 * @return
-	 */
 	public List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<String>();
 

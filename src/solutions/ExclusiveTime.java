@@ -3,6 +3,9 @@ package solutions;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * 636 Exclusive Time of Functions
+ */
 public class ExclusiveTime {
 	public int[] exclusiveTime(int n, List<String> logs) {
         int[] res = new int[n];

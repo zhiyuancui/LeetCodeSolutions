@@ -90,8 +90,13 @@ public class Sums {
 	        
 	        return res;
 	    }
-	 
-	 public List<List<Integer>> threeSum(int[] nums) {
+
+	/**
+	 * 15 Three Sum
+	 * @param nums
+	 * @return
+	 */
+	public List<List<Integer>> threeSum(int[] nums) {
 	        List<List<Integer>> rst = new ArrayList<List<Integer>>();
 			if(nums == null || nums.length < 3) {
 				return rst;

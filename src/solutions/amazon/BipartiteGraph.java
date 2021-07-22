@@ -3,6 +3,9 @@ package solutions.amazon;
 import java.util.Arrays;
 import java.util.Stack;
 
+/**
+ * Is Graph Bipartite
+ */
 public class BipartiteGraph {
     public boolean isBipartite(int[][] graph) {
         int n = graph.length;

@@ -3,6 +3,9 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 71 Simplify Path
+ */
 public class SimplifyPath {
 	public String simplifyPath(String path) {
         if( path == null || path.length() == 0 ){

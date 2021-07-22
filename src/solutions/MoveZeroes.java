@@ -10,29 +10,26 @@ package solutions;
 
 public class MoveZeroes {
 
-	public void moveZeroes(int[] nums) {
-	     
-        if( nums == null || nums.length == 0 )
-        {
+    /**
+     * 282 Move Zeroes
+     * @param nums
+     */
+    public void moveZeroes(int[] nums) {
+        if(nums == null || nums.length == 0) {
             return;
-        }   
-        
-        int zero = 0;
-        int operation = 0;
-        for(int i = 0; i < nums.length; i++ )
-        {
-           if( nums[i] != 0 )
-           {
-               if( zero != i )
-               {
-                   nums[ zero ] = nums[i];
-                   nums[i] = 0;
-                   operation+=2;
-               }
-               zero++;
-           }
         }
-        System.out.println( operation );
+
+        int zero = 0;
+
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] != 0) {
+                if(zero != i) {
+                    nums[zero] = nums[i];
+                    nums[i] = 0;
+                }
+                zero++;
+            }
+        }
     }
 	
 	/**

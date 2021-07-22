@@ -2,6 +2,10 @@ package solutions;
 
 import util.TreeNode;
 
+
+/**
+ * 114 Flatten Binary Tree to Linked List
+ */
 public class FlattenTreeToList {
 	public void flatten(TreeNode root) {
         if( root == null )

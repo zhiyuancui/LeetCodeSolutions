@@ -1,10 +1,10 @@
 package solutions;
 
+/**
+ * 31 Next Permutation
+ */
 public class NextPermutation {
-	/**
-	    * Next Permutations
-	    * @param nums
-	    */
+
 	   public void nextPermutation(int[] nums) {
 	       
 	       if( nums == null || nums.length < 2 )

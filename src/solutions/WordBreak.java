@@ -7,6 +7,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class WordBreak {
+    /**
+     * 139 Word Break
+     * @param s
+     * @param wordDict
+     * @return
+     */
 	public boolean wordBreak(String s, List<String> wordDict) {
         if( wordDict == null || wordDict.size() == 0 ){
             return false;

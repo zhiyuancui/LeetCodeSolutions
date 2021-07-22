@@ -71,20 +71,6 @@ public List<Integer> closestKValues(TreeNode root, double target, int k) {
     }
     
     /**
-     * Closest Value in BST
-     * @param root
-     * @param target
-     * @return
-     */
-    public int closestValue(TreeNode root, double target) {
-        int a = root.val;
-        TreeNode kid = target < a ? root.left : root.right;
-        if (kid == null) return a;
-        int b = closestValue(kid, target);
-        return Math.abs(a - target) < Math.abs(b - target) ? a : b;
-    }
-    
-    /**
      * Leetcode 270: Closest Value in BST,  Iterative way
      * @param root
      * @param target

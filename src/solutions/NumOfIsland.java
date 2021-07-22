@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Number of Islands
+ * 200 Number of Islands
  */
 public class NumOfIsland {
 	private int[] dx = {0,0,1,-1};

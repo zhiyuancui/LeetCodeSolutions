@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 543 Diameter of Binary Tree
+ */
 public class DiameterOfBST {
 	int max = 0;
     

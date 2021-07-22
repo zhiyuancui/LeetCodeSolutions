@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 528 Random Pick with Weight
+ */
 public class RandomPickWithWeight {
     int[] prefixSums;
     int totalSum;

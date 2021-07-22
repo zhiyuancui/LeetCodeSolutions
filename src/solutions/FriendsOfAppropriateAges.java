@@ -1,5 +1,9 @@
 package solutions;
 
+
+/**
+ * 825 Friends of Appropriate Ages
+ */
 public class FriendsOfAppropriateAges {
     public int numFriendRequests(int[] ages) {
         int[] count = new int[121];

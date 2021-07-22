@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 325 Maximum Size Subarray Sum Eqauls K
+ */
 public class MaxSubarraySum {
 	public int maxSubArrayLen(int[] nums, int k) {
         if( nums == null || nums.length == 0 ) {

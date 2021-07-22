@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * Monotoinc Array
+ */
 public class MonotonicArray {
     public boolean isMonotonic(int[] A) {
         if(A == null || A.length == 0) {
@@ -20,14 +23,17 @@ public class MonotonicArray {
         return true;
     }
 
-    public boolean isMonotonic2(int[] A) {
+    public boolean isMonotonic2(int[] nums) {
         boolean increasing = true;
         boolean decreasing = true;
-        for (int i = 0; i < A.length - 1; ++i) {
-            if (A[i] > A[i+1])
+
+        for(int i = 0; i < nums.length - 1; i++) {
+            if(nums[i] > nums[i+1]) {
                 increasing = false;
-            if (A[i] < A[i+1])
+            }
+            if(nums[i] < nums[i+1]){
                 decreasing = false;
+            }
         }
 
         return increasing || decreasing;

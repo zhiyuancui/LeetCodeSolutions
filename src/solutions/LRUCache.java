@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 146 LRU Cache
+ */
 public class LRUCache {
     LinkedHashMap<Integer, Integer> cache;
-    /**
-     * Reference to :http://www.cnblogs.com/lzrabbit/p/3734850.html
-     * @param capacity
-     */
+
     public LRUCache(int capacity) {
       cache = new LinkedHashMap<Integer, Integer>(){
 

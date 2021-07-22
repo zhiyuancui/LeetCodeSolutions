@@ -5,6 +5,9 @@ import java.util.List;
 
 import util.TreeNode;
 
+/**
+ * 257 Binary Tree Paths
+ */
 public class BinaryTreePath {
 	public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<String>();

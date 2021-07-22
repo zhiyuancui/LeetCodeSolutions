@@ -1,7 +1,12 @@
 package solutions;
 
 import java.util.PriorityQueue;
+import java.util.Random;
 
+/**
+ * 215 Kth Largest Element in an Array
+ * https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/partitionfen-er-zhi-zhi-you-xian-dui-lie-java-dai-/
+ */
 public class FindKthLargest {
 	public int findKthLargest(int[] nums, int k) {
         if( nums == null || nums.length == 0 || k < 1 )
@@ -21,50 +26,58 @@ public class FindKthLargest {
         
         return q.poll();
     }
-	
-	public int findKthLargest2(int[] nums, int k) {
-        k = nums.length - k;
-        int lo = 0;
-        int hi = nums.length - 1;
-        while (lo < hi) {
-            int pivot = partition(nums, lo, hi);
-            if(pivot < k) {
-                lo = pivot + 1;
-            } else if ( pivot > k) {
-                hi = pivot - 1;
+
+    /**
+     * Quick Select
+     */
+    private Random random = new Random(System.currentTimeMillis());
+
+    public int findKthLargest2(int[] nums, int k) {
+        int len = nums.length;
+        int left = 0;
+        int right = len - 1;
+
+        int target = len - k;
+
+        while(true) {
+            int index = partition(nums, left, right);
+            if(index == target) {
+                return nums[index];
+            } else if(index < target) {
+                left = index + 1;
             } else {
-                break;
+                right = index - 1;
             }
         }
-        return nums[k];
     }
 
-    private int partition(int[] nums, int lo, int hi) {
-
-        int i = lo;
-        int j = hi + 1;
-        while(true) {
-        		i++;
-            while(i < hi && nums[i] < nums[lo] ){
-                i++;
-            }
-            j--;
-            while(j > lo && nums[lo] < nums[j] ){
-                j--;
-            }
-            if( i >= j ) {
-                break;
-            }
-            swap(nums, i, j);
+    public int partition(int[] nums, int left, int right) {
+        if (right > left) {
+            int randomIndex = left + 1 + random.nextInt(right - left);
+            swap(nums, left, randomIndex);
         }
-        swap(nums, lo, j);
+
+
+        int pivot = nums[left];
+
+        int j = left;
+
+        for(int i = left + 1; i <= right; i++) {
+            if(nums[i] < pivot) {
+                j++;
+                swap(nums, j, i);
+            }
+        }
+
+        swap(nums, j, left);
+
         return j;
     }
 
     private void swap(int[] nums, int i, int j) {
-        final int tmp = nums[i];
+        int temp = nums[i];
         nums[i] = nums[j];
-        nums[j] = tmp;
+        nums[j] = temp;
     }
 
 }

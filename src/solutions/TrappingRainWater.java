@@ -3,6 +3,9 @@ package solutions;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * 42 Trapping Rain Water
+ */
 public class TrappingRainWater {
 
 	public int trap(int[] height) {

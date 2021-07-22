@@ -3,6 +3,9 @@ package solutions.amazon;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 986 Interval List Intersections
+ */
 public class IntervalIntersections {
 
     public int[][] intervalIntersection(int[][] A, int[][] B) {
