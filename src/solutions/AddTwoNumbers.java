@@ -4,14 +4,12 @@ import java.util.Stack;
 
 import util.ListNode;
 
+/**
+ * 2 Add Two Numbers
+ */
 public class AddTwoNumbers {
 	
-	/**
-	 * Add Two Numbers
-	 * @param l1
-	 * @param l2
-	 * @return
-	 */
+
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head1 = l1;
         ListNode head2 = l2;

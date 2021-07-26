@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 50 pow
+ */
 public class Pow {
 
 	public double myPow(double x, int n) {

@@ -2,9 +2,7 @@ package solutions;
 
 
 /**
- * Reference to : https://leetcode.com/discuss/101144/java-o-1-solution-easy-to-understand
- * @author Zhiyuan
- *
+ * 348 Design Tic-Tac-Toe
  */
 public class TicTacToe {
 

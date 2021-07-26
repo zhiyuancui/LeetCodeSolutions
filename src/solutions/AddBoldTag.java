@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 616 Add Bold Tag in String
+ */
 public class AddBoldTag {
 	public String addBoldTag(String s, String[] dict) {
         boolean[] bold = new boolean[s.length()];

@@ -3,6 +3,9 @@ package solutions;
 import java.util.Deque;
 import java.util.LinkedList;
 
+/**
+ * 346 Moving Average form data stream
+ */
 public class MovingAverage {
     Deque<Integer> queue;
     int size = 0;

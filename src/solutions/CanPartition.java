@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 416 Partition Equal Subset Sum
+ */
 public class CanPartition {
 	public boolean canPartition(int[] nums) {
         if( nums == null || nums.length == 0) {

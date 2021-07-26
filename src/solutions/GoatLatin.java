@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 824 Goat Latin
+ */
 public class GoatLatin {
     public String toGoatLatin(String S) {
         if(S == null || S.length() == 0) {

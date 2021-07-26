@@ -32,6 +32,11 @@ public class NestedListWeightSum {
         return totalSum;
     }
 
+    /**
+     * 339 Nested List Weight Sum
+     * @param nestedList
+     * @return
+     */
     public int depthSum(List<NestedInteger> nestedList) {
         int totalSum = 0;
         Deque<NestedInteger> queue = new ArrayDeque();

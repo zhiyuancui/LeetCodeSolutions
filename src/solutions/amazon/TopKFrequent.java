@@ -3,7 +3,7 @@ package solutions.amazon;
 import java.util.*;
 
 /**
- * Reference to https://leetcode.com/discuss/100581/java-o-n-solution-bucket-sort
+ * 347 Top K Frequent Elements
  * @author Zhiyuan
  *
  */

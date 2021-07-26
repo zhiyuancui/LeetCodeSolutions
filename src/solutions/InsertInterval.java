@@ -5,28 +5,41 @@ import util.Interval;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 57 Insert Interval
+ */
 public class InsertInterval {
-    public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-        if( newInterval == null || intervals == null ){
-            return intervals;
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        if(intervals == null || newInterval == null) {
+            return new int[0][0];
         }
 
-        List<Interval> result = new ArrayList<Interval>();
-        int insertPos = 0;
+        int pos = 0;
 
-        for(Interval interval : intervals){
-            if( interval.end < newInterval.start ){
-                result.add( interval );
-                insertPos++;
-            }else if( interval.start > newInterval.end ){
-                result.add( interval );
-            }else{
-                newInterval.start = Math.min(interval.start, newInterval.start);
-                newInterval.end = Math.max(interval.end, newInterval.end);
+        List<int[]> res = new ArrayList<>();
+        for(int i = 0; i < intervals.length; i++) {
+            int[] cur = intervals[i];
+
+            if(cur[1] < newInterval[0]) {
+                res.add(cur);
+                pos = i + 1;
+            } else if(cur[0] > newInterval[1]) {
+                res.add(cur);
+                continue;
+            } else {
+                newInterval[0] = Math.min(cur[0], newInterval[0]);
+                newInterval[1] = Math.max(cur[1], newInterval[1]);
             }
         }
 
-        result.add( insertPos, newInterval );
+        res.add(pos, newInterval);
+
+        int[][] result = new int[res.size()][2];
+
+        for(int i = 0; i < result.length; i++) {
+            result[i][0] = res.get(i)[0];
+            result[i][1] = res.get(i)[1];
+        }
 
         return result;
     }

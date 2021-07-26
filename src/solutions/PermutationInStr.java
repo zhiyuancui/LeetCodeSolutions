@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 567 Permutation in String
+ */
 public class PermutationInStr {
 	public boolean checkInclusion(String s1, String s2) {
         int len1 = s1.length(), len2 = s2.length();

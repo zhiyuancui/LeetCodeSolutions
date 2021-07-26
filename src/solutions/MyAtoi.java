@@ -1,8 +1,8 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.Queue;
-
+/**
+ * 8 String to Integer
+ */
 public class MyAtoi {
 	public int myAtoi(String str) {
 		str = str.trim();

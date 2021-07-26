@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 1026 Maximum Difference Between Node and Ancestor
+ */
 public class MaximumDifferenceBetweenNode {
     public int maxAncestorDiff(TreeNode root) {
         if(root == null) {

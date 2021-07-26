@@ -8,7 +8,7 @@ import java.util.Set;
 public class IntersectionOfTwoArray {
 
 	/**
-	 * Intersection of Two Array 
+	 * 349 Intersection of Two Array
 	 * @param nums1
 	 * @param nums2
 	 * @return
@@ -38,7 +38,7 @@ public class IntersectionOfTwoArray {
 	}
 	
 	/**
-	 * Intersection of Two Array II
+	 * 350 Intersection of Two Array II
 	 * @param nums1
 	 * @param nums2
 	 * @return

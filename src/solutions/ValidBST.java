@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 98 Validate Binary Search Tree
+ */
 public class ValidBST {
 	private int lastVal = Integer.MIN_VALUE;
     private boolean firstNode = true;

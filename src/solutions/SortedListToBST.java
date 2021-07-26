@@ -3,6 +3,9 @@ package solutions;
 import util.ListNode;
 import util.TreeNode;
 
+/**
+ * 109 Convert Sorted List to Binary Search Tree
+ */
 public class SortedListToBST {
 
     private ListNode cur;
@@ -34,15 +37,5 @@ public class SortedListToBST {
         root.left = left;
         root.right = right;
         return root;
-    }
-
-    public static void main(String[] args) {
-        SortedListToBST s = new SortedListToBST();
-        ListNode head = new ListNode(-10);
-        head.next = new ListNode(-3);
-        head.next.next = new ListNode(0);
-        head.next.next.next = new ListNode(5);
-        head.next.next.next.next = new ListNode(9);
-        s.sortedListToBST(head);
     }
 }

@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.*;
 
+/**
+ * 358 Rearrange String k Distance Apart
+ */
 public class RearrangeString {
     public String rearrangeString(String s, int k) {
         if(s == null || k < 0) {

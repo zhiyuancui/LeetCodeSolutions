@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 766 Teoplitz Matrix
+ */
 public class ToeplitzMatrix {
     public boolean isToeplitzMatrix(int[][] matrix) {
         if(matrix == null || matrix.length == 0) {

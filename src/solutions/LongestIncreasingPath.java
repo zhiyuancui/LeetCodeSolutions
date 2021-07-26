@@ -1,5 +1,9 @@
 package solutions;
 
+
+/**
+ * 329 Longest Increasing Path in a Matrix
+ */
 public class LongestIncreasingPath {
 	public int longestIncreasingPath(int[][] matrix) {
         if( matrix == null || matrix.length == 0 || matrix[0].length == 0 ){

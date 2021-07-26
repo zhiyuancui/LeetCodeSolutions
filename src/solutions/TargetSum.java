@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 494 Traget Sum
+ */
 public class TargetSum {
 	int solution = 0;
     public int findTargetSumWays(int[] nums, int S) {

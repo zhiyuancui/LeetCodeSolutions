@@ -6,18 +6,10 @@ import java.util.List;
 
 public class StrobogrammaticNumber {
 
-	
-	
+
 	/**
-	 * A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
-	 * Write a function to count the total strobogrammatic numbers that exist in the range of low <= num <= high.
-	 * For example,
-	 * Given low = "50", high = "100", return 3. Because 69, 88, and 96 are three strobogrammatic numbers.
-	 * 
-	 * Reference to https://leetcode.com/discuss/73721/easiest-20ms-94%25-java-solution
-	 * 
-	 * @param low
-	 * @param high
+	 *
+	 * @param num
 	 * @return
 	 */
 	public boolean isStrobogrammatic(String num) {
@@ -50,18 +42,9 @@ public class StrobogrammaticNumber {
 			return false;
 		}
 	}
-	
+
 	/**
-	 * 
-	 * A strobogrammatic number is a number that looks the same when rotated 180 degrees (looked at upside down).
-	 * Find all strobogrammatic numbers that are of length = n.
-	 * For example,
-	 * 
-	 * Given n = 2, return ["11","69","88","96"].
-	 * 
-	 * 
-	 * Reference to : https://leetcode.com/discuss/50412/ac-clean-java-solution
-	 * 
+	 * 247 Strobogrammatic Number II
 	 * @param n
 	 * @return
 	 */

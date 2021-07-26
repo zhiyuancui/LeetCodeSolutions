@@ -7,58 +7,12 @@ import java.util.Stack;
 
 public class BasicCalculator {
 
-	/**
-	 * Basic Calculator II
-	 *
-	 * @param s
-	 * @return
-	 */
-	public int calculate(String s) {
-
-		Stack<Integer> stack = new Stack<Integer>();
-
-		s = s.replaceAll("\\s+", "");
-
-		char sign = '+';
-
-		int res = 0, prev = 0;
-
-		for (int i = 0; i < s.length(); i++) {
-			if (isDigit(s.charAt(i))) {
-				prev = 10 * prev + s.charAt(i) - '0';
-			}
-			if (!isDigit(s.charAt(i)) || i == s.length() - 1) {
-				if (sign == '-') {
-					stack.push(-prev);
-				} else if (sign == '+') {
-					stack.push(prev);
-				} else {
-					int num;
-					if (sign == '*') {
-						num = stack.pop() * prev;
-					} else {
-						num = stack.pop() / prev;
-					}
-					stack.push(num);
-				}
-				sign = s.charAt(i);
-				prev = 0;
-			}
-		}
-
-		while (!stack.isEmpty()) {
-			res += stack.pop();
-		}
-
-		return res;
-	}
-
 	private boolean isDigit(Character c) {
 		return c >= '0' && c <= '9';
 	}
 
 	/**
-	 * Basic Calculator II
+	 * 227 Basic Calculator II
 	 *
 	 * @param s
 	 * @return
@@ -156,8 +110,8 @@ public class BasicCalculator {
 		}
 		// initialize operator
 		char sign = '+';
-		Deque<Long> stack1 = new LinkedList<>(); // store digit and '('
-		Deque<Character> stack2 = new LinkedList<>(); // store sign before '('
+		Stack<Long> stack1 = new Stack<>(); // store digit and '('
+		Stack<Character> stack2 = new Stack<>(); // store sign before '('
 		for (int i = 0; i < s.length(); i++) {
 			char ch = s.charAt(i);
 			if (Character.isDigit(ch)) {
@@ -166,21 +120,21 @@ public class BasicCalculator {
 					num = num * 10 + s.charAt(i++) - '0';
 				}
 				i--;
-				stack1.offerFirst(eval(sign, stack1, num));
+				stack1.push(eval(sign, stack1, num));
 			} else if (ch == ' ') {
 				continue;
 			} else if (ch == '(') {
-				stack1.offerFirst(Long.MAX_VALUE);
-				stack2.offerFirst(sign);
+				stack1.push(Long.MAX_VALUE);
+				stack2.push(sign);
 				sign = '+';
 			} else if (ch == ')') {
 				long num = 0;
-				while (stack1.peekFirst() != Long.MAX_VALUE) {
-					num += stack1.pollFirst();
+				while (stack1.peek() != Long.MAX_VALUE) {
+					num += stack1.pop();
 				}
-				stack1.pollFirst(); // pop out '(' (Long.MAX_VALUE)
-				char operator = stack2.pollFirst();
-				stack1.offerFirst(eval(operator, stack1, num));
+				stack1.pop(); // pop out '(' (Long.MAX_VALUE)
+				char operator = stack2.pop();
+				stack1.push(eval(operator, stack1, num));
 			} else {
 				sign = ch;
 			}
@@ -188,20 +142,20 @@ public class BasicCalculator {
 		// what we need to do is just sum up all num in stack
 		int result = 0;
 		while (!stack1.isEmpty()) {
-			result += stack1.pollFirst();
+			result += stack1.pop();
 		}
 		return result;
 	}
 
-	private long eval(char sign, Deque<Long> stack1, long num) {
+	private long eval(char sign, Stack<Long> stack1, long num) {
 		if (sign == '+') {
 			return num;
 		} else if (sign == '-') {
 			return -num;
 		} else if (sign == '*') {
-			return stack1.pollFirst() * num;
+			return stack1.pop() * num;
 		} else {
-			return stack1.pollFirst() / num;
+			return stack1.pop() / num;
 		}
 	}
 }

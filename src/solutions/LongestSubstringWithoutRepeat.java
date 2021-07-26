@@ -3,7 +3,7 @@ package solutions;
 import java.util.HashSet;
 
 /**
- * Longest Substring Without Repeating Characters
+ * 3 Longest Substring Without Repeating Characters
  * @author Zhiyuan
  *
  */

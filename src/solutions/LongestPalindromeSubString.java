@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 5 Longest Palindromic Substring
+ */
 public class LongestPalindromeSubString {
 	
 	/**

@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Subset {
+    /**
+     * 78 Subsets
+     * @param nums
+     * @return
+     */
 	public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         if( nums == null || nums.length == 0 ){

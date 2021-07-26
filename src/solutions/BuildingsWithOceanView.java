@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 1762 Buildings With an Ocean View
+ */
 public class BuildingsWithOceanView {
     public int[] findBuildings(int[] heights) {
         if(heights == null || heights.length == 0) {

@@ -1,10 +1,6 @@
 package solutions;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 import util.TreeNode;
 
@@ -86,6 +82,36 @@ public class LowestCommonAncestor {
 
 		while( !ancestors.contains(q) && q != null){
 			q = parent.get(q);
+		}
+
+		return q;
+	}
+
+
+	/**
+	 * 1650 Lowest Common Ancestor of a Binary Tree III
+	 */
+	class Node {
+		public int val;
+		public Node left;
+		public Node right;
+		public Node parent;
+	};
+
+	public Node lowestCommonAncestor(Node p, Node q) {
+		if(p == null || q == null) {
+			return null;
+		}
+
+		List<Node> ancestors = new ArrayList<>();
+
+		while(p != null) {
+			ancestors.add(p);
+			p = p.parent;
+		}
+
+		while(!ancestors.contains(q)) {
+			q = q.parent;
 		}
 
 		return q;

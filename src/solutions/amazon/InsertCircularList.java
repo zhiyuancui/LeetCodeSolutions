@@ -2,6 +2,9 @@ package solutions.amazon;
 
 import util.ListNode;
 
+/**
+ * 708 Insert Into a Sorted Circular Linked List
+ */
 public class InsertCircularList {
     public ListNode insert(ListNode head, int insertVal) {
         if(head == null) {
@@ -19,6 +22,7 @@ public class InsertCircularList {
             if(prev.val <= insertVal && insertVal <= cur.val) {
                 toInsert = true;
             } else if(prev.val > cur.val) {
+                //开始节点就是最大值
                 if(insertVal >= prev.val || insertVal <= cur.val) {
                     toInsert = true;
                 }

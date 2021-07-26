@@ -3,14 +3,11 @@ package solutions;
 import java.util.Deque;
 import java.util.LinkedList;
 
+/**
+ * 239 Sliding Window Maximum
+ */
 public class SlidingWindowMaximum {
-	/**
-	 * Time Complexity
-	 * Space Complexity: O(N)
-	 * @param nums
-	 * @param k
-	 * @return
-	 */
+
 	public int[] maxSlidingWindow(int[] nums, int k) {
 		if( nums == null || nums.length < k || k == 0 ){
             return new int[0];

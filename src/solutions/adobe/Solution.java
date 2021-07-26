@@ -1,129 +1,81 @@
-package solutions.adobe;
+import java.util.HashMap;
+import java.util.*;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+class Solution {
+    public int maxCompatibilitySum(int[][] students, int[][] mentors) {
+        if(students == null || mentors == null) {
+            return 0;
+        }
 
-public class Solution {
+        Map<Integer, Integer> studentsMap = new HashMap<>();
+        Map<Integer, Integer> mentorsMap = new HashMap<>();
 
-//    class Article {
-//        private String title;
-//        @SerializedName("story_title")
-//        private String storyTitle;
-//
-//        public Article(String title, String storyTitle) {
-//            this.title = title;
-//            this.storyTitle = title;
-//        }
-//
-//        public String getTitle() {
-//            return title;
-//        }
-//
-//        public String getStoryTitle() {
-//            return storyTitle;
-//        }
-//
-//        public void setTitle(String title) {
-//            this.title = title;
-//        }
-//
-//        public void setStoryTitle(String storyTitle) {
-//            this.storyTitle = storyTitle;
-//        }
-//    }
-//
-//    class ArticleResponse {
-//        private int page;
-//        @SerializedName("total_page")
-//        private int totalPage; // total_page
-//        private int total;
-//        private List<Article> data;
-//
-//        public ArticleResponse(int page, int totalPage, int total, List<Article> data) {
-//            this.page = page;
-//            this.totalPage = totalPage;
-//            this.total = total;
-//            this.data = data;
-//        }
-//
-//        public int getPage() {
-//            return this.page;
-//        }
-//
-//        public void setPage(int page) {
-//            this.page = page;
-//        }
-//
-//        public int getTotalPage() {
-//            return this.totalPage;
-//        }
-//
-//        public int getTotal() {
-//            return this.total;
-//        }
-//
-//        public List<Article> getData() {
-//            return this.data;
-//        }
-//
-//        public void setTotalPage(int totalPage) {
-//            this.totalPage = totalPage;
-//        }
-//
-//        public void setTotal(int total) {
-//            this.total = total;
-//        }
-//
-//        public void setData(List<Article> data) {
-//            this.data = data;
-//        }
-//    }
-//
-//    public List<String> getArticles(String author) {
-//        List<String> result = new ArrayList<>();
-//
-//        try {
-//            int pageId = 0;
-//            int count = 0;
-//            int total = 0;
-//            String baseUrl = "";
-//            String requestURL = baseUrl + "?author="+ author + "&page=" + pageId;
-//            do {
-//                URL url = new URL(null, requestURL);
-//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//                connection.setRequestMethod("GET");
-//                connection.setRequestProperty("Content-Type", "application/json");
-//
-//                BufferedReader in = new BufferedReader(
-//                        new InputStreamReader(connection.getInputStream()));
-//                String inputLine;
-//                StringBuffer content = new StringBuffer();
-//                while ((inputLine = in.readLine()) != null) {
-//                    content.append(inputLine);
-//                }
-//                in.close();
-//
-//                ArticleResponse response = gson.fromJson(content, ArticleResponse.class);
-//
-//                count += response.data.size();
-//                for(Article a : response.getData()) {
-//                    if(a.title != null) {
-//                        result.add(a.title);
-//                    } else if(a.storyTitle != null) {
-//                        result.add(a.storyTitle);
-//                    }
-//                }
-//
-//            } while(count < total);
-//
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return result;
-//    }
+        for(int i = 0; i < students.length; i++) {
+            int code = encode(students[i]);
+            studentsMap.put(i, code);
+        }
+
+        for(int i = 0; i < mentors.length; i++) {
+            int code = encode(mentors[i]);
+            mentorsMap.put(i, code);
+        }
+
+        PriorityQueue<Integer> queue = new PriorityQueue<>((a,b) -> {
+            int[] res1 = findBestMatch(a, mentorsMap);
+            int[] res2 = findBestMatch(b, mentorsMap);
+
+            return res2[0] - res1[0];
+        });
+
+        for(int student : studentsMap.keySet()) {
+            queue.add(student);
+        }
+
+        Set<Integer> visited = new HashSet<>();
+
+        int max = 0;
+
+        while(!queue.isEmpty()) {
+            int cur = queue.poll();
+            int[] score = findBestMatch(studentsMap.get(cur), mentorsMap);
+            if(!visited.contains(score[1])) {
+                max += score[0];
+                visited.add(score[1]);
+                mentorsMap.remove(score[1]);
+            } else {
+                queue.add(cur);
+            }
+        }
+
+        return max;
+
+    }
+
+    private int[] findBestMatch(int code, Map<Integer, Integer> mentorsMap) {
+        int score = 0;
+        int idx = -1;
+        for(int mentor : mentorsMap.keySet()) {
+            if(cal(code, mentorsMap.get(mentor)) > score) {
+                score = cal(code, mentorsMap.get(mentor));
+                idx = mentor;
+            }
+        }
+
+        return new int[]{score, idx};
+    }
+
+    private int cal(int a, int b) {
+        return (a^b)^1;
+    }
+
+    private int encode(int[] nums) {
+
+        int result = 0;
+
+        for(int i = 0; i < nums.length; i++) {
+            result |= nums[i] << (nums.length - i - 1);
+        }
+
+        return result;
+    }
 }

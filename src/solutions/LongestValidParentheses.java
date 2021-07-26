@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 32 Longest Valid Parentheses
+ */
 public class LongestValidParentheses {
 	public int longestValidParentheses(String s) {
 		int result = 0;

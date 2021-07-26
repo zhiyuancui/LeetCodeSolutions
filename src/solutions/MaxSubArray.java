@@ -1,13 +1,10 @@
 package solutions;
 
+/**
+ * 53 Maximum Subarray
+ */
 public class MaxSubArray {
 
-	/**
-	 * Find the contiguous subarray within an array 
-	 * (containing at least one number) which has the largest sum.
-	 * @param nums
-	 * @return
-	 */
 	public int maxSubArray(int[] nums) {
         
         int sum = 0;

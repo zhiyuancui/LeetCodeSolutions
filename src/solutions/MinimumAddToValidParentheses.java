@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 921 Minimum Add to Make Parentheses Valid
+ */
 public class MinimumAddToValidParentheses {
     public int minAddToMakeValid(String S) {
         if(S == null || S.length() == 0) {

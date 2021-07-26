@@ -3,6 +3,9 @@ package solutions;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 529 Minesweeper
+ */
 public class MineSweeper {
     private int[] dx = {0,0,1,-1,1,1,-1,-1};
     private int[] dy = {1,-1,0,0,1,-1,1,-1};

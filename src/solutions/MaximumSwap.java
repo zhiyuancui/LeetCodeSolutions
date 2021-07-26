@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 670 Maximum Swap
+ */
 public class MaximumSwap {
 	public int maximumSwap(int num) {
         char[] digits = Integer.toString(num).toCharArray();
