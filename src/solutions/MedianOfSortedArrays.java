@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 4 Median of Two Sorted Arrays
+ */
 public class MedianOfSortedArrays {
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         

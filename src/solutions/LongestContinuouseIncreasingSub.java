@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 674 Longest Continuous Increasing Subsequence
+ */
 public class LongestContinuouseIncreasingSub {
 	public int findLengthOfLCIS(int[] nums) {
         int res = 0, cnt = 0;

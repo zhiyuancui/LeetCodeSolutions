@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 844 Backspace String Compare
+ */
 public class BackspaceStringCompare {
     public boolean backspaceCompare(String S, String T) {
         if(S == null || T == null) {

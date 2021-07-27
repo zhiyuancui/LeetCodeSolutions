@@ -2,6 +2,9 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 21 Merge Two Sorted Lists
+ */
 public class MergeTwoLists {
 	
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {

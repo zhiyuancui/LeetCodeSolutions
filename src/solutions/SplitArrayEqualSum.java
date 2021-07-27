@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.HashSet;
 
+/**
+ * 548 Split Array with Equal Sum
+ */
 public class SplitArrayEqualSum {
 	public boolean splitArray(int[] nums) {
         if (nums.length < 7)

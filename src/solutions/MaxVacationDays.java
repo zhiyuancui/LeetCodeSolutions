@@ -1,9 +1,12 @@
 package solutions;
 
+/**
+ * 568 Maximum Vacation Days
+ */
 public class MaxVacationDays {
 
 	int max = 0, N = 0, K = 0;
-    
+    //会超时
     public int maxVacationDays(int[][] flights, int[][] days) {
         N = flights.length;
         K = days[0].length;

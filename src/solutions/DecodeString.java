@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 394 Decode String
+ */
 public class DecodeString {
 	public String decodeString(String s) {
 		if( s == null || s.length() == 0 ) {

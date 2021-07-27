@@ -6,6 +6,9 @@ package solutions;
 import util.ListNode;
 
 
+/**
+ * 206 Reverse Linked List
+ */
 public class ReverseList {
 	public ListNode reverseList(ListNode head) {
         if( head == null || head.next == null )

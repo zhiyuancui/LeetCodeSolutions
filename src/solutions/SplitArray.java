@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 548 Split Array With Equal Sum
+ */
 public class SplitArray {
 	/**
 	 * Split Array Largest Sum

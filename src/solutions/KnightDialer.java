@@ -3,7 +3,7 @@ package solutions;
 /**
  * 935 Knight Dialer
  * //https://leetcode-cn.com/problems/knight-dialer/solution/4zhuang-tai-dong-tai-gui-hua-pythonjie-kong-jian-f/
- *
+ * 即便是long都会溢出
  */
 public class KnightDialer {
     public int knightDialer(int n) {
