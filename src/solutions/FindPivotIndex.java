@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 724 Find Pivot Index
+ */
 public class FindPivotIndex {
     public int pivotIndex(int[] nums) {
         int sum = 0, leftsum = 0;

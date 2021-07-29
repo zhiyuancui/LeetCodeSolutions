@@ -2,6 +2,9 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 19 Remove Nth Node From End of List
+ */
 public class RemoveNthFromEnd {
 
 	public ListNode removeNthFromEnd(ListNode head, int n) {

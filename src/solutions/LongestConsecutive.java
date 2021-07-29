@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.HashSet;
 
+/**
+ * 128 Longest Consecutive Sequence
+ */
 public class LongestConsecutive {
 
 	

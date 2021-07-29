@@ -1,9 +1,9 @@
-/**
- * Container with Most Water
- */
 package solutions;
 
-public class MaxArea {
+/**
+ * 11 Container With Most Water
+ */
+public class ContainerWithMostWater {
 
 	public int maxArea(int[] height) {
         

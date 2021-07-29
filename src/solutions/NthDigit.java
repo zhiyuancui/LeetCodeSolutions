@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 400 Nth Digit
+ */
 public class NthDigit {
 	public int findNthDigit(int n) {
         int len = 1;

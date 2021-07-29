@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 430 Flatten a Multilevel Doubly Linked List
+ */
 public class FlattenMultyLevel {
     class Node {
         Node next;

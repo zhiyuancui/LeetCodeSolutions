@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/**
+ * 207 Course Schedule
+ */
 public class CourseSchedule {
 
 	/**

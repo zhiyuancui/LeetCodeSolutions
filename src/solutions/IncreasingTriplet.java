@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 334 Increasing Triplet Subsequence
+ */
 public class IncreasingTriplet {
 
 	public boolean increasingTriplet(int[] nums) {

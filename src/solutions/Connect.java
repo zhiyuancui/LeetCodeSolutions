@@ -1,49 +1,71 @@
-/**
- * Populating Next Right Pointer
- */
 package solutions;
 
 import util.TreeLinkNode;
 
+/**
+ * 116 Populating Next Right Pointers in Each Node
+ * 117 Populating Next Right Pointers in Each Node II
+ */
 public class Connect {
-public void connect(TreeLinkNode root) {
-        
+    class Node {
+        public int val;
+        public Node left;
+        public Node right;
+        public Node next;
+
+        public Node() {}
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, Node _left, Node _right, Node _next) {
+            val = _val;
+            left = _left;
+            right = _right;
+            next = _next;
+        }
+    };
+    public Node connect(Node root) {
         if( root == null )
         {
-            return;
+            return root;
         }
-        
-        while( root != null )
+
+        Node cur = root;
+        while( cur != null )
         {
-            TreeLinkNode prev = null;
-            TreeLinkNode next = null;
-            for(; root != null; root = root.next )
+            Node prev = null;
+            Node next = null;
+            for(; cur != null; cur = cur.next )
             {
                 if( next == null )
                 {
-                	next = root.left == null ? root.right : root.left;
+                    next = cur.left == null ? cur.right : cur.left;
                 }
-                
-                if( root.left != null )
+
+                if( cur.left != null )
                 {
                     if( prev != null )
                     {
-                        prev.next = root.left;
+                        prev.next = cur.left;
                     }
-                    prev = root.left;
+                    prev = cur.left;
                 }
-                
-                if( root.right != null )
+
+                if( cur.right != null )
                 {
                     if( prev != null )
                     {
-                        prev.next = root.right;
+                        prev.next = cur.right;
                     }
-                    prev = root.right;
+                    prev = cur.right;
                 }
             }
-            
-            root = next;
+
+            cur = next;
         }
+
+        return root;
     }
 }

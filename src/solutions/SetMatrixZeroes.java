@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 73 Set Matrix Zeroes
+ */
 public class SetMatrixZeroes {
 	public void setZeroes(int[][] matrix) {
 	    if(matrix == null)

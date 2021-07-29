@@ -6,8 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Reference to https://leetcode.com/discuss/67344/simple-java-solution-using-hashmap-and-stringbuilder
- * @author Zhiyuan
+ * 166 Fraction to Recurring Decimal
  *
  */
 public class FractionToDecimal {

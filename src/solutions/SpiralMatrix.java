@@ -3,6 +3,9 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 54 Spiral Matrix
+ */
 public class SpiralMatrix {
 	public int[][] generateMatrix(int n) {
         int[][] result = new int[n][n];

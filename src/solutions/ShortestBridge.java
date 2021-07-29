@@ -7,6 +7,9 @@ import java.util.Queue;
  * 934 Shortest Bridge
  */
 public class ShortestBridge {
+    int[] dx = new int[]{0,0,-1,1};
+    int[] dy = new int[]{1,-1,0,0};
+
     public int shortestBridge(int[][] grid) {
         if(grid == null || grid.length == 0) {
             return 0;
@@ -57,9 +60,6 @@ public class ShortestBridge {
         return steps;
     }
 
-
-    int[] dx = new int[]{0,0,-1,1};
-    int[] dy = new int[]{1,-1,0,0};
     private void dfs(int x, int y, int[][] grid) {
         if(x < 0 || y < 0 || x >= grid.length || y >= grid[0].length || grid[x][y] == 2 ||  grid[x][y] == 0) {
             return;

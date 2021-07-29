@@ -2,7 +2,10 @@ package solutions;
 
 import java.util.*;
 
-// https://leetcode.com/problems/minimum-area-rectangle/discuss/992992/JavaNaive-SolutionOn2-Easy-to-Understand
+
+/**
+ * 939 Minimum Area Rectangle
+ */
 public class MinimumAreaRectangle {
     public int minAreaRect(int[][] points) {
         SortedMap<Integer, Set<Integer>> xToYPoints = calc(points);
@@ -10,11 +13,13 @@ public class MinimumAreaRectangle {
         for (int x: xToYPoints.keySet()) {
             Set<Integer> yPoints = xToYPoints.get(x);
             if (yPoints.size() < 2) continue;
+            // keys are greater and equal to input
             for (int nextX: xToYPoints.tailMap(x + 1).keySet()) {
                 Set<Integer> nextYPoints = xToYPoints.get(nextX);
                 if (nextYPoints.size() < 2) continue;
 
                 SortedSet<Integer> candidates = new TreeSet<>(yPoints);
+                //包含nextYpoints
                 candidates.retainAll(nextYPoints);
 
                 int width = nextX - x;

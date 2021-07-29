@@ -1,18 +1,24 @@
 package solutions;
 
+/**
+ * 540 Single Element in a Sorted Array
+ * https://leetcode-cn.com/problems/single-element-in-a-sorted-array/solution/you-xu-shu-zu-zhong-de-dan-yi-yuan-su-by-leetcode/
+ */
 public class SingleNonDuplicate {
-	/**Single Element in a sorted Array
-	 * 
-	 * @param nums
-	 * @return
-	 */
+
 	public int singleNonDuplicate(int[] nums) {
-        int n=nums.length, low=0, high=n/2;
-        while (low < high) {
-            int mid = (low + high) / 2;
-            if (nums[2*mid]!=nums[2*mid+1]) high = mid;
-            else low = mid+1;
+        int lo = 0;
+        int hi = nums.length - 1;
+        while (lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (mid % 2 == 1) mid--;
+            if (nums[mid] == nums[mid + 1]) {
+                lo = mid + 2;
+            } else {
+                hi = mid;
+            }
         }
-        return nums[2*low];
+        return nums[lo];
+
     }
 }

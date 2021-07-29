@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 1233 Remove Sub-folders from the Filesystem
+ */
 public class RemoveSubFolder {
     class TrieNode{
         Map<String, TrieNode> children = new HashMap<>();
