@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 405 Convert a Number to Hex
+ */
 public class ConvertToHex {
 
 	public String toHex(int num) {

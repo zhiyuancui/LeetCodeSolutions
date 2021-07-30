@@ -3,10 +3,13 @@ package solutions;
 import java.util.Collections;
 import java.util.PriorityQueue;
 
+/**
+ * 295 Find Median from Data Stream
+ */
 public class MedianFinder {
 	PriorityQueue<Integer> minHeap = new PriorityQueue<>();
     PriorityQueue<Integer> maxHeap = new PriorityQueue<>( Collections.reverseOrder() );
-    
+
     public void addNum(int num) {
         maxHeap.offer( num );
         minHeap.offer( maxHeap.poll() );

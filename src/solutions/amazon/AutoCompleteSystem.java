@@ -1,82 +1,87 @@
 package solutions.amazon;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
+/**
+ * 642 Design Search Autocomplete System
+ */
 public class AutoCompleteSystem {
-	class TrieNode {
-        Map<Character, TrieNode> next;
-        Map<String,Integer> count;
+    class TrieNode {
+        Map<Character, TrieNode> children;
+        Map<String, Integer> count;
+        String word;
+
         public TrieNode() {
-            next = new HashMap<>();
+            children = new HashMap<>();
+            word = null;
             count = new HashMap<>();
         }
     }
-    
-    class Pair{
-        int count;
-        String s;
-        public Pair( String s, int c ) {
-            count = c;
-            this.s = s;
-        }
-    }
-    
+
     TrieNode root = new TrieNode();
-    String prefix = "";
-    public AutoCompleteSystem(String[] sentences, int[] times) {
-        for( int i = 0; i < sentences.length; i++ ) {
-            addWord(  sentences[i], times[i]);
-        }
-    }
-    
-    private void addWord( String s, int time ) {
+
+    private void addWord(String word, int times) {
         TrieNode cur = root;
-        for( char c : s.toCharArray() ) {
-            if( !cur.next.containsKey(c) ) {
-                cur.next.put(c , new TrieNode() );                              
+
+        for(char c : word.toCharArray()) {
+            if(!cur.children.containsKey(c)) {
+                cur.children.put(c, new TrieNode());
             }
-            cur = cur.next.get(c);
-            cur.count.put( s, cur.count.getOrDefault(s,0) + time );
+            cur = cur.children.get(c);
+            cur.count.put(word, cur.count.getOrDefault(word,0)+times);
+        }
+        cur.word = word;
+    }
+
+    public AutoCompleteSystem(String[] sentences, int[] times) {
+
+        for(int i = 0; i < sentences.length; i++) {
+            addWord(sentences[i], times[i]);
         }
     }
-   
-    
+
+
+    String prefix = "";
+
     public List<String> input(char c) {
-        if( c == '#' ) {
-            addWord(prefix, 1 );
+        if(c == '#') {
+            addWord(prefix, 1);
             prefix = "";
             return new ArrayList<>();
         }
-        prefix = prefix + c;
+
+        prefix += c;
+        List<String> result = new ArrayList<>();
         TrieNode cur = root;
-        for( char cc : prefix.toCharArray() ) {
-            if( !cur.next.containsKey(cc) ) {
+
+        for(char cc : prefix.toCharArray()) {
+            if(!cur.children.containsKey(cc)) {
                 return new ArrayList<>();
             }
-            cur = cur.next.get(cc);
+            cur = cur.children.get(cc);
         }
 
         Map<String, Integer> copy = cur.count;
-        PriorityQueue<String> q = new PriorityQueue<>( (a,b) -> {
-            if( copy.get(a) != copy.get(b) ) {
-                return copy.get(b) - copy.get(a);
+        PriorityQueue<String> queue = new PriorityQueue<>((a,b) -> {
+            if(copy.get(a) != copy.get(b)) {
+                return copy.get(a) - copy.get(b);
             } else {
-                return a.compareTo(b);
+                return b.compareTo(a);
             }
         });
-        
-        for( String key : copy.keySet() ) {
-            q.add(key);
+
+        for(String key: cur.count.keySet()) {
+            queue.add(key);
+            if(queue.size() > 3) {
+                queue.poll();
+            }
         }
-        
-        List<String> result = new ArrayList<>();
-        for(int i = 0; i < 3 && !q.isEmpty(); i++ ){
-            result.add( q.poll() );
+
+        while(!queue.isEmpty()) {
+            result.add(queue.poll());
         }
+
+        Collections.reverse(result);
         return result;
     }
 }

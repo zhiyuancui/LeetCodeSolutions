@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 388 Longest Absolute File Path
+ */
 public class LengthLongestPath {
 	public int lengthLongestPath(String input) {
         Stack<Integer> stack = new Stack<>();

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 443 String Compression
+ */
 public class StringCompression {
 	public int compress(char[] chars) {
         int start = 0;

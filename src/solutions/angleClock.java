@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1344 Angle Between Hands of a Clock
+ */
 public class angleClock {
     public double angleClock(int hour, int minutes) {
 
