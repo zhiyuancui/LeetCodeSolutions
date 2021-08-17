@@ -19,6 +19,6 @@ public class Base7 {
             num = num / 7;
         }
         
-        return neg? "-"+sb.reverse().toString() : sb.reverse().toString();
+        return neg? "-"+ sb.reverse() : sb.reverse().toString();
     }
 }

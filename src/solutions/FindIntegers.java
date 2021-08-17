@@ -10,8 +10,8 @@ public class FindIntegers {
         StringBuilder sb = new StringBuilder(Integer.toBinaryString(num)).reverse();
         int n = sb.length();
         
-        int zero[] = new int[n];
-        int one[] = new int[n];
+        int[] zero = new int[n];
+        int[] one = new int[n];
         zero[0] = one[0] = 1;
         for (int i = 1; i < n; i++) {
             zero[i] = zero[i - 1] + one[i - 1];

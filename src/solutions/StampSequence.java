@@ -10,8 +10,8 @@ import java.util.List;
 public class StampSequence {
 
     public int[] movesToStamp(String stamp, String target) {
-        char t[] = target.toCharArray();
-        char s[] = stamp.toCharArray();
+        char[] t = target.toCharArray();
+        char[] s = stamp.toCharArray();
 
         int start = 0;
 
@@ -58,7 +58,7 @@ public class StampSequence {
         return true;
     }
 
-    private int doreplace(char t[], int pos, int len, int start) {
+    private int doreplace(char[] t, int pos, int len, int start) {
         for(int i = 0; i < len; i++) {
             if(t[i+pos] != '*') {
                 t[i+pos] = '*';

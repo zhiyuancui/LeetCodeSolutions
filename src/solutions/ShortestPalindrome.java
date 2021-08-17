@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * Shortest Palindrome
+ */
 public class ShortestPalindrome {
 	
 	public String shortestPalindrome(String s) {
@@ -36,13 +39,13 @@ public class ShortestPalindrome {
         StringBuilder builder = new StringBuilder();
         while (1 < tail) {
             if (isPalindrome(s.substring(0, tail))) {
-                builder = builder.append(s.substring(tail, len)).reverse();
+                builder = builder.append(s, tail, len).reverse();
                 break;
             }
             tail--;
         }
         if (builder.length() == 0) {
-            builder = builder.append(s.substring(tail, len)).reverse();
+            builder = builder.append(s, tail, len).reverse();
         }
         return builder.append(s).toString();
     }

@@ -36,9 +36,7 @@ public class SlidingWindowMedian {
 	private void removeNum(double num) {
 		if(minHeap.contains(num)) {
 			minHeap.remove(num);
-		} else if(maxHeap.contains(num)) {
-			maxHeap.remove(num);
-		}
+		} else maxHeap.remove(num);
 
 		if(minHeap.size() > maxHeap.size() ) {
 			maxHeap.add(minHeap.poll());

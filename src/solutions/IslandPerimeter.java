@@ -2,8 +2,8 @@ package solutions;
 
 public class IslandPerimeter {
 	
-	    private int[] dx = {0,0,1,-1};
-	    private int[] dy = {1,-1,0,0};
+	    private final int[] dx = {0,0,1,-1};
+	    private final int[] dy = {1,-1,0,0};
 	    
 	    public int islandPerimeter(int[][] grid) {
 	        

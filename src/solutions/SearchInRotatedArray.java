@@ -55,14 +55,8 @@ public class SearchInRotatedArray {
             }
             
         }
-        
-        if( nums[start] == target )
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
+
+        return nums[start] == target;
     }
 	
 	/**

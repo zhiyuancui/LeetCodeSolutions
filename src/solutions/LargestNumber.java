@@ -26,6 +26,6 @@ public class LargestNumber {
             index++;
         }
 
-        return sb.substring(index).toString();
+        return sb.substring(index);
     }
 }

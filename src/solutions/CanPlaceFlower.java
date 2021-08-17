@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 605 Can Place Flowers
+ */
 public class CanPlaceFlower {
 	public boolean canPlaceFlowers(int[] flowerbed, int n) {
         if(flowerbed == null || flowerbed.length == 0 || n < 0) {

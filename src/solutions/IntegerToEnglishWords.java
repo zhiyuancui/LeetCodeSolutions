@@ -1,7 +1,7 @@
 package solutions;
 
 public class IntegerToEnglishWords {
-	private String[] oneToNineteen = new String[]{
+	private final String[] oneToNineteen = new String[]{
 	        "",
 	        "One",
 	        "Two",
@@ -24,7 +24,7 @@ public class IntegerToEnglishWords {
 	        "Nineteen"
 	    };
 
-	    private String[] twentyToNinety = new String[]{
+	    private final String[] twentyToNinety = new String[]{
 	        "",
 	        "Ten",
 	        "Twenty",
@@ -37,7 +37,7 @@ public class IntegerToEnglishWords {
 	        "Ninety"
 	    };
 
-	    private String[] hunderedToBillion = new String[]{
+	    private final String[] hunderedToBillion = new String[]{
 	        "Hundred",
 	        "Thousand",
 	        "Million",

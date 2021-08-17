@@ -108,12 +108,12 @@ class AllOne {
     /** Returns one of the keys with maximal value. */
     public String getMaxKey() {
         printBucket(head.next);
-        return tail.prev == head ? "" : (String) tail.prev.set.iterator().next();
+        return tail.prev == head ? "" : tail.prev.set.iterator().next();
     }
 
     /** Returns one of the keys with Minimal value. */
     public String getMinKey() {
-        return head.next == tail ? "" : (String) head.next.set.iterator().next();
+        return head.next == tail ? "" : head.next.set.iterator().next();
     }
 
     private void removeBucket(Bucket b) {

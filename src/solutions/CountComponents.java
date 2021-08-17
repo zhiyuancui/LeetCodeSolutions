@@ -1,14 +1,9 @@
 package solutions;
 
+/**
+ * 323 Number of Connected Components in an Undirected Graph
+ */
 public class CountComponents {
-	
-	/**
-	 * Reference to https://leetcode.com/discuss/76753/easiest-2ms-java-solution
-	 * 
-	 * @param n
-	 * @param edges
-	 * @return
-	 */
 	public int countComponents(int n, int[][] edges) {
 		int[] roots = new int[n];
 	    for(int i = 0; i < n; i++) roots[i] = i; 

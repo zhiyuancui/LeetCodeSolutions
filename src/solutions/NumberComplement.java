@@ -22,6 +22,6 @@ public class NumberComplement {
 		for(int i = 0; i < 32; i++){
 			System.out.print( number >> i & 1 );
 		}
-		System.out.println("");
+		System.out.println();
 	}
 }

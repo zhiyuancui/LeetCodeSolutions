@@ -8,8 +8,8 @@ import java.util.List;
  * 200 Number of Islands
  */
 public class NumOfIsland {
-	private int[] dx = {0,0,1,-1};
-    private int[] dy = {1,-1,0,0};
+	private final int[] dx = {0,0,1,-1};
+    private final int[] dy = {1,-1,0,0};
     public int numIslands(char[][] grid) {
         if( grid == null || grid.length == 0 || grid[0].length == 0 ){
             return 0;

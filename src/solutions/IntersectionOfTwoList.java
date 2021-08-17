@@ -2,6 +2,9 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 160 Intersection of Two Linked Lists
+ */
 public class IntersectionOfTwoList {
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if( headA == null || headB == null ){

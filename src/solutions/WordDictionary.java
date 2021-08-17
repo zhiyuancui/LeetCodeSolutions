@@ -10,7 +10,7 @@ public class WordDictionary {
 		public String word = "";
 	}
 	
-	private TrieNode root = new TrieNode();
+	private final TrieNode root = new TrieNode();
 	
 	// Adds a word into the data structure.
     public void addWord(String word) {

@@ -15,7 +15,7 @@ public class SuperPalindrome {
         for(long i = 1; i <= end; i++) {
             String cur = Long.toString(i);
 
-            String pair[] = getPalindrome(cur);
+            String[] pair = getPalindrome(cur);
             long small = Long.parseLong(pair[0]);
             small = small * small;
 
@@ -42,9 +42,9 @@ public class SuperPalindrome {
 
         StringBuilder sb = new StringBuilder(s);
 
-        res[1] = s + sb.reverse().toString();
+        res[1] = s + sb.reverse();
         sb = new StringBuilder(s.substring(0, s.length()-1));
-        res[0] = s + sb.reverse().toString();
+        res[0] = s + sb.reverse();
 
         return res;
     }

@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class ShuffleArray {
 
-	private int[] copy;
-    private Random random;
+	private final int[] copy;
+    private final Random random;
     
     public ShuffleArray(int[] nums) {
         copy = new int[nums.length];

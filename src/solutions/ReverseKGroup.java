@@ -5,8 +5,7 @@ import util.ListNode;
 public class ReverseKGroup {
 
 public ListNode reverseKGroup(ListNode head, int k) {
-        
-        
+
         if( head == null || head.next == null || k <= 1 )
         {
             return head;

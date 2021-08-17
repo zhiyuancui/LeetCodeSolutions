@@ -14,7 +14,7 @@ package solutions;
 public class ReadN {
 	private int buffPtr = 0;
     private int buffCount = 0;
-    private char[] buff = new char[4];
+    private final char[] buff = new char[4];
     
     public int read(char[] buf, int n) {
         int ptr = 0;

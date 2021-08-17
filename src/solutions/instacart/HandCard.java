@@ -7,9 +7,9 @@ import java.util.List;
 
 public class HandCard {
 
-    private char[] idxToSuite = new char[]{'+', '-', '='};
-    private String[] idxToValue = new String[]{"A", "B", "C"};
-    private int[] idxToCount = new int[]{1, 2, 3};
+    private final char[] idxToSuite = new char[]{'+', '-', '='};
+    private final String[] idxToValue = new String[]{"A", "B", "C"};
+    private final int[] idxToCount = new int[]{1, 2, 3};
 
     private String idxToCard(int s, int v, int c) {
         StringBuilder sb = new StringBuilder();

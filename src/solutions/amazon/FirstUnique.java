@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Queue;
 
 public class FirstUnique {
-    private Queue<Integer> queue = new LinkedList<>();
-    private Map<Integer, Boolean> isUnique = new HashMap<>();
+    private final Queue<Integer> queue = new LinkedList<>();
+    private final Map<Integer, Boolean> isUnique = new HashMap<>();
 
     public FirstUnique(int[] nums) {
         for(int num: nums) {

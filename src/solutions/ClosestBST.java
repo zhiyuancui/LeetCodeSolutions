@@ -7,24 +7,10 @@ import java.util.Stack;
 
 import util.TreeNode;
 
+/**
+ * 272 Closest Binary Search Tree Value II
+ */
 public class ClosestBST {
-
-	/**
-	 * Given a non-empty binary search tree and a target value, find k values in the BST that are closest to the target.
-	 * Note:
-	 * Given target value is a floating point.
-	 * You may assume k is always valid, that is: k �� total nodes.
-	 * You are guaranteed to have only one unique set of k values in the BST that are closest to the target.
-	 * Follow up:
-	 * Assume that the BST is balanced, could you solve it in less than O(n) runtime (where n = total nodes)?
-	 * 
-	 * Reference to :
-	 * 
-	 * @param root
-	 * @param target
-	 * @param k
-	 * @return
-	 */
 public List<Integer> closestKValues(TreeNode root, double target, int k) {
         
         List<Integer> result = new ArrayList<Integer>();

@@ -1,6 +1,6 @@
 package solutions;
 /**
- * Range Sum Query - Immutable
+ * 303 Range Sum Query - Immutable
  * @author zhiyuan.cui
  *
  */

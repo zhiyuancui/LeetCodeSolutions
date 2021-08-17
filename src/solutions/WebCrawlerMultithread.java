@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class WebCrawlerMultithread {
     interface HtmlParser {
-      public List<String> getUrls(String url);
+      List<String> getUrls(String url);
     }
 
     public List<String> crawl(String startUrl, HtmlParser htmlParser) {
@@ -17,14 +17,14 @@ public class WebCrawlerMultithread {
 
         Crawler crawler = new Crawler(startUrl, hostname, htmlParser);
 
-        crawler.result = new HashSet<>();
+        Crawler.result = new HashSet<>();
 
         Thread thread = new Thread(crawler);
         thread.start();
 
-        crawler.joinThread(thread);
+        Crawler.joinThread(thread);
 
-        return new ArrayList<>(crawler.result);
+        return new ArrayList<>(Crawler.result);
     }
 
 }
@@ -43,8 +43,8 @@ class Crawler implements Runnable {
     }
 
     public void run(){
-        if(this.startUrl.startsWith(hostname) && !this.result.contains(this.startUrl)) {
-            addUrl(this.result, this.startUrl);
+        if(this.startUrl.startsWith(hostname) && !result.contains(this.startUrl)) {
+            addUrl(result, this.startUrl);
             List<Thread> threads = new ArrayList<>();
             for(String s: htmlParser.getUrls(startUrl)) {
                 if(result.contains(s)) {

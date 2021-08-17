@@ -17,7 +17,7 @@ public class SplitConcatenatedStr {
                         t.append(strs[j]);
                     for (int j = 0; j < i; j++)
                         t.append(strs[j]);
-                    t.append(st.substring(0, k));
+                    t.append(st, 0, k);
                     if (t.toString().compareTo(res) > 0)
                         res = t.toString();
                 }

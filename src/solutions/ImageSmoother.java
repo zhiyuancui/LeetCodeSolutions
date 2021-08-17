@@ -7,7 +7,7 @@ public class ImageSmoother {
         if (rows == 0) return new int[0][];
         int cols = M[0].length;
 
-        int result[][] = new int[rows][cols];
+        int[][] result = new int[rows][cols];
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {

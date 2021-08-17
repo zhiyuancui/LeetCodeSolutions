@@ -47,7 +47,7 @@ public class ReverseWords {
 			        i++;
 			    }
 
-			    sb.append(word.reverse().toString());
+			    sb.append(word.reverse());
 			    sb.append(" ");
 			}
 		}

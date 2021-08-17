@@ -1,7 +1,8 @@
 package solutions;
 
-import java.util.HashMap;
-
+/**
+ * 242 Valid Anagram
+ */
 public class IsAnagram {
 
 	public boolean isAnagram(String s, String t) {

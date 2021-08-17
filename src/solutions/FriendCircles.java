@@ -3,7 +3,8 @@ package solutions;
 public class FriendCircles {
 	 class UnionFind {
 	        private int count = 0;
-	        private int[] root, size;
+	        private final int[] root;
+         private final int[] size;
 	        
 	        public UnionFind(int n) {
 	            count = n;

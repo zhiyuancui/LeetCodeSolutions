@@ -23,6 +23,6 @@ public class PerfectNumber {
             }
         }
         
-        return sum == num ? true: false;
+        return sum == num;
     }
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapSum {
-private Map<String, Integer> map;
+private final Map<String, Integer> map;
     
     public MapSum() {
         map = new HashMap<>();    

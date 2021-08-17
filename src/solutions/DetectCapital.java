@@ -26,10 +26,6 @@ public class DetectCapital {
         
         if( count == 0 || count == len ) {
             return true;
-        } else if ( count == 1 && firstIndex ) {
-            return true;
-        }
-        
-        return false;
+        } else return count == 1 && firstIndex;
     }
 }

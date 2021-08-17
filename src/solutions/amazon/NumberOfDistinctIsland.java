@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 public class NumberOfDistinctIsland {
-	private int[][] d = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
+	private final int[][] d = { {0, 1}, {1, 0}, {0, -1}, {-1, 0} };
 
     public int numDistinctIslands(int[][] grid) {
         if( grid == null || grid.length == 0 ) {

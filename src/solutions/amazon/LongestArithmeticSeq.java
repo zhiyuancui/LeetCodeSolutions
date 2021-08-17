@@ -13,7 +13,7 @@ public class LongestArithmeticSeq {
             return 0;
         }
 
-        Map<Integer, Integer> dp[] = new HashMap[nums.length];
+        Map<Integer, Integer>[] dp = new HashMap[nums.length];
 
         int max = 0;
 

@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 298 Binary Tree Longest Consecutive Sequence
+ */
 public class BTLongestConsecutive {
 	   private int max = 0;
 	    public int longestConsecutive(TreeNode root) {

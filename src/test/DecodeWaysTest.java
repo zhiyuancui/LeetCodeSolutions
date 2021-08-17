@@ -1,8 +1,5 @@
 package test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 
 import solutions.DecodeWays;
 
@@ -31,7 +28,6 @@ public class DecodeWaysTest {
 	@Test
 	public void test2() {
 		DecodeWays d = new DecodeWays();
-		d.numDecodings2("1*");
 	}
 
 }

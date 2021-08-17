@@ -9,7 +9,7 @@ public class ZigZagConversion {
         StringBuilder[] sb = new StringBuilder[ numRows ];
         
         for( int i = 0; i < sb.length; i++ ){
-            sb[i] = new StringBuilder("");
+            sb[i] = new StringBuilder();
         }
         
         int incre = 1;

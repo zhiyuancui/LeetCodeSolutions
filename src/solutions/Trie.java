@@ -15,7 +15,7 @@ class TrieNode {
 }
 
 public class Trie {
-    private TrieNode root;
+    private final TrieNode root;
 
     public Trie() {
         root = new TrieNode();

@@ -11,7 +11,7 @@ public class LongestValidParentheses {
         int temp = 0;
         
         Stack<Integer> s1 = new Stack<Integer>();
-        int data[] = new int[ s.length() ];
+        int[] data = new int[ s.length() ];
         
         for(int i = 0; i < s.length(); i++){
             char c = s.charAt(i);

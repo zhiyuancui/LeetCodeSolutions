@@ -15,10 +15,7 @@ public class LRUCache {
 
       @Override
       protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
-        if(cache.size() > capacity) {
-          return true;
-        }
-        return false;
+          return cache.size() > capacity;
       }
     };
    }
@@ -82,10 +79,11 @@ class LRUCache2 <K,V>{
         return res;
     }
         
-    private Map<K, DoubleLinkedNode> cache = new HashMap<>();
+    private final Map<K, DoubleLinkedNode> cache = new HashMap<>();
     private int count;
-    private int capacity;
-    private DoubleLinkedNode head, tail;
+    private final int capacity;
+    private final DoubleLinkedNode head;
+    private final DoubleLinkedNode tail;
         
     private LRUCache2(int capacity) {
         this.count = 0;

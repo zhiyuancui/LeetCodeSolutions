@@ -10,7 +10,7 @@ public class MaximumSquare {
         int col = matrix[0].length;
         int max = 0;
         
-        int square[][] = new int[row][col];
+        int[][] square = new int[row][col];
         
         for(int i = 0; i < row; i++){
             for(int j = 0; j < col; j++){

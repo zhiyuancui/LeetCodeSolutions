@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 37 Sudoku Solver
+ */
 public class Sudoku {
 	public void solveSudoku(char[][] board) {
         solve(board);

@@ -12,7 +12,7 @@ public class DesignTwitter {
     private static int timeStamp=0;
     
     // easy to find if user exist
-    private Map<Integer, User> userMap;
+    private final Map<Integer, User> userMap;
     
     // Tweet link to next Tweet so that we can save a lot of time
     // when we execute getNewsFeed(userId)

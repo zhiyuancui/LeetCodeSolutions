@@ -25,7 +25,8 @@ public class Connect {
             right = _right;
             next = _next;
         }
-    };
+    }
+
     public Node connect(Node root) {
         if( root == null )
         {

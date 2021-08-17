@@ -33,10 +33,6 @@ public class StringTransforms {
             map2.put(c2, c1);
         }
 
-        if(map2.size() == 26) {
-            return false;
-        }
-
-        return true;
+        return map2.size() != 26;
     }
 }

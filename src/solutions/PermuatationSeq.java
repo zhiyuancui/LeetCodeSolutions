@@ -35,7 +35,7 @@ public class PermuatationSeq {
 	       
 	       for(int i = 1; i <= n; i++){
 	           int index = k/factorial[n-i];
-	           sb.append(String.valueOf(numbers.get(index)));
+	           sb.append(numbers.get(index));
 	           numbers.remove(index);
 	           k-=index*factorial[n-i];
 	       }

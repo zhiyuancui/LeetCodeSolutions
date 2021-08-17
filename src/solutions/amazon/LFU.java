@@ -9,8 +9,8 @@ class LFU {
 
     private int capacity = 0;
 
-    private HashMap<Integer, Integer> valueHash;
-    private HashMap<Integer, Node> nodeHash;
+    private final HashMap<Integer, Integer> valueHash;
+    private final HashMap<Integer, Node> nodeHash;
 
     public LFU(int capacity) {
         valueHash = new HashMap<>();

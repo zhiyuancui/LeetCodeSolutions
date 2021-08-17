@@ -16,7 +16,7 @@ public class TimeMap {
         String value;
     }
 
-    private Map<String, List<Tmp>> map = new HashMap<>();
+    private final Map<String, List<Tmp>> map = new HashMap<>();
 
     /** Initialize your data structure here. */
     public TimeMap() {

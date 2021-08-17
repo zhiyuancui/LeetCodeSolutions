@@ -26,7 +26,7 @@ public class LeftMostColumnWithOne {
             int idx = findOne(binaryMatrix, i, col);
             //System.out.println(idx);
             if(idx == -1) {
-                min = min != Integer.MAX_VALUE? min: Integer.MAX_VALUE;
+                min = min;
             } else {
                 min = Math.min(min, idx);
             }

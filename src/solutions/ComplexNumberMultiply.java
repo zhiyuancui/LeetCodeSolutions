@@ -35,12 +35,9 @@ public class ComplexNumberMultiply {
 
 	private int parseFromString( String number ){
 		
-		boolean neg = false;
-		if ( number.startsWith("-") ) {
-			neg = true;
-		}
+		boolean neg = number.startsWith("-");
 
-		return neg ? Integer.parseInt( number ) : Integer.parseInt( number );
+        return Integer.parseInt(number);
 
 	}
 	

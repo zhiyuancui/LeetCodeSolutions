@@ -6,18 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Reference to https://leetcode.com/discuss/20151/an-o-n-solution-with-detailed-explanation
- * @author Zhiyuan
- *
+ * Substring With Concatenation of All Words
+ * @return
  */
 public class FindSubstring {
-
-	/**
-	 * Substring With Concatenation of All Words
-	 * @param s
-	 * @param words
-	 * @return
-	 */
 	public List<Integer> findSubstring(String s, String[] words) {
 		List<Integer> res = new LinkedList<>();
 		

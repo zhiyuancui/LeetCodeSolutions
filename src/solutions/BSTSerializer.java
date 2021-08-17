@@ -51,8 +51,8 @@ public class BSTSerializer {
    
    class TokenContainer{
 	   
-	   private String target;
-	   private String splitToken;
+	   private final String target;
+	   private final String splitToken;
 	   private List<String> tokens;
 	   
 	   public TokenContainer(String target, String splitToken){
@@ -66,7 +66,7 @@ public class BSTSerializer {
 	   }
 	   
 	   public boolean hasMoreTokens(){
-		   return tokens == null ? false : tokens.size() > 0;
+		   return tokens != null && tokens.size() > 0;
 	   }
 		   
 	   public String nextToken(){

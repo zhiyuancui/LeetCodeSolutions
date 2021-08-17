@@ -25,11 +25,7 @@ public class ValidBST {
         
         firstNode = false;
         lastVal = root.val;
-        if( !isValidBST( root.right ) ){
-            return false;
-        }
-        
-        return true;
+        return isValidBST(root.right);
     }
 	
 }

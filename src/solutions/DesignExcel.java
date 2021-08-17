@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class DesignExcel {
 
-	   private HashMap depends = new HashMap();
+	   private final HashMap depends = new HashMap();
 	    
 	    private int[][] board = null;
 	    private int H = 0;
@@ -39,7 +39,7 @@ public class DesignExcel {
 	                
 	                 Iterator<Integer> it = ((ArrayList<Integer>)depends.get(key)).iterator();
 	                 while(it.hasNext()){
-	                     int item = (int)it.next();
+	                     int item = it.next();
 	                    result+=get(item/W+1,(char)('A'+item%W),mapping);
 	                 }
 	                mapping.put(r+""+c,result);

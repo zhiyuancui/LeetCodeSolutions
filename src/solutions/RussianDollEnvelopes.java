@@ -24,7 +24,7 @@ public class RussianDollEnvelopes {
             }
         });
         
-        int dp[] = new int[envelopes.length];
+        int[] dp = new int[envelopes.length];
         int len = 0;
         for(int[] envelope : envelopes){
             int index = Arrays.binarySearch(dp, 0, len, envelope[1]);

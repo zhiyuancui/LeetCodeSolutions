@@ -14,7 +14,7 @@ public class FindReplaceString {
         Arrays.fill(match, -1);
 
         for(int i = 0; i < indices.length; i++) {
-            if(s.substring(indices[i], indices[i]+sources[i].length()).equals(sources[i])) {
+            if(s.startsWith(sources[i], indices[i])) {
                 match[indices[i]] =  i;
             }
         }

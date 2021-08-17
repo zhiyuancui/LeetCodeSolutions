@@ -18,11 +18,8 @@ public class MatchstciksToSquare {
     
     private boolean dfs(int[] nums, int[] sums, int index, int target) {
     	if (index == nums.length) {
-    	    if (sums[0] == target && sums[1] == target && sums[2] == target) {
-    	    	return true;
-    	    }
-    	    return false;
-    	}
+            return sums[0] == target && sums[1] == target && sums[2] == target;
+        }
     	
     	for (int i = 0; i < 4; i++) {
     	    if (sums[i] + nums[index] > target) continue;

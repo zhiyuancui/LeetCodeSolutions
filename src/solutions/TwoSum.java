@@ -23,8 +23,8 @@ public class TwoSum {
         throw new IllegalArgumentException("No two sum solution");
     }
 	
-	private List<Integer> list = new ArrayList<Integer>();
-    private Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+	private final List<Integer> list = new ArrayList<Integer>();
+    private final Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
     // Add the number to an internal data structure.
 	public void add(int number) {

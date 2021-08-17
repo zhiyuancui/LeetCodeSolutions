@@ -1,8 +1,8 @@
 package solutions;
 
 public class HitCounter {
-	private int[] times;
-    private int[] hits;
+	private final int[] times;
+    private final int[] hits;
     /** Initialize your data structure here. */
     public HitCounter() {
         times = new int[300];

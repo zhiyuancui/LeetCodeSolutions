@@ -67,7 +67,7 @@ public class CountSmaller {
     }
 
     private static class Node {
-        private int val;
+        private final int val;
         private Node left;
         private Node right;
         

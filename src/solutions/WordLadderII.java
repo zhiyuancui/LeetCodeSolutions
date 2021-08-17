@@ -76,7 +76,7 @@ public class WordLadderII {
 
     private ArrayList<String> getNeighbors(String node, Set<String> dict) {
         ArrayList<String> res = new ArrayList<String>();
-        char chs[] = node.toCharArray();
+        char[] chs = node.toCharArray();
 
         for (char ch = 'a'; ch <= 'z'; ch++) {
             for (int i = 0; i < chs.length; i++) {

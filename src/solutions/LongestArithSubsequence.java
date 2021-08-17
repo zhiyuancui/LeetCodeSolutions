@@ -10,7 +10,7 @@ public class LongestArithSubsequence {
 
         int max = 0;
 
-        HashMap<Integer, Integer> dp[] = new HashMap[A.length];
+        HashMap<Integer, Integer>[] dp = new HashMap[A.length];
 
         for(int i = 0; i < A.length; i++) {
             dp[i] = new HashMap<>();

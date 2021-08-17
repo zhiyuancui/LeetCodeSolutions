@@ -96,9 +96,9 @@ public class LowestCommonAncestor {
 		public Node left;
 		public Node right;
 		public Node parent;
-	};
+	}
 
-	public Node lowestCommonAncestor(Node p, Node q) {
+    public Node lowestCommonAncestor(Node p, Node q) {
 		if(p == null || q == null) {
 			return null;
 		}

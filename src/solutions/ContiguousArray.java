@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 525 Contiguous Array
+ */
 public class ContiguousArray {
 
 	public int findMaxLength(int[] nums) {

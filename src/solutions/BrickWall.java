@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 554 Brick Wall
+ */
 public class BrickWall {
 
 	public int leastBricks(List<List<Integer>> wall) {

@@ -32,7 +32,7 @@ public class DecodeString {
                 StringBuilder prev = new StringBuilder( sbStack.pop() );
                 int count = countStack.pop();
                 for(int i = 0; i < count; i++) {
-                    prev.append( result.toString() );
+                    prev.append(result);
                 }
                 
                 result = prev;

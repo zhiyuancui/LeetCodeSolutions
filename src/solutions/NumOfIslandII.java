@@ -9,8 +9,8 @@ import java.util.List;
  */
 public class NumOfIslandII {
 
-    private int[] dx = {0,0,1,-1};
-    private int[] dy = {1,-1,0,0};
+    private final int[] dx = {0,0,1,-1};
+    private final int[] dy = {1,-1,0,0};
     public List<Integer> numIslands2(int row, int col, int[][] positions) {
         List<Integer> result = new ArrayList<Integer>();
 

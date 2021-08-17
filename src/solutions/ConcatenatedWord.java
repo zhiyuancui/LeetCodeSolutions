@@ -14,7 +14,7 @@ public class ConcatenatedWord {
         boolean added; //if this word is already added in result
         public TrieNode() {
             this.children = new TrieNode[26];
-            this.word = new String();
+            this.word = "";
             this.isEnd = false;
             this.combo = false;
             this.added = false;

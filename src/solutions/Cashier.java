@@ -1,9 +1,9 @@
 package solutions;
 
 public class Cashier {
-    private int total;
-    private int discount;
-    private int[] prices;
+    private final int total;
+    private final int discount;
+    private final int[] prices;
     private int curCount;
 
 

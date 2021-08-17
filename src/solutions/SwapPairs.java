@@ -2,6 +2,9 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 24 Swap Nodes in Pairs
+ */
 public class SwapPairs {
 	
 public ListNode swapPairs(ListNode head) {

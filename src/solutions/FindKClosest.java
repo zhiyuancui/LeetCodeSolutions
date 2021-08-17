@@ -11,7 +11,14 @@ public class FindKClosest {
         Collections.sort(arr);
         return arr;
    }
-	
+
+    /**
+     * 658 Find K Closest Elements
+     * @param arr
+     * @param k
+     * @param x
+     * @return
+     */
 	public List<Integer> findClosestElements(int[] arr, int k, int x) {
         int start = 0, end = arr.length-k;
         

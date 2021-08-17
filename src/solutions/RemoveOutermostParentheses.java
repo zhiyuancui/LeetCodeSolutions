@@ -21,7 +21,7 @@ public class RemoveOutermostParentheses {
             }
 
             if(stack.isEmpty()) {
-                sb.append(S.substring(index+1, i));
+                sb.append(S, index+1, i);
                 index = i + 1;
             }
         }

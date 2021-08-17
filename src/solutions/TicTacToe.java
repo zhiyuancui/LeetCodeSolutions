@@ -6,8 +6,8 @@ package solutions;
  */
 public class TicTacToe {
 
-	private int[] rows;
-	private int[] cols;
+	private final int[] rows;
+	private final int[] cols;
 	private int diagonal;
 	private int antiDiagonal;
 

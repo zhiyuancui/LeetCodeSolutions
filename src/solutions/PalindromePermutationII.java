@@ -56,7 +56,7 @@ public class PalindromePermutationII {
 
     private void perm(List<Character> list, String mid, boolean[] used, StringBuilder sb, List<String> result){
         if( sb.length() == list.size() ){
-            result.add(sb.toString() + mid + sb.reverse().toString());
+            result.add(sb + mid + sb.reverse());
             sb.reverse();
             return;
         }

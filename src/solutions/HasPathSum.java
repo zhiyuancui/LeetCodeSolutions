@@ -14,14 +14,7 @@ public class HasPathSum {
         
         if( root.left == null && root.right == null )
         {
-            if( val == 0 )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return val == 0;
         }
         
         return hasPathSum( root.left, val ) || hasPathSum( root.right, val);

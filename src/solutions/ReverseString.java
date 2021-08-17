@@ -33,8 +33,8 @@ public class ReverseString {
             return new StringBuilder(seg).reverse().toString();
         }
         
-        String left = seg.substring(k, seg.length());
+        String left = seg.substring(k);
         String re = seg.substring(0,k);
-        return new StringBuilder(re).reverse().toString() + left;
+        return new StringBuilder(re).reverse() + left;
     }
 }

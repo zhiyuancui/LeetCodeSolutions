@@ -67,6 +67,6 @@ public class RemoveSubFolders {
     }
 
     private class TrieNode {
-        private Map<String, TrieNode> children = new HashMap<>();
+        private final Map<String, TrieNode> children = new HashMap<>();
     }
 }

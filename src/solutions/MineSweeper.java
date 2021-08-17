@@ -7,8 +7,8 @@ import java.util.Queue;
  * 529 Minesweeper
  */
 public class MineSweeper {
-    private int[] dx = {0,0,1,-1,1,1,-1,-1};
-    private int[] dy = {1,-1,0,0,1,-1,1,-1};
+    private final int[] dx = {0,0,1,-1,1,1,-1,-1};
+    private final int[] dy = {1,-1,0,0,1,-1,1,-1};
 
     public char[][] updateBoard(char[][] board, int[] click) {
         if(board == null) {

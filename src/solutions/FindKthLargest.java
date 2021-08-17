@@ -30,7 +30,7 @@ public class FindKthLargest {
     /**
      * Quick Select
      */
-    private Random random = new Random(System.currentTimeMillis());
+    private final Random random = new Random(System.currentTimeMillis());
 
     public int findKthLargest2(int[] nums, int k) {
         int len = nums.length;

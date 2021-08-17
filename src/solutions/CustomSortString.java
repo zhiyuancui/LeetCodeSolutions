@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CustomSortString {
-    public String customSortString(String S, String T) {
+    public String customSortString(String order, String T) {
         if(S==null || S.length() == 0) {
             return "";
         }
