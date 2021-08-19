@@ -3,6 +3,9 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 228 Summary Ranges
+ */
 public class SummaryRanges {
 	public List<String> summaryRanges(int[] nums) {
         

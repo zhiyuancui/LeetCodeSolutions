@@ -10,31 +10,33 @@ import util.Interval;
  */
 public class NoneOverlappingInterval {
 
-	public int eraseOverlapIntervals(Interval[] intervals) {
-        if( intervals == null || intervals.length == 0 ) {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        if(intervals == null) {
             return 0;
         }
-        
-       Arrays.sort(intervals, new IntervalComparator() );
-        
-        
+
+        Arrays.sort(intervals, (a,b) -> {
+            if(a[0] != b[0]) {
+                return a[0] - b[0];
+            } else {
+                return a[1] - b[1];
+            }
+        });
+
         int count = 0;
-        int end = intervals[0].end;
-        
+
+        int[] prev = intervals[0];
         for(int i = 1; i < intervals.length; i++) {
-            if( intervals[i].start < end ) {
+            if(prev[1] > intervals[i][0]) {
+                if(prev[1] > intervals[i][1]) {
+                    prev = intervals[i];
+                }
                 count++;
             } else {
-                end = intervals[i].end;
+                prev = intervals[i];
             }
         }
-        
+
         return count;
-    }
-    
-    class IntervalComparator implements Comparator<Interval> {
-        public int compare(Interval a, Interval b) {
-            return a.end - b.end;
-        }
     }
 }

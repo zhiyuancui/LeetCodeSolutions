@@ -2,10 +2,12 @@ package solutions;
 
 import java.util.Arrays;
 
+/**
+ * 16 3Sum Closest
+ */
 public class ThreeSumClosest {
 	
 	public int threeSumClosest(int[] nums, int target) {
-    	//Do not use Integer.MAX_VALUE in case of overflow
         
         if (nums == null || nums.length < 3) {
 			return Integer.MAX_VALUE;

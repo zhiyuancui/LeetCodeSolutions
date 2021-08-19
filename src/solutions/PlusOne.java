@@ -2,6 +2,9 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 66 Plus One
+ */
 public class PlusOne {
 
 	public int[] plusOne(int[] digits) {

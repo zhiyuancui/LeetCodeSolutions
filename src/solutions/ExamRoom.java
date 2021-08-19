@@ -13,7 +13,7 @@ public class ExamRoom {
     public int seat() {
         int student = 0;
         if(students.size() > 0) {
-            int dist = students.first();
+            int dist = students.first();// 第一个student和0的距离
             Integer prev = null;
             for(Integer s: students) {
                 if(prev != null) {

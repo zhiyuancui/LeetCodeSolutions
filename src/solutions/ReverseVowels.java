@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 345 Reverse Vowels of a String
+ */
 public class ReverseVowels {
 	public String reverseVowels(String s) {
         if( s == null || s.length() == 0 ){

@@ -1,5 +1,6 @@
 package solutions;
 
+
 class MyCircularQueue {
 
     class Node {

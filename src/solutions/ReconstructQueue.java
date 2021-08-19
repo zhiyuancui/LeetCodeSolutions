@@ -5,13 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * 406 Queue Reconstruction by Height
+ */
 public class ReconstructQueue {
 
-	/**
-	 * Reference to : https://discuss.leetcode.com/topic/60394/easy-concept-with-python-c-java-solution
-	 * @param people
-	 * @return
-	 */
 	public int[][] reconstructQueue(int[][] people) {
 		if( people == null || people.length == 0 ) {
             return new int[0][0];

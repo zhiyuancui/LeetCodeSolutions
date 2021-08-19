@@ -1,49 +1,43 @@
 package solutions;
 
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 1074 Number of Submatrics That Sum to Target
+ */
 public class NumOfSubmatrices {
 
     public int numSubmatrixSumTarget(int[][] matrix, int target) {
-        if(matrix == null || matrix.length == 0) {
-            return 0;
-        }
-
         int row = matrix.length;
         int col = matrix[0].length;
 
-        int[][] sumMatrix = new int[row+1][col+1];
-
-        int count = 0;
-
         for(int i = 0; i < row; i++) {
-            int sum = 0;
-            for(int j = 0; j < col; j++) {
-                sum += matrix[i][j];
-                System.out.println(i+","+j+" " + sum);
-                if(sum == target && j != 0) {
-                    count++;
-                }
-                sumMatrix[i+1][j+1] = sum + sumMatrix[i][j+1];
+            for(int j = 1; j < col; j++) {
+                matrix[i][j] += matrix[i][j-1];
             }
         }
 
-        for(int row1 = 0; row1 < row; row1++) {
-            for(int row2 = row1; row2 < row; row2++) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        int count = 0;
+
+        for(int i =0 ; i < col; i++) {
+            for(int j = i; j < col; j++) {
+                map.clear();
+                map.put(0,1);
                 int sum = 0;
-                for(int c=0; c < col; c++) {
-                    int total = sum(sumMatrix, row1, c, row2, c);
-                    //System.out.println("["+row1+","+c+"]"+" ["+row2+","+c+"] total:" + total);
-                    if(total == target) {
-                        count++;
+                for(int k = 0; k < row; k++) {
+                    sum += matrix[k][j] - (i == 0 ? 0 : matrix[k][i-1]);
+
+                    if(map.containsKey(sum - target)) {
+                        count += map.get(sum - target);
                     }
+                    map.put(sum, map.getOrDefault(sum, 0) +1);
                 }
             }
         }
 
         return count;
-
-    }
-
-    private int sum(int[][] sumMatrix, int x1, int y1, int x2, int y2) {
-        return sumMatrix[x1][y1] - sumMatrix[x1][y2+1] - sumMatrix[x2+1][y1] + sumMatrix[x2+1][y2+1];
     }
 }

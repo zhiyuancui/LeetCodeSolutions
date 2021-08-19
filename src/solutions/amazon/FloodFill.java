@@ -1,5 +1,8 @@
 package solutions.amazon;
 
+/**
+ * 733 Flood Fill
+ */
 public class FloodFill {
     public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
         int color = image[sr][sc];

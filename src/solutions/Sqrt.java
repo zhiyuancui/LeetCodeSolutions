@@ -2,7 +2,12 @@ package solutions;
 
 public class Sqrt {
 
-public int mySqrt(int x) {
+    /**
+     * 69 Sqrt(x)
+     * @param x
+     * @return
+     */
+    public int mySqrt(int x) {
         
         long start = 0;
         long end = x;

@@ -6,32 +6,47 @@ import java.util.TreeMap;
 
 import util.Interval;
 
+/**
+ * 352 Data Stream as Disjoint Intervals
+ */
 public class DisjointIntervals {
-	/** Initialize your data structure here. */
-    TreeMap<Integer, Interval> tree;
-   
+    /** Initialize your data structure here. */
+    TreeMap<Integer, int[]> tree;
     public DisjointIntervals() {
         tree = new TreeMap<>();
     }
-    
+
     public void addNum(int val) {
-        if(tree.containsKey(val)) return;
-        Integer l = tree.lowerKey(val);
-        Integer h = tree.higherKey(val);
-        if(l != null && h != null && tree.get(l).end + 1 == val && h == val + 1) {
-            tree.get(l).end = tree.get(h).end;
-            tree.remove(h);
-        } else if(l != null && tree.get(l).end + 1 >= val) {
-            tree.get(l).end = Math.max(tree.get(l).end, val);
-        } else if(h != null && h == val + 1) {
-            tree.put(val, new Interval(val, tree.get(h).end));
-            tree.remove(h);
+        if(tree.containsKey(val)) {
+            return;
+        }
+
+        Integer low = tree.lowerKey(val);
+        Integer high = tree.higherKey(val);
+
+        if(low != null && high != null && tree.get(low)[1] + 1 == val && high == val +1) {
+            tree.get(low)[1] = tree.get(high)[1];
+            tree.remove(high);
+        } else if(low != null && tree.get(low)[1] + 1 >= val) {
+            tree.get(low)[1] = Math.max(tree.get(low)[1], val);
+        } else if(high != null && high == val + 1) {
+            tree.put(val, new int[]{val, tree.get(high)[1]});
+            tree.remove(high);
         } else {
-            tree.put(val, new Interval(val, val));
+            tree.put(val, new int[]{val, val});
         }
     }
-    
-    public List<Interval> getIntervals() {
-        return new ArrayList<>( tree.values() );
+
+    public int[][] getIntervals() {
+        List<int[]> result = new ArrayList<>(tree.values());
+
+        int[][] res = new int[result.size()][2];
+
+        for(int i = 0; i < res.length; i++) {
+            res[i][0] = result.get(i)[0];
+            res[i][1] = result.get(i)[1];
+        }
+
+        return res;
     }
 }

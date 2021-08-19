@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Cheapest Flights Within K stops
+ */
 public class FindCheapestPrice {
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {

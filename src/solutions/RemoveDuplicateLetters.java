@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 316 Remove Duplicate Letters
+ */
 public class RemoveDuplicateLetters {
 	public String removeDuplicateLetters(String s) {
         Stack<Character> stack = new Stack<Character>();

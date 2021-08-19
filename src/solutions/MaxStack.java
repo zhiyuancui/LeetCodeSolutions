@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * 716 Max Stack
+ */
 public class MaxStack {
     Stack<Integer> stack = new Stack<>();
     List<Integer> max = new ArrayList<>();

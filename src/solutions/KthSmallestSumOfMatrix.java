@@ -4,7 +4,7 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- * LeetCode 1439
+ * 1439 Find the Kth Smallest Sum of a Matrix With Sorted Rows
  */
 public class KthSmallestSumOfMatrix {
     public int kthSmallest(int[][] mat, int k) {

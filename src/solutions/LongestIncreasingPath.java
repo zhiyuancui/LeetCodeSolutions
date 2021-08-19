@@ -3,6 +3,8 @@ package solutions;
 
 /**
  * 329 Longest Increasing Path in a Matrix
+ * 时间复杂度：O(mn)O(mn)，其中 mm 和 nn 分别是矩阵的行数和列数。深度优先搜索的时间复杂度是 O(V+E)O(V+E)，其中 VV 是节点数，EE 是边数。在矩阵中，O(V)=O(mn)O(V)=O(mn)，O(E)\approx O(4mn) = O(mn)O(E)≈O(4mn)=O(mn)。
+ * Space Complexity: O(mn) the worst case is mn
  */
 public class LongestIncreasingPath {
 	public int longestIncreasingPath(int[][] matrix) {
