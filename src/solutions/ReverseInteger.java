@@ -1,8 +1,11 @@
 package solutions;
 
+/**
+ * 7 Reverse Integer
+ */
 public class ReverseInteger {
 
-public int reverse(int x) {
+    public int reverse(int x) {
         
         boolean neg = false;
         

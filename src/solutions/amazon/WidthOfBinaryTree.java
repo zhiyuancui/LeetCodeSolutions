@@ -5,6 +5,9 @@ import util.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 662 Maximum Width of Binary Tree
+ */
 public class WidthOfBinaryTree {
     public int widthOfBinaryTree(TreeNode root) {
 

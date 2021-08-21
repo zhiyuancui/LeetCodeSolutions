@@ -6,77 +6,7 @@ import java.util.List;
 
 public class CombinationSum {
 
-	/**
-	 * Combination Sum II
-	 * Have duplicates
-	 * @param candidates
-	 * @param target
-	 * @return
-	 */
-	public List<List<Integer>> combinationSum2(int[] candidates,
-            int target) {
-    
-        List<List<Integer>> results = new ArrayList<List<Integer>>();
-            
-        if (candidates.length < 1) {
-            return results;
-        }
 
-        List<Integer> path = new ArrayList<Integer>();
-        Arrays.sort(candidates);
-        combinationSumHelper(results, path, candidates, target, 0);
-
-        return results;
-    }
-
-    private void combinationSumHelper(List<List<Integer>> result, 
-           List<Integer> path, int[] candidates, int sum, int pos) {
-        if (sum == 0) {
-            result.add(new ArrayList<Integer>(path));
-        }
-
-        if (pos >= candidates.length || sum < 0) {
-            return;
-        }
-
-        int prev = -1;
-        for (int i = pos; i < candidates.length; i++) {
-            if (candidates[i] != prev) {
-                path.add(candidates[i]);
-                combinationSumHelper(result, path, candidates, sum - candidates[i], i + 1);
-                prev = candidates[i];
-                path.remove(path.size()-1);
-            }
-        }
-    }
-    
-    /**
-     * Second Method
-     * @param result
-     * @param solution
-     * @param nums
-     * @param start
-     * @param target
-     */
-    private void generate(List<List<Integer>> result, List<Integer> solution, int[] nums, int start, int target ){
-        if( target == 0 ){
-            result.add(new ArrayList<Integer>( solution ));
-        }
-        
-        if( target < 0 ){
-            return;
-        }
-        
-        for(int i = start; i < nums.length; i++){
-            if( i != start && nums[i] == nums[i-1] ){
-                continue;
-            }
-            
-            solution.add( nums[i] );
-            generate(result, solution, nums, i+1, target - nums[i]);
-            solution.remove( solution.size() - 1 );
-        }
-    }
     
     /**
      * Combination Sum
