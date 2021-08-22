@@ -3,6 +3,14 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Pancake Sorting
+ * https://leetcode.com/problems/pancake-sorting/discuss/214213/JavaC%2B%2BPython-Straight-Forward
+ * //1, 从后往前找
+ * //2, 先找到这个位置，应该的那个数字在哪
+ * //3, 把这个数字先flip到第一个去
+ * //4，把这个数字再flip到它应该对应的位置
+ */
 public class PancakeSorting {
     public List<Integer> pancakeSort(int[] arr) {
         if(arr == null || arr.length == 0) {

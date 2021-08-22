@@ -4,36 +4,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Design an algorithm to encode a list of strings to a string. 
- * The encoded string is then sent over the network and is decoded back to the original list of strings.
- * 
- * Reference to : https://leetcode.com/discuss/55020/ac-java-solution
- * 
- * @author Zhiyuan
- *
+ * 271 Encode and Decode Strings
  */
 
 public class EncodeDecodeString {
-	// Encodes a list of strings to a single string.
+    // Encodes a list of strings to a single string.
     public String encode(List<String> strs) {
+
         StringBuilder sb = new StringBuilder();
-        for(String s: strs){
-        		sb.append(s.length()).append('/').append(s);
+
+        for(String s : strs) {
+            sb.append(compile(s)).append(s);
         }
+
+        System.out.println(sb.toString());
+
         return sb.toString();
+    }
+
+    private String compile(String s) {
+        int len = s.length();
+        char[] bytes = new char[4];
+
+        for(int i = 3; i > -1; --i) {
+            System.out.println((len >> (i*8) & 0xff));
+            bytes[3-i] = (char)(len >> (i*8) & 0xff);
+        }
+
+        return new String(bytes);
+    }
+
+    private int decompile(String num) {
+        int result = 0;
+        for(char c : num.toCharArray()) {
+            result = (result << 8) + (int)c;
+        }
+
+        return result;
     }
 
     // Decodes a single string to a list of strings.
     public List<String> decode(String s) {
-        List<String> result = new ArrayList<String>();
-        int i = 0;
-        while( i < s.length() ){
-	        	int slash = s.indexOf('/',i);
-	        	int size = Integer.valueOf(s.substring(i,slash));
-	        	result.add( s.substring(slash+1, slash+size+1));
-	        	i = slash + size + 1;
+        int i = 0, len = s.length();
+
+        List<String> result = new ArrayList<>();
+
+        while(i < len) {
+            int length = decompile(s.substring(i, i+4));
+            i += 4;
+
+            result.add(s.substring(i, i+length));
+            i += length;
         }
-        
+
         return result;
     }
 }

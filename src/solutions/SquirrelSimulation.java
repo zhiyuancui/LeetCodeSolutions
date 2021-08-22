@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 573 Squirrel Simulation
+ */
 public class SquirrelSimulation {
 	public int minDistance(int height, int width, int[] tree, int[] squirrel, int[][] nuts) {
         int n = nuts.length;
