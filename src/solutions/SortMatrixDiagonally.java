@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/**
+ * 1329 Sort the Matrix Diagonally
+ */
 public class SortMatrixDiagonally {
     public int[][] diagonalSort(int[][] mat) {
 
@@ -26,7 +29,7 @@ public class SortMatrixDiagonally {
 
         for(int i = 0; i < row; i++) {
             for(int j = 0; j < col; j++) {
-                mat[i][j] = diagonals.get(i-j).remove();
+                mat[i][j] = diagonals.get(i-j).poll();
             }
         }
 

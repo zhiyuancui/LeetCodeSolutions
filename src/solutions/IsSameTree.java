@@ -1,15 +1,10 @@
-/**
- * Given two binary trees, 
- * write a function to check if they are equal or not.
- * Two binary trees are considered equal 
- * if they are structurally identical 
- * and the nodes have the same value.
- */
-
 package solutions;
 
 import util.*;
 
+/**
+ * 100 Same Tree
+ */
 public class IsSameTree {
 	public boolean isSameTree(TreeNode p, TreeNode q) {
 	     

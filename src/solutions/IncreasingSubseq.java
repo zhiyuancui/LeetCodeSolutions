@@ -5,23 +5,29 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 491 Increasing Subsequences
+ */
 public class IncreasingSubseq {
-	public List<List<Integer>> findSubsequences(int[] nums) {
-        Set<List<Integer>> res= new HashSet<List<Integer>>();
-        List<Integer> holder = new ArrayList<Integer>();
-        generate(res, holder, 0, nums);
-        List<List<Integer>> result = new ArrayList<List<Integer>>(res);
-        return result;
+    public List<List<Integer>> findSubsequences(int[] nums) {
+        Set<List<Integer>> result = new HashSet<>();
+
+        List<Integer> solution = new ArrayList<>();
+
+        backtrack(result, solution, nums, 0);
+
+        return new ArrayList<>(result);
     }
-    
-    private void generate(Set<List<Integer>> result, List<Integer> solution, int start, int[] nums){
-        if( solution.size() > 1 ){
-            result.add( new ArrayList( solution ) );
+
+    private void backtrack(Set<List<Integer>> result, List<Integer> solution, int[] nums, int start) {
+        if(solution.size() > 1) {
+            result.add(new ArrayList<>(solution));
         }
-        for (int i = start; i < nums.length; i++) {
+
+        for(int i = start; i < nums.length; i++) {
             if(solution.size() == 0 || solution.get(solution.size() - 1) <= nums[i]) {
                 solution.add(nums[i]);
-                generate(result, solution, i + 1, nums);
+                backtrack(result, solution, nums, i + 1);
                 solution.remove(solution.size() - 1);
             }
         }

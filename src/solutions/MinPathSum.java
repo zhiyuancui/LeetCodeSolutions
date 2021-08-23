@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 64 Minimum Path Sum
+ */
 public class MinPathSum {
 	public int minPathSum(int[][] grid) {
         

@@ -1,8 +1,14 @@
 package solutions;
 
-import util.TreeNode;
+
+import java.util.List;
 
 public class DiameterOfNaryTre {
+
+    class TreeNode {
+        List<TreeNode> children;
+
+    }
     int res = 0;
     public int diameter(TreeNode root) {
         if(root == null) {

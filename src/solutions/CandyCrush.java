@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 732 Candy Crush
+ */
 public class CandyCrush {
     public int[][] candyCrush(int[][] board) {
         if(board == null || board.length == 0) {

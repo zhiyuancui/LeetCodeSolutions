@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.HashMap;
 
+/**
+ * 288 Unique Word Abbreviation
+ */
 public class UniqueWordAbbreviation {
 	HashMap<String, String> map;
 	

@@ -12,6 +12,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 110 Balanced Binary Tree
+ */
 public class IsBalanced {
 	public boolean isBalanced(TreeNode root) {
         if( root == null )
