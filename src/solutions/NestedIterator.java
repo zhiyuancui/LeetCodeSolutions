@@ -6,6 +6,9 @@ import java.util.List;
 
 import util.NestedInteger;
 
+/**
+ * 341 Flatten Nested List Iterator
+ */
 public class NestedIterator implements Iterator<Integer> {
 
     List<Integer> list;

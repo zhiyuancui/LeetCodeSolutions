@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * 187 Repeated DNA Sequences
+ */
 public class RepeatedDNA {
 	public List<String> findRepeatedDnaSequences(String s) {
         HashSet<Integer> hash = new HashSet<Integer>();

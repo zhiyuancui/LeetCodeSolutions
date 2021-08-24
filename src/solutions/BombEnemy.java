@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 361 Bomb Enemy
+ */
 public class BombEnemy {
 	public int maxKilledEnemies(char[][] grid) {
 		if( grid == null || grid.length == 0 ) {

@@ -4,25 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Numbers can be regarded as product of its factors. For example,
- * 8 = 2 x 2 x 2;
- * = 2 x 4.
- * Write a function that takes an integer n and return all possible combinations of its factors.
- * 
- * Note: 
- * 
- * Each combination's factors must be sorted ascending, 
- * for example: The factors of 2 and 6 is [2, 6], not [6, 2]
- * You may assume that n is always positive.
- * Factors should be greater than 1 and less than n.
- * 
- * 
- * Reference to: https://leetcode.com/discuss/51250/my-recursive-dfs-java-solution
- * 
- * @author Zhiyuan
- *
+ * 254 Factor Combinations
  */
-
 public class FactorCombinations {
 
 	public List<List<Integer>> getFactors(int n) {

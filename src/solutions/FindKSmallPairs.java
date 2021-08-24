@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-
+/**
+ * 373 Find K Pairs with Smallest Sums
+ */
 public class FindKSmallPairs {
-	
-	/**
-	 * @param nums1
-	 * @param nums2
-	 * @param k
-	 * @return
-	 */
     public List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
         PriorityQueue<int[]> queue = new PriorityQueue<int[]>((a,b) -> nums1[a[0]]+nums2[a[1]]-nums1[b[0]]-nums2[b[1]]);
 

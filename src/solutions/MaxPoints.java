@@ -7,18 +7,19 @@ import util.Point;
 
 
 public class MaxPoints {
-	public int maxPoints(Point[] points) {
-		if (points==null) return 0;
+	public int maxPoints(int[][] points) {
+        if (points==null) return 0;
         if (points.length<=2) return points.length;
 
         Map<Integer,Map<Integer,Integer>> map = new HashMap<Integer,Map<Integer,Integer>>();
+
         int result=0;
-        for (int i=0;i<points.length;i++){ 
+        for (int i=0;i<points.length;i++){
             map.clear();
             int dup=0,max=0;
             for (int j=i+1;j<points.length;j++){
-                int x=points[j].x-points[i].x;
-                int y=points[j].y-points[i].y;
+                int x=points[j][0] -points[i][0];
+                int y=points[j][1]-points[i][1];
                 if (x==0&&y==0){
                     dup++;
                     continue;
@@ -34,7 +35,7 @@ public class MaxPoints {
                         map.get(x).put(y, map.get(x).get(y)+1);
                     }else{
                         map.get(x).put(y, 1);
-                    }   					
+                    }
                 }else{
                     Map<Integer,Integer> m = new HashMap<Integer,Integer>();
                     m.put(y, 1);
@@ -46,10 +47,10 @@ public class MaxPoints {
         }
         return result;
 
-        	
-        }
-        private int generateGCD(int a,int b){
-            return b == 0 || a == 0 ? b + a : generateGCD(b, a%b);
-        	
-        }
+
+    }
+    private int generateGCD(int a,int b){
+        return b == 0 || a == 0 ? b + a : generateGCD(b, a%b);
+
+    }
 }

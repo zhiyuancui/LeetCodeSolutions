@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 432 All O(1) Data Structure
+ */
 class AllOne {
 
     class Bucket {

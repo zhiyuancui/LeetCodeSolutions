@@ -1,11 +1,9 @@
 package solutions;
 
+/**
+ * 152 Maximum Product Subarray
+ */
 public class MaxProductSubarray {
-	/**
-	 * Maximum Product Subarray
-	 * @param nums
-	 * @return
-	 */
 	public int maxProduct(int[] nums) {
         
         if( nums == null || nums.length == 0 ){

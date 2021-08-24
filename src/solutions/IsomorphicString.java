@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 205 Isomorphic Strings
+ */
 public class IsomorphicString {
 	public boolean isIsomorphic(String s, String t) {
         if( ( s== null && t == null ) || ( s.length() == 0 && t.length() == 0 ) ){
@@ -37,8 +40,6 @@ public class IsomorphicString {
         for(Integer i = 0; i < s.length(); i++) {
         	Integer r1 = m1.put(s.charAt(i), i);
             Integer r2 = m2.put(t.charAt(i), i);
-            System.out.println( r1 );
-             System.out.println( r2 );
             if( r1 != r2 ) {
                 return false;
             }

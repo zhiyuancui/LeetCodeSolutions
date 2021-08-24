@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 464 Can I win
+ */
 public class canIWin {
 	Map<Integer, Boolean> map;
     boolean[] used;

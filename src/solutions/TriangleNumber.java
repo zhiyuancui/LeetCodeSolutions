@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Arrays;
 
+/**
+ * 611 Valid Triangle Number
+ */
 public class TriangleNumber {
 	public int triangleNumber(int[] nums) {
         Arrays.sort(nums);

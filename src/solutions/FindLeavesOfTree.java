@@ -1,40 +1,63 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import util.TreeNode;
 
 /**
- * Given a binary tree, collect a tree's nodes as if you were doing this: Collect and remove all leaves, repeat until the tree is empty.
-
-Example:
-Given binary tree 
-          1
-         / \
-        2   3
-       / \     
-      4   5    
-Returns [4, 5, 3], [2], [1].
- * @author Zhiyuan
- *
+ * Find Leaves of Binary Tree
  */
 public class FindLeavesOfTree {
-	public List<List<Integer>> findLeaves(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if( root == null ) {
-            return result;
+    private List<int[]> pairs;
+
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        if(root == null) {
+            return new ArrayList<>();
         }
-        
-        height(root,result);
+
+        pairs = new ArrayList<>();
+
+        getHeight(root);
+
+        Collections.sort(this.pairs, (a, b) -> a[0] - b[0]);
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        int height = 0;
+
+        for(int[] item : pairs) {
+            if(item[0] == height) {
+                if(result.size() <= height) {
+                    result.add(new ArrayList<>());
+                }
+                result.get(height).add(item[1]);
+            } else {
+                height = item[0];
+                if(result.size() <= height) {
+                    result.add(new ArrayList<>());
+                }
+                result.get(height).add(item[1]);
+            }
+        }
+
         return result;
+
     }
-    
-    private int height(TreeNode root, List<List<Integer>> result) {
-        if( null == root ) return -1;
-        int level = Math.max(height(root.left, result), height(root.right,result)) + 1;
-        if( result.size() < level + 1 ) result.add(new ArrayList<>());
-        result.get(level).add( root.val );
-        return level;
+
+    private int getHeight(TreeNode root) {
+        if(root == null) {
+            return -1;
+        }
+
+        int left = getHeight(root.left);
+        int right = getHeight(root.right);
+
+        int height = Math.max(left, right) + 1;
+
+        this.pairs.add(new int[]{height, root.val});
+
+        return height;
     }
 }

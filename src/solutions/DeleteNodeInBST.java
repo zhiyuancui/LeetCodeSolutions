@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 450 Delete Node in a BST
+ */
 public class DeleteNodeInBST {
 	public TreeNode deleteNode(TreeNode root, int key) {
         if(root == null){

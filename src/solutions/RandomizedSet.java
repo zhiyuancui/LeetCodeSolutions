@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * 380 Insert Delete GetRandom O(1)
+ */
 public class RandomizedSet {
 	/** Initialize your data structure here. */
     List<Integer> list;

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 516 Longest Palindromic Subsequence
+ */
 public class LongestPalindromeSubseq {
 	public int longestPalindromeSubseq(String s) {
         int[][] dp = new int[s.length()][s.length()];
