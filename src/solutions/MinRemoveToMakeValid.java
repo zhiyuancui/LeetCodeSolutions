@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+/**
+ * 1249 Minimum Remove To Make Valid Parentheses
+ */
 public class MinRemoveToMakeValid {
     public String minRemoveToMakeValid(String s) {
         if(s==null||s.length()==0) {

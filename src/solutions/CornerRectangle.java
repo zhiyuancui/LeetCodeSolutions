@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 750 Number of Corner Rectangles
+ */
 public class CornerRectangle {
 	public int countCornerRectangles(int[][] grid) {
         int ans = 0;

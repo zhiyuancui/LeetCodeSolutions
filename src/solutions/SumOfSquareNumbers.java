@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 633 Sum of Square Numbers
+ */
 public class SumOfSquareNumbers {
 	public boolean judgeSquareSum(int c) {
         

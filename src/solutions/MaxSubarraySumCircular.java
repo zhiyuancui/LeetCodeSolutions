@@ -3,36 +3,35 @@ package solutions;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * 918 Maximum Sum Circular Subarray
+ */
 public class MaxSubarraySumCircular {
-    public int maxSubarraySumCircular(int[] A) {
-        if(A == null || A.length == 0) {
-            return 0;
+    public int maxSubarraySumCircular(int[] nums) {
+        int n = nums.length;
+        int total = 0;
+        for(int x : nums)
+            total += x;
+
+        int min_sum = Integer.MAX_VALUE;
+        int max_sum = Integer.MIN_VALUE;
+
+        int sum1 = 0;
+        int sum2 = 0;
+        for(int i = 0; i < n; i++){
+            sum1 += nums[i];
+            min_sum = Math.min(min_sum, sum1);
+            if(sum1 > 0)
+                sum1 = 0;
+
+            sum2 += nums[i];
+            max_sum = Math.max(max_sum, sum2);
+            if(sum2 < 0)
+                sum2 = 0;
         }
 
-        int[] nums = new int[A.length * 2 +1];
+        if(max_sum < 0) return max_sum;
 
-        for(int i = 0; i < 2*A.length; i++) {
-            nums[i+1] = nums[i] + A[i%A.length];
-        }
-
-        int ans = A[0];
-        Deque<Integer> deque = new ArrayDeque();
-        deque.offer(0);
-
-        for(int i = 1; i <= 2*A.length; i++) {
-            if(deque.peekFirst() < i - A.length) {
-                deque.pollFirst();
-            }
-
-            ans = Math.max(ans, nums[i] - nums[deque.peekFirst()]);
-
-            while(!deque.isEmpty() && nums[i] <= nums[deque.peekLast()]) {
-                deque.pollLast();
-            }
-
-            deque.offerLast(i);
-        }
-
-        return ans;
+        return Math.max(max_sum, total - min_sum);
     }
 }

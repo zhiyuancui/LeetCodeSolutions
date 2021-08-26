@@ -1,12 +1,9 @@
 package solutions;
 
+/**
+ * 168 Excel Sheet Column Title
+ */
 public class Excel {
-
-	/**
-	 * Excel Sheet Column Title
-	 * @param n
-	 * @return
-	 */
 	public String convertToTitle(int n) {
         String res = "";
         while(n != 0 ){

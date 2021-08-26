@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 981 Time Based Key-Value Store
+ */
 public class TimeMap {
     Map<String, TreeMap<Integer, String>> map = new HashMap<>();
     public TimeMap() {

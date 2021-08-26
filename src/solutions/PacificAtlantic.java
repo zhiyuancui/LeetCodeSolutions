@@ -1,45 +1,86 @@
 package solutions;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
+/**
+ * 417 Pacific Atlantic Water Flow
+ */
 public class PacificAtlantic {
-	public List<int[]> pacificAtlantic(int[][] matrix) {
-        List<int[]> res = new LinkedList<>();
-        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
-            return res;
+    int[] dx = new int[]{0,0,1,-1};
+    int[] dy = new int[]{1,-1,0,0};
+    public List<List<Integer>> pacificAtlantic(int[][] matrix) {
+        if(matrix == null || matrix.length == 0) {
+            return new ArrayList<>();
         }
-        int row = matrix.length, col = matrix[0].length;
-        boolean[][]pacific = new boolean[row][col];
-        boolean[][]atlantic = new boolean[row][col];
-        for(int i=0; i<row; i++){
-            dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, i, col-1);
+
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        int[][] pacific = new int[row][col];
+        int[][] atlantic = new int[row][col];
+
+        Queue<int[]> queue = new LinkedList<>();
+
+        for(int i = 0; i < row; i++) {
+            queue.add(new int[]{i,0});
         }
-        for(int i=0; i<col; i++){
-            dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, row-1, i);
+
+        for(int j = 0; j < col; j++) {
+            queue.add(new int[]{0,j});
         }
-        
-        for (int i = 0; i < row; i++) 
-            for (int j = 0; j < col; j++) 
-                if (pacific[i][j] && atlantic[i][j]) 
-                    res.add(new int[] {i, j});
-        return res;
-    }
-    
-	int[] dx = {0,0,1,-1};
-    int[] dy = {1,-1,0,0};
-    
-    public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
-    		int row = matrix.length, col = matrix[0].length;
-        if(x<0 || x>= row || y<0 || y>= col || visited[x][y] || matrix[x][y] < height)
-            return;
-        visited[x][y] = true;
-        for(int i = 0; i < dx.length; i++ ){
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            dfs(matrix,visited,matrix[x][y],nx,ny);
+
+        while(!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            int height = matrix[cur[0]][cur[1]];
+            pacific[cur[0]][cur[1]] = 1;
+
+            for(int i = 0; i < dx.length; i++) {
+                int newX = cur[0] + dx[i];
+                int newY = cur[1] + dy[i];
+                if(newX >= 0 && newX < row && newY >= 0 && newY < col && pacific[newX][newY] == 0 && matrix[newX][newY] >= height) {
+                    queue.add(new int[]{newX, newY});
+                }
+            }
         }
+
+        for(int i = 0; i < row; i++) {
+            queue.add(new int[]{i,col-1});
+        }
+
+        for(int j = 0; j < col; j++) {
+            queue.add(new int[]{row-1,j});
+        }
+
+        while(!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            int height = matrix[cur[0]][cur[1]];
+            atlantic[cur[0]][cur[1]] = 1;
+
+            for(int i = 0; i < dx.length; i++) {
+                int newX = cur[0] + dx[i];
+                int newY = cur[1] + dy[i];
+                if(newX >= 0 && newX < row && newY >= 0 && newY < col && atlantic[newX][newY] == 0 && matrix[newX][newY] >= height) {
+                    queue.add(new int[]{newX, newY});
+                }
+            }
+        }
+
+
+        List<List<Integer>> result = new ArrayList<>();
+        for(int i = 0; i < row; i++) {
+            for(int j=0; j < col; j++) {
+                if(pacific[i][j] == 1 && atlantic[i][j] == 1) {
+                    List<Integer> item = new ArrayList<>();
+                    item.add(i);
+                    item.add(j);
+                    result.add(item);
+                }
+            }
+        }
+
+        return result;
     }
 }

@@ -3,6 +3,9 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 68 Text Justification
+ */
 public class TextJustification {
 	public List<String> fullJustify(String[] words, int maxWidth) {
 	       int wordsCount = words.length;

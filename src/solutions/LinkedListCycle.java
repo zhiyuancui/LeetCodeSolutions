@@ -2,30 +2,27 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 141 Linked List Cycle
+ */
 public class LinkedListCycle {
-	public ListNode detectCycle(ListNode head) {
-        if( head == null || head.next == null ){
-            return null;
+    public boolean hasCycle(ListNode head) {
+        if(head == null || head.next == null) {
+            return false;
         }
-        
-        ListNode fast = head.next.next;
-        ListNode slow = head.next;
-        
-        while( fast != slow ){
-            if( fast == null || fast.next == null ){
-                return null;
-            }
-            slow = slow.next;
+
+        ListNode fast = head;
+        ListNode slow = head;
+
+        while(fast != null && fast.next != null) {
             fast = fast.next.next;
-        }
-        
-        ListNode point = head;
-        
-        while( point != slow){
-            point = point.next;
             slow = slow.next;
+
+            if(fast == slow) {
+                return true;
+            }
         }
-        
-        return slow;
+
+        return false;
     }
 }

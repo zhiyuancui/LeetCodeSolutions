@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 676 Implement Magic Dictionary
+ */
 public class MagicDictionary {
     Map<String, List<int[]>> map = new HashMap<>();
     /** Initialize your data structure here. */

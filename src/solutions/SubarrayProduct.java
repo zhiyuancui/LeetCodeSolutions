@@ -1,22 +1,25 @@
 package solutions;
 
+/**
+ * 713 Subarray Product Less Than K
+ */
 public class SubarrayProduct {
-	int count = 0;
     public int numSubarrayProductLessThanK(int[] nums, int k) {
-       int n = nums.length;
-        long p = 1l;
-        int i = 0;
-        int j = 0;
-        int total = 0;
-        while(j < n){
-            p *= nums[j];
-            while(i <= j&&p >= k){
-                p /= nums[i];
-                i++;
-            }
-            total += (j - i + 1);
-            j++;
+        if(k <= 1) {
+            return 0;
         }
-        return total;
+
+        int prod = 1, result = 0, left = 0;
+
+        for(int right = 0; right < nums.length; right++) {
+            prod *= nums[right];
+            while(prod >= k) {
+                prod /= nums[left];
+                left++;
+            }
+            result += right - left + 1;
+        }
+
+        return result;
     }
 }

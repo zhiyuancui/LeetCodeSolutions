@@ -1,73 +1,46 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-
-
+/**
+ * 130 Surrounded Regions
+ */
 public class SurroundedRegions {
-	
-	private class Node{
-        int x;
-        int y;
-        public Node(int i , int j) {
-            x = i;
-            y = j;
-        }
-    }
-    
-    int[]dx = {0,0,-1,1};
-    int[]dy = {1,-1,0,0};
-    
+
+    int[][] dirs = {{0,1},{0,-1},{1,0},{-1,0}};
     public void solve(char[][] board) {
-        if( board == null || board.length == 0 ) {
-            return;
+        int n = board.length;
+        int m = board[0].length;
+
+        for(int i = 0; i<n ;i++){
+            dfs(board,i,0);
+            dfs(board,i,m-1);
         }
-        
-        int row = board.length;
-        int col = board[0].length;
-        
-        Queue<Node> q = new LinkedList<Node>();
-        
-        for(int i = 0; i < row; i++) {
-            if( board[i][0] == 'O' ) {
-                q.offer(new Node(i,0));
-            }
-            if( board[i][col-1] == 'O' ) {
-                q.offer(new Node(i,col-1));
-            }
+
+        for(int i = 1; i<m-1 ;i++){
+            dfs(board,0,i);
+            dfs(board,n-1,i);
         }
-        
-        for(int i = 0; i < col; i++) {
-            if( board[0][i] == 'O' ) {
-                q.offer(new Node(0,i));
-            }
-            if( board[row-1][i] == 'O' ) {
-                q.offer(new Node(row-1,i));
-            }
-        }
-        
-        while( !q.isEmpty() ) {
-            Node cur = q.poll();
-            board[cur.x][cur.y] = 'F';
-            for(int i = 0; i < dx.length; i++) {
-                int newX = cur.x + dx[i];
-                int newY = cur.y + dy[i];
-                if( newX >= 0 && newX < row && newY >= 0 &&  newY < col && board[newX][newY] == 'O') {
-                    q.offer(new Node(newX, newY));
-                }
-            }
-        }
-        
-        for(int i = 0; i < row; i ++) {
-            for(int j = 0; j < col; j++) {
-                if( board[i][j] == 'O' ) {
+
+        for(int i = 0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(board[i][j] == 'O'){
                     board[i][j] = 'X';
-                } else if( board[i][j] == 'F' ) {
+                }else if(board[i][j] == 'R'){
                     board[i][j] = 'O';
                 }
             }
+        }
+
+    }
+    public void dfs(char[][] b , int i, int j){
+        if(i<0 || i>=b.length || j<0 || j>=b[0].length || b[i][j] != 'O') return;
+
+        b[i][j] = 'R';
+
+        for(int d[] : dirs){
+            int x = i + d[0];
+            int y = j + d[1];
+
+            dfs(b,x,y);
         }
     }
     

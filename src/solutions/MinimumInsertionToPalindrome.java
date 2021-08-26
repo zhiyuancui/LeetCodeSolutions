@@ -1,6 +1,10 @@
 package solutions;
 
-// https://leetcode-cn.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/solution/rang-zi-fu-chuan-cheng-wei-hui-wen-chuan-de-zui--2/
+
+/**
+ * 1312 Minimum Insertion Steps to Make a String Palindrome
+ * https://leetcode-cn.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/solution/rang-zi-fu-chuan-cheng-wei-hui-wen-chuan-de-zui--2/
+ */
 public class MinimumInsertionToPalindrome {
     public int minInsertions(String s) {
         int len = s.length();
