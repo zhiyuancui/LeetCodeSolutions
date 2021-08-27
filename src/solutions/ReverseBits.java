@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 190 Reverse Bits
+ */
 public class ReverseBits {
 	
 	public int reverseBits(int n) {

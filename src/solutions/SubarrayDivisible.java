@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 974 Subarray Sums Divisible by K
+ */
 public class SubarrayDivisible {
     public int subarraysDivByK(int[] nums, int k) {
         if(nums == null || k == 0) {

@@ -6,6 +6,9 @@ package solutions;
 
 import util.*;
 
+/**
+ * 226 Invert Binary Tree
+ */
 public class InvertTree {
 	public TreeNode invertTree(TreeNode root) {
         

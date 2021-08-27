@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 4092 Remove K Digits
+ */
 public class RemoveKDigits {
 	public String removeKdigits(String num, int k) {
 		if( k == num.length() ) {

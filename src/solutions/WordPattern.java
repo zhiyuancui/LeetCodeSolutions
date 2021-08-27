@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 290 Word Pattern
+ */
 public class WordPattern {
 	public boolean wordPattern(String pattern, String str) {
         String[] parts = str.split("\\s+");

@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 669 Trim a Binary Search Tree
+ */
 public class trimBST {
     public TreeNode trimBST(TreeNode root, int low, int high) {
         if (root == null) return root;

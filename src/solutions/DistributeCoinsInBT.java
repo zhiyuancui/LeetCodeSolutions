@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 979 Distribute Coins in Binary Tree
+ */
 public class DistributeCoinsInBT {
     int ans;
     public int distributeCoins(TreeNode root) {

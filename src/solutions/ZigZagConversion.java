@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 6 ZigZag Conversion
+ */
 public class ZigZagConversion {
 	public String convert(String s, int numRows) {
 		if( numRows <= 1 ){

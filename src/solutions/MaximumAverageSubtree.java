@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 1120 Maximum Average Subtree
+ */
 public class MaximumAverageSubtree {
     double max = 0.0;
     public double maximumAverageSubtree(TreeNode root) {

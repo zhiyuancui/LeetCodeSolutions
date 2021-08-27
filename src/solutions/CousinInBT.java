@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+/**
+ * 993 Cousins in Binary Tree
+ */
 public class CousinInBT {
     public boolean isCousins(TreeNode root, int x, int y) {
         if(root == null) {

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 171 Excel Sheet Column Number
+ */
 public class TitleToNumber {
 	public int titleToNumber(String s) {
         

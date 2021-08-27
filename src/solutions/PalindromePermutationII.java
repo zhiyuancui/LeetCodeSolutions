@@ -1,78 +1,55 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+/**
+ * 267 Palindrome Permutation II
+ */
 public class PalindromePermutationII {
-    /**
-     * Given a string s, return all the palindromic permutations (without duplicates) of it.
-     * Return an empty list if no palindromic permutation could be form.
-     * For example:
-     * Given s = "aabb", return ["abba", "baab"].
-     * Given s = "abc", return [].
-     *
-     * Reference to : https://leetcode.com/discuss/questions/oj/palindrome-permutation-ii?start=20
-     *
-     * @param s
-     * @return
-     */
-    public List<String> generatePalindromes(String s) {
-        int odd = 0;
-        String mid = "";
-        List<String> result = new ArrayList<String>();
-        List<Character> list = new ArrayList<Character>();
 
-        Map<Character, Integer> map = new HashMap<>();
-
-        for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            map.put(c, map.containsKey(c) ? map.get(c) + 1 : 1);
-            odd += map.get(c) % 2 != 0 ? 1 : -1;
-        }
-
-        if( odd > 1 ){
-            return result;
-        }
-
-        for(Map.Entry<Character, Integer> entry : map.entrySet() ){
-            char key = entry.getKey();
-            int val = entry.getValue();
-
-            if( val % 2 != 0 ){
-                mid += key;
+        Set < String > set = new HashSet< >();
+        public List < String > generatePalindromes(String s) {
+            int[] map = new int[128];
+            char[] st = new char[s.length() / 2];
+            if (!canPermutePalindrome(s, map))
+                return new ArrayList < > ();
+            char ch = 0;
+            int k = 0;
+            for (int i = 0; i < map.length; i++) {
+                if (map[i] % 2 == 1)
+                    ch = (char) i;
+                for (int j = 0; j < map[i] / 2; j++) {
+                    st[k++] = (char) i;
+                }
             }
-
-            for(int i = 0; i < val / 2; i++){
-                list.add(key);
-            }
+            permute(st, 0, ch);
+            return new ArrayList < String > (set);
         }
-
-        perm(list, mid, new boolean[ list.size() ], new StringBuilder(), result);
-
-        return result;
-    }
-
-    private void perm(List<Character> list, String mid, boolean[] used, StringBuilder sb, List<String> result){
-        if( sb.length() == list.size() ){
-            result.add(sb + mid + sb.reverse());
-            sb.reverse();
-            return;
-        }
-
-        for(int i = 0; i < list.size(); i++){
-            if( i > 0 && list.get(i) == list.get(i-1) && !used[i-1] ){
-                continue;
+        public boolean canPermutePalindrome(String s, int[] map) {
+            int count = 0;
+            for (int i = 0; i < s.length(); i++) {
+                map[s.charAt(i)]++;
+                if (map[s.charAt(i)] % 2 == 0)
+                    count--;
+                else
+                    count++;
             }
-
-            if( !used[i] ){
-                used[i] = true;
-                sb.append(list.get(i));
-                perm(list,mid,used,sb,result);
-                used[i] = false;
-                sb.deleteCharAt( sb.length() - 1 );
+            return count <= 1;
+        }
+        public void swap(char[] s, int i, int j) {
+            char temp = s[i];
+            s[i] = s[j];
+            s[j] = temp;
+        }
+        void permute(char[] s, int l, char ch) {
+            if (l == s.length) {
+                set.add(new String(s) + (ch == 0 ? "" : ch) + new StringBuffer(new String(s)).reverse());
+            } else {
+                for (int i = l; i < s.length; i++) {
+                    swap(s, l, i);
+                    permute(s, l + 1, ch);
+                    swap(s, l, i);
+                }
             }
         }
-    }
 }
