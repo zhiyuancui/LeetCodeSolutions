@@ -3,8 +3,11 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 593 Valid Square
+ */
 public class ValidSquare {
-public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
+    public boolean validSquare(int[] p1, int[] p2, int[] p3, int[] p4) {
         
         List<Integer> distances = new ArrayList<Integer>();
         distances.add( getDistance(p1,p2) );

@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 368 Largest Divisible Subset
+ */
 public class LargestDivisibleSubset {
-
-	/**
-	 * Reference to : http://blog.csdn.net/xindoo/article/details/53046600
-	 * @param nums
-	 * @return
-	 */
 	public List<Integer> largestDivisibleSubset(int[] nums) {
         
         int n = nums.length;

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1062 Longest Repeating Substring
+ */
 public class LongestRepeatingSubstring {
     public int longestRepeatingSubstring(String s) {
         int len = s.length();

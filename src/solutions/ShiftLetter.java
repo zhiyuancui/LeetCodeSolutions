@@ -1,8 +1,11 @@
 package solutions;
 
+/**
+ * 848 Shifting Leters
+ */
 public class ShiftLetter {
-    public String shiftingLetters(String S, int[] shifts) {
-        if(S == null || S.length() == 0 || shifts == null) {
+    public String shiftingLetters(String s, int[] shifts) {
+        if(s == null || s.length() == 0 || shifts == null) {
             return "";
         }
 
@@ -13,7 +16,7 @@ public class ShiftLetter {
             sum[i] = (shifts[i] + sum[i+1]) % 26;
         }
 
-        char[] array = S.toCharArray();
+        char[] array = s.toCharArray();
 
         for(int i = 0; i < array.length; i++) {
             int shift = sum[i];

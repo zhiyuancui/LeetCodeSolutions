@@ -1,8 +1,5 @@
 package solutions;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * 983 Minimum Cost For Tickets
  */

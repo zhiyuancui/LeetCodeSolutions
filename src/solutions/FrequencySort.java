@@ -1,56 +1,41 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+/**
+ * 451 Sort Characters By Frequency
+ */
 public class FrequencySort {
 
 	public String frequencySort(String s) {
-	    if (s == null) {
-	        return null;
-	    }
-	    Map<Character, Integer> map = new HashMap();
-	    char[] charArray = s.toCharArray();
-	    int max = 0;
-	    for (Character c : charArray) {
-	        if (!map.containsKey(c)) {
-	            map.put(c, 0);
-	        }
-	        map.put(c, map.get(c) + 1);
-	        max = Math.max(max, map.get(c));
-	    }
+		if(s == null || s.length() == 0) {
+			return s;
+		}
 
-	    List<Character>[] array = buildArray(map, max);
+		Map<Character, Integer> map = new HashMap<>();
 
-	    return buildString(array);
-	}
+		for(char c : s.toCharArray()) {
+			int count = map.getOrDefault(c, 0) + 1;
+			map.put(c, count);
+		}
 
-	private List<Character>[] buildArray(Map<Character, Integer> map, int maxCount) {
-	    List<Character>[] array = new List[maxCount + 1];
-	    for (Character c : map.keySet()) {
-	        int count = map.get(c);
-	        if (array[count] == null) {
-	            array[count] = new ArrayList();
-	        }
-	        array[count].add(c);
-	    }
-	    return array;
-	}
-	    
-	private String buildString(List<Character>[] array) {
-	    StringBuilder sb = new StringBuilder();
-	    for (int i = array.length - 1; i > 0; i--) {
-	        List<Character> list = array[i];
-	        if (list != null) {
-	            for (Character c : list) {
-	                for (int j = 0; j < i; j++) {
-	                    sb.append(c);
-	                }
-	            }
-	        }
-	    }
-	    return sb.toString();
+		PriorityQueue<Character> queue = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
+
+		for(char c : map.keySet()) {
+			queue.add(c);
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		while(!queue.isEmpty()) {
+			char c = queue.poll();
+
+			int time = map.get(c);
+			for(int i = 0; i < time; i++) {
+				sb.append(c);
+			}
+		}
+
+		return sb.toString();
 	}
 }

@@ -32,7 +32,6 @@ public class CountBits {
 		int[] res = new int[num+1];
 		
 		for(int i = 1; i <= num; i++){
-			System.out.println( i >> 1);
 			res[i] = res[ i >> 1 ] + (i&1);
 		}
 		

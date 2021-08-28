@@ -36,6 +36,6 @@ public class RemoveKDigits {
         while( sb.length() > 1 && sb.charAt(0) == '0' ) {
             sb.deleteCharAt(0);
         }
-        return sb.toString();// 9, 1 //10, 2//100 1
+        return sb.length() == 0 ? "0" : sb.toString();
     }
 }
