@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * 1197 Minimum Knight Moves
  */
-public class minKnightMoves {
+public class MinKnightMoves {
 
     int[] dx = new int[]{2,2,-2,-2,1,1,-1,-1};
     int[] dy = new int[]{1,-1,1,-1,2,-2,-2,2};

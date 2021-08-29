@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * 355 Design Twitter
+ */
 public class DesignTwitter {
     private static int timeStamp=0;
     
