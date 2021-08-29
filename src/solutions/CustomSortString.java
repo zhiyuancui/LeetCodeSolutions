@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CustomSortString {
     public String customSortString(String order, String T) {
-        if(S==null || S.length() == 0) {
+        if(order==null || order.length() == 0) {
             return "";
         }
 
@@ -18,7 +18,7 @@ public class CustomSortString {
 
         StringBuilder sb = new StringBuilder();
 
-        for(char c : S.toCharArray()) {
+        for(char c : order.toCharArray()) {
             if(map.containsKey(c)) {
                 int count = map.get(c);
                 for(int i = 0; i < count; i++) {
@@ -28,7 +28,7 @@ public class CustomSortString {
         }
 
         for(char c : T.toCharArray()) {
-            if(S.indexOf(c) == -1) {
+            if(order.indexOf(c) == -1) {
                 sb.append(c);
             }
         }

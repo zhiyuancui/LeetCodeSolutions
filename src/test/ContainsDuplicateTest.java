@@ -20,7 +20,7 @@ public class ContainsDuplicateTest {
 	public void test() {
 		ContainsDuplicate c = new ContainsDuplicate();
 		int[] nums = new int[2];
-		c.containsNearbyDuplicate(nums, 3);
+
 	}
 
 }

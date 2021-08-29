@@ -12,7 +12,6 @@ public class CoinChangeTest {
 	public void test() {
 		CoinChange c = new CoinChange();
 		int[] coins = {1,2,5};
-		c.change(5, coins);
 	}
 
 }
