@@ -1,13 +1,10 @@
 package solutions;
 
 
+/**
+ * 96 Unique Binary Search Trees
+ */
 public class UniqueBST {
-    
-    /**
-     * Unique Binary Search Tree
-     * @param n
-     * @return
-     */
     public int numTrees(int n) {
         int [] dp = new int[n+1];
         dp[0] = dp[1] = 1;

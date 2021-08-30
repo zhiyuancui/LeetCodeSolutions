@@ -1,34 +1,50 @@
 package solutions;
 
+/**
+ * 562 Longest Line of Consecutive One in Matrix
+ */
 public class LongestLine {
-	public int longestLine(int[][] matrix) {
-        int row = matrix.length, max = 0;
-        if (row == 0) return max;
-        int col = matrix[0].length;
-        
+    public int longestLine(int[][] mat) {
+        if(mat ==  null || mat.length == 0) {
+            return 0;
+        }
+        int row = mat.length;
+        int col = mat[0].length;
+
         int[][][] dp = new int[row][col][4];
-        
-        for (int i=0;i<row;i++) 
-            for (int j=0;j<col;j++) {
-                if (matrix[i][j] == 0) continue;
-                for (int k=0;k<4;k++) {
+
+        int max = 0;
+
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(mat[i][j] == 0) {
+                    continue;
+                }
+
+                for(int k = 0; k < 4; k++) {
                     dp[i][j][k] = 1;
                 }
-                if (j > 0) {
-                    dp[i][j][0] += dp[i][j-1][0]; // horizontal line
+
+                if(j > 0) { // from left
+                    dp[i][j][0] += dp[i][j-1][0];
                 }
-                if (j > 0 && i > 0) {
-                    dp[i][j][1] += dp[i-1][j-1][1]; // anti-diagonal line
+
+                if(i > 0) {// from top
+                    dp[i][j][1] += dp[i-1][j][1];
                 }
-                if (i > 0) {
-                    dp[i][j][2] += dp[i-1][j][2]; // vertical line
+
+                if(j > 0 && i > 0) { // from left top
+                    dp[i][j][2] += dp[i-1][j-1][2];
                 }
-                if (j < col-1 && i > 0) {
-                    dp[i][j][3] += dp[i-1][j+1][3]; // diagonal line
+
+                if(j < col - 1 && i > 0) {//from right top
+                    dp[i][j][3] += dp[i-1][j+1][3];
                 }
-                max = Math.max(max, Math.max(dp[i][j][0], dp[i][j][1]));
-                max = Math.max(max, Math.max(dp[i][j][2], dp[i][j][3]));
+
+                max = Math.max(max, Math.max(dp[i][j][0], Math.max(dp[i][j][1], Math.max(dp[i][j][2], dp[i][j][3]))));
             }
+        }
+
         return max;
     }
 }

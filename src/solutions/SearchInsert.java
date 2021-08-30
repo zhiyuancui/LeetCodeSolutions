@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 35 Search Insert Position
+ */
 public class SearchInsert {
     public int searchInsert(int[] nums, int target) {
         if(nums == null || nums.length == 0) {

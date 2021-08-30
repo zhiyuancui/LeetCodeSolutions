@@ -3,35 +3,47 @@ package solutions;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+/**
+ * 763 Partition Labels
+ */
 public class PartitionLabels {
-	public List<Integer> partitionLabels(String S) {
-        List<Integer> res = new ArrayList<>();
-        
+	public List<Integer> partitionLabels(String s) {
+        if(s == null || s.length() == 0) {
+            return new ArrayList<>();
+        }
+
         int[] hash = new int[26];
-        char[] stc = S.toCharArray();
-        for(char c:stc)//count the occurence of each char in string
+
+        for(char c : s.toCharArray()) {
             hash[c-'a']++;
-        
-        int left = 0, right = 0, len = S.length(), counter = 0;
-        HashSet<Character> set = new HashSet<>();
-        while(right < len){
-            char c = stc[right];
-            if(!set.contains(c)){// found new char in current window, so increase counter
-                set.add(c);
-                counter++;
+        }
+
+        int left = 0;
+        List<Integer> result = new ArrayList<>();
+
+        Set<Character> set = new HashSet<>();
+        int count = 0;
+
+        for(int right = 0; right < s.length(); right++) {
+            hash[s.charAt(right) - 'a']--;
+            if(!set.contains(s.charAt(right))) {
+                set.add(s.charAt(right));
+                count++;
             }
-            hash[c-'a']--;
-            right++;
-            if(hash[c-'a'] == 0){ // decrease the counter as we have exhausted the c char and remove char c from set
-                counter--;
-                set.remove(c);
+
+            if(hash[s.charAt(right) - 'a'] == 0) {
+                count--;
+                set.remove(s.charAt(right));
             }
-            if(counter == 0){//if counter becomes 0, means current window is a partition
-                res.add(right - left);//add length of current window
-                left = right;// reset i for next window
-            }            
-        } 
-        return res;
+
+            if(count == 0) {
+                result.add(right - left+1);
+                left = right+1;
+            }
+        }
+
+        return result;
     }
 }

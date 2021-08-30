@@ -84,7 +84,7 @@ public class ResourceLog {
         };
         System.out.println("Q1:");
         System.out.println(r.getUserMinMaxAccessTime(logs));
-        System.out.println("");
+        System.out.println();
 
         String[][] logs2= new String[][]{
                 {"300", "user_1", "resource_3"},
@@ -98,6 +98,6 @@ public class ResourceLog {
         System.out.println("Q2:");
         System.out.println(r.findResourcesInWindow(logs));
         System.out.println(r.findResourcesInWindow(logs2));
-        System.out.println("");
+        System.out.println();
     }
 }

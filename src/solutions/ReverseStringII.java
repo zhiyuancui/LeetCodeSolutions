@@ -1,13 +1,10 @@
 package solutions;
 
-public class ReverseString {
+/**
+ * 541 Reverse String II
+ */
+public class ReverseStringII {
 
-	/**
-	 * Reverse String II
-	 * @param s
-	 * @param k
-	 * @return
-	 */
 	public String reverseStr(String s, int k) {
         
         if( k < 2 || s == null || s.length() == 0 ){

@@ -36,7 +36,7 @@ public class SurroundedRegions {
 
         b[i][j] = 'R';
 
-        for(int d[] : dirs){
+        for(int[] d : dirs){
             int x = i + d[0];
             int y = j + d[1];
 

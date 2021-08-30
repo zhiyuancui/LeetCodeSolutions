@@ -1,25 +1,29 @@
 package solutions;
 
-public class MinKBitFlips {
-    public int minKBitFlips(int[] A, int K) {
+import java.util.Deque;
+import java.util.LinkedList;
 
-        int ans = 0, len = A.length;
-        for(int i = 0; i < len; i++) {
-            if(A[i] == 0) {
-                if(len - i < K) {
+/**
+ * 995 Minimum Number of K Consecutive Bit Flips
+ */
+public class MinKBitFlips {
+    public int minKBitFlips(int[] nums, int k) {
+        int res = 0;
+        Deque<Integer> queue = new LinkedList<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            if(!queue.isEmpty() && i > queue.peek() + k -1) {
+                queue.removeFirst();
+            }
+            if(queue.size() % 2 == nums[i]) {
+                if(i + k > nums.length) {
                     return -1;
                 }
-                flipBits(A,K, i);
-                ans++;
+                queue.add(i);
+                res += 1;
             }
         }
 
-        return ans;
-    }
-
-    private void flipBits(int[] A, int k, int idx) {
-        for(int i = idx; i <idx+k; i++) {
-            A[i] = A[i] ^ 1;
-        }
+        return res;
     }
 }

@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.*;
 
+/**
+ * 588 Design In-Memory File System
+ */
 class FileSystem {
 
     FileNode root = new FileNode();

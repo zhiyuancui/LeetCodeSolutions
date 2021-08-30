@@ -5,6 +5,9 @@ import java.util.Queue;
 
 import util.TreeNode;
 
+/**
+ * 404 Sum of Left Leaves
+ */
 public class SumLeftLeaves {
 	public int sumOfLeftLeaves(TreeNode root) {
         if( root == null ){

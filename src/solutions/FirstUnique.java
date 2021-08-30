@@ -3,6 +3,9 @@ package solutions;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 1429 First Unique Number
+ */
 public class FirstUnique {
     Map<Integer,Integer> map = new LinkedHashMap<>();
 

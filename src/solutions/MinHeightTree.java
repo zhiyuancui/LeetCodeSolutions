@@ -1,66 +1,66 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
+/**
+ * 310 Minimum Height Tree
+ */
 public class MinHeightTree {
-	//Like topology sorting. from the outside to inner side.
-	// outside always has path to another end which of cause is the longest height
-	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
-        List<List<Integer>> graph = new ArrayList<List<Integer>>();
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         List<Integer> result = new ArrayList<Integer>();
         if( n == 1 ){
             result.add(0);
             return result;
         }
-        
+
         int[] degree = new int[n];
-        
-        for(int i = 0; i < n; i++){
-            graph.add( new ArrayList<Integer>() );
+
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+
+        for(int[] edge : edges) {
+            List<Integer> next = graph.getOrDefault(edge[0], new ArrayList<>());
+            next.add(edge[1]);
+            graph.put(edge[0], next);
+
+            next = graph.getOrDefault(edge[1], new ArrayList<>());
+            next.add(edge[0]);
+            graph.put(edge[1], next);
+
+            degree[edge[0]]++;
+            degree[edge[1]]++;
         }
-        
-        for(int[] edge: edges){
-            graph.get( edge[0] ).add( edge[1]);
-            graph.get( edge[1] ).add( edge[0]);
-            degree[ edge[0] ]++;
-            degree[ edge[1] ]++;
-        }
-        
-        Queue<Integer> q = new LinkedList<Integer>();
-        
-        for(int i = 0; i < n; i++){
-            if( degree[i] == 0 ){
-                return result;
-            }else if( degree[i] == 1 ){
-                q.offer(i);
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        for(int i = 0; i < degree.length; i++) {
+            if(degree[i] == 1) {
+                queue.add(i);
+            } else if(degree[i] == 0) {
+                return new ArrayList<>();
             }
         }
-        
-        while( !q.isEmpty() ){
-            result = new ArrayList<Integer>();
-            int size = q.size();
-            
-            for(int j = 0; j < size; j++ ){
-                int cur = q.poll();
-                result.add( cur );
-                degree[ cur ]--;
-                for(int i = 0; i < graph.get( cur ).size(); i++){
-                    int next = graph.get( cur ).get(i);
-                    if( degree[next] == 0 ){
+
+        while(!queue.isEmpty()) {
+            result = new ArrayList<>();
+            int size = queue.size();
+
+            for(int j = 0; j < size; j++) {
+                int cur = queue.poll();
+                result.add(cur);
+                degree[cur]--;
+
+                for(int next: graph.get(cur)) {
+                    if(degree[next] == 0) {
                         continue;
+                    } else if(degree[next] == 2) {
+                        queue.offer(next);
                     }
-                    if( degree[ next] == 2 ){
-                        q.offer( next );
-                    }
-                    
+
                     degree[next]--;
                 }
             }
         }
-        
+
         return result;
     }
 }

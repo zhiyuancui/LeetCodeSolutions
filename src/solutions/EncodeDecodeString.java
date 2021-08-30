@@ -17,7 +17,7 @@ public class EncodeDecodeString {
             sb.append(compile(s)).append(s);
         }
 
-        System.out.println(sb.toString());
+        System.out.println(sb);
 
         return sb.toString();
     }

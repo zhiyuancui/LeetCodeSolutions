@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class RangeModule {
-    TreeMap<Integer, int[]> ranges = new TreeMap<>();;
+    TreeMap<Integer, int[]> ranges = new TreeMap<>();
 
     public RangeModule() {
 

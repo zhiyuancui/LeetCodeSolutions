@@ -1,32 +1,43 @@
 package solutions;
 
+/**
+ * 992 Subarrays with K Different Integers
+ */
 public class SubarrayWithKDistinct {
-    public int subarraysWithKDistinct(int[] arr, int k) {
-        long[] count = new long[arr.length +1];
-        long unique = 0;
+    public int subarraysWithKDistinct(int[] nums, int k) {
+        return atMostKDistinct(nums, k) - atMostKDistinct(nums, k - 1);
+    }
 
-        int i = 0, total = 0, good = 0;
-        for(int j = 0; j < arr.length; j++) {
-            if(count[arr[j]] == 0) {
-                unique++;
+    private int atMostKDistinct(int[] nums, int k) {
+        int len = nums.length;
+
+        int[] freq = new int[len+1];
+
+        int left = 0;
+        int right = 0;
+
+        int count = 0;
+        int res = 0;
+
+        while(right < len) {
+            if(freq[nums[right]] == 0) {
+                count++;
             }
-            count[arr[j]]++;
-            if(unique > k) {
-                count[arr[i]]--;
-                i++;
-                unique--;
-                good = 0;
+            freq[nums[right]]++;
+            right++;
+
+            while(count > k) {
+                freq[nums[left]]--;
+
+                if(freq[nums[left]] == 0) {
+                    count--;
+                }
+                left++;
             }
-            while(count[arr[i]] > 1) {
-                count[arr[i]]--;
-                good++;
-                i++;
-            }
-            if(unique == k) {
-                total += good + 1;
-            }
+
+            res += right - left;
         }
 
-        return total;
+        return res;
     }
 }

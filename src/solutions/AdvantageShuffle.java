@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.*;
 
+/**
+ * 879 Advantange Shuffle
+ */
 public class AdvantageShuffle {
     public int[] advantageCount(int[] A, int[] B) {
         if(A == null || B == null) {
