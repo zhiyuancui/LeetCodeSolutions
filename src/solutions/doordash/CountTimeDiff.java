@@ -7,7 +7,7 @@ import java.util.List;
  * https://www.1point3acres.com/bbs/thread-787537-1-1.html
  */
 public class CountTimeDiff {
-    public List<String> solution(String[] input) {
+    public List<String> solution(String[] input) throws Exception{
         if(input.length <= 1) {
             return new ArrayList<>();
         }
@@ -22,6 +22,7 @@ public class CountTimeDiff {
             int lastDate = Integer.parseInt(result.get(result.size() - 1));
             int minute = lastDate % 100 + 5 - 60;
             addSlots(10000 + minute, time2, result);
+            //throw new IllegalArgumentException();
         } else {
             addSlots(time1, time2, result);
         }
@@ -46,6 +47,11 @@ public class CountTimeDiff {
         }
     }
 
+    /**
+     * 如果限定了open hour只能在同一天
+     * @param date
+     * @return
+     */
     private boolean isNextDate(int date) {
         int dayOfWeek = date / 10000;
 
@@ -105,7 +111,11 @@ public class CountTimeDiff {
 
     public static void main(String[] args) {
         CountTimeDiff c = new CountTimeDiff();
-        String[] input = new String[]{"sun 11:52 pm", "mon 1:13 am"};
-        c.solution(input);
+        String[] input = new String[]{"mon 11:52 am", "mon 1:13 pm"};
+        try {
+            c.solution(input);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
