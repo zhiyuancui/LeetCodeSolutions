@@ -1,8 +1,9 @@
 package solutions.stripe;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 // https://www.1point3acres.com/bbs/thread-771600-1-1.html
 public class ServerLog {
@@ -37,6 +38,11 @@ public class ServerLog {
 
        return idx;
    }
+
+    public int getBestRemovalTime(List<Integer> logs) {
+        int[] arr = logs.stream().mapToInt(i -> i).toArray();
+        return getBestRemovalTime(arr);
+    }
 
    //Question 3
    public List<Integer> getBestRemovalTime(String log) throws Exception{
@@ -73,6 +79,40 @@ public class ServerLog {
        return result;
    }
 
+   // https://www.1point3acres.com/bbs/thread-791237-1-1.html
+   private List<Integer> getBestRemovalTimeFromfile(String filePath) throws Exception {
+       if(filePath == null || filePath.length() == 0) {
+           throw new IllegalArgumentException();
+       }
+
+       List<Integer> logs = new ArrayList<>();
+        List<Integer> result = new ArrayList<>();
+
+       boolean hasBegin = false;
+
+       try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+           String line;
+           while ((line = br.readLine()) != null) {
+               String[] tokens = line.split("\\s+");
+               for(String token : tokens) {
+                   if(token.equals("BEGIN")) {
+                       hasBegin = true;
+                       logs = new ArrayList<>();
+                   } else if(hasBegin && isNumber(token)) {
+                       logs.add(Integer.parseInt(token));
+                   } else if(hasBegin && token.equals("END")) {
+                       result.add(getBestRemovalTime(logs));
+                       hasBegin = false;
+                   } else {
+                       logs = new ArrayList<>();
+                   }
+               }
+           }
+       }
+
+       return result;
+   }
+
    private boolean isNumber(String s) {
        if (s == null) {
            return false;
@@ -91,6 +131,8 @@ public class ServerLog {
            System.out.println(s.computePenalty(new int[]{0, 0, 1, 0}, 0));
            System.out.println(s.getBestRemovalTime(new int[]{0, 0, 1, 0}));
            System.out.println(s.getBestRemovalTime("BEGIN BEGIN BEGIN 1 1 BEGIN 0 0 END 1 1 BEGIN"));
+           System.out.println(s.getBestRemovalTime("BEGIN BEGIN 1 0 0 END 0 0 0 1 BEGIN 1 1 1 0 END"));
+           System.out.println(s.getBestRemovalTimeFromfile("src/solutions/stripe/test.txt"));
        } catch(Exception e) {
            e.printStackTrace();
        }
