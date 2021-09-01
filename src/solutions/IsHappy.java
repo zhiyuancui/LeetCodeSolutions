@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.HashSet;
 
+/**
+ * Happy Number
+ */
 public class IsHappy {
 	
 	public boolean isHappy(int n) {
@@ -42,10 +45,4 @@ public class IsHappy {
         
         return false;
     }
-	
-	public static void main(String[] args)
-	{
-		IsHappy is = new IsHappy();
-		is.isHappy(2);
-	}
 }

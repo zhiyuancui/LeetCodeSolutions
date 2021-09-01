@@ -1,15 +1,13 @@
 package solutions;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 532 K-diff Pairs in an Array
+ */
 public class FindPairs {
-	/**
-	 * K-diff Pairs in an Array
-	 * @param nums
-	 * @param k
-	 * @return
-	 */
 	public int findPairs(int[] nums, int k) {
         if (nums == null || nums.length == 0 || k < 0)   return 0;
         
@@ -33,5 +31,26 @@ public class FindPairs {
         }
         
         return count;
+    }
+
+    public int findPairs2(int[] nums, int k) {
+        if (k < 0) return 0;
+        Arrays.sort(nums);
+        int ans = 0;
+
+        for(int i = 0, j = 1; j < nums.length;){
+            if(i == j || nums[i] + k > nums[j]){
+                j++;
+            }
+            else if(i > 0 && nums[i] == nums[i - 1] || nums[i] + k < nums[j]){
+                i++;
+            }
+            else{
+                ans++;
+                i++;
+            }
+
+        }
+        return ans;
     }
 }

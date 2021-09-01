@@ -1,45 +1,33 @@
 package solutions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 60 Permutation Sequence
+ */
 public class PermuatationSeq {
-	/**
-	    * Permutation Sequence
-	    * @param n
-	    * @param k
-	    * @return
-	    */
 	   public String getPermutation(int n, int k) {
-	       int pos = 0;
-	       List<Integer> numbers = new ArrayList<>();
-	       int[] factorial = new int[n+1];
-	       StringBuilder sb = new StringBuilder();
-	       
-	       // create an array of factorial lookup
-	       int sum = 1;
-	       factorial[0] = 1;
-	       for(int i=1; i<=n; i++){
-	           sum *= i;
-	           factorial[i] = sum;
-	       }
-	       // factorial[] = {1, 1, 2, 6, 24, ... n!}
-	       
-	       // create a list of numbers to get indices
-	       for(int i=1; i<=n; i++){
-	           numbers.add(i);
-	       }
-	       // numbers = {1, 2, 3, 4}
-	       
-	       k--;
-	       
-	       for(int i = 1; i <= n; i++){
-	           int index = k/factorial[n-i];
-	           sb.append(numbers.get(index));
-	           numbers.remove(index);
-	           k-=index*factorial[n-i];
-	       }
-	       
-	       return String.valueOf(sb);
+		   final int[] arr = new int[]{1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
+		   boolean[] visited = new boolean[n + 1];
+		   Arrays.fill(visited, false);
+		   StringBuilder permutation = new StringBuilder();
+		   for (int i = n - 1; i >= 0; i--) {
+			   int cnt = arr[i];
+			   for (int j = 1; j <= n; j++) {
+				   if (visited[j]) {
+					   continue;
+				   }
+				   if (k > cnt) {
+					   k -= cnt;
+					   continue;
+				   }
+				   visited[j] = true;
+				   permutation.append(j);
+				   break;
+			   }
+		   }
+		   return permutation.toString();
 	   }
 }

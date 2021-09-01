@@ -3,6 +3,9 @@ package solutions;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 780 Reaching Points
+ */
 public class ReachingPoints {
     public boolean reachingPoints(int sx, int sy, int tx, int ty) {
         if(sx == tx && sy == ty) {
