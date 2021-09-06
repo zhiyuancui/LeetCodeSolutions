@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1219 Path with Maximum Gold
+ */
 public class PathWithMaximumGold {
     public int getMaximumGold(int[][] grid) {
         if(grid == null || grid.length == 0) {

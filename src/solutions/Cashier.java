@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1357 Apply Discount Every n Orders
+ */
 public class Cashier {
     private final int total;
     private final int discount;

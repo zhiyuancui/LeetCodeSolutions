@@ -3,14 +3,17 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 784 Letter Case Permutation
+ */
 public class LetterCasePermutation {
-    public List<String> letterCasePermutation(String S) {
-        if(S == null || S.length() == 0) {
+    public List<String> letterCasePermutation(String s) {
+        if(s == null || s.length() == 0) {
             return new ArrayList<>();
         }
 
         List<String> result = new ArrayList<>();
-        backtrack(result, S, "", 0);
+        backtrack(result, s, "", 0);
         return result;
     }
 

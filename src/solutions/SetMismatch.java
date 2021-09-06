@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 645 Set Mismatch
+ */
 public class SetMismatch {
 	public int[] findErrorNums(int[] nums) {
         Set<Integer> set = new HashSet<>();

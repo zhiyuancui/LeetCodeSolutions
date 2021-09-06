@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 409 Longest Palindrome
+ */
 public class LongestPalindrome {
 	public int longestPalindrome(String s) {
         if( s == null ){

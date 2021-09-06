@@ -3,7 +3,7 @@ package solutions;
 import java.util.*;
 
 /**
- * 1242 Web Crawler Multithreaded
+ * 1236 Web Crawler Multithreaded
  */
 public class WebCrawler {
     class HtmlParser {

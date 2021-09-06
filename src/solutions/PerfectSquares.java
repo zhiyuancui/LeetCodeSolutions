@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Arrays;
 
+/**
+ * 279 Perfect Squares
+ */
 public class PerfectSquares {
 	public int numSquares(int n) {
 		if( n < 1 ) {
