@@ -3,9 +3,12 @@ package solutions;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 847 Shortest Path Visiting All Nodes
+ */
 public class ShortestPathVisitingAllNodes {
     public int shortestPathLength(int[][] graph) {
-        if(graph == null || graph.length == 0) {
+        if(graph == null || graph.length == 0 || graph[0].length == 0) {
             return 0;
         }
 

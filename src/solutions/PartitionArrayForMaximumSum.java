@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1043 Partition Array for Maximum Sum
+ */
 public class PartitionArrayForMaximumSum {
     public int maxSumAfterPartitioning(int[] arr, int k) {
         if(arr == null || arr.length == 0 || k <= 0) {

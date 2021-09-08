@@ -1,117 +1,126 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+/**
+ * 472 Concatenated Word
+ */
 public class ConcatenatedWord {
-	class TrieNode {
-        TrieNode[] children;
-        String word;
-        boolean isEnd;
-        boolean combo; //if this word is a combination of simple words
-        boolean added; //if this word is already added in result
-        public TrieNode() {
-            this.children = new TrieNode[26];
-            this.word = "";
-            this.isEnd = false;
-            this.combo = false;
-            this.added = false;
-        }
-    }
-    private void addWord(String str) {
-        TrieNode node = root;
-        for (char ch : str.toCharArray()) {
-            if (node.children[ch - 'a'] == null) {
-                node.children[ch - 'a'] = new TrieNode();
-            }
-            node = node.children[ch - 'a'];
-        }
-        node.isEnd = true;
-        node.word = str;
-    }
-    private TrieNode root;
-    private List<String> result;
-    public List<String> findAllConcatenatedWordsInADict(String[] words) {
-        root = new TrieNode();
-        for (String str : words) {
-            if (str.length() == 0) {
-                continue;
-            }
-            addWord(str);
-        }
-        result = new ArrayList<>();
-        dfs(root, 0);
-        return result;
-    }
-    private void dfs(TrieNode node, int multi) {
-    	//multi counts how many single words combined in this word
-        if(node.isEnd && !node.added && multi > 1) {
-            node.combo = true;
-            node.added = true;
-            result.add(node.word);
-        }
-        searchWord(node, root, multi);
-    }
-    private void searchWord(TrieNode node1, TrieNode node2, int multi) {
-        if (node2.combo) {
-            return;
-        }
-        if (node2.isEnd) {
-            //take the pointer of node2 back to root
-            dfs(node1, multi + 1);
-        }
-        for (int  i = 0; i < 26; i++) {
-            if (node1.children[i] != null && node2.children[i] != null) {
-                searchWord(node1.children[i], node2.children[i], multi);
-            }
-        }
-    }
-    
     /**
-     * Second Soluiton
+     * Solution I
      * @param words
      * @return
      */
-    public List<String> findAllConcatenatedWordsInADict2(String[] words) {
-        if( words.length <= 2 ){            
-            return new ArrayList<String>();
+    public List<String> findAllConcatenatedWordsInADict(String[] words) {
+        if(words == null || words.length == 0 ) {
+            return new ArrayList<>();
         }
-        
-        List<String> result = new ArrayList<String>();
-        
-        Set<String> dict = new HashSet<String>();
+
+        Set<String> wordSet = new HashSet<>();
         for(String word : words) {
-            dict.add(word);
+            if(word.length() > 0) {
+                wordSet.add(word);
+            }
         }
-        
-        for(String word : words) {
-            dict.remove(word);
-            int len = word.length();
-            if( len == 0 ) continue;
-            boolean[] canseg = new boolean[len+1];
-            canseg[0] = true;
-            for(int i = 1; i <= len; i++) {
-                for(int j = 1; j <=i; j++) {
-                    if( !canseg[i-j] ){
-                        continue;
-                    }
-                    String seg = word.substring(i-j,i);
-                    if( dict.contains(seg) )  {
-                        canseg[i] = true;
-                        break;
-                    }
-                    
+
+        List<String> result = new ArrayList<>();
+        for(String word: words) {
+            if(word.length() > 0) {
+                wordSet.remove(word);
+                if(canbreak(word, wordSet)) {
+                    result.add(word);
                 }
+                wordSet.add(word);
             }
-            if( canseg[ canseg.length - 1 ] ) {
-                result.add( word );
-            }
-            dict.add(word);
         }
-        
+
         return result;
     }
-    
+
+    private boolean canbreak(String word, Set<String> dict) {
+        boolean[] dp = new boolean[word.length()+1];
+
+        dp[0] = true;
+
+        for(int i = 1; i <= word.length(); i++) {
+            for(int j = 1; j <= i; j++) {
+                if(!dp[i-j]) {
+                    continue;
+                }
+                String seg = word.substring(i-j,i);
+                if(dict.contains(seg)) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[dp.length - 1];
+    }
+
+    class TrieNode {
+        boolean isWord;
+        Map<Character, TrieNode> children;
+
+        public TrieNode() {
+            isWord = false;
+            children = new HashMap<>();
+        }
+    }
+
+    TrieNode root = new TrieNode();
+
+    public List<String> findAllConcatenatedWordsInADict2(String[] words) {
+        addToTrie(words);
+
+        List<String> result = new ArrayList<>();
+        for(String word : words) {
+            boolean[] visited = new boolean[word.length()];
+            if(isConcat(word, 0, 0,visited)) {
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
+
+    private boolean isConcat(String word, int pos, int count, boolean[] visited) {
+        if(pos >= word.length()) {
+            return count > 1;
+        }
+
+        if(visited[pos]) {
+            return false;
+        }
+
+        TrieNode cur = root;
+
+        for(int i = pos; i < word.length(); i++) {
+            if(cur.children.containsKey(word.charAt(i))) {
+                cur = cur.children.get(word.charAt(i));
+                if(cur.isWord && isConcat(word, i+1, count+1, visited)) {
+                    return true;
+                }
+            } else {
+                break;
+            }
+        }
+
+        visited[pos] = true;
+        return false;
+    }
+
+    private void addToTrie(String[] words) {
+        for(String word : words) {
+            TrieNode cur = root;
+
+            for(char c : word.toCharArray()) {
+                if(!cur.children.containsKey(c)) {
+                    cur.children.put(c, new TrieNode());
+                }
+                cur = cur.children.get(c);
+            }
+            cur.isWord = true;
+        }
+    }
 }
