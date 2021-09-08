@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 1773 Count Items Matching a Rule
+ */
 public class CountMatches {
     public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
         HashMap<String, Integer> itemKey = new HashMap<>();

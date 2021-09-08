@@ -6,42 +6,52 @@ import java.util.Set;
 
 /**
  * 764. Largest Plus Sign
+ * https://leetcode-cn.com/problems/largest-plus-sign/solution/javadong-tai-gui-hua-jian-dan-yi-dong-by-dan-huang/
  */
 public class LargestPlusSign {
     public int orderOfLargestPlusSign(int n, int[][] mines) {
-        if(n < 1 || mines == null) {
-            return 0;
-        }
-
-        int[][] grid = new int[n][n];
+        int[][][] dp = new int[n][n][4];
 
         for(int i = 0; i < n; i++) {
-            Arrays.fill(grid[i], n);
+            for(int j = 0; j < n; j++) {
+                for(int k = 0; k < 4; k++) {
+                    dp[i][j][k] = 1;
+                }
+            }
         }
 
-        for(int[] m : mines) {
-            grid[m[0]][m[1]] = 0;
+        for(int[] point : mines) {
+            for(int k = 0; k < 4; k++) {
+                dp[point[0]][point[1]][k] = 0;
+            }
         }
 
-        for(int i = 0; i < n; i++) {
-            for(int j = 0, k = n - 1, left = 0, right = 0, up = 0, down = 0; j < n; j++, k--) {
-                grid[i][j] = Math.min(grid[i][j], left = (grid[i][j] == 0 ? 0 : left + 1));
+        for(int i = 1; i < n; i++) {
+            for(int j = 1; j < n; j++) {
+                if(dp[i][j][0] == 1) {
+                    dp[i][j][0] = dp[i][j-1][0] + 1;
+                    dp[i][j][1] = dp[i-1][j][1] + 1;
+                }
+            }
+        }
 
-                grid[i][k] = Math.min(grid[i][k], right = (grid[i][k] == 0 ? 0: right + 1));
-
-                grid[j][i] = Math.min(grid[j][i], up = (grid[j][i] == 0 ? 0 : up + 1));
-                grid[k][i] = Math.min(grid[k][i], down = (grid[k][i] == 0 ? 0 : down + 1));
+        for(int i = n - 2; i >= 0; i--) {
+            for(int j = n - 2; j >= 0; j--) {
+                if(dp[i][j][2] == 1) {
+                    dp[i][j][2] = dp[i][j+1][2] + 1;
+                    dp[i][j][3] = dp[i+1][j][3] + 1;
+                }
             }
         }
 
         int res = 0;
-
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                res = Math.max(res, grid[i][j]);
+                int k = Math.min(dp[i][j][0], Math.min(dp[i][j][1], Math.min(dp[i][j][2], dp[i][j][3])));
+                res = Math.max(res, k);
             }
         }
-
         return res;
+
     }
 }

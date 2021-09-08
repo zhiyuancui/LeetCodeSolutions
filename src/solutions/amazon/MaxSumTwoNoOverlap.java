@@ -2,6 +2,7 @@ package solutions.amazon;
 
 /**
  * 1031 Maximum Sum of Two Non-Overlapping Subarrays
+ * https://leetcode-cn.com/problems/maximum-sum-of-two-non-overlapping-subarrays/solution/dong-tai-gui-hua-qian-zhui-he-by-zhu-leg-a2oj/
  */
 public class MaxSumTwoNoOverlap {
 
@@ -10,24 +11,34 @@ public class MaxSumTwoNoOverlap {
             return 0;
         }
 
-        int[] sums = new int[nums.length];
-        sums[0] = nums[0];
+        int[] sums = new int[nums.length + 1];
 
-        for(int i = 1; i < nums.length; i++) {
-            sums[i] = sums[i-1] + nums[i];
+        for(int i = 0; i < nums.length; i++) {
+            sums[i+1] = sums[i] + nums[i];
         }
 
-        int maxFirst = sums[firstLen - 1];
-        int maxSecond = sums[secondLen - 1];
+        if(firstLen > secondLen) {
+            int temp = firstLen;
+            firstLen = secondLen;
+            secondLen = temp;
+        }
 
-        int max = sums[firstLen + secondLen - 1];
+        int[][] dp = new int[nums.length+1][2];
 
-        for(int i = firstLen + secondLen; i < nums.length; i++) {
-            maxFirst = Math.max(maxFirst, sums[i-secondLen] - sums[i-firstLen-secondLen]);
-            maxSecond = Math.max(maxSecond, sums[i-firstLen] - sums[i-firstLen-secondLen]);
+        int max = 0;
 
-            max = Math.max(max, maxFirst + sums[i] - sums[i-secondLen]);
-            max = Math.max(max, maxSecond + sums[i] - sums[i-firstLen]);
+        for(int i = firstLen; i <= nums.length; i++) {
+            int firstSum = sums[i] - sums[i-firstLen];
+
+            dp[i][0] = Math.max(dp[i-1][0], firstSum);
+
+            max = Math.max(max, firstSum + dp[i-firstLen][1]);
+
+            if(i >= secondLen) {
+                int secondSum = sums[i] - sums[i-secondLen];
+                dp[i][1] = Math.max(dp[i-1][1], secondSum);
+                max = Math.max(max, secondSum + dp[i-secondLen][0]);
+            }
         }
 
         return max;

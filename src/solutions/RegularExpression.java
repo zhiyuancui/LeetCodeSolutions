@@ -55,33 +55,20 @@ public class RegularExpression {
 
 		boolean[][] dp = new boolean[len1+1][len2+1];
 
-		dp[0][0] = true;
+		dp[len1][len2] = true;
 
-		for(int i = 0; i < len2; i++) {
-			if(p.charAt(i) == '*' ) {
-				if(dp[0][i-1]) {
-					dp[0][i+1] = true;
+		for(int i = len1; i >= 0; i--) {
+			for(int j = len2-1; j >= 0; j--) {
+				boolean firstMatch = i < len1 && (p.charAt(j) == s.charAt(i) || p.charAt(j) == '.');
+
+				if( j < p.length() - 1 && p.charAt(j+1) =='*') {
+					dp[i][j] = dp[i][j+2] || firstMatch && dp[i+1][j];
+				} else {
+					dp[i][j] = firstMatch && dp[i+1][j+1];
 				}
 			}
 		}
 
-		for(int i = 0; i < len1; i++) {
-			for(int j = 0; j < len2; j++) {
-				if(p.charAt(j) == '.' || p.charAt(j) == s.charAt(i)) {
-					dp[i+1][j+1] = dp[i][j];
-				}
-
-				if(p.charAt(j) == '*') {
-					if(s.charAt(i-1) != p.charAt(j-1) || p.charAt(j-1) != '.') {
-						dp[i+1][j+1] = dp[i+1][j-1];// c, a* a*来当做不存在处理
-					} else {
-						//a, a*        //*重复之前的字符   //*当做不存在   //a*都不存在
-						dp[i+1][j+1] = dp[i][j+1] || dp[i+1][j] || dp[i+1][j-1];
-					}
-				}
-			}
-		}
-
-		return dp[len1][len2];
+		return dp[0][0];
 	}
 }

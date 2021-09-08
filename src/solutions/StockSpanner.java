@@ -1,29 +1,26 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
+/**
+ * 901 Online Stock Span
+ */
 public class StockSpanner {
-    Stack<Integer> stack = new Stack<>();
-    List<Integer> prices = new ArrayList<>();
-    public StockSpanner() {
+    Stack<int[]> stack;
 
+    public StockSpanner() {
+        stack = new Stack<>();
     }
 
     public int next(int price) {
-        int len = 0;
-        int max = 0;
-        prices.add(price);
-        for(int i = prices.size()-1; i >= 0; i--) {
-            if(prices.get(i) > price) {
-                return max;
-            } else {
-                len++;
-                max = Math.max(max, len);
-            }
+        int span = 1;
+        while(!stack.isEmpty() && price >= stack.peek()[0]) {
+            int[] prev = stack.pop();
+            span += prev[1];
         }
 
-        return max;
+        stack.push(new int[]{price, span});
+
+        return span;
     }
 }

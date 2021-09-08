@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1790 Check if One String Swap Can Make Strings Equal
+ */
 public class AreAlmostEqual {
     public boolean areAlmostEqual(String s1, String s2) {
         if(s1.equals(s2)) {

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 887 Super Egg Drop
+ */
 // https://leetcode.com/problems/super-egg-drop/discuss/792736/CPP-Explained-Recursive-greatermemoization-greateroptimization-greaterDP-oror-Well-Explained-oror-Easy-to-unserstand
 public class SuperEggDrop {
     public int superEggDrop(int k, int n) {

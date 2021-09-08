@@ -1,5 +1,9 @@
 package solutions;
 
+/**
+ * 1826 Faulty Sensor
+ * https://leetcode.com/problems/faulty-sensor/discuss/1160927/C%2B%2BJava-One-Pass
+ */
 public class FaultySensor {
     public int badSensor(int[] sensor1, int[] sensor2) {
         if(sensor1 == null || sensor2 == null) {
