@@ -5,60 +5,52 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+/**
+ * 773 Sliding Puzzle
+ */
 public class SlidingPuzzle {
+    int[][] dirs = new int[][]{{1,3},{0,2,4},{1,5},{0,4},{1,3,5},{2,4}};
+
     public int slidingPuzzle(int[][] board) {
         if(board == null || board.length == 0) {
             return 0;
         }
 
         String target = "123450";
-        int[][] dirs = new int[][]{{1,3},{0,2,4},{1,5},{0,4},{1,3,5},{2,4}};
-
-        Pair fp = new Pair();
-
-        StringBuilder sb = new StringBuilder();
-
-        for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[0].length; j++) {
-                if(board[i][j] == 0) {
-                    fp.zeroPos = sb.length();
-                }
-                sb.append(board[i][j]);
-            }
-        }
-
-
-        fp.str = sb.toString();
-
-        Set<String> visited = new HashSet<>();
+        Pair start = new Pair(board);
 
         Queue<Pair> queue = new LinkedList<>();
-        queue.add(fp);
+        queue.add(start);
+        Set<String> visited = new HashSet<>();
 
-        visited.add(fp.str);
-
+        int moves = 0;
         while(!queue.isEmpty()) {
-            Pair rp = queue.poll();
-            if(rp.str.equals(target)) {
-                return rp.moves;
-            }
-
-            for(int dir: dirs[rp.zeroPos]) {
-                String s = swap(rp.str, dir, rp.zeroPos);
-
-                if(!visited.contains(s)) {
-                    Pair next = new Pair(s, dir, rp.moves+1);
-                    queue.add(next);
-                    visited.add(s);
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                Pair cur = queue.poll();
+                if(cur.str.equals(target)) {
+                    return moves;
                 }
+                //System.out.println(cur.str+","+cur.zero);
+                for(int dir: dirs[cur.zero]) {
+                    String s = swap(cur.str, dir, cur.zero);
+
+                    if(!visited.contains(s)) {
+                        Pair next = new Pair(s, dir);
+                        queue.add(next);
+                        visited.add(s);
+                    }
+                }
+
             }
+            moves++;
         }
 
         return -1;
     }
 
     public String swap(String str, int i, int j) {
-        char[] array = str.toCharArray();
+        char[] array =  str.toCharArray();
 
         char temp = array[i];
         array[i] = array[j];
@@ -69,15 +61,26 @@ public class SlidingPuzzle {
 
     class Pair {
         String str;
-        int zeroPos;
-        int moves = 0;
+        int zero;
 
-        public Pair(String str, int zeroPos, int moves) {
+        public Pair(String str, int zero) {
             this.str = str;
-            this.zeroPos = zeroPos;
-            this.moves = moves;
+            this.zero = zero;
         }
 
-        public Pair(){}
+        public Pair(int[][] board) {
+            StringBuilder sb = new StringBuilder();
+
+            for(int i = 0; i < board.length; i++) {
+                for(int j = 0; j < board[0].length; j++) {
+                    if(board[i][j] == 0) {
+                        this.zero = sb.length();
+                    }
+                    sb.append(board[i][j]);
+                }
+            }
+
+            this.str = sb.toString();
+        }
     }
 }

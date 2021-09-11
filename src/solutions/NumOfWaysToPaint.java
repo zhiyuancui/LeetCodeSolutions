@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1411 Number of Ways to Paint N *3 Grid
+ */
 public class NumOfWaysToPaint {
     public int numOfWays(int n) {
         int mod = 1000000007;

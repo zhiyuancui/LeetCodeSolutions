@@ -5,56 +5,76 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * 1057 Campus Bikes
+ */
 public class CampusBikes {
     public int[] assignBikes(int[][] workers, int[][] bikes) {
-        if(workers == null || bikes == null) {
-            return new int[0];
-        }
-
-        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> {
-            if(a[0] == b[0]) {
-                if(a[1] == b[1]) {
-                    return a[2] - b[2];
+        PriorityQueue<Node> queue = new PriorityQueue<>((a, b) ->{
+            if(a.distance == b.distance) {
+                if(a.worker == b.worker) {
+                    return a.bike - b.bike;
                 } else {
-                    return a[1] - b[1];
+                    return a.worker - b.worker;
                 }
             } else {
-                return a[0] - b[0];
+                return a.distance - b.distance;
             }
         });
 
-        int[] result = new int[workers.length];
+        Set<Integer> visited = new HashSet<>();
 
         for(int i = 0; i < workers.length; i++) {
-            int[] worker = workers[i];
-            for(int j =0; j < bikes.length; j++) {
-                int dist = getDistance(worker[0], worker[1], bikes[j][0], bikes[j][1]);
-                queue.add(new int[]{dist, i, j});
+            helper(workers[i], i, bikes, visited, queue);
+        }
+
+        int[] result = new int[workers.length];
+
+        Arrays.fill(result, -1);
+
+        Set<Integer> bikeSet = new HashSet<>();
+
+        while(!queue.isEmpty()) {
+            Node cur = queue.poll();
+            if(visited.contains(cur.bike)) {
+                helper(workers[cur.worker], cur.worker, bikes, visited, queue);
+            } else {
+                result[cur.worker] = cur.bike;
+                visited.add(cur.bike);
             }
         }
 
-        int[] res = new int[workers.length];
-        Arrays.fill(res, -1);
-
-        // assign the bikes.
-        Set<Integer> bikeAssigned = new HashSet<>();
-
-        while (bikeAssigned.size() < workers.length) {
-            int[] pair = queue.poll();
-            if (res[pair[1]] == -1
-                    && !bikeAssigned.contains(pair[2])) {
-
-                res[pair[1]] = pair[2];
-                bikeAssigned.add(pair[2]);
-            }
-        }
-
-        return res;
+        return result;
     }
 
+    private void helper(int[] worker, int idx, int[][] bikes, Set<Integer> visited, PriorityQueue<Node> queue) {
+        int min = Integer.MAX_VALUE;
 
+        int bike = 0;
 
-    private int getDistance(int x1, int y1, int x2, int y2) {
-        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+        for(int i = 0; i < bikes.length; i++) {
+            if(!visited.contains(i)) {
+                int dist = Math.abs(worker[0] - bikes[i][0]) + Math.abs(worker[1] - bikes[i][1]);
+
+                if(min > dist) {
+                    min = dist;
+                    bike = i;
+                }
+            }
+        }
+
+        queue.add(new Node(min, idx, bike));
+    }
+
+    class Node {
+        int distance;
+        int worker;
+        int bike;
+
+        public Node(int distance, int worker, int bike) {
+            this.distance = distance;
+            this.worker = worker;
+            this.bike = bike;
+        }
     }
 }

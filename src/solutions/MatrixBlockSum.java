@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1314 Matrix Block Sum
+ */
 public class MatrixBlockSum {
     public int[][] matrixBlockSum(int[][] mat, int K) {
         if(mat == null || mat.length == 0) {

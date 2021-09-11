@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * 715 Range Module
+ */
 public class RangeModule {
-    TreeMap<Integer, int[]> ranges = new TreeMap<>();
+    TreeMap<Integer, int[]> ranges = new TreeMap<>();;
 
     public RangeModule() {
 

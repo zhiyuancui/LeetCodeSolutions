@@ -2,12 +2,10 @@ package solutions;
 
 import java.util.Arrays;
 
+/**
+ * 174 Dungeon Game
+ */
 public class DungeonGame {
-	/**
-	 * dp[i][j] 
-	 * @param dungeon
-	 * @return
-	 */
 	public int calculateMinimumHP(int[][] dungeon) {
         if( dungeon == null || dungeon.length == 0 || dungeon[0].length == 0 ){
             return 0;

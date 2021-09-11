@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Random;
 
+/**
+ * 384 Shuffle an Array
+ */
 public class ShuffleArray {
 
 	private final int[] copy;

@@ -9,7 +9,6 @@ import java.util.Map;
  * 886 Possible Bipartition
  */
 public class PossibleBipartition {
-
     public boolean possibleBipartition(int n, int[][] dislikes) {
         int[] colors = new int[n+1];
         Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -25,12 +24,12 @@ public class PossibleBipartition {
             graph.put(dislike[1], list2);
         }
 
-        for(int i = 0; i < n; i++) {
+        for(int i = 1; i <= n; i++) {
             if(colors[i] != 0) {
                 continue;
             }
 
-            if(!isValid(graph, colors, 1, i)) {
+            if(!dfs(graph, colors, i, 1)) {
                 return false;
             }
         }
@@ -38,15 +37,17 @@ public class PossibleBipartition {
         return true;
     }
 
-    private boolean isValid(Map<Integer, List<Integer>> graph, int[] colors, int color, int cur) {
+    private boolean dfs(Map<Integer, List<Integer>> graph, int[] colors, int cur, int color) {
+
         if(colors[cur] != 0) {
             return colors[cur] == color;
         }
+
         colors[cur] = color;
 
         if(graph.containsKey(cur)) {
             for(int next : graph.get(cur)) {
-                if(!isValid(graph, colors, -color, next)) {
+                if(!dfs(graph, colors, next, -color)) {
                     return false;
                 }
             }

@@ -54,6 +54,11 @@ public class PalindromePairs {
 	    return true;
 	}
 
+	/**
+	 *
+	 * https://leetcode-cn.com/problems/palindrome-pairs/solution/java-trie-yi-yu-li-jie-by-copyreadmachine/
+	 */
+	
 	class TrieNode {
 		TrieNode[] children;
 		int index;

@@ -1,33 +1,37 @@
 package solutions;
 
 /**
- * See discussion at: http://blog.csdn.net/swartz2015/article/details/50561199
- * @author Zhiyuan
+ * 312 Burst Balloons
  *
  */
 public class BurstBalloons {
-	public int maxCoins(int[] nums) {
-        int n = nums.length + 2;
-        int[] newNums = new int[n];
-        
-        for(int i = 0; i < n - 2; i++){
-            newNums[ i + 1 ] = nums[i];
+    public int maxCoins(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
         }
-        
-        newNums[0] = newNums[n-1] = 1;
-        
-        int[][] matrix = new int[n][n];
-        
-        for(int width = 2; width < n; width++) {
-            for(int left = 0; left + width< n; left++){
+
+        int[] copy = new int[nums.length + 2];
+
+        for(int i = 0; i < nums.length; i++) {
+            copy[i+1] = nums[i];
+        }
+
+        copy[0] = 1;
+        copy[copy.length - 1] = 1;
+
+        int len = copy.length;
+
+        int[][] dp = new int[len][len];
+
+        for(int width = 2; width < len; width++) {
+            for(int left = 0; left + width < len; left++) {
                 int right = left + width;
-                for(int m = left+1; m<right;m++){
-                    matrix[left][right] = Math.max(matrix[left][right], 
-                    		newNums[left]*newNums[m]*newNums[right] + matrix[left][m] + matrix[m][right]);
+                for(int k = left + 1; k < right; k++) {
+                    dp[left][right] = Math.max(dp[left][right], dp[left][k] + dp[k][right] + copy[left]*copy[right]*copy[k]);
                 }
             }
         }
-        
-        return matrix[0][n-1];
+
+        return dp[0][len-1];
     }
 }
