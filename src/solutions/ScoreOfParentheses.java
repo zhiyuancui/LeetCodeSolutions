@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 856 Score of Parentheses
+ */
 public class ScoreOfParentheses {
     public int scoreOfParentheses(String s) {
         if(s == null || s.length() == 0) {

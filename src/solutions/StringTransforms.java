@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 1153 String Transforms into Another String
+ */
 public class StringTransforms {
     public boolean canConvert(String str1, String str2) {
         if(str1 == null || str2 == null || str1.length() != str2.length()) {

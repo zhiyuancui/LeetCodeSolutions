@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Stack;
 import java.util.TreeSet;
 
+/**
+ * 1172 Dinner Plate Stacks
+ */
 public class DinnerPlates {
     List<Stack> stacks;
     TreeSet<Integer> left;

@@ -2,14 +2,10 @@ package solutions;
 
 import java.util.Arrays;
 
+/**
+ * Reverse Pairs
+ */
 public class ReversePairs {
-
-	/**
-	 * Reference to :
-	 * https://discuss.leetcode.com/topic/79227/general-principles-behind-problems-similar-to-reverse-pairs/2
-	 * @param nums
-	 * @return
-	 */
     public int reversePairs(int[] nums) {
         if(nums == null || nums.length < 2) {
             return 0;

@@ -3,7 +3,7 @@ package solutions;
 import java.util.*;
 
 /**
- * Similar String Groups
+ * 839 Similar String Groups
  */
 public class SimiliarStrGroups {
     public int numSimilarGroups(String[] strs) {

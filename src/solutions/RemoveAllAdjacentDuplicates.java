@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.Stack;
 
+/**
+ * 1047 Remove All Adjacent Duplicates in String
+ */
 public class RemoveAllAdjacentDuplicates {
     public String removeDuplicates(String S) {
         if(S == null || S.length() == 0) {
@@ -25,17 +28,16 @@ public class RemoveAllAdjacentDuplicates {
 
     /**
      *
-     * @param S
      * @return
      */
-    public String removeDuplicates2(String S) {
-        if(S == null || S.length() == 0) {
-            return S;
+    public String removeDuplicates2(String s) {
+        if(s == null || s.length() == 0) {
+            return s;
         }
 
         StringBuilder sb = new StringBuilder();
         Stack<Character> stack = new Stack<>();
-        for(char c : S.toCharArray()) {
+        for(char c : s.toCharArray()) {
             if(!stack.isEmpty() && stack.peek() == c) {
                 stack.pop();
             } else {

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1352 Product of the Last K Numbers
+ */
 public class ProductOfNumbers {
     int[] pre = new int[40010];
     int len = 0;

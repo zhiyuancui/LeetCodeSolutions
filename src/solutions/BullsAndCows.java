@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 299 Bulls and Cows
+ */
 public class BullsAndCows {
 	public String getHint(String secret, String guess) {
         if( secret == null || guess == null || secret.length() == 0 || guess.length() == 0 || 

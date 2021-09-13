@@ -1,10 +1,7 @@
 package solutions;
 
 /**
- * Reference to : https://leetcode.com/discuss/104311/java-easy-understand-dfs-solution
- * 
- * @author Zhiyuan
- *
+ * 351 Android Unlock Patterns
  */
 public class UnlockPatterns {
 	

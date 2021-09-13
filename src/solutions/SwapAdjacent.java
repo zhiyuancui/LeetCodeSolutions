@@ -1,32 +1,32 @@
 package solutions;
 
+/**
+ * 777 Swap Adjacent in LR String
+ */
 public class SwapAdjacent {
     public boolean canTransform(String start, String end) {
-        int len = start.length();
+        if (!start.replace("X", "").equals(end.replace("X", "")))
+            return false;
 
-        char[] s = start.toCharArray();
-        char[] e = end.toCharArray();
-
-        int i = -1, j = -1;
-
-        while(++i < len && ++j < len) {
-            while(i < len && s[i] == 'X') {
-                i++;
-            }
-            while(j < len && e[j] == 'X') {
-                j++;
-            }
-
-            if((i<len) ^ (j < len)) {
-                return false;
-            }
-
-            if(i < len && j < len) {
-                if(s[i] != e[j] || (s[i] == 'L' && i < j) || (s[i] == 'R' && i > j)) {
+        int t = 0;
+        for (int i = 0; i < start.length(); ++i)
+            if (start.charAt(i) == 'L') {
+                while (end.charAt(t) != 'L') t++;
+                if (i < t) {
                     return false;
                 }
+                t++;
             }
-        }
+
+        t = 0;
+        for (int i = 0; i < start.length(); ++i)
+            if (start.charAt(i) == 'R') {
+                while (end.charAt(t) != 'R') t++;
+                if (i > t) {
+                    return false;
+                }
+                t++;
+            }
 
         return true;
     }
