@@ -1,13 +1,10 @@
 package solutions;
 
-public class LastStoneWeight {
-
-    /**
-     * https://leetcode-cn.com/problems/last-stone-weight-ii/solution/gong-shui-san-xie-xiang-jie-wei-he-neng-jgxik/
-     * 1049 Lst Stone Weight II
-     * @param stones
-     * @return
-     */
+/**
+ * https://leetcode-cn.com/problems/last-stone-weight-ii/solution/gong-shui-san-xie-xiang-jie-wei-he-neng-jgxik/
+ * 1049 Lst Stone Weight II
+ */
+public class LastStoneWeightII {
     public int lastStoneWeightII(int[] stones) {
         if(stones == null || stones.length == 0) {
             return 0;

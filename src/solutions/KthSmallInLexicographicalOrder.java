@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 440 K-th Smallest in Lexicographical Order
+ */
 public class KthSmallInLexicographicalOrder {
 	public int findKthNumber(int n, int k) {
         int curr = 1;

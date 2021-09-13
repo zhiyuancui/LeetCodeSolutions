@@ -2,6 +2,10 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 1339 Maximum Product of Splitted Binary Tree
+ * https://leetcode-cn.com/problems/maximum-product-of-splitted-binary-tree/solution/java-di-gui-by-hu-li-hu-wai-p831/
+ */
 public class MaxProductOfSplittedBT {
     long sum = 0;
     long best = 0;

@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 1283 Find the Smallest Divisor Given a Threshold
+ */
 public class SmallestDivisor {
 
     public int smallestDivisor(int[] nums, int threshold) {

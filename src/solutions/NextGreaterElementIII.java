@@ -2,45 +2,44 @@ package solutions;
 
 import java.util.Arrays;
 
+/**
+ * 556 Next Greater Element III
+ */
 public class NextGreaterElementIII {
 
-    /**
-     * Next Greater Element III
-     * @param n
-     * @return
-     */
     public int nextGreaterElement(int n) {
-        char[] number = (n + "").toCharArray();
+        char[] number = Integer.toString(n).toCharArray();
 
         int i, j;
-        // I) Start from the right most digit and
-        // find the first digit that is
-        // smaller than the digit next to it.
-        for (i = number.length-1; i > 0; i--)
-            if (number[i-1] < number[i])
+
+        for(i = number.length -1; i > 0; i--) {
+            if(number[i-1] < number[i]) {
                 break;
+            }
+        }
 
-        // If no such digit is found, its the edge case 1.
-        if (i == 0)
+        if(i == 0) {
             return -1;
+        }
 
-        // II) Find the smallest digit on right side of (i-1)'th
-        // digit that is greater than number[i-1]
-        int x = number[i-1], smallest = i;
-        for (j = i+1; j < number.length; j++)
-            if (number[j] > x && number[j] <= number[smallest])
-                smallest = j;
+        for(j = number.length -1; j > i; j--) {
+            if(number[j] > number[i-1]) {
+                break;
+            }
+        }
 
-        // III) Swap the above found smallest digit with
-        // number[i-1]
-        char temp = number[i-1];
-        number[i-1] = number[smallest];
-        number[smallest] = temp;
+        swap(number, i-1, j);
 
-        // IV) Sort the digits after (i-1) in ascending order
         Arrays.sort(number, i, number.length);
 
         long val = Long.parseLong(new String(number));
-        return (val <= Integer.MAX_VALUE) ? (int) val : -1;
+
+        return val <= Integer.MAX_VALUE ? (int)val : -1;
+    }
+
+    private void swap(char[] nums, int i, int j) {
+        char temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }

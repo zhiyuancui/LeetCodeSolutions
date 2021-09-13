@@ -1,17 +1,10 @@
 package solutions;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * 169 Majority Element
+ */
 public class MajorityElement {
-	
-	/**
-	 * Majority Element
-	 * @param nums
-	 * @return
-	 */
 	public int majorityElement(int[] nums) {
-        
         if( nums == null || nums.length == 0 )
         {
             return 0;
