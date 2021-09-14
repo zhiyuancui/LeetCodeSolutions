@@ -2,7 +2,10 @@ package solutions;
 
 import java.util.*;
 
-public class ParallelCourse {
+/**
+ * 1494 Parallel Courses II
+ */
+public class ParallelCoursesII {
     public int minNumberOfSemesters(int n, int[][] dependencies, int k) {
         if( n <= 0 || k <= 0) {
             return 0;
@@ -20,11 +23,6 @@ public class ParallelCourse {
             graph.put(edge[0], list);
         }
 
-        for(int i = 1; i < indegree.length; i++) {
-            System.out.println(i+" indegree: " + indegree[i]+"  outdegree: " + outdegree[i]);
-        }
-
-
         PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> outdegree[b] - outdegree[a]);
 
         int count = 0;
@@ -38,7 +36,6 @@ public class ParallelCourse {
         while(!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> nextLevel = new ArrayList<>();
-            System.out.println("///////////////////////////");
             for(int i = 0; i < Math.min(size,k); i++) {
                 int cur = queue.poll();
                 System.out.println(cur);
