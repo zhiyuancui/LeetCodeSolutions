@@ -2,6 +2,9 @@ package solutions.amazon;
 
 import java.util.PriorityQueue;
 
+/**
+ * 1167 Minimum Cost to Connect Sticks
+ */
 public class ConnectSticks {
     public int connectSticks(int[] sticks) {
         PriorityQueue<Integer> queue = new PriorityQueue<>();

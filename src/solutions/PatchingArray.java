@@ -2,8 +2,7 @@ package solutions;
 
 
 /**
- * According the discussion: https://leetcode.com/discuss/82822/solution-explanation
- * @author Zhiyuan
+ * 330 Parching Array
  *
  */
 public class PatchingArray {
