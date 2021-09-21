@@ -5,6 +5,6 @@ package solutions;
  */
 public class RestoreArray {
     public int numberOfArrays(String s, int k) {
-
+        return 0;
     }
 }

@@ -1,24 +1,36 @@
 package solutions;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import util.TreeNode;
 
+/**
+ * 652 Find Duplicate Subtrees
+ */
 public class FindDuplicateSubtrees {
+	Map<String, Integer> trees;
+	Map<Integer, Integer> count;
+	List<TreeNode> ans;
+	int t;
 	public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-	    List<TreeNode> res = new LinkedList<>();
-	    postorder(root, new HashMap<>(), res);
-	    return res;
+		t = 1;
+		trees = new HashMap<>();
+		count = new HashMap<>();
+		ans = new ArrayList<>();
+		lookUp(root);
+		return ans;
 	}
 
-	public String postorder(TreeNode cur, Map<String, Integer> map, List<TreeNode> res) {
-	    if (cur == null) return "#";  
-	    String serial = cur.val + "," + postorder(cur.left, map, res) + "," + postorder(cur.right, map, res);
-	    if (map.getOrDefault(serial, 0) == 1) res.add(cur);
-	    map.put(serial, map.getOrDefault(serial, 0) + 1);
-	    return serial;
+	public int lookUp(TreeNode node) {
+		if(node == null) {
+			return 0;
+		}
+		String serial = node.val + "," + lookUp(node.left) + "," + lookUp(node.right);
+		int uuid = trees.computeIfAbsent(serial, x -> t++);
+		count.put(uuid, count.getOrDefault(uuid, 0) +1);
+		if(count.get(uuid) == 2) {
+			ans.add(node);
+		}
+		return uuid;
 	}
 }
