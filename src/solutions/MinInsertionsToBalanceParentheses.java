@@ -4,31 +4,32 @@ package solutions;
  * 1541 Minimum Insertions to Balance a Parentheses String
  */
 public class MinInsertionsToBalanceParentheses {
+    // https://leetcode-cn.com/problems/minimum-insertions-to-balance-a-parentheses-string/solution/ping-heng-gua-hao-zi-fu-chuan-de-zui-shao-cha-ru-2/
     public int minInsertions(String s) {
-        if(s == null || s.length() == 0) {
-            return 0;
-        }
-
-        int left = 0;
-        int right = 0;
-
-        for(char c : s.toCharArray()) {
-            if(c == '(') {
-                if(right % 2 != 0) {
-                    left++;
-                    right++;
+        int insertions = 0;
+        int leftCount = 0;
+        int length = s.length();
+        int index = 0;
+        while (index < length) {
+            char c = s.charAt(index);
+            if (c == '(') {
+                leftCount++;
+                index++;
+            } else {
+                if (leftCount > 0) {
+                    leftCount--;
                 } else {
-                    right += 2;
+                    insertions++;
                 }
-            } else if(c == ')') {
-                if(right == 0) {
-                    left++;
-                    right++;
+                if (index < length - 1 && s.charAt(index + 1) == ')') {
+                    index += 2;
                 } else {
-                    right--;
+                    insertions++;
+                    index++;
                 }
             }
         }
-        return left + right;
+        insertions += leftCount * 2;
+        return insertions;
     }
 }
