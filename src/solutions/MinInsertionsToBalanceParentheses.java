@@ -2,9 +2,9 @@ package solutions;
 
 /**
  * 1541 Minimum Insertions to Balance a Parentheses String
+ * https://leetcode-cn.com/problems/minimum-insertions-to-balance-a-parentheses-string/solution/ping-heng-gua-hao-zi-fu-chuan-de-zui-shao-cha-ru-2/
  */
 public class MinInsertionsToBalanceParentheses {
-    // https://leetcode-cn.com/problems/minimum-insertions-to-balance-a-parentheses-string/solution/ping-heng-gua-hao-zi-fu-chuan-de-zui-shao-cha-ru-2/
     public int minInsertions(String s) {
         int insertions = 0;
         int leftCount = 0;

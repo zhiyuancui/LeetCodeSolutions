@@ -3,6 +3,9 @@ package solutions;
 
 import java.util.List;
 
+/**
+ * 1522 Diameter of N-Ary Tree
+ */
 public class DiameterOfNaryTre {
 
     class TreeNode {

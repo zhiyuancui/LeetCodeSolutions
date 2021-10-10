@@ -2,7 +2,7 @@ package solutions;
 
 import java.util.Stack;
 /**
- * Next Greater Element II
+ * 503 Next Greater Element II
  */
 public class NextGreaterElementII {
 	public int[] nextGreaterElements(int[] nums) {

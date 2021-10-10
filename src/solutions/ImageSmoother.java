@@ -1,11 +1,14 @@
 package solutions;
 
+/**
+ * 661 Image Smoother
+ */
 public class ImageSmoother {
-	public int[][] imageSmoother(int[][] M) {
-        if (M == null) return null;
-        int rows = M.length;
+	public int[][] imageSmoother(int[][] img) {
+        if (img == null) return null;
+        int rows = img.length;
         if (rows == 0) return new int[0][];
-        int cols = M[0].length;
+        int cols = img[0].length;
 
         int[][] result = new int[rows][cols];
 
@@ -17,7 +20,7 @@ public class ImageSmoother {
                     for (int incC : new int[]{-1, 0, 1}) {
                         if (isValid(row + incR, col + incC, rows, cols)) {
                             count++;
-                            sum += M[row + incR][col + incC];
+                            sum += img[row + incR][col + incC];
                         }
                     }
                 }

@@ -12,7 +12,7 @@ public class RemoveAllAdjacantDuplicatesII {
         Stack<Integer> counts = new Stack<>();
         for(int i = 0; i < sb.length(); i++) {
             if(i == 0 || sb.charAt(i) != sb.charAt(i-1)) {
-                counts.push(i);
+                counts.push(1);
             } else {
                 int incre = counts.pop() + 1;
                 if(incre == k) {

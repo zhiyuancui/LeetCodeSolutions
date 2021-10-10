@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 1554 Strings Differ by One Character
+ */
 public class StringDiffByOneCharacter {
     public boolean differByOne(String[] dict) {
         Set<String> set = new HashSet<>();

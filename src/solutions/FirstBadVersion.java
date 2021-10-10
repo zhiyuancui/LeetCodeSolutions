@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 278 First Bad Version
+ */
 public class FirstBadVersion {
 	public int firstBadVersion(int n) {
         

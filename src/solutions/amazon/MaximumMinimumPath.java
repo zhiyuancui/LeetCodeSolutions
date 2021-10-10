@@ -2,6 +2,9 @@ package solutions.amazon;
 
 import java.util.PriorityQueue;
 
+/**
+ * 1102 Path With Maximum Minimum Value
+ */
 public class MaximumMinimumPath {
     int[] dx = new int[]{0,0,1,-1};
     int[] dy = new int[]{1,-1,0,0};

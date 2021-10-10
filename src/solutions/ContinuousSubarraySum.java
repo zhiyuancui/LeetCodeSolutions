@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 523 Continuous Subarray Sum
+ */
 public class ContinuousSubarraySum {
 	public boolean checkSubarraySum(int[] nums, int k) {
 		if( nums == null || nums.length == 0 ) {

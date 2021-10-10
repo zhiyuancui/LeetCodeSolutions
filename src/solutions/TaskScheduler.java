@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+/**
+ * 621 Task Scheduler
+ */
 public class TaskScheduler {
 	public int leastInterval(char[] tasks, int n) {
         int[] c = new int[26];

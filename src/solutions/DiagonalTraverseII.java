@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 1424 Diagonal Traverse II
+ */
 public class DiagonalTraverseII {
     class Point {
         int row;

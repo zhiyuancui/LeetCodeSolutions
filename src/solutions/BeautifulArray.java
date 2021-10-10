@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * 932 Beautiful Array
+ * https://leetcode-cn.com/problems/beautiful-array/solution/piao-liang-shu-zu-by-leetcode/
  */
 public class BeautifulArray {
     Map<Integer, int[]> memo = new HashMap<>();

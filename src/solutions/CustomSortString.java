@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 791 Custom Sort String
+ */
 public class CustomSortString {
     public String customSortString(String order, String T) {
         if(order==null || order.length() == 0) {

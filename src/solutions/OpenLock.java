@@ -2,6 +2,9 @@ package solutions;
 
 import java.util.*;
 
+/**
+ * 752 Open the Lock
+ */
 public class OpenLock {
     public int openLock(String[] deadends, String target) {
         if(target.equals("0000")) {
