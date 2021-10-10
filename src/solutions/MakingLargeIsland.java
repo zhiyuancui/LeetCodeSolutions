@@ -9,81 +9,104 @@ import java.util.Set;
  * 827 Making A Large Island
  */
 public class MakingLargeIsland {
-    Map<Integer,Integer> selfCountMap = new HashMap<>();
-    Map<Integer, Integer> neighborCountMap = new HashMap<>();
-
     public int largestIsland(int[][] grid) {
-        if( grid == null || grid.length == 0) {
-            return 0;
+        if (grid==null || grid.length == 0){
+            return 1;
         }
 
-        int row = grid.length;
-        int col = grid[0].length;
-        int max = 1;
-        int islandSize = 2;
+        int res = 0;
+        int index = 2;//index表示岛屿的编号，0是海洋1是陆地，从2开始遍历
+        HashMap<Integer,Integer> indexAndAreas = new HashMap<>();//岛屿编号：岛屿面积
 
-        for(int i = 0; i < row; i++) {
-            for(int j = 0; j < col; j++) {
-                if(grid[i][j] == 1) {
-                    dfs(grid, i, j, islandSize);
-                    islandSize++;
+        /**
+         * 计算每个岛屿的面积，并标记是第几个岛屿
+         */
+        for (int r=0;r<grid.length;r++){
+            for (int c=0;c<grid[0].length;c++){
+                if (grid[r][c] == 1){//遍历没有访问过的岛屿格子
+                    int area = area(grid,r,c,index);//返回每个岛屿的面积，dfs
+                    indexAndAreas.put(index,area);//存入岛屿编号、岛屿面积
+                    index++;//岛屿编号增加
+                    res = Math.max(res,area);//记录最大的岛屿面积
                 }
             }
         }
 
-        for(int key: selfCountMap.keySet()) {
-            max = Math.max(max, selfCountMap.get(key) + neighborCountMap.getOrDefault(key,0));
-        }
+        if (res == 0) return 1;//res=0表示没有陆地，那么造一块，则返回1即可
 
-        return max;
+        /**
+         * 遍历海洋格子，假设这个格子填充，那么就把上下左右是陆地的格子所在的岛屿连接起来
+         */
+        for (int r=0;r<grid.length;r++){
+            for (int c=0;c<grid[0].length;c++){
+                if (grid[r][c] == 0){ //遍历海洋格子
+                    HashSet<Integer> hashSet = findNeighbour(grid,r,c);//把上下左右邻居放入set去重
+                    if (hashSet.size() < 1)continue;//如果海洋格子周围没有格子不必计算
+                    int twoIsland = 1;//填充这个格子，初始为1，这个变量记录合并岛屿后的面积
+                    for (Integer i: hashSet){
+                        twoIsland += indexAndAreas.get(i);//该格子填充，则上下左右的陆地的都连接了，通过序号获得面积，加上面积
+                    }
+                    res = Math.max(res,twoIsland);//比较得到最大的面积
+                }
+            }
+        }
+        return res;
     }
 
-    private void dfs(int[][] grid, int x, int y, int islandSize) {
-        int row = grid.length;
-        int col = grid[0].length;
-
-        if(x < 0 || y < 0 || x >= row || y >= col) {
-            return;
+    /**
+     * 对于海洋格子，找到上下左右
+     * 每个方向，都要确保有效inArea以及是陆地格子，则表示是该海洋格子的陆地邻居
+     * @param grid
+     * @param r
+     * @param c
+     * @return
+     */
+    private HashSet<Integer> findNeighbour(int[][] grid,int r,int c){
+        HashSet<Integer> hashSet = new HashSet<>();
+        if (inArea(grid,r-1,c)&&grid[r-1][c] != 0){
+            hashSet.add(grid[r-1][c]);
         }
-
-        if(grid[x][y] == 0) {
-            int neighborCount = 1;
-            Set<Integer> visited = new HashSet<>();
-
-            neighborCount += getNeighbor(grid, x+1, y, islandSize, visited);
-            neighborCount += getNeighbor(grid, x-1, y, islandSize, visited);
-            neighborCount += getNeighbor(grid, x, y+1, islandSize, visited);
-            neighborCount += getNeighbor(grid, x, y-1, islandSize, visited);
-
-            int max = Math.max(neighborCount, neighborCountMap.getOrDefault(islandSize, 0));
-            neighborCountMap.put(islandSize, max);
-            return;
-        } else if(grid[x][y] != 1) {
-            return;
+        if (inArea(grid,r+1,c) && grid[r+1][c] != 0){
+            hashSet.add(grid[r+1][c]);
         }
-
-        grid[x][y] = islandSize;
-        selfCountMap.put(islandSize, selfCountMap.getOrDefault(islandSize,0)+1);
-
-        dfs(grid,x,y-1, islandSize);
-        dfs(grid,x,y+1, islandSize);
-        dfs(grid,x+1,y, islandSize);
-        dfs(grid,x-1,y, islandSize);
+        if (inArea(grid,r,c-1) && grid[r][c-1] != 0){
+            hashSet.add(grid[r][c-1]);
+        }
+        if (inArea(grid,r,c+1) && grid[r][c+1] != 0){
+            hashSet.add(grid[r][c+1]);
+        }
+        return hashSet;
     }
 
-    private int getNeighbor(int[][] grid, int x, int y, int islandSize, Set<Integer> visited) {
-        int row = grid.length;
-        int col = grid[0].length;
-
-        if(x < 0 || y < 0 || x >= row || y >= col) {
+    /**
+     * dfs方法，将格子填充为index，即表示这个格子属于哪个岛的
+     * 计算岛屿面积，上下左右，当然这个可以优化的，因为不需要计算上面的，会有重复
+     * @param grid
+     * @param r
+     * @param c
+     * @param index
+     * @return
+     */
+    private int area(int[][] grid, int r, int c,int index){
+        if (!inArea(grid,r,c)){
             return 0;
         }
-
-        if(grid[x][y] > 1 && grid[x][y] != islandSize && !visited.contains(grid[x][y])) {
-            visited.add(grid[x][y]);
-            return selfCountMap.get(grid[x][y]);
+        //不为1，表示为海洋格子或者已经遍历过了
+        if (grid[r][c] != 1){
+            return 0;
         }
+        grid[r][c] = index;//设置当前格子为某个岛屿编号
+        return 1 + area(grid,r-1,c,index) + area(grid,r+1,c,index) + area(grid,r,c-1,index) + area(grid,r,c+1,index);
+    }
 
-        return 0;
+    /**
+     * 判断grid[r][c]是否大小合适
+     * @param grid
+     * @param r
+     * @param c
+     * @return
+     */
+    private boolean inArea(int[][] grid,int r,int c){
+        return r>=0 && r<grid.length&&c>=0 && c<grid[0].length;
     }
 }

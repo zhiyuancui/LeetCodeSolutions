@@ -3,6 +3,9 @@ package solutions;
 import java.util.HashMap;
 import java.util.*;
 
+/**
+ * 691 Stickers to Spell Word
+ */
 public class StickersToSpellWord {
     public int minStickers(String[] stickers, String target) {
         if(target == null || stickers == null) {

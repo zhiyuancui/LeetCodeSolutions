@@ -2,6 +2,9 @@ package solutions;
 
 import util.TreeNode;
 
+/**
+ * 536 Constrcut Binary Tree from String
+ */
 public class StrToTree {
 	public TreeNode str2tree(String s) {
 		if( s == null || s.length() == 0 ) {
