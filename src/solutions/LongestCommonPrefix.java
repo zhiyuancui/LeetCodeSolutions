@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 14 Longest Common Prefix
+ */
 public class LongestCommonPrefix {
 
 	public String longestCommonPrefix(String[] strs) {
