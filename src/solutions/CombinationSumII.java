@@ -20,7 +20,7 @@ public class CombinationSumII {
 
         List<Integer> path = new ArrayList<Integer>();
         Arrays.sort(candidates);
-        generate(results, path, candidates, target, 0);
+        generate(results, path, candidates, 0, target);
 
         return results;
     }

@@ -2,10 +2,12 @@ package solutions;
 
 import util.ListNode;
 
+/**
+ * 92. Reverse Linked List II
+ */
 public class ReverseBetween {
 
-	public ListNode reverseBetween(ListNode head, int m, int n) {
-        		
+	public ListNode reverseBetween(ListNode head, int left, int right) {
         if( head == null || head.next == null ){
             return head;
         }
@@ -14,7 +16,7 @@ public class ReverseBetween {
         dummy.next = head;
         
         ListNode prev = dummy;
-        for(int i = 0; i < m - 1; i++ ){
+        for(int i = 0; i < left - 1; i++ ){
             if( prev == null ){
                 return null;
             }
@@ -22,7 +24,7 @@ public class ReverseBetween {
         }
         
         ListNode tail = prev.next;
-        for(int i = m; i < n; i++){
+        for(int i = left; i < right; i++){
             ListNode cur = tail.next;
             tail.next = cur.next;
             cur.next = prev.next;

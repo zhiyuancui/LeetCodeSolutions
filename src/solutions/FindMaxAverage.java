@@ -1,5 +1,8 @@
 package solutions;
 
+/**
+ * 643. Maximum Average Subarray I
+ */
 public class FindMaxAverage {
 	public double findMaxAverage(int[] nums, int k) {
         long sum = 0;

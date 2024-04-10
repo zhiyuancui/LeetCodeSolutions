@@ -7,6 +7,8 @@ import java.util.Queue;
  * 286 Walls and Gates
  */
 public class WallsGates {
+    int[] dx = {0,0,1,-1};
+    int[] dy = {1,-1,0,0};
     public void wallsAndGates(int[][] rooms) {
         if (rooms.length == 0 || rooms[0].length == 0) return;
         Queue<int[]> queue = new LinkedList<>();
