@@ -20,6 +20,7 @@ public class StrToTree {
         int cur = Integer.parseInt( s.substring(0,first) );
         TreeNode root = new TreeNode( cur );
         
+        //start是child括号开口，i是child括号闭口
         int start = first, left = 0;
         for( int i = start; i < s.length(); i++ ) {
             if( s.charAt(i) == '(' ){

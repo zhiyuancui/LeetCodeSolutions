@@ -7,23 +7,19 @@ import java.util.Stack;
  */
 public class RemoveAllAdjacantDuplicatesII {
     public String removeDuplicates(String s, int k) {
-        StringBuilder sb = new StringBuilder(s);
+        int idx = 0;
+       int len = s.length();
+       int[] count = new int[len];
 
-        Stack<Integer> counts = new Stack<>();
-        for(int i = 0; i < sb.length(); i++) {
-            if(i == 0 || sb.charAt(i) != sb.charAt(i-1)) {
-                counts.push(1);
-            } else {
-                int incre = counts.pop() + 1;
-                if(incre == k) {
-                    sb.delete(i-k+1,i+1);
-                    i = i-k;
-                } else {
-                    counts.push(incre);
-                }
+       char[] stack = s.toCharArray();
+       for(int j = 0; j < len;j++,idx++) {
+            stack[idx] = stack[j];
+            count[idx] = idx > 0 && stack[idx-1] == stack[j] ? count[idx-1] + 1 : 1;
+            if(count[idx] == k) {
+                idx -= k;
             }
-        }
+       }
 
-        return sb.toString();
+       return new String(stack, 0, idx);
     }
 }

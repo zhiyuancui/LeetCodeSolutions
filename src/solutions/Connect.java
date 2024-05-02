@@ -28,36 +28,28 @@ public class Connect {
     }
 
     public Node connect(Node root) {
-        if( root == null )
-        {
+        if(root == null) {
             return root;
         }
 
         Node cur = root;
-        while( cur != null )
-        {
+        while(cur != null) {
             Node prev = null;
             Node next = null;
-            for(; cur != null; cur = cur.next )
-            {
-                if( next == null )
-                {
+            for(; cur != null; cur = cur.next) {
+                if(next ==null) {
                     next = cur.left == null ? cur.right : cur.left;
                 }
 
-                if( cur.left != null )
-                {
-                    if( prev != null )
-                    {
+                if(cur.left != null) {
+                    if(prev != null) {
                         prev.next = cur.left;
                     }
                     prev = cur.left;
                 }
 
-                if( cur.right != null )
-                {
-                    if( prev != null )
-                    {
+                if(cur.right != null) {
+                    if(prev != null) {
                         prev.next = cur.right;
                     }
                     prev = cur.right;
